@@ -66,7 +66,7 @@ const App = () => {
             Deviens un <span className="text-orange-500 font-black">Investisseur</span>,<br />Plus un joueur.
           </h1>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-            Arrête de parier au hasard. Analyse, Gestion et Methode pour dominer le PMU sur le long terme.
+            Arrête de parier au hasard. Analyse, Gestion et Méthode pour dominer le PMU sur le long terme.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group">
