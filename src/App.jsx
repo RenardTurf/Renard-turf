@@ -119,7 +119,7 @@ const App = () => {
                       <div className="bg-slate-900 border border-orange-500/40 p-10 rounded-[2rem] shadow-2xl text-center max-w-sm">
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
-                        <p className="text-sm text-slate-400 mb-8 font-medium">L'analyse complète et tous les pronostics du jour sont réservés aux membres du Cercle.</p>
+                        <p className="text-sm text-slate-400 mb-8 font-medium">L'analyse complète et tous les pronostics du jour sont réservés aux VIP.</p>
                         <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-center">
                           REJOINDRE LE VIP
                         </a>
