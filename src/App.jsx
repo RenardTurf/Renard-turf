@@ -14,11 +14,11 @@ const App = () => {
   }, []);
 
   // --- REMPLACE LES LIENS CI-DESSOUS PAR TES LIENS SELLFY ---
-  const LINKS = {
-    VIP_HEBDO: "https://www.renardturf.fr/p/pronovip/", // METS TON LIEN ICI
-    BIBLE: "https://www.renardturf.fr/p/le-guide-du-renard/",     // METS TON LIEN ICI
-  
-  };
+   const LINKS = {
+    VIP_HEBDO: "[https://boutique.renardturf.fr/p/votre-code-vip](https://boutique.renardturf.fr/p/votre-code-vip)",
+    BIBLE: "[https://boutique.renardturf.fr/p/votre-code-bible](https://boutique.renardturf.fr/p/votre-code-bible)",
+    
+
 
   const stats = [
     { label: "ROI Moyen", value: "+51%", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
@@ -93,7 +93,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 text-center md:text-left">
                 <div>
                   <h2 className="text-4xl font-black text-white mb-3 tracking-tighter uppercase italic">L'Analyse du Jour 🦊</h2>
-                  <p className="text-slate-400 font-medium italic">Vincennes - Prix d'Hiver - Demain 13h50</p>
+                  <p className="text-slate-400 font-medium italic">Vincennes - Prix de Bourgogne - Demain 15h15</p>
                 </div>
                 <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest">
                   Quinté+
@@ -116,8 +116,8 @@ const App = () => {
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
                         <p className="text-sm text-slate-400 mb-8 font-medium">Accède au ticket complet, au tocard secret et à la sélection VIP du Renard.</p>
-                        <a href={LINKS.FICHE_UNITAIRE} className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all">
-                          Prendre la Fiche (1€)
+                        <a href={LINKS.VIP_HEBDO} className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all">
+                          Prendre le VIP (5€)
                         </a>
                       </div>
                     </div>
