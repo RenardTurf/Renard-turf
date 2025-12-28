@@ -41,7 +41,7 @@ const App = () => {
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#analyse" className="hover:text-orange-500 transition-colors">L'Analyse</a>
             <a href="#offres" className="hover:text-orange-500 transition-colors">Offres 2026</a>
-            <a href={LINKS.VIP_HEBDO} className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20">
+            <a href={https://lerenardturf.sellfy.store/p/pronovip/} className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20">
               Accès VIP
             </a>
           </div>
@@ -116,7 +116,7 @@ const App = () => {
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
                         <p className="text-sm text-slate-400 mb-8 font-medium">Accède au ticket complet, au tocard secret et à la sélection VIP du Renard.</p>
-                        <a href={LINKS.VIP_HEBDO} className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all">
+                        <a href={https://lerenardturf.sellfy.store/p/pronovip/} className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all">
                           Prendre le VIP (5€)
                         </a>
                       </div>
@@ -191,7 +191,7 @@ const App = () => {
                        <span className="text-4xl font-black text-white">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[10px] tracking-widest">C'est parti !</a>
+                    <a href={https://lerenardturf.sellfy.store/p/pronovip/} className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[10px] tracking-widest">C'est parti !</a>
                  </div>
               </div>
            </div>
