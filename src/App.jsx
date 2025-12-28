@@ -23,14 +23,13 @@ const App = () => {
   // --- TES LIENS OFFICIELS SELLFY ---
   const LINKS = {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
-    BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
-    FICHE_UNITAIRE: "https://lerenardturf.sellfy.store/"
+    BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/"
   };
 
   const stats = [
     { label: "ROI Moyen", value: "+51%", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
-    { label: "Membres Team", value: "1300+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Taux Réussite", value: "45%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Vues Youtube", value: "500000+", icon: <Users className="w-5 h-5 text-orange-500" /> },
+    { label: "Taux Réussite Quinté", value: "73%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -100,8 +99,8 @@ const App = () => {
                   <h2 className="text-4xl font-black text-white mb-3 tracking-tighter uppercase italic">L'Analyse du Jour 🦊</h2>
                   <p className="text-slate-400 font-medium italic">Vincennes - Prix d'Hiver - Demain 13h50</p>
                 </div>
-                <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest">
-                  Quinté+
+                <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest text-center">
+                  Accès VIP
                 </div>
               </div>
               
@@ -120,9 +119,9 @@ const App = () => {
                       <div className="bg-slate-900 border border-orange-500/40 p-10 rounded-[2rem] shadow-2xl text-center max-w-sm">
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
-                        <p className="text-sm text-slate-400 mb-8 font-medium">Accède au ticket complet, au tocard secret et à la sélection VIP du Renard.</p>
-                        <a href={LINKS.FICHE_UNITAIRE} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-center">
-                          Prendre la Fiche (1€)
+                        <p className="text-sm text-slate-400 mb-8 font-medium">L'analyse complète et le ticket sont réservés aux membres du Cercle du Renard.</p>
+                        <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-center">
+                          REJOINDRE LE VIP
                         </a>
                       </div>
                     </div>
@@ -130,7 +129,7 @@ const App = () => {
                 </div>
 
                 <div className="bg-slate-950/50 p-8 rounded-3xl border border-slate-800 h-fit text-center md:text-left">
-                  <h4 className="font-black text-white mb-8 flex items-center justify-center md:justify-start gap-3 uppercase tracking-tighter text-sm">
+                  <h4 className="font-black text-white mb-8 flex items-center justify-center md:justify-start gap-3 uppercase tracking-tighter text-sm text-slate-500">
                     <BarChart3 className="w-5 h-5 text-orange-500" /> Paramètres
                   </h4>
                   <ul className="space-y-6 text-[13px]">
@@ -140,7 +139,7 @@ const App = () => {
                     </li>
                     <li className="flex justify-between border-b border-slate-900 pb-4 font-bold">
                       <span className="text-slate-500 uppercase text-[10px]">Engagement</span>
-                      <span className="text-orange-500">Visé</span>
+                      <span className="text-orange-500 uppercase">Visé</span>
                     </li>
                   </ul>
                 </div>
@@ -159,14 +158,15 @@ const App = () => {
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-slate-900 border border-slate-800 p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all">
+              {/* La Bible */}
+              <div className="bg-slate-900 border border-slate-800 p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
-                    <ul className="space-y-4 mb-12">
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left">La Bible du Renard</h3>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
+                    <ul className="space-y-4 mb-12 text-left">
                        <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers de l'analyse data</li>
                        <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
@@ -177,22 +177,23 @@ const App = () => {
                  </div>
               </div>
 
+              {/* VIP HEBDO */}
               <div className="bg-orange-600 p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10">
                        <Zap className="text-white fill-current w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic">Pass Hebdo VIP</h3>
-                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed">Chaque matin avant 9h, reçois mon analyse complète et mon ticket optimisé.</p>
-                    <ul className="space-y-4 mb-12 text-white">
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left">Pass Hebdo VIP</h3>
+                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left text-left">Chaque matin avant 9h, reçois mon analyse complète et mon ticket optimisé.</p>
+                    <ul className="space-y-4 mb-12 text-white text-left">
                        <li className="flex items-center gap-4 text-sm font-black"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider secret du jour</li>
                        <li className="flex items-center gap-4 text-sm font-black"><CheckCircle2 className="w-5 h-5 text-white" /> Accès direct au canal privé</li>
                     </ul>
                  </div>
                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col text-left">
                        <span className="text-4xl font-black text-white">5€</span>
-                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest">par semaine</span>
+                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black">par semaine</span>
                     </div>
                     <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[10px] tracking-widest text-center">C'est parti !</a>
                  </div>
