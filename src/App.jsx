@@ -8,7 +8,14 @@ const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -17,13 +24,13 @@ const App = () => {
   const LINKS = {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
-    
+    FICHE_UNITAIRE: "https://lerenardturf.sellfy.store/"
   };
 
   const stats = [
     { label: "ROI Moyen", value: "+51%", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
-    { label: "Vues Youtube", value: "500 000+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Taux Réussite Quinté", value: "73%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Membres Team", value: "1300+", icon: <Users className="w-5 h-5 text-orange-500" /> },
+    { label: "Taux Réussite", value: "45%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -49,11 +56,11 @@ const App = () => {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative pt-48 pb-20 overflow-hidden">
+      <section className="relative pt-48 pb-20 overflow-hidden text-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent -z-10" />
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6">
           <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-4 py-1.5 rounded-full mb-8">
-            <span className="relative flex h-2 w-2 text-orange-500">●</span>
+            <span className="text-orange-500">●</span>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Saison 2026 : Rentabilité Activée</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none tracking-tighter uppercase italic">
@@ -114,7 +121,7 @@ const App = () => {
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
                         <p className="text-sm text-slate-400 mb-8 font-medium">Accède au ticket complet, au tocard secret et à la sélection VIP du Renard.</p>
-                        <a href={LINKS.FICHE_UNITAIRE} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all">
+                        <a href={LINKS.FICHE_UNITAIRE} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-center">
                           Prendre la Fiche (1€)
                         </a>
                       </div>
@@ -122,8 +129,8 @@ const App = () => {
                   </div>
                 </div>
 
-                <div className="bg-slate-950/50 p-8 rounded-3xl border border-slate-800 h-fit">
-                  <h4 className="font-black text-white mb-8 flex items-center gap-3 uppercase tracking-tighter text-sm">
+                <div className="bg-slate-950/50 p-8 rounded-3xl border border-slate-800 h-fit text-center md:text-left">
+                  <h4 className="font-black text-white mb-8 flex items-center justify-center md:justify-start gap-3 uppercase tracking-tighter text-sm">
                     <BarChart3 className="w-5 h-5 text-orange-500" /> Paramètres
                   </h4>
                   <ul className="space-y-6 text-[13px]">
@@ -144,48 +151,46 @@ const App = () => {
       </section>
 
       {/* SECTION OFFRES */}
-      <section id="offres" class="py-32 px-6">
+      <section id="offres" className="py-32 px-6">
         <div className="container mx-auto max-w-6xl">
-           <div className="text-center mb-20 text-center">
+           <div className="text-center mb-20">
               <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter">Passe au niveau supérieur</h2>
-              <p className="text-slate-400 text-lg">Arrête de jouer au hasard, commence à investir avec la data.</p>
+              <p className="text-slate-400 text-lg font-medium">Arrête de jouer au hasard, commence à investir avec la data.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* La Bible */}
               <div className="bg-slate-900 border border-slate-800 p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
-                    <ul className="space-y-4 mb-12 text-left">
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic">La Bible du Renard</h3>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
+                    <ul className="space-y-4 mb-12">
                        <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers de l'analyse data</li>
                        <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
-                 <div className="flex items-center justify-between">
-                    <span className="text-4xl font-black">14,90€</span>
+                 <div className="flex items-center justify-between mt-auto">
+                    <span className="text-4xl font-black text-white">14,90€</span>
                     <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 px-8 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[10px] tracking-widest text-center">Commander</a>
                  </div>
               </div>
 
-              {/* VIP HEBDO */}
               <div className="bg-orange-600 p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all">
                  <div>
-                    <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner">
+                    <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10">
                        <Zap className="text-white fill-current w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left">Pass Hebdo VIP</h3>
-                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left">Chaque matin avant 9h, reçois mon analyse complète et mon ticket optimisé.</p>
-                    <ul className="space-y-4 mb-12 text-white text-left">
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic">Pass Hebdo VIP</h3>
+                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed">Chaque matin avant 9h, reçois mon analyse complète et mon ticket optimisé.</p>
+                    <ul className="space-y-4 mb-12 text-white">
                        <li className="flex items-center gap-4 text-sm font-black"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider secret du jour</li>
                        <li className="flex items-center gap-4 text-sm font-black"><CheckCircle2 className="w-5 h-5 text-white" /> Accès direct au canal privé</li>
                     </ul>
                  </div>
-                 <div className="flex items-center justify-between">
-                    <div className="flex flex-col text-left">
+                 <div className="flex items-center justify-between mt-auto">
+                    <div className="flex flex-col">
                        <span className="text-4xl font-black text-white">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest">par semaine</span>
                     </div>
@@ -202,18 +207,6 @@ const App = () => {
           <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
-        </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
-          © 2026 RENARD TURF - DOMINATION HIPPIQUE
-        </p>
-      </footer>
-    </div>
-  );
-};
-
-export default App;
-
-
         </div>
         <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
           © 2026 RENARD TURF - DOMINATION HIPPIQUE
