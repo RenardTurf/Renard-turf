@@ -172,7 +172,10 @@ const App = () => {
                     </ul>
                  </div>
                  <div className="flex items-center justify-between mt-auto">
-                    <span className="text-4xl font-black text-white">14,90€</span>
+                    <div className="flex items-baseline gap-3">
+                        <span className="text-4xl font-black text-white">14,90€</span>
+                        <span className="text-xl text-slate-500 line-through font-bold tracking-tight">29,90€</span>
+                    </div>
                     <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 px-8 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[10px] tracking-widest text-center">Commander</a>
                  </div>
               </div>
