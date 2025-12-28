@@ -66,7 +66,7 @@ const App = () => {
             Deviens un <span className="text-orange-500 font-black">Investisseur</span>,<br />Plus un joueur.
           </h1>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-            Arrête de parier au hasard. Utilise la data et les 13 piliers du Renard pour dominer le PMU sur le long terme.
+            Arrête de parier au hasard. Analyse, Gestion et Methode pour dominer le PMU sur le long terme.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group">
@@ -154,7 +154,7 @@ const App = () => {
         <div className="container mx-auto max-w-6xl">
            <div className="text-center mb-20">
               <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white">Passe au niveau supérieur</h2>
-              <p className="text-slate-400 text-lg font-medium">Arrête de jouer au hasard, commence à investir avec la data.</p>
+              <p className="text-slate-400 text-lg font-medium">Arrête de jouer au hasard.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -167,7 +167,7 @@ const App = () => {
                     <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white">La Bible du Renard</h3>
                     <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left">
-                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers de l'analyse data</li>
+                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
                        <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
