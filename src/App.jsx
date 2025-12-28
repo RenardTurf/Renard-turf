@@ -18,11 +18,12 @@ const App = () => {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     
+  };
 
   const stats = [
     { label: "ROI Moyen", value: "+51%", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
-    { label: "Vues Youtube", value: "500k+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Taux Réussite", value: "73%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Vues Youtube", value: "500 000+", icon: <Users className="w-5 h-5 text-orange-500" /> },
+    { label: "Taux Réussite Quinté", value: "73%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -201,6 +202,18 @@ const App = () => {
           <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
+        </div>
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
+          © 2026 RENARD TURF - DOMINATION HIPPIQUE
+        </p>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
+
+
         </div>
         <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
           © 2026 RENARD TURF - DOMINATION HIPPIQUE
