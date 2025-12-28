@@ -15,8 +15,8 @@ const App = () => {
 
   // --- REMPLACE LES LIENS CI-DESSOUS PAR TES LIENS SELLFY ---
    const LINKS = {
-    VIP_HEBDO: "[https://boutique.renardturf.fr/p/votre-code-vip](https://boutique.renardturf.fr/p/votre-code-vip)",
-    BIBLE: "[https://boutique.renardturf.fr/p/votre-code-bible](https://boutique.renardturf.fr/p/votre-code-bible)",
+    VIP_HEBDO: "[https://lerenardturf.sellfy.store/p/pronovip/](https://lerenardturf.sellfy.store/p/pronovip/)",
+    BIBLE: "[https://lerenardturf.sellfy.store/p/le-guide-du-renard/](https://lerenardturf.sellfy.store/p/le-guide-du-renard/)",
     
 
 
