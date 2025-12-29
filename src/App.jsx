@@ -21,7 +21,7 @@ const App = () => {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", // Remplace par ton lien de chaîne exact
-    LAST_VIDEO_ID: "https://www.youtube.com/shorts/6NyPqTKix2c" // REMPLACE CECI par l'ID de ta dernière vidéo (ex: ce qui est après v=)
+    LAST_VIDEO_ID: "6NyPqTKix2c" // REMPLACE CECI par l'ID de ta dernière vidéo (ex: ce qui est après v=)
   };
 
   const stats = [
