@@ -20,7 +20,7 @@ const App = () => {
   const LINKS = {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
-    YOUTUBE_CHANNEL: "https://www.youtube.com/@LeRenardduTurf", // Remplace par ton lien de chaîne exact
+    YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", // Remplace par ton lien de chaîne exact
     LAST_VIDEO_ID: "h4n0ugUfhLSeDVLG" // REMPLACE CECI par l'ID de ta dernière vidéo (ex: ce qui est après v=)
   };
 
