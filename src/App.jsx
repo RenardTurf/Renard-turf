@@ -62,7 +62,7 @@ const App = () => {
             <span className="text-orange-500">●</span>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Saison 2026 : Rentabilité Activée</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none tracking-tighter uppercase italic">
+          <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none tracking-tighter uppercase italic text-white">
             Deviens un <span className="text-orange-500 font-black">Investisseur</span>,<br />Plus un joueur.
           </h1>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
@@ -96,8 +96,8 @@ const App = () => {
             <div className="p-8 md:p-16">
               <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 text-center md:text-left">
                 <div>
-                  <h2 className="text-4xl font-black text-white mb-3 tracking-tighter uppercase italic text-white">L'Analyse du Jour 🦊</h2>
-                  <p className="text-slate-400 font-medium italic">Vincennes - Prix d'Hiver - Demain 13h50</p>
+                  <h2 className="text-4xl font-black mb-3 tracking-tighter uppercase italic text-white">L'Analyse du Jour 🦊</h2>
+                  <p className="text-slate-400 font-medium italic text-left">Vincennes - Prix d'Hiver - Demain 13h50</p>
                 </div>
                 <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest text-center">
                   Accès VIP
@@ -159,7 +159,7 @@ const App = () => {
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* La Bible */}
-              <div className="bg-slate-900 border border-slate-800 p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl">
+              <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[500px]">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
@@ -171,17 +171,21 @@ const App = () => {
                        <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
-                 <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-baseline gap-3">
+                 
+                 {/* Footer corrigé pour le prix barré et le bouton */}
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto pt-8 border-t border-slate-800/50">
+                    <div className="flex flex-col items-center sm:items-start">
+                        <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
                         <span className="text-4xl font-black text-white">14,90€</span>
-                        <span className="text-xl text-slate-500 line-through font-bold tracking-tight">29,90€</span>
                     </div>
-                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 px-8 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[10px] tracking-widest text-center">Commander</a>
+                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg">
+                        Commander
+                    </a>
                  </div>
               </div>
 
               {/* VIP HEBDO */}
-              <div className="bg-orange-600 p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all">
+              <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[500px]">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10">
                        <Zap className="text-white fill-current w-7 h-7" />
@@ -193,12 +197,15 @@ const App = () => {
                        <li className="flex items-center gap-4 text-sm"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 chevaux à grosse confiance dans les autres courses du jour</li>
                     </ul>
                  </div>
-                 <div className="flex items-center justify-between mt-auto">
-                    <div className="flex flex-col text-left">
-                       <span className="text-4xl font-black text-white">5€</span>
+                 
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto pt-8 border-t border-white/10">
+                    <div className="flex flex-col items-center sm:items-start text-white">
+                       <span className="text-4xl font-black">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[10px] tracking-widest text-center">C'est parti !</a>
+                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center">
+                        C'est parti !
+                    </a>
                  </div>
               </div>
            </div>
@@ -213,7 +220,7 @@ const App = () => {
           </p>
         </div>
         <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
-          © 2026 RENARD TURF - DOMINATION HIPPIQUE
+          © 2026 LE RENARD DU TURF - 
         </p>
       </footer>
     </div>
