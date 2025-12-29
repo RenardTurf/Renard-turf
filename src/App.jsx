@@ -96,7 +96,7 @@ const App = () => {
                <Youtube className="w-8 h-8 fill-current" />
                <h2 className="text-3xl font-black uppercase tracking-tighter italic">Dernière Analyse Vidéo</h2>
             </div>
-            <p className="text-slate-400 font-medium">Rejoins les 500 000+ passionnés qui suivent mes méthodes sur YouTube.</p>
+            <p className="text-slate-400 font-medium">Rejoins les 1500+ passionnés qui suivent mes méthodes sur YouTube.</p>
           </div>
           
           <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border-2 border-slate-800 shadow-2xl bg-slate-900">
