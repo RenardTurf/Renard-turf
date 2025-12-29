@@ -10,11 +10,7 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      if (offset > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(offset > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -42,7 +38,7 @@ const App = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
                <Zap className="text-white fill-current w-6 h-6" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic text-white">RENARD<span className="text-orange-500 font-black">TURF</span></span>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight">RENARD<span className="text-orange-500 font-black">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#analyse" className="hover:text-orange-500 transition-colors">L'Analyse</a>
@@ -68,7 +64,7 @@ const App = () => {
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
             Arrête de parier au hasard. Analyse, Gestion et Méthode pour dominer le PMU sur le long terme.
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center px-6 md:px-0">
             <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group">
               REJOINDRE LE VIP <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -90,14 +86,14 @@ const App = () => {
       </section>
 
       {/* ANALYSE DU JOUR */}
-      <section id="analyse" className="py-24 bg-slate-900/20 border-y border-slate-900">
+      <section id="analyse" className="py-24 bg-slate-900/20 border-y border-slate-900 px-6 md:px-0">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-3xl border-t-orange-500/20 border-t-2">
             <div className="p-8 md:p-16">
               <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 text-center md:text-left">
                 <div>
                   <h2 className="text-4xl font-black mb-3 tracking-tighter uppercase italic text-white">L'Analyse du Jour 🦊</h2>
-                  <p className="text-slate-400 font-medium italic text-left">Vincennes - Prix d'Hiver - Demain 13h50</p>
+                  <p className="text-slate-400 font-medium italic">Vincennes - Prix d'Hiver - Demain 13h50</p>
                 </div>
                 <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest text-center">
                   Accès VIP
@@ -152,19 +148,19 @@ const App = () => {
       {/* SECTION OFFRES */}
       <section id="offres" className="py-32 px-6">
         <div className="container mx-auto max-w-6xl">
-           <div className="text-center mb-20">
+           <div className="text-center mb-20 px-6">
               <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white">Passe au niveau supérieur</h2>
               <p className="text-slate-400 text-lg font-medium">Arrête de jouer au hasard.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* La Bible */}
-              <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[500px]">
+              <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px]">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white">La Bible du Renard</h3>
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight">La Bible du Renard</h3>
                     <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left">
                        <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
@@ -172,25 +168,24 @@ const App = () => {
                     </ul>
                  </div>
                  
-                 {/* Footer corrigé pour le prix barré et le bouton */}
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto pt-8 border-t border-slate-800/50">
-                    <div className="flex flex-col items-center sm:items-start">
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50">
+                    <div className="flex flex-col items-center sm:items-start space-y-0">
                         <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
-                        <span className="text-4xl font-black text-white">14,90€</span>
+                        <span className="text-4xl font-black text-white leading-none">14,90€</span>
                     </div>
-                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg">
+                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap">
                         Commander
                     </a>
                  </div>
               </div>
 
               {/* VIP HEBDO */}
-              <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[500px]">
+              <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px]">
                  <div>
-                    <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10">
-                       <Zap className="text-white fill-current w-7 h-7" />
+                    <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
+                       <Zap className="fill-current w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left">Pass Hebdo VIP</h3>
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight">Pass Hebdo VIP</h3>
                     <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
                     <ul className="space-y-4 mb-12 text-white text-left font-bold">
                        <li className="flex items-center gap-4 text-sm"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider préféré du jour</li>
@@ -198,12 +193,12 @@ const App = () => {
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto pt-8 border-t border-white/10">
-                    <div className="flex flex-col items-center sm:items-start text-white">
-                       <span className="text-4xl font-black">5€</span>
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
+                    <div className="flex flex-col items-center sm:items-start text-white space-y-0">
+                       <span className="text-4xl font-black leading-none">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center">
+                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap">
                         C'est parti !
                     </a>
                  </div>
@@ -212,15 +207,16 @@ const App = () => {
         </div>
       </section>
 
-      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center">
-        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8">RENARD<span className="text-orange-500 font-black">TURF</span></span>
-        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 mx-6">
+      {/* FOOTER */}
+      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6">
+        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight">RENARD<span className="text-orange-500 font-black">TURF</span></span>
+        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10">
           <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
         <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em]">
-          © 2026 LE RENARD DU TURF - 
+          © 2026 LE RENARD DU TURF
         </p>
       </footer>
     </div>
