@@ -47,9 +47,9 @@ const App = () => {
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400 font-bold">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
             <a href="#analyse" className="hover:text-orange-500 transition-colors">L'Analyse</a>
-            <a href="#ticket" className="hover:text-orange-500 transition-colors text-orange-500 underline underline-offset-8 decoration-2 font-bold">Ticket du Jour</a>
+            <a href="#ticket" className="hover:text-orange-500 transition-colors text-orange-500 underline underline-offset-8 decoration-2 font-bold font-black">Ticket du Jour</a>
             <a href="#offres" className="hover:text-orange-500 transition-colors">Offres</a>
-            <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20 uppercase">
+            <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20 uppercase font-black">
               Accès VIP
             </a>
           </div>
@@ -94,12 +94,12 @@ const App = () => {
       {/* SECTION YOUTUBE */}
       <section id="youtube" className="py-24 px-6 bg-slate-950">
         <div className="container mx-auto max-w-4xl text-center">
-          <div className="mb-12">
+          <div className="mb-12 text-center flex flex-col items-center">
             <div className="flex items-center justify-center gap-3 mb-4 text-orange-500">
-               <Youtube className="w-8 h-8 fill-current" />
-               <h2 className="text-3xl font-black uppercase tracking-tighter italic">Dernière Analyse Vidéo</h2>
+               <Youtube className="w-8 h-8 fill-current text-orange-600" />
+               <h2 className="text-3xl font-black uppercase tracking-tighter italic leading-none">Dernière Analyse Vidéo</h2>
             </div>
-            <p className="text-slate-400 font-medium italic">Rejoins les 1500+ passionnés qui suivent mes méthodes sur YouTube.</p>
+            <p className="text-slate-400 font-medium italic text-center">Rejoins les 1500+ passionnés qui suivent mes méthodes sur YouTube.</p>
           </div>
           
           <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border-2 border-slate-800 shadow-2xl bg-slate-900">
@@ -112,7 +112,7 @@ const App = () => {
              ></iframe>
           </div>
           
-          <div className="mt-10">
+          <div className="mt-10 text-center">
              <a href={LINKS.YOUTUBE_CHANNEL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-white font-black uppercase tracking-widest text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 px-8 py-4 rounded-full transition-all">
                 S'abonner à la chaîne <Star className="w-4 h-4 text-orange-500 fill-current" />
              </a>
@@ -130,14 +130,14 @@ const App = () => {
                   <h2 className="text-4xl font-black mb-3 tracking-tighter uppercase italic text-white leading-none">L'Analyse du Jour 🦊</h2>
                   <p className="text-slate-400 font-medium italic">Vincennes - Prix de Poitiers - Le 31/12 13h50</p>
                 </div>
-                <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest">
+                <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest leading-none">
                   Fiche Quinté
                 </div>
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 text-center md:text-left">
                 <div className="lg:col-span-2 space-y-8">
-                  <p className="text-slate-300 leading-relaxed text-xl font-medium italic">
+                  <p className="text-slate-300 leading-relaxed text-xl font-medium italic text-center md:text-left">
                     "On termine l'année à Vincennes. Ma méthode génétique a détecté une anomalie sur les chevaux de tête..."
                   </p>
                   
@@ -150,13 +150,13 @@ const App = () => {
                       <div className="bg-slate-950 border border-orange-500/40 p-8 md:p-12 rounded-[2rem] shadow-2xl text-center max-w-md backdrop-blur-sm">
                         <Lock className="w-12 h-12 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic leading-none">Analyse Réservée</h3>
-                        <p className="text-sm text-slate-400 mb-8 font-medium italic leading-relaxed">Débloque le ticket complet, l'outsider préféré et l'analyse stratégique.</p>
+                        <p className="text-sm text-slate-400 mb-8 font-medium italic leading-relaxed text-center">Débloque le ticket complet, l'outsider préféré et l'analyse stratégique.</p>
                         
                         <div className="flex flex-col gap-4">
-                            <a href={LINKS.FICHE_ESSAI} target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-slate-950 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
+                            <a href={LINKS.FICHE_ESSAI} target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-slate-950 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl hover:bg-slate-100 transition-all flex items-center justify-center gap-2 font-black">
                               <MousePointerClick className="w-4 h-4" /> Essayer l’analyse à 1€
                             </a>
-                            <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-white">
+                            <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-white font-black">
                               REJOINDRE LE VIP (5€)
                             </a>
                         </div>
@@ -165,8 +165,8 @@ const App = () => {
                   </div>
                 </div>
 
-                <div className="bg-slate-950/50 p-8 rounded-3xl border border-slate-800 h-fit">
-                  <h4 className="font-black text-slate-500 mb-8 flex items-center justify-center md:justify-start gap-3 uppercase tracking-tighter text-xs leading-none">
+                <div className="bg-slate-950/50 p-8 rounded-3xl border border-slate-800 h-fit text-center md:text-left">
+                  <h4 className="font-black text-slate-500 mb-8 flex items-center justify-center md:justify-start gap-3 uppercase tracking-tighter text-xs leading-none font-bold">
                     <BarChart3 className="w-4 h-4 text-orange-500" /> Paramètres Data
                   </h4>
                   <ul className="space-y-6 text-[13px]">
@@ -188,17 +188,17 @@ const App = () => {
 
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-slate-950">
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12 flex flex-col items-center">
              <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-500 px-6 py-2 rounded-full border border-orange-500/20 mb-6">
-                <Ticket className="w-5 h-5" />
+                <Ticket className="w-5 h-5 text-orange-600" />
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none">Sélection Gratuite du Site</span>
              </div>
              <h2 className="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-4 leading-tight">Le Ticket du Jour 🎫</h2>
-             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed">Sur YouTube je donne mes 2 bases. Ici, je vous donne toute ma sélection pour le Quinté.</p>
+             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Sur YouTube je donne mes 2 bases. Ici, je vous donne toute ma sélection pour le Quinté.</p>
           </div>
 
-          <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/10 overflow-hidden max-w-3xl mx-auto">
+          <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/10 overflow-hidden max-w-3xl mx-auto w-full">
             <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4 text-left">
                  <div>
@@ -210,13 +210,13 @@ const App = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 text-left">
                  {/* BASES */}
-                 <div>
+                 <div className="flex flex-col items-start">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
                        <Star className="w-3 h-3 fill-orange-500 text-orange-500 font-bold" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
                        {[7, 4].map(num => (
-                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30">
+                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 font-black">
                              {num}
                           </div>
                        ))}
@@ -224,13 +224,13 @@ const App = () => {
                  </div>
 
                  {/* SÉLECTION COMPLÈTE - 9 CHEVAUX */}
-                 <div>
+                 <div className="flex flex-col items-start">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
                        <ShieldCheck className="w-3 h-3 text-green-600 font-bold" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
                        {[7, 4, 12, 1, 9, 3, 16, 5, 8].map((num, i) => (
-                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
+                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all font-black ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
                        ))}
@@ -238,13 +238,13 @@ const App = () => {
                  </div>
               </div>
 
-              {/* BOUTON D'ESSAI DISCRET (REMPLACE LE TEXTE DE CERTIFICATION) */}
+              {/* BOUTON D'ESSAI ENCADRÉ EN ORANGE */}
               <div className="mt-12 flex justify-center relative z-10">
                  <a 
                    href={LINKS.FICHE_ESSAI} 
                    target="_blank" 
                    rel="noopener noreferrer" 
-                   className="text-slate-400 hover:text-orange-600 text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.5em] flex items-center gap-2 cursor-pointer leading-none"
+                   className="border-2 border-orange-500 rounded-xl px-6 py-4 text-orange-600 hover:bg-orange-500 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-300 flex items-center gap-3 cursor-pointer leading-none text-center shadow-md font-black"
                  >
                     Essayer l’analyse Complète à 1€
                  </a>
@@ -256,13 +256,13 @@ const App = () => {
 
       {/* SECTION OFFRES */}
       <section id="offres" className="py-32 px-6">
-        <div className="container mx-auto max-w-6xl text-center">
+        <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
            <div className="mb-20 px-6">
               <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight">Passe au niveau supérieur</h2>
               <p className="text-slate-400 text-lg font-medium">Arrête de jouer au hasard.</p>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
               {/* La Bible */}
               <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px]">
                  <div>
@@ -273,16 +273,16 @@ const App = () => {
                     <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left">
                        <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
-                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
+                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none font-bold"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto">
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto w-full">
                     <div className="flex flex-col items-center sm:items-start space-y-0 leading-none">
                         <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
                         <span className="text-4xl font-black text-white leading-none font-black">14,90€</span>
                     </div>
-                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap">
+                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap font-black">
                         Commander
                     </a>
                  </div>
@@ -292,7 +292,7 @@ const App = () => {
               <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px]">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
-                       <Zap className="fill-current w-7 h-7" />
+                       <Zap className="fill-current w-7 h-7 text-white" />
                     </div>
                     <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none">Pass Hebdo VIP</h3>
                     <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-tight">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
@@ -302,12 +302,12 @@ const App = () => {
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left">
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left w-full">
                     <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left">
                        <span className="text-4xl font-black leading-none font-black">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap">
+                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap font-black">
                         C'est parti !
                     </a>
                  </div>
@@ -317,14 +317,14 @@ const App = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none">
+      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight">RENARD<span className="text-orange-500 font-black">TURF</span></span>
-        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10">
+        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full">
           <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none">
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none font-black">
           © 2026 LE RENARD DU TURF
         </p>
       </footer>
