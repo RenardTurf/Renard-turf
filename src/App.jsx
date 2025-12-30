@@ -126,7 +126,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 text-center md:text-left">
                 <div>
                   <h2 className="text-4xl font-black mb-3 tracking-tighter uppercase italic text-white text-white">L'Analyse du Jour 🦊</h2>
-                  <p className="text-slate-400 font-medium italic">Vincennes - Prix d'Hiver - Demain 13h50</p>
+                  <p className="text-slate-400 font-medium italic">Deauville - Prix Sainte-Mère-Eglise - Demain 13h50</p>
                 </div>
                 <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest text-center">
                   Accès VIP
@@ -136,13 +136,13 @@ const App = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 text-center md:text-left">
                 <div className="lg:col-span-2 space-y-8">
                   <p className="text-slate-300 leading-relaxed text-xl font-medium">
-                    "Vincennes nous offre un plateau royal demain. Mon pivot est une évidence statistique, mais attention : plusieurs favoris présentent un 'Hic' génétique majeur..."
+                    "PSF de Deauville ce mardi et ses 1900m, attention aux piéges ! "
                   </p>
                   
                   <div className="relative">
                     <div className="p-8 bg-slate-950/60 border border-slate-800 rounded-3xl space-y-5 filter blur-md select-none opacity-30 text-slate-400">
-                      <p className="text-sm">Le n°5 est mon favori car...</p>
-                      <p className="text-sm">Mon outsider préféré est le n°12...</p>
+                      <p className="text-sm">Le n°7 est mon favori car...</p>
+                      <p className="text-sm">Mon outsider préféré est le n°4...</p>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-slate-900 border border-orange-500/40 p-10 rounded-[2rem] shadow-2xl text-center max-w-sm">
@@ -164,7 +164,7 @@ const App = () => {
                   <ul className="space-y-6 text-[13px]">
                     <li className="flex justify-between border-b border-slate-900 pb-4 font-bold">
                       <span className="text-slate-500 uppercase text-[10px]">Confiance</span>
-                      <span className="text-orange-500 text-lg">85%</span>
+                      <span className="text-orange-500 text-lg">70%</span>
                     </li>
                     <li className="flex justify-between border-b border-slate-900 pb-4 font-bold">
                       <span className="text-slate-500 uppercase text-[10px]">Engagement</span>
