@@ -234,7 +234,7 @@ const App = () => {
               </div>
 
               <div className="mt-12 text-center text-[10px] font-black uppercase tracking-[0.4em] text-slate-300 select-none">
-                 Analyse Data & Génétique certifiée
+                 
               </div>
             </div>
           </div>
