@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  TrendingUp, BookOpen, Zap, ChevronRight, Target, 
-  Users, Star, Youtube, Ticket, ShieldCheck
+  TrendingUp, 
+  BookOpen, 
+  Zap, 
+  ChevronRight, 
+  Target, 
+  Users, 
+  Star, 
+  Youtube, 
+  Ticket, 
+  ShieldCheck, 
+  MousePointerClick,
+  CheckCircle2
 } from 'lucide-react';
 
 const App = () => {
@@ -41,7 +51,7 @@ const App = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
                <Zap className="text-white fill-current w-6 h-6" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none font-black">RENARD<span className="text-orange-500">TURF</span></span>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none">RENARD<span className="text-orange-500">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors font-black">Vidéos</a>
