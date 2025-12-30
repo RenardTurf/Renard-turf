@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, BookOpen, Zap, ChevronRight, Target, 
-  BarChart3, CheckCircle2, Users, Star, Lock, Youtube 
+  BarChart3, CheckCircle2, Users, Star, Lock, Youtube,
+  Ticket, ShieldCheck, AlertTriangle
 } from 'lucide-react';
 
 const App = () => {
@@ -20,8 +21,8 @@ const App = () => {
   const LINKS = {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
-    YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", // Remplace par ton lien de chaîne exact
-    LAST_VIDEO_ID: "34bJsHXYe_kUc8sl" // REMPLACE CECI par l'ID de ta dernière vidéo (ex: ce qui est après v=)
+    YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
+    LAST_VIDEO_ID: "34bJsHXYe_kUc8sl" 
   };
 
   const stats = [
@@ -45,6 +46,7 @@ const App = () => {
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
             <a href="#analyse" className="hover:text-orange-500 transition-colors">L'Analyse</a>
+            <a href="#ticket" className="hover:text-orange-500 transition-colors text-orange-500">Ticket du Jour</a>
             <a href="#offres" className="hover:text-orange-500 transition-colors">Offres</a>
             <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20">
               Accès VIP
@@ -88,15 +90,15 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION YOUTUBE (NOUVEAU) */}
-      <section id="youtube" className="py-24 px-6">
+      {/* SECTION YOUTUBE */}
+      <section id="youtube" className="py-24 px-6 bg-slate-950">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4 text-orange-500">
                <Youtube className="w-8 h-8 fill-current" />
                <h2 className="text-3xl font-black uppercase tracking-tighter italic">Dernière Analyse Vidéo</h2>
             </div>
-            <p className="text-slate-400 font-medium">Rejoins les 1500+ passionnés qui suivent mes méthodes sur YouTube.</p>
+            <p className="text-slate-400 font-medium italic">Rejoins les 1500+ passionnés qui suivent mes méthodes sur YouTube.</p>
           </div>
           
           <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border-2 border-slate-800 shadow-2xl bg-slate-900">
@@ -148,7 +150,7 @@ const App = () => {
                       <div className="bg-slate-900 border border-orange-500/40 p-10 rounded-[2rem] shadow-2xl text-center max-w-sm">
                         <Lock className="w-14 h-14 text-orange-500 mx-auto mb-6" />
                         <h3 className="text-2xl font-black mb-3 text-white uppercase tracking-tight italic">Analyse Réservée</h3>
-                        <p className="text-sm text-slate-400 mb-8 font-medium">L'analyse complète et tous les pronostics du jour sont réservés aux VIP.</p>
+                        <p className="text-sm text-slate-400 mb-8 font-medium italic text-center">L'analyse complète et tous les pronostics du jour sont réservés aux membres VIP.</p>
                         <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-orange-600/30 transition-all text-center">
                           REJOINDRE LE VIP
                         </a>
@@ -162,16 +164,97 @@ const App = () => {
                     <BarChart3 className="w-5 h-5 text-orange-500" /> Paramètres
                   </h4>
                   <ul className="space-y-6 text-[13px]">
-                    <li className="flex justify-between border-b border-slate-900 pb-4 font-bold">
+                    <li className="flex justify-between border-b border-slate-900 pb-4 font-bold text-left">
                       <span className="text-slate-500 uppercase text-[10px]">Confiance</span>
                       <span className="text-orange-500 text-lg">70%</span>
                     </li>
-                    <li className="flex justify-between border-b border-slate-900 pb-4 font-bold">
+                    <li className="flex justify-between border-b border-slate-900 pb-4 font-bold text-left">
                       <span className="text-slate-500 uppercase text-[10px]">Engagement</span>
                       <span className="text-orange-500 uppercase">Visé</span>
                     </li>
                   </ul>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NOUVELLE SECTION : TICKET DU JOUR */}
+      <section id="ticket" className="py-24 px-6 bg-slate-950">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-500 px-6 py-2 rounded-full border border-orange-500/20 mb-6">
+                <Ticket className="w-5 h-5" />
+                <span className="text-xs font-black uppercase tracking-widest italic">Sélection Gratuite du Site</span>
+             </div>
+             <h2 className="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-4">Le Ticket du Jour 🎫</h2>
+             <p className="text-slate-400 max-w-xl mx-auto italic font-medium">Sur YouTube je donne mes 2 bases. Ici, je vous donne toute ma sélection pour le Quinté.</p>
+          </div>
+
+          <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/20 overflow-hidden">
+            <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative">
+              {/* Filigrane */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] rotate-[-15deg] pointer-events-none">
+                 <Zap className="w-96 h-96 text-slate-900" />
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
+                 <div>
+                    <h3 className="font-black text-2xl uppercase italic tracking-tighter">Sélection <span className="text-orange-600 font-black">Renard</span></h3>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">R1C1 - DEAUVILLE - 13h50</p>
+                 </div>
+                 <div className="flex gap-2">
+                    <div className="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest">Quinté+</div>
+                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+                 {/* BASES */}
+                 <div>
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                       <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
+                    </h4>
+                    <div className="flex gap-3">
+                       {[7, 4].map(num => (
+                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30">
+                             {num}
+                          </div>
+                       ))}
+                    </div>
+                 </div>
+
+                 {/* SÉLECTION COMPLÈTE */}
+                 <div>
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                       <ShieldCheck className="w-3 h-3 text-green-600" /> Ma Sélection de 8 Chevaux
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                       {[7, 4, 12, 1, 9, 3, 16, 5].map((num, i) => (
+                          <div key={num} className={`w-10 h-10 rounded-lg flex items-center justify-center font-black text-sm border-2 ${i < 2 ? 'bg-orange-100 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
+                             {num}
+                          </div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+
+              <div className="mt-10 p-6 bg-orange-50 border border-orange-100 rounded-2xl relative z-10">
+                 <div className="flex items-start gap-4">
+                    <div className="bg-orange-500 p-2 rounded-lg mt-1">
+                       <AlertTriangle className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                       <h5 className="font-black text-xs uppercase tracking-widest text-orange-900 mb-1">Le Conseil Stratégique</h5>
+                       <p className="text-orange-800 text-sm font-medium leading-relaxed italic">
+                          "Sur ce parcours de vitesse, je vous conseille de privilégier le 2 sur 4 combiné avec mes 4 premiers chevaux. C'est là que se trouve la meilleure rentabilité."
+                       </p>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="mt-8 text-center text-[9px] font-black uppercase tracking-[0.3em] text-slate-300">
+                 Validez ce ticket sur ZEturf ou PMU.fr
               </div>
             </div>
           </div>
@@ -193,15 +276,15 @@ const App = () => {
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight">La Bible du Renard</h3>
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none">La Bible du Renard</h3>
                     <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left">
-                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
-                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
+                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
+                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50">
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto">
                     <div className="flex flex-col items-center sm:items-start space-y-0">
                         <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
                         <span className="text-4xl font-black text-white leading-none">14,90€</span>
@@ -218,18 +301,18 @@ const App = () => {
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
                        <Zap className="fill-current w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight">Pass Hebdo VIP</h3>
-                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none">Pass Hebdo VIP</h3>
+                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-none">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
                     <ul className="space-y-4 mb-12 text-white text-left font-bold">
-                       <li className="flex items-center gap-4 text-sm"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider préféré du jour</li>
-                       <li className="flex items-center gap-4 text-sm"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 chevaux à grosse confiance dans les autres courses du jour</li>
+                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider préféré du jour</li>
+                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 chevaux à grosse confiance</li>
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
-                    <div className="flex flex-col items-center sm:items-start text-white space-y-0">
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left">
+                    <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left">
                        <span className="text-4xl font-black leading-none">5€</span>
-                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black">par semaine</span>
+                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black leading-none mt-1">par semaine</span>
                     </div>
                     <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap">
                         C'est parti !
@@ -241,14 +324,14 @@ const App = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6">
+      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none">
         <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight">RENARD<span className="text-orange-500 font-black">TURF</span></span>
         <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10">
           <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center">
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none">
           © 2026 LE RENARD DU TURF
         </p>
       </footer>
