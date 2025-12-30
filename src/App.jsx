@@ -22,7 +22,7 @@ const App = () => {
     VIP_HEBDO: "https://lerenardturf.sellfy.store/p/pronovip/",
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "NRWh2KiaXbNk6tUL" 
+    LAST_VIDEO_ID: "VT20U4PrtOc" 
   };
 
   const stats = [
