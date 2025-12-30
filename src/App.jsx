@@ -126,7 +126,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 text-center md:text-left">
                 <div>
                   <h2 className="text-4xl font-black mb-3 tracking-tighter uppercase italic text-white text-white">L'Analyse du Jour 🦊</h2>
-                  <p className="text-slate-400 font-medium italic">Deauville - Prix Sainte-Mère-Eglise - Demain 13h50</p>
+                  <p className="text-slate-400 font-medium italic">Deauville - Prix Sainte-Mère-Eglise - Le 30/12 13h50</p>
                 </div>
                 <div className="bg-orange-500/10 text-orange-500 px-5 py-2.5 rounded-xl font-black text-xs border border-orange-500/20 uppercase tracking-widest text-center">
                   Accès VIP
