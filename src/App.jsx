@@ -23,7 +23,7 @@ const App = () => {
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "VT20U4PrtOc" // Mis à jour avec ton nouvel ID
+    LAST_VIDEO_ID: "VT20U4PrtOc"
   };
 
   const stats = [
@@ -44,7 +44,7 @@ const App = () => {
             </div>
             <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none">RENARD<span className="text-orange-500 font-black">TURF</span></span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+          <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400 font-bold">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
             <a href="#analyse" className="hover:text-orange-500 transition-colors">L'Analyse</a>
             <a href="#ticket" className="hover:text-orange-500 transition-colors text-orange-500 underline underline-offset-8 decoration-2 font-bold">Ticket du Jour</a>
@@ -61,7 +61,7 @@ const App = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 text-center flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-4 py-1.5 rounded-full mb-8">
-            <span className="text-orange-500 animate-pulse">●</span>
+            <span className="text-orange-500 animate-pulse font-bold">●</span>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Saison 2026 : Rentabilité Activée</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none tracking-tighter uppercase italic text-white">
@@ -93,8 +93,8 @@ const App = () => {
 
       {/* SECTION YOUTUBE */}
       <section id="youtube" className="py-24 px-6 bg-slate-950">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
+        <div className="container mx-auto max-w-4xl text-center">
+          <div className="mb-12">
             <div className="flex items-center justify-center gap-3 mb-4 text-orange-500">
                <Youtube className="w-8 h-8 fill-current" />
                <h2 className="text-3xl font-black uppercase tracking-tighter italic">Dernière Analyse Vidéo</h2>
@@ -108,12 +108,11 @@ const App = () => {
                 src={`https://www.youtube.com/embed/${LINKS.LAST_VIDEO_ID}`}
                 title="Dernière Vidéo Le Renard du Turf"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
              ></iframe>
           </div>
           
-          <div className="mt-10 text-center">
+          <div className="mt-10">
              <a href={LINKS.YOUTUBE_CHANNEL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-white font-black uppercase tracking-widest text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 px-8 py-4 rounded-full transition-all">
                 S'abonner à la chaîne <Star className="w-4 h-4 text-orange-500 fill-current" />
              </a>
@@ -136,9 +135,9 @@ const App = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 text-center md:text-left">
                 <div className="lg:col-span-2 space-y-8">
-                  <p className="text-slate-300 leading-relaxed text-xl font-medium italic text-center md:text-left">
+                  <p className="text-slate-300 leading-relaxed text-xl font-medium italic">
                     "On termine l'année à Vincennes. Ma méthode génétique a détecté une anomalie sur les chevaux de tête..."
                   </p>
                   
@@ -203,7 +202,7 @@ const App = () => {
             <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4 text-left">
                  <div>
-                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none">Sélection <span className="text-orange-600">Renard</span></h3>
+                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none">Sélection <span className="text-orange-600 font-black">Renard</span></h3>
                     <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C1 - 13h50</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest">Quinté+</div>
@@ -213,7 +212,7 @@ const App = () => {
                  {/* BASES */}
                  <div>
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
-                       <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
+                       <Star className="w-3 h-3 fill-orange-500 text-orange-500 font-bold" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
                        {[7, 4].map(num => (
@@ -227,7 +226,7 @@ const App = () => {
                  {/* SÉLECTION COMPLÈTE - 9 CHEVAUX */}
                  <div>
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
-                       <ShieldCheck className="w-3 h-3 text-green-600" /> Ma Sélection de 9 Chevaux
+                       <ShieldCheck className="w-3 h-3 text-green-600 font-bold" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
                        {[7, 4, 12, 1, 9, 3, 16, 5, 8].map((num, i) => (
@@ -239,32 +238,18 @@ const App = () => {
                  </div>
               </div>
 
-              <div className="mt-12 text-center text-[10px] font-black uppercase tracking-[0.4em] text-slate-300 select-none leading-none">
-                 Analyse Data & Génétique certifiée
+              {/* BOUTON D'ESSAI DISCRET (REMPLACE LE TEXTE DE CERTIFICATION) */}
+              <div className="mt-12 flex justify-center relative z-10">
+                 <a 
+                   href={LINKS.FICHE_ESSAI} 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="text-slate-400 hover:text-orange-600 text-[10px] font-black uppercase tracking-[0.4em] transition-all hover:tracking-[0.5em] flex items-center gap-2 cursor-pointer leading-none"
+                 >
+                    Essayer l’analyse Complète à 1€
+                 </a>
               </div>
             </div>
-          </div>
-
-          {/* BOUTONS DE CONVERSION SOUS LE TICKET (NOUVEAU) */}
-          <div className="mt-12 max-w-3xl mx-auto px-4">
-             <div className="bg-slate-900 border border-slate-800 p-8 rounded-[2rem] shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                   <Lock className="w-16 h-16" />
-                </div>
-                <div className="relative z-10">
-                   <h4 className="text-xl font-black text-white uppercase italic mb-4 leading-none">Va plus loin dans ton analyse</h4>
-                   <p className="text-slate-400 text-sm mb-8 font-medium italic">Accède aux 10 chevaux à grosse confiance et au tocard secret du jour.</p>
-                   
-                   <div className="flex flex-col md:flex-row gap-4 justify-center">
-                      <a href={LINKS.FICHE_ESSAI} target="_blank" rel="noopener noreferrer" className="bg-white text-slate-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
-                         <MousePointerClick className="w-4 h-4" /> Essai à 1€
-                      </a>
-                      <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-orange-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-orange-600/30 hover:bg-orange-700 transition-all">
-                         Accès VIP Complet (5€)
-                      </a>
-                   </div>
-                </div>
-             </div>
           </div>
         </div>
       </section>
@@ -295,7 +280,7 @@ const App = () => {
                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto">
                     <div className="flex flex-col items-center sm:items-start space-y-0 leading-none">
                         <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
-                        <span className="text-4xl font-black text-white leading-none">14,90€</span>
+                        <span className="text-4xl font-black text-white leading-none font-black">14,90€</span>
                     </div>
                     <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap">
                         Commander
@@ -319,7 +304,7 @@ const App = () => {
                  
                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left">
                     <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left">
-                       <span className="text-4xl font-black leading-none">5€</span>
+                       <span className="text-4xl font-black leading-none font-black">5€</span>
                        <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none">par semaine</span>
                     </div>
                     <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap">
