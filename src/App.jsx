@@ -258,9 +258,9 @@ const App = () => {
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
                     <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète, mes 13 piliers de sélection et ma gestion financière.</p>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left">
-                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left font-black"><CheckCircle2 className="w-5 h-5 text-orange-500" /> Les 13 piliers d'analyse</li>
+                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left font-black"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
                        <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
@@ -285,8 +285,8 @@ const App = () => {
                     <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none">Pass Hebdo VIP</h3>
                     <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-tight">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
                     <ul className="space-y-4 mb-12 text-white text-left font-bold">
-                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> Mon outsider préféré du jour</li>
-                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 chevaux à grosse confiance</li>
+                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> L'analyse Complète De Chaque Quinté</li>
+                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 Chevaux À Grosse Confiance</li>
                     </ul>
                  </div>
                  
