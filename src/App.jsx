@@ -37,7 +37,7 @@ const App = () => {
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "2Y7oSaH4t3c",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-13/R1/C6"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-13/R4/C1"
   };
 
   const stats = [
