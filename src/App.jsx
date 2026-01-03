@@ -36,7 +36,7 @@ const App = () => {
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "oV-Eywrd3Hk",
+    LAST_VIDEO_ID: "h9D8AYV2keM",
     COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-14/R1/C6"
   };
 
