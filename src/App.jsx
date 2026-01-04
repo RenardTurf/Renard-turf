@@ -85,7 +85,7 @@ const App = () => {
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "JZE1cVyOqaY",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-14/R1/C6"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-17/R1/C8"
   };
 
   const stats = [
@@ -399,7 +399,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
                  <div>
                     <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Sélection <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic italic">Vincennes - R1C4 - 15h15</p>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic italic">Vincennes - R1C1 - 13h55</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Quinté+</div>
               </div>
@@ -411,7 +411,7 @@ const App = () => {
                        <Star className="w-3 h-3 fill-orange-500 text-orange-500 italic" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
-                       {[2, 6].map(num => (
+                       {[15, 16].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -425,7 +425,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600 italic" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[2, 6, 16, 4, 3, 7, 11, 14, 10].map((num, i) => (
+                       {[15, 16, 5, 6, 3, 7, 8, 11, 10].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
