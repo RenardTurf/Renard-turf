@@ -241,6 +241,259 @@ const App = () => {
           </div>
         </div>
       </section>
+import React, { useState, useEffect } from 'react';
+import { 
+  Calculator, 
+  Target, 
+  Wallet, 
+  Plus, 
+  Trash2, 
+  TrendingUp, 
+  AlertTriangle,
+  Info,
+  ShieldCheck,
+  ChevronRight,
+  Flag,
+  Calendar,
+  Clock
+} from 'lucide-react';
+
+const App = () => {
+  // --- ÉTAT GLOBAL ---
+  const [bankroll, setBankroll] = useState(155);
+  const [targetEndAmount, setTargetEndAmount] = useState(200);
+  const [targetDate, setTargetDate] = useState("2026-01-31"); // Date de fin du défi
+  const [horses, setHorses] = useState([
+    { id: 1, name: "Cheval 1", odds: 1.70 },
+    { id: 2, name: "Cheval 2", odds: 1.50 }
+  ]);
+
+  // --- CALCULS DE TEMPS ---
+  const getDaysRemaining = () => {
+    const today = new Date();
+    const end = new Date(targetDate);
+    const diffTime = end - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? diffDays : 1; // Minimum 1 jour pour éviter la division par zéro
+  };
+
+  const daysRemaining = getDaysRemaining();
+  
+  // --- CALCULS DE STRATÉGIE DYNAMIQUE ---
+  const monthlyProfitTarget = targetEndAmount - bankroll;
+  // L'objectif journalier s'adapte maintenant au temps restant
+  const dailyProfitTarget = monthlyProfitTarget > 0 ? monthlyProfitTarget / daysRemaining : 0;
+
+  // Répartition de l'objectif sur les chevaux du jour
+  const profitPerHorse = horses.length > 0 ? dailyProfitTarget / horses.length : 0;
+
+  const calculateStake = (odds) => {
+    if (odds <= 1 || profitPerHorse <= 0) return 0;
+    return (profitPerHorse / (odds - 1)).toFixed(2);
+  };
+
+  const totalDailyStakes = horses.reduce((acc, horse) => {
+    return acc + parseFloat(calculateStake(horse.odds));
+  }, 0);
+
+  const riskPercent = bankroll > 0 ? ((totalDailyStakes / bankroll) * 100).toFixed(1) : 0;
+
+  // --- ACTIONS ---
+  const addHorse = () => {
+    const newId = horses.length > 0 ? Math.max(...horses.map(h => h.id)) + 1 : 1;
+    setHorses([...horses, { id: newId, name: `Cheval ${newId}`, odds: 1.60 }]);
+  };
+
+  const removeHorse = (id) => {
+    setHorses(horses.filter(h => h.id !== id));
+  };
+
+  const updateHorse = (id, field, value) => {
+    setHorses(horses.map(h => h.id === id ? { ...h, [field]: value } : h));
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 md:p-8">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* EN-TÊTE DES CHIFFRES CLÉS AVEC TIMELINE */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          
+          {/* Bankroll */}
+          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
+            <div className="flex items-center gap-3 mb-4 text-orange-500">
+              <Wallet className="w-4 h-4" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Bankroll</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <input 
+                type="number" 
+                value={bankroll}
+                onChange={(e) => setBankroll(parseFloat(e.target.value) || 0)}
+                className="bg-transparent text-2xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-1"
+              />
+              <span className="font-black italic">€</span>
+            </div>
+          </div>
+
+          {/* Capital Espéré */}
+          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
+            <div className="flex items-center gap-3 mb-4 text-orange-500">
+              <Flag className="w-4 h-4" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Objectif</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <input 
+                type="number" 
+                value={targetEndAmount}
+                onChange={(e) => setTargetEndAmount(parseFloat(e.target.value) || 0)}
+                className="bg-transparent text-2xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-1"
+              />
+              <span className="font-black italic">€</span>
+            </div>
+          </div>
+
+          {/* Date Cible */}
+          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
+            <div className="flex items-center gap-3 mb-4 text-orange-500">
+              <Calendar className="w-4 h-4" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Date de fin</span>
+            </div>
+            <input 
+              type="date" 
+              value={targetDate}
+              onChange={(e) => setTargetDate(e.target.value)}
+              className="bg-transparent text-sm font-black text-white w-full outline-none"
+            />
+            <div className="mt-2 text-[9px] font-bold text-slate-500 uppercase flex items-center gap-1">
+              <Clock className="w-3 h-3" /> Il reste {daysRemaining} jours
+            </div>
+          </div>
+
+          {/* Objectif Journalier Dynamique */}
+          <div className="bg-orange-600 p-6 rounded-[2rem] shadow-xl shadow-orange-600/20 text-white flex flex-col justify-center">
+            <div className="flex items-center gap-3 mb-2">
+              <TrendingUp className="w-4 h-4" />
+              <span className="text-[9px] font-black uppercase tracking-widest opacity-80">Gain Net / Jour</span>
+            </div>
+            <div className="text-3xl font-black italic tracking-tighter">{dailyProfitTarget.toFixed(2)}€</div>
+            <p className="text-[8px] mt-1 font-bold uppercase opacity-70">Ajusté au temps restant</p>
+          </div>
+        </div>
+
+        {/* PLANIFICATEUR DE MISES */}
+        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl mb-8">
+          <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-left">
+            <div className="flex items-center gap-3 w-full">
+              <Calculator className="w-6 h-6 text-orange-500" />
+              <h2 className="text-xl font-black uppercase italic tracking-tighter">Calcul des Mises du Jour</h2>
+            </div>
+            <button 
+              onClick={addHorse}
+              className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap"
+            >
+              <Plus className="w-4 h-4" /> Ajouter un cheval
+            </button>
+          </div>
+
+          <div className="p-8 overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-white/5">
+                  <th className="pb-4">Cheval / Course</th>
+                  <th className="pb-4 text-center">Cote (Placé)</th>
+                  <th className="pb-4 text-center">Profit Visé</th>
+                  <th className="pb-4 text-right">MISE À EFFECTUER</th>
+                  <th className="pb-4"></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {horses.map((horse) => (
+                  <tr key={horse.id} className="group hover:bg-white/[0.02] transition-colors">
+                    <td className="py-6">
+                      <input 
+                        type="text" 
+                        value={horse.name}
+                        onChange={(e) => updateHorse(horse.id, 'name', e.target.value)}
+                        className="bg-transparent font-bold text-slate-300 outline-none focus:text-white w-full"
+                      />
+                    </td>
+                    <td className="py-6 text-center">
+                      <input 
+                        type="number" 
+                        step="0.05"
+                        value={horse.odds}
+                        onChange={(e) => updateHorse(horse.id, 'odds', parseFloat(e.target.value) || 0)}
+                        className="bg-slate-950 border border-white/5 w-20 text-center py-2 rounded-lg font-black text-orange-500 focus:border-orange-500 outline-none"
+                      />
+                    </td>
+                    <td className="py-6 text-center text-[10px] font-bold text-slate-500 italic uppercase">
+                      +{profitPerHorse.toFixed(2)}€ net
+                    </td>
+                    <td className="py-6 text-right">
+                      <div className="text-xl font-black text-white italic">
+                        {calculateStake(horse.odds)}€
+                      </div>
+                    </td>
+                    <td className="py-6 text-right">
+                      <button 
+                        onClick={() => removeHorse(horse.id)}
+                        className="text-slate-700 hover:text-red-500 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* RÉSUMÉ DU RISQUE */}
+          <div className="bg-white/5 p-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 text-left">
+            <div className="flex gap-12 w-full md:w-auto">
+              <div>
+                <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mise Totale du Jour</span>
+                <span className="text-2xl font-black text-white italic">{totalDailyStakes.toFixed(2)}€</span>
+              </div>
+              <div>
+                <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Exposition BK</span>
+                <span className={`text-2xl font-black italic ${parseFloat(riskPercent) > 10 ? 'text-red-500' : 'text-green-500'}`}>
+                  {riskPercent}%
+                </span>
+              </div>
+            </div>
+            
+            <div className={`flex items-center gap-4 p-4 rounded-2xl border w-full md:w-auto ${parseFloat(riskPercent) > 10 ? 'bg-red-500/10 border-red-500/30' : 'bg-green-500/10 border-green-500/30'}`}>
+               {parseFloat(riskPercent) > 10 ? <AlertTriangle className="text-red-500 w-5 h-5" /> : <ShieldCheck className="text-green-500 w-5 h-5" />}
+               <p className="text-[9px] font-bold uppercase tracking-tight max-w-[200px] leading-tight">
+                 {parseFloat(riskPercent) > 10 
+                  ? "Attention : Risque élevé. L'objectif journalier est peut-être trop ambitieux pour le temps restant." 
+                  : "Stratégie de gestion validée par l'algorithme."}
+               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* MÉTHODOLOGIE */}
+        <div className="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] text-left">
+           <div className="flex items-center gap-3 mb-6">
+             <Info className="w-5 h-5 text-orange-500" />
+             <h3 className="text-xs font-black uppercase tracking-widest">Fonctionnement Temporel</h3>
+           </div>
+           <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-bold tracking-tight">
+             L'objectif de gain journalier est recalculé en temps réel selon la <span className="text-white underline decoration-orange-500">Date de fin</span> choisie. <br/><br/>
+             Si vous modifiez la date ou votre capital actuel, les mises s'adaptent automatiquement pour garantir que vous atteindrez <span className="text-orange-500 font-black">{targetEndAmount}€</span> le jour J.
+           </p>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
 
       {/* SECTION OFFRES */}
       <section id="offres" className="py-32 px-6 flex flex-col items-center">
