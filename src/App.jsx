@@ -411,7 +411,7 @@ const App = () => {
                        <Star className="w-3 h-3 fill-orange-500 text-orange-500 italic" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
-                       {[15, 14].map(num => (
+                       {[2, 6].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -425,7 +425,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600 italic" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[15, 14, 16, 4, 9, 13, 7, 8, 3].map((num, i) => (
+                       {[2, 6, 16, 4, 3, 7, 11, 14, 10].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
