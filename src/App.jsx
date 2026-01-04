@@ -37,7 +37,7 @@ const App = () => {
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "XF2snj7HoEE",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-14/R1/C6"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-04/R1/C1"
   };
 
   const stats = [
@@ -203,7 +203,7 @@ const App = () => {
                        <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
-                       {[15, 14].map(num => (
+                       {[2, 6].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30">
                              {num}
                           </div>
@@ -217,7 +217,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[15, 14, 16, 4, 9, 13, 7, 8, 3].map((num, i) => (
+                       {[2, 6, 16, 4, 3, 7, 11, 14, 10].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
