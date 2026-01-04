@@ -15,11 +15,59 @@ import {
   ExternalLink,
   History,
   PlayCircle,
-  Eye
+  Eye,
+  Calculator,
+  Wallet,
+  Plus,
+  Trash2,
+  AlertTriangle,
+  Info,
+  Flag
 } from 'lucide-react';
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // --- ÉTAT GLOBAL (STRATEGIST RENARD) ---
+  const [bankroll, setBankroll] = useState(155);
+  const [targetEndAmount, setTargetEndAmount] = useState(200); // Montant espéré à la fin du mois
+  const [horses, setHorses] = useState([
+    { id: 1, name: "Cheval 1", odds: 1.70 },
+    { id: 2, name: "Cheval 2", odds: 1.50 }
+  ]);
+
+  // --- CALCULS DE STRATÉGIE (STRATEGIST RENARD) ---
+  const monthlyProfitTarget = targetEndAmount - bankroll;
+  const dailyProfitTarget = monthlyProfitTarget > 0 ? monthlyProfitTarget / 31 : 0;
+
+  // Répartition de l'objectif sur les chevaux du jour
+  const profitPerHorse = horses.length > 0 ? dailyProfitTarget / horses.length : 0;
+
+  const calculateStake = (odds) => {
+    if (odds <= 1 || profitPerHorse <= 0) return 0;
+    // Formule : Mise = Gain Net Souhaité / (Cote - 1)
+    return (profitPerHorse / (odds - 1)).toFixed(2);
+  };
+
+  const totalDailyStakes = horses.reduce((acc, horse) => {
+    return acc + parseFloat(calculateStake(horse.odds));
+  }, 0);
+
+  const riskPercent = bankroll > 0 ? ((totalDailyStakes / bankroll) * 100).toFixed(1) : 0;
+
+  // --- ACTIONS (STRATEGIST RENARD) ---
+  const addHorse = () => {
+    const newId = horses.length > 0 ? Math.max(...horses.map(h => h.id)) + 1 : 1;
+    setHorses([...horses, { id: newId, name: `Cheval ${newId}`, odds: 1.60 }]);
+  };
+
+  const removeHorse = (id) => {
+    setHorses(horses.filter(h => h.id !== id));
+  };
+
+  const updateHorse = (id, field, value) => {
+    setHorses(horses.map(h => h.id === id ? { ...h, [field]: value } : h));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +85,7 @@ const App = () => {
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "XF2snj7HoEE",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-04/R1/C1"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-14/R1/C6"
   };
 
   const stats = [
@@ -174,6 +222,166 @@ const App = () => {
         </div>
       </section>
 
+      {/* STRATEGIST RENARD - SECTION CHALLENGE */}
+      <section id="challenge" className="py-24 px-4 md:px-8 bg-slate-950">
+        <div className="max-w-5xl mx-auto">
+          
+          {/* EN-TÊTE DES CHIFFRES CLÉS */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
+            <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
+              <div className="flex items-center gap-3 mb-4 text-orange-500">
+                <Wallet className="w-5 h-5" />
+                <span className="text-[10px] font-black uppercase tracking-widest">Bankroll Actuelle</span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <input 
+                  type="number" 
+                  value={bankroll}
+                  onChange={(e) => setBankroll(parseFloat(e.target.value) || 0)}
+                  className="bg-transparent text-3xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-2"
+                />
+                <span className="text-xl font-black italic">€</span>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
+              <div className="flex items-center gap-3 mb-4 text-orange-500">
+                <Flag className="w-5 h-5" />
+                <span className="text-[10px] font-black uppercase tracking-widest">Capital Espéré (Fin de mois)</span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <input 
+                  type="number" 
+                  value={targetEndAmount}
+                  onChange={(e) => setTargetEndAmount(parseFloat(e.target.value) || 0)}
+                  className="bg-transparent text-3xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-2"
+                />
+                <span className="text-xl font-black italic">€</span>
+              </div>
+              <p className="text-[10px] mt-2 font-bold text-slate-500 uppercase tracking-tighter">
+                Bénéfice visé : <span className="text-green-500">+{monthlyProfitTarget.toFixed(2)}€</span>
+              </p>
+            </div>
+
+            <div className="bg-orange-600 p-6 rounded-[2rem] shadow-xl shadow-orange-600/20 text-white">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="w-5 h-5" />
+                <span className="text-[10px] font-black uppercase tracking-widest">Objectif Net Journalier</span>
+              </div>
+              <div className="text-3xl font-black italic">{dailyProfitTarget.toFixed(2)}€</div>
+              <p className="text-[10px] mt-2 font-bold uppercase opacity-80 italic">À gagner chaque jour</p>
+            </div>
+          </div>
+
+          {/* PLANIFICATEUR DE MISES */}
+          <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl mb-8">
+            <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <Calculator className="w-6 h-6 text-orange-500" />
+                <h2 className="text-xl font-black uppercase italic tracking-tighter italic">Calcul des Mises du Jour</h2>
+              </div>
+              <button 
+                onClick={addHorse}
+                className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all"
+              >
+                <Plus className="w-4 h-4" /> Ajouter un cheval
+              </button>
+            </div>
+
+            <div className="p-8 overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-white/5">
+                    <th className="pb-4">Cheval / Course</th>
+                    <th className="pb-4 text-center">Cote (Placé)</th>
+                    <th className="pb-4 text-center italic">Profit Visé</th>
+                    <th className="pb-4 text-right">MISE À EFFECTUER</th>
+                    <th className="pb-4"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {horses.map((horse) => (
+                    <tr key={horse.id} className="group hover:bg-white/[0.02] transition-colors">
+                      <td className="py-6">
+                        <input 
+                          type="text" 
+                          value={horse.name}
+                          onChange={(e) => updateHorse(horse.id, 'name', e.target.value)}
+                          className="bg-transparent font-bold text-slate-300 outline-none focus:text-white"
+                        />
+                      </td>
+                      <td className="py-6 text-center">
+                        <input 
+                          type="number" 
+                          step="0.05"
+                          value={horse.odds}
+                          onChange={(e) => updateHorse(horse.id, 'odds', parseFloat(e.target.value) || 0)}
+                          className="bg-slate-950 border border-white/5 w-20 text-center py-2 rounded-lg font-black text-orange-500 focus:border-orange-500 outline-none"
+                        />
+                      </td>
+                      <td className="py-6 text-center text-xs font-bold text-slate-500 italic uppercase">
+                        +{profitPerHorse.toFixed(2)}€ net
+                      </td>
+                      <td className="py-6 text-right">
+                        <div className="text-xl font-black text-white italic">
+                          {calculateStake(horse.odds)}€
+                        </div>
+                      </td>
+                      <td className="py-6 text-right">
+                        <button 
+                          onClick={() => removeHorse(horse.id)}
+                          className="text-slate-700 hover:text-red-500 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* RÉSUMÉ DU RISQUE */}
+            <div className="bg-white/5 p-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5">
+              <div className="flex gap-12 text-left">
+                <div>
+                  <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mise Totale du Jour</span>
+                  <span className="text-2xl font-black text-white italic">{totalDailyStakes.toFixed(2)}€</span>
+                </div>
+                <div>
+                  <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Exposition du Capital</span>
+                  <span className={`text-2xl font-black italic ${parseFloat(riskPercent) > 10 ? 'text-red-500' : 'text-green-500'}`}>
+                    {riskPercent}%
+                  </span>
+                </div>
+              </div>
+              
+              <div className={`flex items-center gap-4 p-4 rounded-2xl border ${parseFloat(riskPercent) > 10 ? 'bg-red-500/10 border-red-500/30' : 'bg-green-500/10 border-green-500/30'}`}>
+                 {parseFloat(riskPercent) > 10 ? <AlertTriangle className="text-red-500 w-5 h-5" /> : <ShieldCheck className="text-green-500 w-5 h-5" />}
+                 <p className="text-[9px] font-bold uppercase tracking-tight max-w-[200px] leading-tight text-left">
+                   {parseFloat(riskPercent) > 10 
+                    ? "Attention : Vos mises dépassent 10% de votre capital. Risque élevé en cas d'écart." 
+                    : "Risque maîtrisé. Votre capital est protégé selon les standards du Renard."}
+                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* MÉTHODOLOGIE */}
+          <div className="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] text-left">
+             <div className="flex items-center gap-3 mb-6">
+               <Info className="w-5 h-5 text-orange-500" />
+               <h3 className="text-xs font-black uppercase tracking-widest">Conseil de Gestion</h3>
+             </div>
+             <p className="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-tight">
+               L'outil calcule vos mises pour que <span className="text-white">chaque cheval gagnant</span> remplisse sa part de l'objectif. <br/><br/>
+               Si vous visez <span className="text-orange-500">{targetEndAmount}€</span> à la fin du mois, vous devez gagner <span className="text-white">{dailyProfitTarget.toFixed(2)}€</span> net chaque jour. <br/><br/>
+               <span className="italic text-slate-500">Note : Si un cheval perd, vous devrez soit augmenter l'objectif des jours suivants, soit accepter une fin de mois légèrement en dessous de la cible.</span>
+             </p>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-slate-950 flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
@@ -187,24 +395,24 @@ const App = () => {
           </div>
 
           <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/10 overflow-hidden max-w-3xl mx-auto w-full">
-            <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4 text-left">
+            <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
                  <div>
-                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none">Sélection <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C4 - 15h15</p>
+                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Sélection <span className="text-orange-600 font-bold">Renard</span></h3>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic italic">Vincennes - R1C4 - 15h15</p>
                  </div>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest">Quinté+</div>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Quinté+</div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  {/* BASES */}
                  <div className="flex flex-col items-start">
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
-                       <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
+                       <Star className="w-3 h-3 fill-orange-500 text-orange-500 italic" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
-                       {[2, 6].map(num => (
-                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30">
+                       {[15, 14].map(num => (
+                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
                        ))}
@@ -213,12 +421,12 @@ const App = () => {
 
                  {/* SÉLECTION COMPLÈTE - 9 CHEVAUX */}
                  <div className="flex flex-col items-start">
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none">
-                       <ShieldCheck className="w-3 h-3 text-green-600" /> Ma Sélection de 9 Chevaux
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
+                       <ShieldCheck className="w-3 h-3 text-green-600 italic" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[2, 6, 16, 4, 3, 7, 11, 14, 10].map((num, i) => (
-                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
+                       {[15, 14, 16, 4, 9, 13, 7, 8, 3].map((num, i) => (
+                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
                        ))}
@@ -232,7 +440,7 @@ const App = () => {
                    href={LINKS.FICHE_ESSAI} 
                    target="_blank" 
                    rel="noopener noreferrer" 
-                   className="border-2 border-orange-500 rounded-xl px-6 py-4 text-orange-600 hover:bg-orange-500 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-300 flex items-center gap-3 cursor-pointer leading-none text-center shadow-md"
+                   className="border-2 border-orange-500 rounded-xl px-6 py-4 text-orange-600 hover:bg-orange-500 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-300 flex items-center gap-3 cursor-pointer leading-none text-center shadow-md italic"
                  >
                     Essayer l’analyse Complète à 1€
                  </a>
@@ -241,314 +449,61 @@ const App = () => {
           </div>
         </div>
       </section>
-import React, { useState, useEffect } from 'react';
-import { 
-  Calculator, 
-  Target, 
-  Wallet, 
-  Plus, 
-  Trash2, 
-  TrendingUp, 
-  AlertTriangle,
-  Info,
-  ShieldCheck,
-  ChevronRight,
-  Flag,
-  Calendar,
-  Clock
-} from 'lucide-react';
-
-const App = () => {
-  // --- ÉTAT GLOBAL ---
-  const [bankroll, setBankroll] = useState(155);
-  const [targetEndAmount, setTargetEndAmount] = useState(200);
-  const [targetDate, setTargetDate] = useState("2026-01-31"); // Date de fin du défi
-  const [horses, setHorses] = useState([
-    { id: 1, name: "Cheval 1", odds: 1.70 },
-    { id: 2, name: "Cheval 2", odds: 1.50 }
-  ]);
-
-  // --- CALCULS DE TEMPS ---
-  const getDaysRemaining = () => {
-    const today = new Date();
-    const end = new Date(targetDate);
-    const diffTime = end - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays > 0 ? diffDays : 1; // Minimum 1 jour pour éviter la division par zéro
-  };
-
-  const daysRemaining = getDaysRemaining();
-  
-  // --- CALCULS DE STRATÉGIE DYNAMIQUE ---
-  const monthlyProfitTarget = targetEndAmount - bankroll;
-  // L'objectif journalier s'adapte maintenant au temps restant
-  const dailyProfitTarget = monthlyProfitTarget > 0 ? monthlyProfitTarget / daysRemaining : 0;
-
-  // Répartition de l'objectif sur les chevaux du jour
-  const profitPerHorse = horses.length > 0 ? dailyProfitTarget / horses.length : 0;
-
-  const calculateStake = (odds) => {
-    if (odds <= 1 || profitPerHorse <= 0) return 0;
-    return (profitPerHorse / (odds - 1)).toFixed(2);
-  };
-
-  const totalDailyStakes = horses.reduce((acc, horse) => {
-    return acc + parseFloat(calculateStake(horse.odds));
-  }, 0);
-
-  const riskPercent = bankroll > 0 ? ((totalDailyStakes / bankroll) * 100).toFixed(1) : 0;
-
-  // --- ACTIONS ---
-  const addHorse = () => {
-    const newId = horses.length > 0 ? Math.max(...horses.map(h => h.id)) + 1 : 1;
-    setHorses([...horses, { id: newId, name: `Cheval ${newId}`, odds: 1.60 }]);
-  };
-
-  const removeHorse = (id) => {
-    setHorses(horses.filter(h => h.id !== id));
-  };
-
-  const updateHorse = (id, field, value) => {
-    setHorses(horses.map(h => h.id === id ? { ...h, [field]: value } : h));
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 md:p-8">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* EN-TÊTE DES CHIFFRES CLÉS AVEC TIMELINE */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          
-          {/* Bankroll */}
-          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
-            <div className="flex items-center gap-3 mb-4 text-orange-500">
-              <Wallet className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Bankroll</span>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <input 
-                type="number" 
-                value={bankroll}
-                onChange={(e) => setBankroll(parseFloat(e.target.value) || 0)}
-                className="bg-transparent text-2xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-1"
-              />
-              <span className="font-black italic">€</span>
-            </div>
-          </div>
-
-          {/* Capital Espéré */}
-          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
-            <div className="flex items-center gap-3 mb-4 text-orange-500">
-              <Flag className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Objectif</span>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <input 
-                type="number" 
-                value={targetEndAmount}
-                onChange={(e) => setTargetEndAmount(parseFloat(e.target.value) || 0)}
-                className="bg-transparent text-2xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-1"
-              />
-              <span className="font-black italic">€</span>
-            </div>
-          </div>
-
-          {/* Date Cible */}
-          <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
-            <div className="flex items-center gap-3 mb-4 text-orange-500">
-              <Calendar className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Date de fin</span>
-            </div>
-            <input 
-              type="date" 
-              value={targetDate}
-              onChange={(e) => setTargetDate(e.target.value)}
-              className="bg-transparent text-sm font-black text-white w-full outline-none"
-            />
-            <div className="mt-2 text-[9px] font-bold text-slate-500 uppercase flex items-center gap-1">
-              <Clock className="w-3 h-3" /> Il reste {daysRemaining} jours
-            </div>
-          </div>
-
-          {/* Objectif Journalier Dynamique */}
-          <div className="bg-orange-600 p-6 rounded-[2rem] shadow-xl shadow-orange-600/20 text-white flex flex-col justify-center">
-            <div className="flex items-center gap-3 mb-2">
-              <TrendingUp className="w-4 h-4" />
-              <span className="text-[9px] font-black uppercase tracking-widest opacity-80">Gain Net / Jour</span>
-            </div>
-            <div className="text-3xl font-black italic tracking-tighter">{dailyProfitTarget.toFixed(2)}€</div>
-            <p className="text-[8px] mt-1 font-bold uppercase opacity-70">Ajusté au temps restant</p>
-          </div>
-        </div>
-
-        {/* PLANIFICATEUR DE MISES */}
-        <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl mb-8">
-          <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-left">
-            <div className="flex items-center gap-3 w-full">
-              <Calculator className="w-6 h-6 text-orange-500" />
-              <h2 className="text-xl font-black uppercase italic tracking-tighter">Calcul des Mises du Jour</h2>
-            </div>
-            <button 
-              onClick={addHorse}
-              className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap"
-            >
-              <Plus className="w-4 h-4" /> Ajouter un cheval
-            </button>
-          </div>
-
-          <div className="p-8 overflow-x-auto">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-white/5">
-                  <th className="pb-4">Cheval / Course</th>
-                  <th className="pb-4 text-center">Cote (Placé)</th>
-                  <th className="pb-4 text-center">Profit Visé</th>
-                  <th className="pb-4 text-right">MISE À EFFECTUER</th>
-                  <th className="pb-4"></th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                {horses.map((horse) => (
-                  <tr key={horse.id} className="group hover:bg-white/[0.02] transition-colors">
-                    <td className="py-6">
-                      <input 
-                        type="text" 
-                        value={horse.name}
-                        onChange={(e) => updateHorse(horse.id, 'name', e.target.value)}
-                        className="bg-transparent font-bold text-slate-300 outline-none focus:text-white w-full"
-                      />
-                    </td>
-                    <td className="py-6 text-center">
-                      <input 
-                        type="number" 
-                        step="0.05"
-                        value={horse.odds}
-                        onChange={(e) => updateHorse(horse.id, 'odds', parseFloat(e.target.value) || 0)}
-                        className="bg-slate-950 border border-white/5 w-20 text-center py-2 rounded-lg font-black text-orange-500 focus:border-orange-500 outline-none"
-                      />
-                    </td>
-                    <td className="py-6 text-center text-[10px] font-bold text-slate-500 italic uppercase">
-                      +{profitPerHorse.toFixed(2)}€ net
-                    </td>
-                    <td className="py-6 text-right">
-                      <div className="text-xl font-black text-white italic">
-                        {calculateStake(horse.odds)}€
-                      </div>
-                    </td>
-                    <td className="py-6 text-right">
-                      <button 
-                        onClick={() => removeHorse(horse.id)}
-                        className="text-slate-700 hover:text-red-500 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* RÉSUMÉ DU RISQUE */}
-          <div className="bg-white/5 p-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 text-left">
-            <div className="flex gap-12 w-full md:w-auto">
-              <div>
-                <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mise Totale du Jour</span>
-                <span className="text-2xl font-black text-white italic">{totalDailyStakes.toFixed(2)}€</span>
-              </div>
-              <div>
-                <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Exposition BK</span>
-                <span className={`text-2xl font-black italic ${parseFloat(riskPercent) > 10 ? 'text-red-500' : 'text-green-500'}`}>
-                  {riskPercent}%
-                </span>
-              </div>
-            </div>
-            
-            <div className={`flex items-center gap-4 p-4 rounded-2xl border w-full md:w-auto ${parseFloat(riskPercent) > 10 ? 'bg-red-500/10 border-red-500/30' : 'bg-green-500/10 border-green-500/30'}`}>
-               {parseFloat(riskPercent) > 10 ? <AlertTriangle className="text-red-500 w-5 h-5" /> : <ShieldCheck className="text-green-500 w-5 h-5" />}
-               <p className="text-[9px] font-bold uppercase tracking-tight max-w-[200px] leading-tight">
-                 {parseFloat(riskPercent) > 10 
-                  ? "Attention : Risque élevé. L'objectif journalier est peut-être trop ambitieux pour le temps restant." 
-                  : "Stratégie de gestion validée par l'algorithme."}
-               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* MÉTHODOLOGIE */}
-        <div className="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] text-left">
-           <div className="flex items-center gap-3 mb-6">
-             <Info className="w-5 h-5 text-orange-500" />
-             <h3 className="text-xs font-black uppercase tracking-widest">Fonctionnement Temporel</h3>
-           </div>
-           <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-bold tracking-tight">
-             L'objectif de gain journalier est recalculé en temps réel selon la <span className="text-white underline decoration-orange-500">Date de fin</span> choisie. <br/><br/>
-             Si vous modifiez la date ou votre capital actuel, les mises s'adaptent automatiquement pour garantir que vous atteindrez <span className="text-orange-500 font-black">{targetEndAmount}€</span> le jour J.
-           </p>
-        </div>
-
-      </div>
-    </div>
-  );
-};
-
-export default App;
-
 
       {/* SECTION OFFRES */}
       <section id="offres" className="py-32 px-6 flex flex-col items-center">
         <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
            <div className="mb-20 px-6">
-              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight">Passe au niveau supérieur</h2>
-              <p className="text-slate-400 text-lg font-medium leading-none">Arrête de jouer au hasard.</p>
+              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight italic uppercase italic">Passe au niveau supérieur</h2>
+              <p className="text-slate-400 text-lg font-medium leading-none italic">Arrête de jouer au hasard.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
               {/* La Bible */}
-              <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px]">
+              <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left">Ma méthode complète et ma gestion financière.</p>
-                    <ul className="space-y-4 mb-12 text-left">
-                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left font-black"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
-                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none italic">La Bible du Renard</h3>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left italic">Ma méthode complète et ma gestion financière.</p>
+                    <ul className="space-y-4 mb-12 text-left italic">
+                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left font-black italic"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
+                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none italic"><Star className="w-5 h-5 text-orange-500 italic" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
                  
                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto w-full">
-                    <div className="flex flex-col items-center sm:items-start space-y-0 leading-none">
-                        <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
-                        <span className="text-4xl font-black text-white leading-none">14,90€</span>
+                    <div className="flex flex-col items-center sm:items-start space-y-0 leading-none italic">
+                        <span className="text-slate-500 line-through text-lg font-bold italic italic">29,90€</span>
+                        <span className="text-4xl font-black text-white leading-none italic italic">14,90€</span>
                     </div>
-                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap">
+                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap italic">
                         Commander
                     </a>
                  </div>
               </div>
 
               {/* VIP HEBDO */}
-              <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px]">
+              <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
-                       <Zap className="fill-current w-7 h-7 text-white" />
+                       <Zap className="fill-current w-7 h-7 text-white italic" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none">Pass Hebdo VIP</h3>
-                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-tight">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
-                    <ul className="space-y-4 mb-12 text-white text-left font-bold">
-                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> L'analyse Complète De Chaque Quinté</li>
-                       <li className="flex items-center gap-4 text-sm text-left leading-none"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 Chevaux À Grosse Confiance</li>
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none italic">Pass Hebdo VIP</h3>
+                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-tight italic italic">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
+                    <ul className="space-y-4 mb-12 text-white text-left font-bold italic italic">
+                       <li className="flex items-center gap-4 text-sm text-left leading-none italic italic"><CheckCircle2 className="w-5 h-5 text-white" /> L'analyse Complète De Chaque Quinté</li>
+                       <li className="flex items-center gap-4 text-sm text-left leading-none italic italic"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 Chevaux À Grosse Confiance</li>
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left w-full">
-                    <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left">
-                       <span className="text-4xl font-black leading-none">5€</span>
-                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none">par semaine</span>
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left w-full italic">
+                    <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left italic">
+                       <span className="text-4xl font-black leading-none italic italic">5€</span>
+                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none italic italic">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap">
+                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap italic">
                         C'est parti !
                     </a>
                  </div>
@@ -559,13 +514,13 @@ export default App;
 
       {/* FOOTER */}
       <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
-        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight">RENARD<span className="text-orange-500 font-black">TURF</span></span>
-        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full">
-          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold">
+        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight italic">RENARD<span className="text-orange-500 font-black italic">TURF</span></span>
+        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full italic">
+          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold italic italic">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none font-bold">
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none font-bold italic italic">
           © 2026 LE RENARD DU TURF
         </p>
       </footer>
@@ -574,3 +529,4 @@ export default App;
 };
 
 export default App;
+
