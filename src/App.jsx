@@ -105,13 +105,13 @@ const App = () => {
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "JZE1cVyOqaY",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-17/R1/C8"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-11-21/R1/C2"
   };
 
   const stats = [
     { label: "ROI Moyen", value: "+51%", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
     { label: "Membres", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Taux Réussite", value: "73%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Taux Réussite", value: "74%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -431,7 +431,7 @@ const App = () => {
                        <Star className="w-3 h-3 fill-orange-500 text-orange-500 italic" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
-                       {[15, 16].map(num => (
+                       {[13, 6].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -445,7 +445,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600 italic" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[15, 16, 5, 6, 3, 7, 8, 11, 10].map((num, i) => (
+                       {[13, 6, 10, 15, 12, 11, 9, 3, 5].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
