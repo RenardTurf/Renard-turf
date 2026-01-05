@@ -24,6 +24,26 @@ import {
   Info,
   Flag
 } from 'lucide-react';
+// 1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
+const initGA = (id) => {
+  const script1 = document.createElement('script');
+  script1.async = true;
+  script1.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  document.head.appendChild(script1);
+
+  const script2 = document.createElement('script');
+  script2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${id}');
+  `;
+  document.head.appendChild(script2);
+};
+
+// 2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
+// initGA('GTM-KZ3PQB9Z'); // Remplace par ton vrai ID
+
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
