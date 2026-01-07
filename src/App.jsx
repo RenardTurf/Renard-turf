@@ -16,13 +16,7 @@ import {
   History,
   PlayCircle,
   Eye,
-  Calculator,
-  Wallet,
-  Plus,
-  Trash2,
-  AlertTriangle,
-  Info,
-  Flag
+  Star as StarIcon
 } from 'lucide-react';
 
 // --- INITIALISATION GOOGLE ANALYTICS ---
@@ -47,44 +41,6 @@ const initGA = (id) => {
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
-  // --- ÉTAT GLOBAL (STRATEGIST RENARD) ---
-  const [bankroll, setBankroll] = useState(155);
-  const [targetEndAmount, setTargetEndAmount] = useState(200); 
-  const [horses, setHorses] = useState([
-    { id: 1, name: "Cheval 1", odds: 1.70 },
-    { id: 2, name: "Cheval 2", odds: 1.50 }
-  ]);
-
-  // --- CALCULS DE STRATÉGIE (STRATEGIST RENARD) ---
-  const monthlyProfitTarget = targetEndAmount - bankroll;
-  const dailyProfitTarget = monthlyProfitTarget > 0 ? monthlyProfitTarget / 31 : 0;
-  const profitPerHorse = horses.length > 0 ? dailyProfitTarget / horses.length : 0;
-
-  const calculateStake = (odds) => {
-    if (odds <= 1 || profitPerHorse <= 0) return 0;
-    return (profitPerHorse / (odds - 1)).toFixed(2);
-  };
-
-  const totalDailyStakes = horses.reduce((acc, horse) => {
-    return acc + parseFloat(calculateStake(horse.odds));
-  }, 0);
-
-  const riskPercent = bankroll > 0 ? ((totalDailyStakes / bankroll) * 100).toFixed(1) : 0;
-
-  // --- ACTIONS (STRATEGIST RENARD) ---
-  const addHorse = () => {
-    const newId = horses.length > 0 ? Math.max(...horses.map(h => h.id)) + 1 : 1;
-    setHorses([...horses, { id: newId, name: `Cheval ${newId}`, odds: 1.60 }]);
-  };
-
-  const removeHorse = (id) => {
-    setHorses(horses.filter(h => h.id !== id));
-  };
-
-  const updateHorse = (id, field, value) => {
-    setHorses(horses.map(h => h.id === id ? { ...h, [field]: value } : h));
-  };
 
   // --- TRACKING & SCROLL EFFECT ---
   useEffect(() => {
@@ -124,7 +80,7 @@ const App = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
                <Zap className="text-white fill-current w-6 h-6" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic text-white leading-none font-bold">RENARD<span className="text-orange-500 font-bold">TURF</span></span>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none font-bold">RENARD<span className="text-orange-500 font-bold">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
@@ -195,7 +151,7 @@ const App = () => {
           
           <div className="mt-10">
              <a href={LINKS.YOUTUBE_CHANNEL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-white font-black uppercase tracking-widest text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 px-8 py-4 rounded-full transition-all">
-                S'abonner à la chaîne <Star className="w-4 h-4 text-orange-500 fill-current" />
+                S'abonner à la chaîne <StarIcon className="w-4 h-4 text-orange-500 fill-current" />
              </a>
           </div>
         </div>
@@ -242,162 +198,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* STRATEGIST RENARD - SECTION CHALLENGE */}
-      <section id="challenge" className="py-24 px-4 md:px-8 bg-slate-950">
-        <div className="max-w-5xl mx-auto">
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
-            <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
-              <div className="flex items-center gap-3 mb-4 text-orange-500">
-                <Wallet className="w-5 h-5" />
-                <span className="text-[10px] font-black uppercase tracking-widest">Bankroll Actuelle</span>
-              </div>
-              <div className="flex items-baseline gap-2">
-                <input 
-                  type="number" 
-                  value={bankroll}
-                  onChange={(e) => setBankroll(parseFloat(e.target.value) || 0)}
-                  className="bg-transparent text-3xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-2"
-                />
-                <span className="text-xl font-black italic">€</span>
-              </div>
-            </div>
-
-            <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
-              <div className="flex items-center gap-3 mb-4 text-orange-500">
-                <Flag className="w-5 h-5" />
-                <span className="text-[10px] font-black uppercase tracking-widest">Capital Espéré (Fin de mois)</span>
-              </div>
-              <div className="flex items-baseline gap-2">
-                <input 
-                  type="number" 
-                  value={targetEndAmount}
-                  onChange={(e) => setTargetEndAmount(parseFloat(e.target.value) || 0)}
-                  className="bg-transparent text-3xl font-black italic w-full border-b border-white/10 focus:border-orange-500 outline-none pb-2"
-                />
-                <span className="text-xl font-black italic">€</span>
-              </div>
-              <p className="text-[10px] mt-2 font-bold text-slate-500 uppercase tracking-tighter">
-                Bénéfice visé : <span className="text-green-500">+{monthlyProfitTarget.toFixed(2)}€</span>
-              </p>
-            </div>
-
-            <div className="bg-orange-600 p-6 rounded-[2rem] shadow-xl shadow-orange-600/20 text-white">
-              <div className="flex items-center gap-3 mb-4">
-                <TrendingUp className="w-5 h-5" />
-                <span className="text-[10px] font-black uppercase tracking-widest">Objectif Net Journalier</span>
-              </div>
-              <div className="text-3xl font-black italic">{dailyProfitTarget.toFixed(2)}€</div>
-              <p className="text-[10px] mt-2 font-bold uppercase opacity-80 italic">À gagner chaque jour</p>
-            </div>
-          </div>
-
-          <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl mb-8">
-            <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="flex items-center gap-3 w-full md:w-auto">
-                <Calculator className="w-6 h-6 text-orange-500" />
-                <h2 className="text-xl font-black uppercase italic tracking-tighter italic">Calcul des Mises du Jour</h2>
-              </div>
-              <button 
-                onClick={addHorse}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all"
-              >
-                <Plus className="w-4 h-4" /> Ajouter un cheval
-              </button>
-            </div>
-
-            <div className="p-8 overflow-x-auto">
-              <table className="w-full text-left">
-                <thead>
-                  <tr className="text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-white/5">
-                    <th className="pb-4">Cheval / Course</th>
-                    <th className="pb-4 text-center">Cote (Placé)</th>
-                    <th className="pb-4 text-center italic">Profit Visé</th>
-                    <th className="pb-4 text-right">MISE À EFFECTUER</th>
-                    <th className="pb-4"></th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5">
-                  {horses.map((horse) => (
-                    <tr key={horse.id} className="group hover:bg-white/[0.02] transition-colors">
-                      <td className="py-6">
-                        <input 
-                          type="text" 
-                          value={horse.name}
-                          onChange={(e) => updateHorse(horse.id, 'name', e.target.value)}
-                          className="bg-transparent font-bold text-slate-300 outline-none focus:text-white"
-                        />
-                      </td>
-                      <td className="py-6 text-center">
-                        <input 
-                          type="number" 
-                          step="0.05"
-                          value={horse.odds}
-                          onChange={(e) => updateHorse(horse.id, 'odds', parseFloat(e.target.value) || 0)}
-                          className="bg-slate-950 border border-white/5 w-20 text-center py-2 rounded-lg font-black text-orange-500 focus:border-orange-500 outline-none"
-                        />
-                      </td>
-                      <td className="py-6 text-center text-xs font-bold text-slate-500 italic uppercase">
-                        +{profitPerHorse.toFixed(2)}€ net
-                      </td>
-                      <td className="py-6 text-right">
-                        <div className="text-xl font-black text-white italic">
-                          {calculateStake(horse.odds)}€
-                        </div>
-                      </td>
-                      <td className="py-6 text-right">
-                        <button 
-                          onClick={() => removeHorse(horse.id)}
-                          className="text-slate-700 hover:text-red-500 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="bg-white/5 p-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5">
-              <div className="flex gap-12 text-left">
-                <div>
-                  <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Mise Totale du Jour</span>
-                  <span className="text-2xl font-black text-white italic">{totalDailyStakes.toFixed(2)}€</span>
-                </div>
-                <div>
-                  <span className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1">Exposition du Capital</span>
-                  <span className={`text-2xl font-black italic ${parseFloat(riskPercent) > 10 ? 'text-red-500' : 'text-green-500'}`}>
-                    {riskPercent}%
-                  </span>
-                </div>
-              </div>
-              
-              <div className={`flex items-center gap-4 p-4 rounded-2xl border ${parseFloat(riskPercent) > 10 ? 'bg-red-500/10 border-red-500/30' : 'bg-green-500/10 border-green-500/30'}`}>
-                 {parseFloat(riskPercent) > 10 ? <AlertTriangle className="text-red-500 w-5 h-5" /> : <ShieldCheck className="text-green-500 w-5 h-5" />}
-                 <p className="text-[9px] font-bold uppercase tracking-tight max-w-[200px] leading-tight text-left">
-                   {parseFloat(riskPercent) > 10 
-                    ? "Attention : Vos mises dépassent 10% de votre capital. Risque élevé en cas d'écart." 
-                    : "Risque maîtrisé. Votre capital est protégé selon les standards du Renard."}
-                 </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] text-left">
-             <div className="flex items-center gap-3 mb-6">
-               <Info className="w-5 h-5 text-orange-500" />
-               <h3 className="text-xs font-black uppercase tracking-widest">Conseil de Gestion</h3>
-             </div>
-             <p className="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-tight">
-               L'outil calcule vos mises pour que <span className="text-white">chaque cheval gagnant</span> remplisse sa part de l'objectif. <br/><br/>
-               Si vous visez <span className="text-orange-500">{targetEndAmount}€</span> à la fin du mois, vous devez gagner <span className="text-white">{dailyProfitTarget.toFixed(2)}€</span> net chaque jour. <br/><br/>
-               <span className="italic text-slate-500">Note : Si un cheval perd, vous devrez soit augmenter l'objectif des jours suivants, soit accepter une fin de mois légèrement en dessous de la cible.</span>
-             </p>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-slate-950 flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
@@ -423,7 +223,7 @@ const App = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  <div className="flex flex-col items-start">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
-                       <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
+                       <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
                        {[3, 8].map(num => (
@@ -467,21 +267,22 @@ const App = () => {
       <section id="offres" className="py-32 px-6 flex flex-col items-center">
         <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
            <div className="mb-20 px-6">
-              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight italic">Passe au niveau supérieur</h2>
+              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight italic uppercase italic">Passe au niveau supérieur</h2>
               <p className="text-slate-400 text-lg font-medium leading-none italic">Arrête de jouer au hasard.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
+              {/* La Bible */}
               <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-white leading-none">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed italic">Ma méthode complète et ma gestion financière.</p>
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none italic">La Bible du Renard</h3>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left italic">Ma méthode complète et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left italic">
                        <li className="flex items-center gap-4 text-sm text-slate-300 font-black italic"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
-                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 leading-none italic"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
+                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 leading-none italic"><StarIcon className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
                  
@@ -496,6 +297,7 @@ const App = () => {
                  </div>
               </div>
 
+              {/* VIP HEBDO */}
               <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
@@ -527,7 +329,7 @@ const App = () => {
       <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8">RENARD<span className="text-orange-500 font-black">TURF</span></span>
         <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full italic">
-          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed">
+          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold italic">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
