@@ -41,8 +41,8 @@ const initGA = (id) => {
   document.head.appendChild(script2);
 };
 
-// 2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
-// initGA('GTM-KZ3PQB9Z'); // Remplace par ton vrai ID
+2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
+initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
 
 
 const App = () => {
