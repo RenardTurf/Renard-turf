@@ -24,7 +24,7 @@ import {
   Info,
   Flag
 } from 'lucide-react';
-// 1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
+1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
 const initGA = (id) => {
   const script1 = document.createElement('script');
   script1.async = true;
