@@ -217,11 +217,11 @@ const App = () => {
              <ShieldCheck className="text-slate-700 w-12 h-12 mb-6" />
              <h4 className="text-xl font-black text-slate-500 uppercase italic mb-8">Analyse des 13 autres partants verrouillée</h4>
              <a 
-               href={https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/} 
+               href={LINKS.FICHE_ESSAI} 
                target="_blank"
                className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl transition-all transform hover:scale-105"
              >
-               Débloquer le Tableau Complet (1€)
+               Débloquer le Tableau Complet (2.99€)
              </a>
           </div>
         </div>
