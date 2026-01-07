@@ -263,6 +263,124 @@ const App = () => {
         </div>
       </section>
 
+      {/* --- OUTIL RPI v1.0 : DASHBOARD ANALYTIQUE --- */}
+<section id="rpi-dashboard" className="py-24 px-6 bg-slate-950 flex flex-col items-center">
+  <div className="container mx-auto max-w-5xl">
+    
+    {/* En-tête de l'outil */}
+    <div className="flex flex-col items-center mb-16 text-center">
+      <div className="inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/20 px-4 py-1.5 rounded-full mb-6">
+        <BarChart3 className="w-4 h-4 text-orange-500" />
+        <span className="text-[10px] font-black uppercase tracking-widest text-orange-500">Algorithme Renard Pro v1.0</span>
+      </div>
+      <h2 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-none">
+        Analyse <span className="text-orange-500">Chirurgicale</span>
+      </h2>
+      <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Prix de la Côte d'Azur - 08/01/2026</p>
+    </div>
+
+    {/* Grille des chevaux analysés */}
+    <div className="grid grid-cols-1 gap-8">
+      {[
+        { 
+          n: 8, name: "FREE TIME JEPSON", status: "BASE", rpi: 95,
+          perf: 49, intent: 23, context: 23,
+          tactic: "Speed Figure record. Biais piste favorable (échelon 1). D4 confirmé."
+        },
+        { 
+          n: 3, name: "KAPTAIN DU LIAMONE", status: "BASE", rpi: 92,
+          perf: 45, intent: 25, context: 22,
+          tactic: "Duo Raffin/Prat (Intention 25/25). Engagement en or à la limite du recul."
+        },
+        { 
+          n: 5, name: "IMPERATOR D'ELA", status: "OUTSIDER VALUE", rpi: 81,
+          perf: 38, intent: 22, context: 21,
+          tactic: "Anomalie détectée : Market Sentiment positif. Grosse récupération."
+        }
+      ].map((horse, i) => (
+        <div key={i} className="group bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 transition-all hover:border-orange-500/50 shadow-2xl">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            
+            {/* Colonne 1 : Le Score Global */}
+            <div className="flex flex-col items-center text-center space-y-2 min-w-[120px]">
+              <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center text-3xl font-black text-orange-500 border border-slate-800 shadow-inner group-hover:scale-110 transition-transform">
+                {horse.n}
+              </div>
+              <div className="text-4xl font-black text-white italic">{horse.rpi}<span className="text-orange-500 text-sm">/100</span></div>
+              <span className={`text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest ${horse.status === 'BASE' ? 'bg-green-600/20 text-green-500' : 'bg-orange-600/20 text-orange-500'}`}>
+                {horse.status}
+              </span>
+            </div>
+
+            {/* Colonne 2 : Les Modules RPI v1.0 */}
+            <div className="flex-1 w-full space-y-6">
+              <div className="flex justify-between items-end">
+                <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">{horse.name}</h3>
+                <span className="text-[10px] text-slate-500 font-bold italic uppercase">Probabilité : {(horse.rpi * 0.18).toFixed(1)}%</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Performance - 50 pts */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                    <span>Performance</span>
+                    <span className="text-white">{horse.perf}/50</span>
+                  </div>
+                  <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                    <div className="h-full bg-white transition-all duration-1000" style={{ width: `${(horse.perf/50)*100}%` }}></div>
+                  </div>
+                </div>
+                {/* Intention - 25 pts */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                    <span>Intention</span>
+                    <span className="text-orange-500">{horse.intent}/25</span>
+                  </div>
+                  <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                    <div className="h-full bg-orange-600 transition-all duration-1000" style={{ width: `${(horse.intent/25)*100}%` }}></div>
+                  </div>
+                </div>
+                {/* Contexte - 25 pts */}
+                <div className="space-y-2">
+                  <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                    <span>Contexte</span>
+                    <span className="text-slate-300">{horse.context}/25</span>
+                  </div>
+                  <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                    <div className="h-full bg-slate-600 transition-all duration-1000" style={{ width: `${(horse.context/25)*100}%` }}></div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-slate-400 text-xs italic font-medium border-l-2 border-orange-500/50 pl-4 py-1">
+                "{horse.tactic}"
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Section "Verrouillée" pour pousser à l'achat */}
+    <div className="mt-12 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-[2.5rem] p-10 flex flex-col items-center text-center">
+       <div className="w-12 h-12 bg-slate-950 rounded-full flex items-center justify-center mb-6">
+          <ShieldCheck className="text-slate-700 w-6 h-6" />
+       </div>
+       <h4 className="text-xl font-black text-slate-500 uppercase italic mb-4">Analyse des 13 autres partants verrouillée</h4>
+       <p className="text-slate-600 text-sm max-w-md mb-8 italic">
+         Pour accéder au tableau RPI complet (20+ variables) et découvrir l'outsider caché à 45/1, débloquez l'analyse PDF.
+       </p>
+       <a 
+         href="https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/" 
+         target="_blank"
+         className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl shadow-orange-600/20 transition-all transform hover:scale-105"
+       >
+         Débloquer le Tableau Complet (2.99€)
+       </a>
+    </div>
+  </div>
+</section>
+
       {/* SECTION OFFRES */}
       <section id="offres" className="py-32 px-6 flex flex-col items-center">
         <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
