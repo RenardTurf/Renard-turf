@@ -104,7 +104,7 @@ const App = () => {
     BIBLE: "https://lerenardturf.sellfy.store/p/le-guide-du-renard/",
     FICHE_ESSAI: "https://lerenardturf.sellfy.store/p/fiche-essais-1-quinte-du-31-12/",
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "C-IowjzginU",
+    LAST_VIDEO_ID: "CY0WGMtkS0s",
     COURSE_REF_URL: "https://www.equidia.fr/courses/2025-11-20/R1/C1"
   };
 
