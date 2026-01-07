@@ -41,8 +41,8 @@ const initGA = (id) => {
   document.head.appendChild(script2);
 };
 
-2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
- initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
+// 2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
+// initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
 
 
 const App = () => {
@@ -90,7 +90,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
+    // initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
     const handleScroll = () => {
       const offset = window.scrollY;
       setIsScrolled(offset > 50);
