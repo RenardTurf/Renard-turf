@@ -24,33 +24,33 @@ import {
   Info,
   Flag
 } from 'lucide-react';
-// 1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
+
+// --- INITIALISATION GOOGLE ANALYTICS ---
 const initGA = (id) => {
-  const script1 = document.createElement('script');
-  script1.async = true;
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-  document.head.appendChild(script1);
+  if (typeof window !== 'undefined' && !document.getElementById('google-analytics')) {
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.id = 'google-analytics';
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+    document.head.appendChild(script1);
 
-  const script2 = document.createElement('script');
-  script2.innerHTML = `
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${id}');
-  `;
-  document.head.appendChild(script2);
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${id}');
+    `;
+    document.head.appendChild(script2);
+  }
 };
-
-// 2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
-// initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
-
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // --- ÉTAT GLOBAL (STRATEGIST RENARD) ---
   const [bankroll, setBankroll] = useState(155);
-  const [targetEndAmount, setTargetEndAmount] = useState(200); // Montant espéré à la fin du mois
+  const [targetEndAmount, setTargetEndAmount] = useState(200); 
   const [horses, setHorses] = useState([
     { id: 1, name: "Cheval 1", odds: 1.70 },
     { id: 2, name: "Cheval 2", odds: 1.50 }
@@ -59,13 +59,10 @@ const App = () => {
   // --- CALCULS DE STRATÉGIE (STRATEGIST RENARD) ---
   const monthlyProfitTarget = targetEndAmount - bankroll;
   const dailyProfitTarget = monthlyProfitTarget > 0 ? monthlyProfitTarget / 31 : 0;
-
-  // Répartition de l'objectif sur les chevaux du jour
   const profitPerHorse = horses.length > 0 ? dailyProfitTarget / horses.length : 0;
 
   const calculateStake = (odds) => {
     if (odds <= 1 || profitPerHorse <= 0) return 0;
-    // Formule : Mise = Gain Net Souhaité / (Cote - 1)
     return (profitPerHorse / (odds - 1)).toFixed(2);
   };
 
@@ -89,11 +86,13 @@ const App = () => {
     setHorses(horses.map(h => h.id === id ? { ...h, [field]: value } : h));
   };
 
+  // --- TRACKING & SCROLL EFFECT ---
   useEffect(() => {
-    // initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
+    // ACTIVATION DU TRACKER (ID : G-EY4386K4P1)
+    initGA('G-EY4386K4P1');
+
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setIsScrolled(offset > 50);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -125,7 +124,7 @@ const App = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
                <Zap className="text-white fill-current w-6 h-6" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none font-bold">RENARD<span className="text-orange-500 font-bold">TURF</span></span>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-white leading-none font-bold">RENARD<span className="text-orange-500 font-bold">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
@@ -247,7 +246,6 @@ const App = () => {
       <section id="challenge" className="py-24 px-4 md:px-8 bg-slate-950">
         <div className="max-w-5xl mx-auto">
           
-          {/* EN-TÊTE DES CHIFFRES CLÉS */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
             <div className="bg-slate-900 border border-white/5 p-6 rounded-[2rem] shadow-xl">
               <div className="flex items-center gap-3 mb-4 text-orange-500">
@@ -294,7 +292,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* PLANIFICATEUR DE MISES */}
           <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl mb-8">
             <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -362,7 +359,6 @@ const App = () => {
               </table>
             </div>
 
-            {/* RÉSUMÉ DU RISQUE */}
             <div className="bg-white/5 p-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5">
               <div className="flex gap-12 text-left">
                 <div>
@@ -388,7 +384,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* MÉTHODOLOGIE */}
           <div className="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] text-left">
              <div className="flex items-center gap-3 mb-6">
                <Info className="w-5 h-5 text-orange-500" />
@@ -426,10 +421,9 @@ const App = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
-                 {/* BASES */}
                  <div className="flex flex-col items-start">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
-                       <Star className="w-3 h-3 fill-orange-500 text-orange-500 italic" /> Mes 2 Bases YouTube
+                       <Star className="w-3 h-3 fill-orange-500 text-orange-500" /> Mes 2 Bases YouTube
                     </h4>
                     <div className="flex gap-3">
                        {[3, 8].map(num => (
@@ -440,10 +434,9 @@ const App = () => {
                     </div>
                  </div>
 
-                 {/* SÉLECTION COMPLÈTE - 9 CHEVAUX */}
                  <div className="flex flex-col items-start">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
-                       <ShieldCheck className="w-3 h-3 text-green-600 italic" /> Ma Sélection de 9 Chevaux
+                       <ShieldCheck className="w-3 h-3 text-green-600" /> Ma Sélection de 9 Chevaux
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
                        {[3, 8, 5, 16, 10, 1, 9, 6, 2].map((num, i) => (
@@ -455,7 +448,6 @@ const App = () => {
                  </div>
               </div>
 
-              {/* BOUTON D'ESSAI ENCADRÉ EN ORANGE */}
               <div className="mt-12 flex justify-center relative z-10">
                  <a 
                    href={LINKS.FICHE_ESSAI} 
@@ -475,56 +467,54 @@ const App = () => {
       <section id="offres" className="py-32 px-6 flex flex-col items-center">
         <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
            <div className="mb-20 px-6">
-              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight italic uppercase italic">Passe au niveau supérieur</h2>
+              <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter text-white leading-tight italic">Passe au niveau supérieur</h2>
               <p className="text-slate-400 text-lg font-medium leading-none italic">Arrête de jouer au hasard.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
-              {/* La Bible */}
               <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
                        <BookOpen className="text-orange-500 w-7 h-7" />
                     </div>
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-left text-white tracking-tight leading-none italic">La Bible du Renard</h3>
-                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed text-left italic">Ma méthode complète et ma gestion financière.</p>
+                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight italic text-white leading-none">La Bible du Renard</h3>
+                    <p className="text-slate-400 mb-10 text-lg font-medium leading-relaxed italic">Ma méthode complète et ma gestion financière.</p>
                     <ul className="space-y-4 mb-12 text-left italic">
-                       <li className="flex items-center gap-4 text-sm text-slate-300 font-medium text-left font-black italic"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
-                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 text-left leading-none italic"><Star className="w-5 h-5 text-orange-500 italic" /> + 7 JOURS VIP OFFERTS</li>
+                       <li className="flex items-center gap-4 text-sm text-slate-300 font-black italic"><CheckCircle2 className="w-5 h-5 text-orange-500" /> 23 Pages Pour Analyser Le Quinté Comme Un Pro.</li>
+                       <li className="flex items-center gap-4 text-sm text-orange-400 font-black bg-orange-500/10 p-4 rounded-2xl border border-orange-500/20 leading-none italic"><Star className="w-5 h-5 text-orange-500" /> + 7 JOURS VIP OFFERTS</li>
                     </ul>
                  </div>
                  
                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-800/50 mt-auto w-full">
                     <div className="flex flex-col items-center sm:items-start space-y-0 leading-none italic">
-                        <span className="text-slate-500 line-through text-lg font-bold italic italic">29,90€</span>
-                        <span className="text-4xl font-black text-white leading-none italic italic">14,90€</span>
+                        <span className="text-slate-500 line-through text-lg font-bold">29,90€</span>
+                        <span className="text-4xl font-black text-white leading-none">14,90€</span>
                     </div>
-                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg whitespace-nowrap italic">
+                    <a href={LINKS.BIBLE} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-black transition-all border border-slate-700 uppercase text-[11px] tracking-widest text-center shadow-lg italic">
                         Commander
                     </a>
                  </div>
               </div>
 
-              {/* VIP HEBDO */}
               <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
-                       <Zap className="fill-current w-7 h-7 text-white italic" />
+                       <Zap className="fill-current w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic text-left tracking-tight leading-none italic">Pass Hebdo VIP</h3>
-                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed text-left leading-tight italic italic">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
-                    <ul className="space-y-4 mb-12 text-white text-left font-bold italic italic">
-                       <li className="flex items-center gap-4 text-sm text-left leading-none italic italic"><CheckCircle2 className="w-5 h-5 text-white" /> L'analyse Complète De Chaque Quinté</li>
-                       <li className="flex items-center gap-4 text-sm text-left leading-none italic italic"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 Chevaux À Grosse Confiance</li>
+                    <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight italic leading-none">Pass Hebdo VIP</h3>
+                    <p className="text-orange-100 mb-10 text-lg font-medium leading-relaxed italic">Chaque matin avant 9h, reçois mon analyse complète et tous les pronostics du meilleur de la presse.</p>
+                    <ul className="space-y-4 mb-12 text-white font-bold italic">
+                       <li className="flex items-center gap-4 text-sm leading-none italic"><CheckCircle2 className="w-5 h-5 text-white" /> L'analyse Complète De Chaque Quinté</li>
+                       <li className="flex items-center gap-4 text-sm leading-none italic"><CheckCircle2 className="w-5 h-5 text-white" /> 5 à 10 Chevaux À Grosse Confiance</li>
                     </ul>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto text-left w-full italic">
-                    <div className="flex flex-col items-center sm:items-start text-white space-y-0 text-left italic">
-                       <span className="text-4xl font-black leading-none italic italic">5€</span>
-                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none italic italic">par semaine</span>
+                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10 mt-auto w-full">
+                    <div className="flex flex-col items-center sm:items-start text-white space-y-0 italic">
+                       <span className="text-4xl font-black leading-none">5€</span>
+                       <span className="text-[10px] text-orange-200 font-bold uppercase tracking-widest font-black mt-1 leading-none italic">par semaine</span>
                     </div>
-                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center whitespace-nowrap italic">
+                    <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white text-orange-600 px-10 py-5 rounded-2xl font-black transition-all hover:bg-slate-100 shadow-xl uppercase text-[11px] tracking-widest text-center italic">
                         C'est parti !
                     </a>
                  </div>
@@ -535,13 +525,13 @@ const App = () => {
 
       {/* FOOTER */}
       <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
-        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8 tracking-tight italic">RENARD<span className="text-orange-500 font-black italic">TURF</span></span>
+        <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8">RENARD<span className="text-orange-500 font-black">TURF</span></span>
         <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full italic">
-          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold italic italic">
+          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed">
             Jouer comporte des risques : endettement, isolement, dépendance. Appelez le 09 74 75 13 13. Réservé aux majeurs.
           </p>
         </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center leading-none font-bold italic italic">
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center font-bold italic">
           © 2026 LE RENARD DU TURF
         </p>
       </footer>
