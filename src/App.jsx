@@ -24,7 +24,7 @@ import {
   Info,
   Flag
 } from 'lucide-react';
-1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
+// 1. Ajoute cette fonction tout en haut de ton fichier App.jsx, avant le composant App
 const initGA = (id) => {
   const script1 = document.createElement('script');
   script1.async = true;
@@ -41,6 +41,8 @@ const initGA = (id) => {
   document.head.appendChild(script2);
 };
 
+// 2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
+// initGA('GTM-KZ3PQB9Z'); // Remplace par ton vrai ID
 
 
 const App = () => {
@@ -88,8 +90,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    2. À l'intérieur de ton useEffect existant dans App.jsx, ajoute cette ligne :
-initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
     const handleScroll = () => {
       const offset = window.scrollY;
       setIsScrolled(offset > 50);
@@ -549,4 +549,3 @@ initGA('G-EY4386K4P1'); // Remplace par ton vrai ID
 };
 
 export default App;
-
