@@ -16,7 +16,8 @@ import {
   History,
   PlayCircle,
   Eye,
-  Star as StarIcon
+  Star as StarIcon,
+  BarChart3 // AJOUTÉ POUR LE RPI
 } from 'lucide-react';
 
 // --- INITIALISATION GOOGLE ANALYTICS ---
@@ -84,7 +85,7 @@ const App = () => {
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
-            <a href="#ticket" className="hover:text-orange-500 transition-colors text-orange-500 underline underline-offset-8 decoration-2 font-black">Ticket du Jour</a>
+            <a href="#rpi-dashboard" className="hover:text-orange-500 transition-colors text-orange-500 underline underline-offset-8 decoration-2 font-black">Analyse RPI</a>
             <a href="#offres" className="hover:text-orange-500 transition-colors">Offres</a>
             <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full transition-all transform hover:scale-105 font-black shadow-lg shadow-orange-600/20 uppercase">
               Accès VIP
@@ -108,7 +109,7 @@ const App = () => {
             Arrête de parier au hasard. Analyse, Gestion et Méthode pour dominer le PMU sur le long terme.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center px-6 md:px-0 w-full max-w-2xl">
-            <a href={LINKS.VIP_HEBDO} target="_blank" rel="noopener noreferrer" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group uppercase">
+            <a href="#rpi-dashboard" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group uppercase">
               REJOINDRE LE VIP <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="#offres" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 border border-slate-800 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase">
@@ -124,6 +125,104 @@ const App = () => {
                 <div className="text-slate-500 text-[10px] uppercase font-bold tracking-[0.2em]">{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION RPI DASHBOARD v1.0 --- */}
+      <section id="rpi-dashboard" className="py-24 px-6 bg-slate-950 flex flex-col items-center">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col items-center mb-16 text-center">
+            <div className="inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/20 px-4 py-1.5 rounded-full mb-6">
+              <BarChart3 className="w-4 h-4 text-orange-500" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-orange-500">Renard Pro System v1.0</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-none text-center">
+              Analyse <span className="text-orange-500">Chirurgicale</span>
+            </h2>
+            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Prix de la Côte d'Azur - 08/01/2026</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8">
+            {[
+              { 
+                n: 8, name: "FREE TIME JEPSON", status: "BASE", rpi: 95,
+                perf: 49, intent: 23, context: 23,
+                tactic: "Speed Figure record. Gocciadoro aux commandes. D4 confirmé."
+              },
+              { 
+                n: 3, name: "KAPTAIN DU LIAMONE", status: "BASE", rpi: 92,
+                perf: 45, intent: 25, context: 22,
+                tactic: "Duo Raffin/Prat (Intention 25/25). Engagement en or à la limite du recul."
+              },
+              { 
+                n: 5, name: "IMPERATOR D'ELA", status: "OUTSIDER VALUE", rpi: 81,
+                perf: 38, intent: 22, context: 21,
+                tactic: "Anomalie détectée : Market Sentiment positif. Grosse récupération."
+              }
+            ].map((horse, i) => (
+              <div key={i} className="group bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 transition-all hover:border-orange-500/50 shadow-2xl">
+                <div className="flex flex-col md:flex-row gap-8 items-center text-left">
+                  <div className="flex flex-col items-center text-center space-y-2 min-w-[120px]">
+                    <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center text-3xl font-black text-orange-500 border border-slate-800 shadow-inner group-hover:scale-110 transition-transform">
+                      {horse.n}
+                    </div>
+                    <div className="text-4xl font-black text-white italic">{horse.rpi}<span className="text-orange-500 text-sm">/100</span></div>
+                    <span className="text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest bg-orange-600/20 text-orange-500">
+                      {horse.status}
+                    </span>
+                  </div>
+
+                  <div className="flex-1 w-full space-y-6">
+                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">{horse.name}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                          <span>Performance</span>
+                          <span className="text-white">{horse.perf}/50</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                          <div className="h-full bg-white transition-all duration-1000" style={{ width: `${(horse.perf/50)*100}%` }}></div>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                          <span>Intention</span>
+                          <span className="text-orange-500">{horse.intent}/25</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                          <div className="h-full bg-orange-600 transition-all duration-1000" style={{ width: `${(horse.intent/25)*100}%` }}></div>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[8px] font-black uppercase text-slate-400 tracking-widest">
+                          <span>Contexte</span>
+                          <span className="text-slate-300">{horse.context}/25</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-950 rounded-full overflow-hidden border border-white/5">
+                          <div className="h-full bg-slate-600 transition-all duration-1000" style={{ width: `${(horse.context/25)*100}%` }}></div>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-slate-400 text-xs italic font-medium border-l-2 border-orange-500/50 pl-4 py-1">
+                      "{horse.tactic}"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-[2.5rem] p-10 flex flex-col items-center text-center">
+             <ShieldCheck className="text-slate-700 w-12 h-12 mb-6" />
+             <h4 className="text-xl font-black text-slate-500 uppercase italic mb-8">Analyse des 13 autres partants verrouillée</h4>
+             <a 
+               href={LINKS.FICHE_ESSAI} 
+               target="_blank"
+               className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl transition-all transform hover:scale-105"
+             >
+               Débloquer le Tableau Complet (2.99€)
+             </a>
           </div>
         </div>
       </section>
@@ -272,7 +371,6 @@ const App = () => {
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
-              {/* La Bible */}
               <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between hover:border-orange-500/50 transition-all shadow-xl min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center mb-8 border border-slate-800">
@@ -297,7 +395,6 @@ const App = () => {
                  </div>
               </div>
 
-              {/* VIP HEBDO */}
               <div className="bg-orange-600 p-8 md:p-12 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-orange-600/30 transform hover:-translate-y-2 transition-all min-h-[520px] text-left">
                  <div>
                     <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white/10 text-white">
@@ -342,3 +439,4 @@ const App = () => {
 };
 
 export default App;
+
