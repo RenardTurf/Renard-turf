@@ -55,13 +55,13 @@ const App = () => {
     { id: 14, name: "KSAR", rpi: 74, perf: 35, intent: 21, context: 18, tactic: "Bekaert connaît la piste. Candidat sérieux pour une grosse cote." },
     { id: 10, name: "CHARMY CHARLY AS", rpi: 69, perf: 32, intent: 18, context: 19, tactic: "Second atout Bondo. Si le 'Pace' s'écroule, il sera là." },
     { id: 13, name: "GIBUS", rpi: 65, perf: 30, intent: 15, context: 20, tactic: "Spécialiste de Cagnes, peut pimenter les rapports du Quinté." },
-    { id: 2, name: "GIMY DU POMMEREUX", rpi: 61, perf: 28, intent: 17, context: 16, tactic: "Petit poids, grosse vitesse initiale. Peut tenir un long moment." },
-    { id: 4, name: "FLOREAL", rpi: 58, perf: 25, intent: 20, context: 13, tactic: "Note d'intention intéressante, mais le lot est très relevé." },
-    { id: 6, name: "EPSOM D'HERFRAIE", rpi: 54, perf: 28, intent: 12, context: 14, tactic: "Cheval de classe, a besoin de rassurer le système." },
-    { id: 7, name: "FILOU SMILE", rpi: 49, perf: 22, intent: 14, context: 13, tactic: "Mission compliquée à ce niveau. L'algorithme reste prudent." },
-    { id: 11, name: "EBERTON", rpi: 45, perf: 20, intent: 10, context: 15, tactic: "Le guerrier local, mais l'âge commence à peser." },
-    { id: 12, name: "BILO JEPSON", rpi: 41, perf: 25, intent: 8, context: 8, tactic: "Rentrée. Sera compétitif lors de ses prochaines sorties." },
-    { id: 15, name: "ERIC THE EEL", rpi: 38, perf: 30, intent: 4, context: 4, tactic: "Reste ferré. Course de préparation uniquement." }
+    { id: 2, name: "IRON MELLOIS", rpi: 61, perf: 28, intent: 17, context: 16, tactic: "Petit poids, grosse vitesse initiale. Peut tenir un long moment." },
+    { id: 4, name: "HARRY LE BEAU", rpi: 58, perf: 25, intent: 20, context: 13, tactic: "Note d'intention intéressante, mais le lot est très relevé." },
+    { id: 6, name: "GREGOR", rpi: 54, perf: 28, intent: 12, context: 14, tactic: "Cheval de classe, a besoin de rassurer le système." },
+    { id: 7, name: "GIVE ME", rpi: 49, perf: 22, intent: 14, context: 13, tactic: "Mission compliquée à ce niveau. L'algorithme reste prudent." },
+    { id: 11, name: "HERO DES MOTTES", rpi: 45, perf: 20, intent: 10, context: 15, tactic: "Le guerrier local, mais l'âge commence à peser." },
+    { id: 12, name: "GALA DE CRENNES", rpi: 41, perf: 25, intent: 8, context: 8, tactic: "Rentrée. Sera compétitif lors de ses prochaines sorties." },
+    { id: 15, name: "FLOREAL", rpi: 38, perf: 30, intent: 4, context: 4, tactic: "Reste ferré. Course de préparation uniquement." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData[0]);
@@ -82,9 +82,9 @@ const App = () => {
   };
 
   const stats = [
-    { label: "Analyses Mensuelles", value: "250+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
-    { label: "Lecteurs", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Précision Indice", value: "74%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Vues", value: "500 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
+    { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
+    { label: "Reussite Quinté 2026", value: "86%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
