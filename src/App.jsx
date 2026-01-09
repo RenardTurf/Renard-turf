@@ -46,23 +46,87 @@ const App = () => {
 
   // --- DATA RPI v1.1 (MÉDIA & STATISTIQUES) ---
   const horsesData = [
-    { id: 8, name: "FREE TIME JEPSON", rpi: 95, perf: 49, intent: 23, context: 23, tactic: "Note record. Gocciadoro aux commandes. D4 confirmé pour la gagne." },
-    { id: 3, name: "KAPTAIN DU LIAMONE", rpi: 92, perf: 45, intent: 25, context: 22, tactic: "Duo Raffin/Prat (Intention 25/25). Engagement visé à 100%." },
-    { id: 1, name: "GERICAULT", rpi: 89, perf: 46, intent: 21, context: 22, tactic: "Vient de gagner avec brio. C. Martens à Cagnes = Danger imminent." },
-    { id: 16, name: "HARLEY GEMA", rpi: 84, perf: 48, intent: 20, context: 16, tactic: "Classe pure. Doit rendre 25m, mais Rochard est au sommet." },
-    { id: 5, name: "IMPERATOR D'ELA", rpi: 81, perf: 38, intent: 22, context: 21, tactic: "Anomalie détectée par le système : Market Sentiment très positif." },
-    { id: 9, name: "COLBERT WF", rpi: 78, perf: 40, intent: 19, context: 19, tactic: "Bel étranger. Rythme élevé prévu, va finir très fort son parcours." },
-    { id: 14, name: "KSAR", rpi: 74, perf: 35, intent: 21, context: 18, tactic: "Bekaert connaît la piste. Candidat sérieux pour une grosse cote." },
-    { id: 10, name: "CHARMY CHARLY AS", rpi: 69, perf: 32, intent: 18, context: 19, tactic: "Second atout Bondo. Si le 'Pace' s'écroule, il sera là." },
-    { id: 13, name: "GIBUS", rpi: 65, perf: 30, intent: 15, context: 20, tactic: "Spécialiste de Cagnes, peut pimenter les rapports du Quinté." },
-    { id: 2, name: "IRON MELLOIS", rpi: 61, perf: 28, intent: 17, context: 16, tactic: "Petit poids, grosse vitesse initiale. Peut tenir un long moment." },
-    { id: 4, name: "HARRY LE BEAU", rpi: 58, perf: 25, intent: 20, context: 13, tactic: "Note d'intention intéressante, mais le lot est très relevé." },
-    { id: 6, name: "GREGOR", rpi: 54, perf: 28, intent: 12, context: 14, tactic: "Cheval de classe, a besoin de rassurer le système." },
-    { id: 7, name: "GIVE ME", rpi: 49, perf: 22, intent: 14, context: 13, tactic: "Mission compliquée à ce niveau. L'algorithme reste prudent." },
-    { id: 11, name: "HERO DES MOTTES", rpi: 45, perf: 20, intent: 10, context: 15, tactic: "Le guerrier local, mais l'âge commence à peser." },
-    { id: 12, name: "GALA DE CRENNES", rpi: 41, perf: 25, intent: 8, context: 8, tactic: "Rentrée. Sera compétitif lors de ses prochaines sorties." },
-    { id: 15, name: "FLOREAL", rpi: 38, perf: 30, intent: 4, context: 4, tactic: "Reste ferré. Course de préparation uniquement." }
-  ];
+  { 
+    id: 1, name: "MAJOR OAK", rpi: 54,
+    perf: 28, intent: 15, context: 11,
+    tactic: "Speed Figure correcte mais surcharge pondérale (61kg) et Corde 11. Tâche complexe."
+  },
+  { 
+    id: 2, name: "TORTISAMBERT", rpi: 76,
+    perf: 48, intent: 24, context: 4,
+    tactic: "Dilemme : Classe pure confirmée (1v 3p ici) mais Corde 16 fatale statistiquement. À garder par sécurité."
+  },
+  { 
+    id: 3, name: "EVERSTAR", rpi: 65,
+    perf: 35, intent: 22, context: 8,
+    tactic: "Entraîneur en forme et adore cette piste, mais la Corde 15 plombe son score Contextuel."
+  },
+  { 
+    id: 4, name: "CIAO PA", rpi: 74,
+    perf: 32, intent: 20, context: 22,
+    tactic: "Duo Boutin + Corde 5. Rapide mais fragile au sprint final. Un trouble-fête logique."
+  },
+  { 
+    id: 5, name: "INSIDE MATTERS", rpi: 30,
+    perf: 15, intent: 5, context: 10,
+    tactic: "ALERTE ROUGE : Malgré la Corde 1, le papier est jugé insuffisant. L'Expert conseille l'impasse."
+  },
+  { 
+    id: 6, name: "FIRE REBEL", rpi: 70,
+    perf: 42, intent: 20, context: 8,
+    tactic: "Forme éblouissante (2 vict.) et marge détectée, mais +7.5kg et Corde 14. Pour une place."
+  },
+  { 
+    id: 7, name: "HALF HALF", rpi: 89,
+    perf: 47, intent: 25, context: 17,
+    tactic: "Cible Smaga validée : 2 courses de rentrée. Valeur supérieure. Prêt à jouer la gagne !"
+  },
+  { 
+    id: 8, name: "TALENTUOSO", rpi: 82,
+    perf: 40, intent: 22, context: 20,
+    tactic: "Impression Visuelle : 2e 'sans forcer' dans le référence. Va aller devant. Très dangereux."
+  },
+  { 
+    id: 9, name: "WOOTTON MELODY", rpi: 96,
+    perf: 49, intent: 24, context: 23,
+    tactic: "CONFLUENCE TOTALE : Corde 2 + Duo Forme + 3e du Référence. Le 'Pénalty' selon la Rédaction."
+  },
+  { 
+    id: 10, name: "BACCHILIDE", rpi: 75,
+    perf: 35, intent: 20, context: 20,
+    tactic: "L'Anglais repéré pour sa fin de course tranchante. Si le rythme est élevé, il sera là."
+  },
+  { 
+    id: 11, name: "GODESSA", rpi: 62,
+    perf: 28, intent: 15, context: 19,
+    tactic: "Profil régulier aidé par sa Corde 4, mais semble barrée pour la victoire face aux mâles."
+  },
+  { 
+    id: 12, name: "SCARFACE", rpi: 64,
+    perf: 30, intent: 18, context: 16,
+    tactic: "Vient de gagner la 2e épreuve. Marche plus haute cette fois, mais forme Boutin indéniable."
+  },
+  { 
+    id: 13, name: "FORZA CAPITANO", rpi: 48,
+    perf: 28, intent: 10, context: 10,
+    tactic: "Vétéran de classe, mais Corde 13 et poids ne jouent pas en sa faveur aujourd'hui."
+  },
+  { 
+    id: 14, name: "RÉGALIEN", rpi: 85,
+    perf: 42, intent: 20, context: 23,
+    tactic: "Jamais aussi performant qu'actuellement. Corde 3 + Poids favorable. Outsider Séduisant."
+  },
+  { 
+    id: 15, name: "LEOPARDUCCIO", rpi: 45,
+    perf: 22, intent: 10, context: 13,
+    tactic: "Corde 7 correcte mais Speed Figure insuffisante pour inquiéter les favoris."
+  },
+  { 
+    id: 16, name: "SPEEDSTER", rpi: 71,
+    perf: 35, intent: 18, context: 18,
+    tactic: "Le 'Poids Plume' de l'épreuve. Confirmé PSF et Corde 8. Attention pour une 4/5ème place."
+  }
+];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData[0]);
 
