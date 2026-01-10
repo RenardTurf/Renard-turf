@@ -47,84 +47,69 @@ const App = () => {
   // --- DATA RPI v1.1 (MÉDIA & STATISTIQUES) ---
   const horsesData = [
   { 
-    id: 1, name: "MAJOR OAK", rpi: 54,
-    perf: 28, intent: 15, context: 11,
-    tactic: "Speed Figure correcte mais surcharge pondérale (61kg) et Corde 11. Tâche complexe."
+    id: 1, name: "HURRICANE CARTER", rpi: 68,
+    perf: 35, intent: 18, context: 15,
+    tactic: "Tandem Lebourgeois redoutable (16v 5p). Lot relevé mais peut accrocher la 5ème place."
   },
   { 
-    id: 2, name: "TORTISAMBERT", rpi: 76,
-    perf: 48, intent: 24, context: 4,
-    tactic: "Dilemme : Classe pure confirmée (1v 3p ici) mais Corde 16 fatale statistiquement. À garder par sécurité."
+    id: 2, name: "ISOFOU DU CHÊNE", rpi: 86,
+    perf: 42, intent: 24, context: 20,
+    tactic: "Spécialiste tenue. Redoutable D4 avec Ploquin. Podium en vue selon l'Expert."
   },
   { 
-    id: 3, name: "EVERSTAR", rpi: 65,
-    perf: 35, intent: 22, context: 8,
-    tactic: "Entraîneur en forme et adore cette piste, mais la Corde 15 plombe son score Contextuel."
+    id: 3, name: "HÉRO SIBEY", rpi: 94,
+    perf: 48, intent: 24, context: 22,
+    tactic: "Fin de course exceptionnelle pour sa rentrée. Duo Bonne au sommet. Outsider préféré."
   },
   { 
-    id: 4, name: "CIAO PA", rpi: 74,
-    perf: 32, intent: 20, context: 22,
-    tactic: "Duo Boutin + Corde 5. Rapide mais fragile au sprint final. Un trouble-fête logique."
+    id: 5, name: "HE AND ME", rpi: 46,
+    perf: 28, intent: 8, context: 10,
+    tactic: "Reste ferré. Préparation évidente pour la suite. Impasse conseillée par la Matrice."
   },
   { 
-    id: 5, name: "INSIDE MATTERS", rpi: 30,
-    perf: 15, intent: 5, context: 10,
-    tactic: "ALERTE ROUGE : Malgré la Corde 1, le papier est jugé insuffisant. L'Expert conseille l'impasse."
-  },
-  { 
-    id: 6, name: "FIRE REBEL", rpi: 70,
-    perf: 42, intent: 20, context: 8,
-    tactic: "Forme éblouissante (2 vict.) et marge détectée, mais +7.5kg et Corde 14. Pour une place."
-  },
-  { 
-    id: 7, name: "HALF HALF", rpi: 89,
-    perf: 47, intent: 25, context: 17,
-    tactic: "Cible Smaga validée : 2 courses de rentrée. Valeur supérieure. Prêt à jouer la gagne !"
-  },
-  { 
-    id: 8, name: "TALENTUOSO", rpi: 82,
+    id: 6, name: "JINGLE DU PONT", rpi: 82,
     perf: 40, intent: 22, context: 20,
-    tactic: "Impression Visuelle : 2e 'sans forcer' dans le référence. Va aller devant. Très dangereux."
+    tactic: "2e du Quinté le 04/01. Récupération validée par Bazire. Au top pour confirmer."
   },
   { 
-    id: 9, name: "WOOTTON MELODY", rpi: 96,
-    perf: 49, intent: 24, context: 23,
-    tactic: "CONFLUENCE TOTALE : Corde 2 + Duo Forme + 3e du Référence. Le 'Pénalty' selon la Rédaction."
+    id: 7, name: "HAPPY DANICA", rpi: 49,
+    perf: 25, intent: 10, context: 14,
+    tactic: "Configuration ferrée pénalisante. Class Level insuffisant face aux D4 du jour."
   },
   { 
-    id: 10, name: "BACCHILIDE", rpi: 75,
-    perf: 35, intent: 20, context: 20,
-    tactic: "L'Anglais repéré pour sa fin de course tranchante. Si le rythme est élevé, il sera là."
+    id: 8, name: "IDÉAL DU ROCHER", rpi: 89,
+    perf: 45, intent: 22, context: 22,
+    tactic: "Engagement visé par Duvaldestin. Grosse pointe de vitesse finale attendue. Base sérieuse."
   },
   { 
-    id: 11, name: "GODESSA", rpi: 62,
-    perf: 28, intent: 15, context: 19,
-    tactic: "Profil régulier aidé par sa Corde 4, mais semble barrée pour la victoire face aux mâles."
+    id: 9, name: "JAZZMAN DEBAILLEUL", rpi: 60,
+    perf: 38, intent: 12, context: 10,
+    tactic: "Note d'espoir : Travaille très bien le matin. Vaut mieux que ses derniers échecs. Grosse cote."
   },
   { 
-    id: 12, name: "SCARFACE", rpi: 64,
-    perf: 30, intent: 18, context: 16,
-    tactic: "Vient de gagner la 2e épreuve. Marche plus haute cette fois, mais forme Boutin indéniable."
+    id: 10, name: "HYMNE DU GERS", rpi: 63,
+    perf: 40, intent: 10, context: 13,
+    tactic: "Ferré pour cette sortie. L'algorithme détecte une course de préparation pure."
   },
   { 
-    id: 13, name: "FORZA CAPITANO", rpi: 48,
-    perf: 28, intent: 10, context: 10,
-    tactic: "Vétéran de classe, mais Corde 13 et poids ne jouent pas en sa faveur aujourd'hui."
+    id: 11, name: "IGREC DE CELLAND", rpi: 84,
+    perf: 42, intent: 20, context: 22,
+    tactic: "Duo Thomain (10v 18p). Excellente ligne (3e de Cobra Killer Gar). Solide pour le Top 5."
   },
   { 
-    id: 14, name: "RÉGALIEN", rpi: 85,
-    perf: 42, intent: 20, context: 23,
-    tactic: "Jamais aussi performant qu'actuellement. Corde 3 + Poids favorable. Outsider Séduisant."
+    id: 12, name: "HUBBLE DU VIVIER", rpi: 95,
+    perf: 49, intent: 23, context: 23,
+    tactic: "BASE ABSOLUE. Gardé pour cet engagement. Accélération foudroyante le 14/12. Le cheval à battre."
   },
   { 
-    id: 15, name: "LEOPARDUCCIO", rpi: 45,
-    perf: 22, intent: 10, context: 13,
-    tactic: "Corde 7 correcte mais Speed Figure insuffisante pour inquiéter les favoris."
+    id: 13, name: "HIDALGO DES NOÉS", rpi: 76,
+    perf: 37, intent: 18, context: 21,
+    tactic: "Régulier avec Gelormini en D4. Un appui fiable pour les combinaisons élargies."
   },
   { 
-    id: 16, name: "SPEEDSTER", rpi: 71,
-    perf: 35, intent: 18, context: 18,
-    tactic: "Le 'Poids Plume' de l'épreuve. Confirmé PSF et Corde 8. Attention pour une 4/5ème place."
+    id: 14, name: "HULYSSE DIGEO", rpi: 65,
+    perf: 35, intent: 15, context: 15,
+    tactic: "Engagement idéal au plafond des gains. Outsider séduisant malgré un dernier échec."
   }
 ];
 
@@ -142,13 +127,13 @@ const App = () => {
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "Hm1ks6Zq1BQ",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-18/R1/C1"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-11-30/R1/C4"
   };
 
   const stats = [
     { label: "Vues", value: "500 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
     { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Reussite Quinté 2026", value: "86%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Reussite Quinté 2026", value: "88%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -214,7 +199,7 @@ const App = () => {
             <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-500">RPI</span>
             </h2>
-            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Deauville - R1C8 - 20h15</p>
+            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C4 - 15h15</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl mb-8">
@@ -377,7 +362,7 @@ const App = () => {
                        <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
-                       {[9, 7].map(num => (
+                       {[12, 8].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -390,7 +375,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[9, 7, 14, 8, 2, 10, 4, 16, 6].map((num, i) => (
+                       {[12, 8, 3, 2, 11, 6, 13, 1, 14].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
