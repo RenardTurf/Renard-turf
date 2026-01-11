@@ -126,8 +126,8 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "orAZ4m_z4-c",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-11-30/R1/C4"
+    LAST_VIDEO_ID: "FpPLG06Jxec",
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-28/R1/C4"
   };
 
   const stats = [
@@ -362,7 +362,7 @@ const App = () => {
                        <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
-                       {[12, 8].map(num => (
+                       {[9, 7].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -375,7 +375,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[12, 8, 3, 2, 11, 6, 13, 1, 14].map((num, i) => (
+                       {[9, 7, 11, 2, 12, 4, 10, 3].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
