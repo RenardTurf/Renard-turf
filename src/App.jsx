@@ -47,69 +47,25 @@ const App = () => {
   // --- DATA RPI v2.1 (PRIX DE BELGIQUE - 11/01/2026) ---
   const horsesData = [
     { 
-      id: 1, name: "HALO AM", rpi: 25,
-      perf: 10, intent: 5, context: 10,
-      tactic: "Audit critique : Rentrée après 6 mois. N'a jamais affronté un tel lot. Mission quasi impossible."
-    },
-    { 
-      id: 2, name: "IROISE DE LA NOÉ", rpi: 90,
-      perf: 45, intent: 25, context: 20,
-      tactic: "Priorité absolue : Lauréate édition 2025. A 'crevé' les jumelles récemment. Spécialiste du tracé."
-    },
-    { 
-      id: 3, name: "KANTO AVIS", rpi: 77,
-      perf: 38, intent: 22, context: 17,
-      tactic: "Tuyau D4 : Sur la montante. Entraîneur optimiste. Oubliez sa dernière sortie."
-    },
-    { 
-      id: 4, name: "WORKING CLASS HERO", rpi: 82,
-      perf: 40, intent: 22, context: 20,
-      tactic: "Rachat attendu : Duo Mottier performant (75%). Potentiel reconnu face à l'élite."
-    },
-    { 
-      id: 5, name: "JANGO VICI", rpi: 72,
-      perf: 35, intent: 17, context: 20,
-      tactic: "Bien sur le parcours (6/10). Finisseur correct, a laissé des regrets dernièrement."
-    },
-    { 
-      id: 6, name: "KING OPERA", rpi: 74,
-      perf: 37, intent: 17, context: 20,
-      tactic: "La découverte : Même ferré, il peut se placer à belle cote. Redoutable finisseur."
-    },
-    { 
-      id: 7, name: "IMMORTAL DOC", rpi: 94,
-      perf: 47, intent: 25, context: 22,
-      tactic: "Base Solide : 100% avec Goop (6/6). Note confidentielle de 17/20. Tout est OK."
-    },
-    { 
-      id: 8, name: "J'AIME LE FOOT", rpi: 58,
-      perf: 30, intent: 13, context: 15,
-      tactic: "Méfiance : Surprenant 4e du Bretagne. À ne pas éliminer totalement de vos combinaisons."
-    },
-    { 
-      id: 9, name: "FRANK GIO", rpi: 96,
-      perf: 49, intent: 25, context: 22,
-      tactic: "Dernière Minute : 91% pieds nus. Fin de course spectaculaire attendue sur la Grande Piste."
-    },
-    { 
-      id: 10, name: "KRACK TIME ATOUT", rpi: 79,
-      perf: 39, intent: 20, context: 20,
-      tactic: "Vigilance : Performant pieds nus (9/13). Honorable 4e du Ténor de Baune."
-    },
-    { 
-      id: 11, name: "IZOARD VÉDAQUAIS", rpi: 92,
-      perf: 47, intent: 23, context: 22,
-      tactic: "Confirmation : Invaincu sur le parcours (7/7). Vainqueur de l'édition 2024."
-    },
-    { 
-      id: 12, name: "KOCTEL DU DAIN", rpi: 86,
-      perf: 43, intent: 21, context: 22,
-      tactic: "Base Places : Couple Thomain 81%. Moins de marge désormais mais reste un prétendant sérieux."
-    },
-    { 
-      id: 13, name: "HOOKER BERRY", rpi: 61,
-      perf: 35, intent: 11, context: 15,
-      tactic: "Meilleur chrono sur le parcours mais déclin progressif. Pour une surprise seulement."
+      [
+  { "id": 1, "name": "WESTMINSTER NIGHT", "rpi": 94, "perf": 46, "intent": 23, "context": 25, "tactic": "Corde 4 idéale (46% succès). Entourage confiant pour la victoire." },
+  { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base Le Veinard. 90% de réussite sur ce tracé spécifique." },
+  { "id": 3, "name": "GOWAY", "rpi": 72, "perf": 35, "intent": 18, "context": 19, "tactic": "Forme saisonnière confirmée. 76% de réussite P.S.F. mais corde 14 délicate." },
+  { "id": 4, "name": "RUSSIPANT FAL", "rpi": 75, "perf": 38, "intent": 17, "context": 20, "tactic": "Repéré le 23 décembre. Malgré le top-weight, il reste compétitif." },
+  { "id": 5, "name": "BAYAMOON", "rpi": 79, "perf": 40, "intent": 19, "context": 20, "tactic": "Gagnant avec la manière. 75% P.S.F. malgré la pénalité de 4kg." },
+  { "id": 6, "name": "GENTLEMAN BEAUTY", "rpi": 68, "perf": 32, "intent": 16, "context": 20, "tactic": "Excellent sur la piste (85%). Corde 3 favorable pour les places." },
+  { "id": 7, "name": "SALALAH", "rpi": 81, "perf": 40, "intent": 21, "context": 20, "tactic": "Spécialiste P.S.F. (100% 3/3). Entraîneur optimiste pour ce meeting." },
+  { "id": 8, "name": "FOU FURIEUX", "rpi": 65, "perf": 30, "intent": 15, "context": 20, "tactic": "Répète toutes ses courses cet automne. À surveiller pour une surprise." },
+  { "id": 9, "name": "DUBALAA", "rpi": 91, "perf": 45, "intent": 23, "context": 23, "tactic": "Dernière minute chuchotée. 100% P.S.F. et 74% forme jockey/entraîneur." },
+  { "id": 10, "name": "ZACAPO", "rpi": 74, "perf": 36, "intent": 18, "context": 20, "tactic": "Couple Boutin performant (93%). 100% P.S.F. mais corde 16 complexe." },
+  { "id": 11, "name": "CASARES", "rpi": 92, "perf": 44, "intent": 24, "context": 24, "tactic": "Presque parfait en Quinté (80%). Corde 2 idéale pour finir fort." },
+  { "id": 12, "name": "SOUVENIR D'ECAJEUL", "rpi": 88, "perf": 43, "intent": 22, "context": 23, "tactic": "Extra sur P.S.F. (100%). S'entend à la perfection avec Mendizabal." },
+  { "id": 13, "name": "MON SCHATZI", "rpi": 60, "perf": 28, "intent": 14, "context": 18, "tactic": "Favori battu à racheter. Oeillères portées pour créer le déclic." },
+  { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau Veinard. Désormais à son poids. Finit fort ses courses." },
+  { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
+  { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
+]
+
     }
   ];
 
@@ -127,11 +83,11 @@ const App = () => {
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "FpPLG06Jxec",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-28/R1/C4"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-10-28/R1/C3"
   };
 
   const stats = [
-    { label: "Vues", value: "500 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
+    { label: "Vues", value: "510 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
     { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
     { label: "Réussite Quinté 2026", value: "88%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
@@ -303,7 +259,7 @@ const App = () => {
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold">L'analyse de la rédaction</span>
              </div>
              <h2 className="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-4 leading-tight">La Sélection Quinté 🎫</h2>
-             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix de Belgique.</p>
+             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix Vans Barbot.</p>
           </div>
 
           <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/10 overflow-hidden max-w-3xl mx-auto w-full">
@@ -311,7 +267,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
                  <div>
                     <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C4 - 15h15 (11/01/2026)</p>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Cagnes - R1C2 - 13h55 (12/01/2026)</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
@@ -322,7 +278,7 @@ const App = () => {
                        <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
-                       {[9, 7].map(num => (
+                       {[2, 1].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -335,7 +291,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[9, 7, 11, 2, 12, 4, 10, 3].map((num, i) => (
+                       {[2, 1, 11, 9, 12, 14, 7, 5, 15].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
