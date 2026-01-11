@@ -47,7 +47,7 @@ const App = () => {
   // --- DATA RPI v2.1 (PRIX VANS BARBOT - 12/01/2026) ---
   const horsesData = [
     { "id": 1, "name": "WESTMINSTER NIGHT", "rpi": 94, "perf": 46, "intent": 23, "context": 25, "tactic": "Corde 4 idéale (46% succès). Entourage confiant pour la victoire." },
-    { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base Le Veinard. 90% de réussite sur ce tracé spécifique." },
+    { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base. 90% de réussite sur ce tracé spécifique. Grande forme." },
     { "id": 3, "name": "GOWAY", "rpi": 72, "perf": 35, "intent": 18, "context": 19, "tactic": "Forme saisonnière confirmée. 76% de réussite P.S.F. mais corde 14 délicate." },
     { "id": 4, "name": "RUSSIPANT FAL", "rpi": 75, "perf": 38, "intent": 17, "context": 20, "tactic": "Repéré le 23 décembre. Malgré le top-weight, il reste compétitif." },
     { "id": 5, "name": "BAYAMOON", "rpi": 79, "perf": 40, "intent": 19, "context": 20, "tactic": "Gagnant avec la manière. 75% P.S.F. malgré la pénalité de 4kg." },
@@ -59,7 +59,7 @@ const App = () => {
     { "id": 11, "name": "CASARES", "rpi": 92, "perf": 44, "intent": 24, "context": 24, "tactic": "Presque parfait en Quinté (80%). Corde 2 idéale pour finir fort." },
     { "id": 12, "name": "SOUVENIR D'ECAJEUL", "rpi": 88, "perf": 43, "intent": 22, "context": 23, "tactic": "Extra sur P.S.F. (100%). S'entend à la perfection avec Mendizabal." },
     { "id": 13, "name": "MON SCHATZI", "rpi": 60, "perf": 28, "intent": 14, "context": 18, "tactic": "Favori battu à racheter. Oeillères portées pour créer le déclic." },
-    { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau Veinard. Désormais à son poids. Finit fort ses courses." },
+    { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau. Désormais à son poids. Finit fort ses courses." },
     { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
     { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
   ];
