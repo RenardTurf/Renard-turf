@@ -47,71 +47,22 @@ const App = () => {
   // --- DATA RPI v1.1 (MÉDIA & STATISTIQUES) ---
   const horsesData = [
   { 
-    id: 1, name: "HURRICANE CARTER", rpi: 68,
-    perf: 35, intent: 18, context: 15,
-    tactic: "Tandem Lebourgeois redoutable (16v 5p). Lot relevé mais peut accrocher la 5ème place."
-  },
-  { 
-    id: 2, name: "ISOFOU DU CHÊNE", rpi: 86,
-    perf: 42, intent: 24, context: 20,
-    tactic: "Spécialiste tenue. Redoutable D4 avec Ploquin. Podium en vue selon l'Expert."
-  },
-  { 
-    id: 3, name: "HÉRO SIBEY", rpi: 94,
-    perf: 48, intent: 24, context: 22,
-    tactic: "Fin de course exceptionnelle pour sa rentrée. Duo Bonne au sommet. Outsider préféré."
-  },
-  { 
-    id: 5, name: "HE AND ME", rpi: 46,
-    perf: 28, intent: 8, context: 10,
-    tactic: "Reste ferré. Préparation évidente pour la suite. Impasse conseillée par la Matrice."
-  },
-  { 
-    id: 6, name: "JINGLE DU PONT", rpi: 82,
-    perf: 40, intent: 22, context: 20,
-    tactic: "2e du Quinté le 04/01. Récupération validée par Bazire. Au top pour confirmer."
-  },
-  { 
-    id: 7, name: "HAPPY DANICA", rpi: 49,
-    perf: 25, intent: 10, context: 14,
-    tactic: "Configuration ferrée pénalisante. Class Level insuffisant face aux D4 du jour."
-  },
-  { 
-    id: 8, name: "IDÉAL DU ROCHER", rpi: 89,
-    perf: 45, intent: 22, context: 22,
-    tactic: "Engagement visé par Duvaldestin. Grosse pointe de vitesse finale attendue. Base sérieuse."
-  },
-  { 
-    id: 9, name: "JAZZMAN DEBAILLEUL", rpi: 60,
-    perf: 38, intent: 12, context: 10,
-    tactic: "Note d'espoir : Travaille très bien le matin. Vaut mieux que ses derniers échecs. Grosse cote."
-  },
-  { 
-    id: 10, name: "HYMNE DU GERS", rpi: 63,
-    perf: 40, intent: 10, context: 13,
-    tactic: "Ferré pour cette sortie. L'algorithme détecte une course de préparation pure."
-  },
-  { 
-    id: 11, name: "IGREC DE CELLAND", rpi: 84,
-    perf: 42, intent: 20, context: 22,
-    tactic: "Duo Thomain (10v 18p). Excellente ligne (3e de Cobra Killer Gar). Solide pour le Top 5."
-  },
-  { 
-    id: 12, name: "HUBBLE DU VIVIER", rpi: 95,
-    perf: 49, intent: 23, context: 23,
-    tactic: "BASE ABSOLUE. Gardé pour cet engagement. Accélération foudroyante le 14/12. Le cheval à battre."
-  },
-  { 
-    id: 13, name: "HIDALGO DES NOÉS", rpi: 76,
-    perf: 37, intent: 18, context: 21,
-    tactic: "Régulier avec Gelormini en D4. Un appui fiable pour les combinaisons élargies."
-  },
-  { 
-    id: 14, name: "HULYSSE DIGEO", rpi: 65,
-    perf: 35, intent: 15, context: 15,
-    tactic: "Engagement idéal au plafond des gains. Outsider séduisant malgré un dernier échec."
-  }
-];
+    [
+  { "id": 1, "name": "HALO AM", "rpi": 25, "verdict": "Rentrée après 6 mois, lot trop relevé." },
+  { "id": 2, "name": "IROISE DE LA NOÉ", "rpi": 90, "verdict": "Spécialiste du tracé, tenante du titre." },
+  { "id": 3, "name": "KANTO AVIS", "rpi": 77, "verdict": "Tuyau D4, entraîneur optimiste." },
+  { "id": 4, "name": "WORKING CLASS HERO", "rpi": 82, "verdict": "Duo Mottier performant, rachat attendu." },
+  { "id": 5, "name": "JANGO VICI", "rpi": 72, "verdict": "Bien sur le parcours (6/10), finisseur correct." },
+  { "id": 6, "name": "KING OPERA", "rpi": 74, "verdict": "Découverte possible même ferré, redoutable finisseur." },
+  { "id": 7, "name": "IMMORTAL DOC", "rpi": 94, "verdict": "100% Goop, note confidentielle de 17/20." },
+  { "id": 8, "name": "J'AIME LE FOOT", "rpi": 58, "verdict": "Surprenant 4e du Bretagne, à ne pas éliminer." },
+  { "id": 9, "name": "FRANK GIO", "rpi": 96, "verdict": "Base absolue, 91% D4, chrono record." },
+  { "id": 10, "name": "KRACK TIME ATOUT", "rpi": 79, "verdict": "Performant pieds nus, lauréat de Critérium." },
+  { "id": 11, "name": "IZOARD VÉDAQUAIS", "rpi": 92, "verdict": "Invaincu sur le parcours, vainqueur 2024." },
+  { "id": 12, "name": "KOCTEL DU DAIN", "rpi": 86, "verdict": "Couple Thomain 81%, spécialiste GP." },
+  { "id": 13, "name": "HOOKER BERRY", "rpi": 61, "verdict": "Meilleur chrono parcours, mais déclin progressif." }
+]
+
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData[0]);
 
