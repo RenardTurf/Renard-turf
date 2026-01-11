@@ -65,9 +65,8 @@ const App = () => {
   { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
   { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
 ]
-
     }
-  ];
+  ]
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 9) || horsesData[0]);
 
