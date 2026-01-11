@@ -44,31 +44,27 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // --- DATA RPI v2.1 (PRIX DE BELGIQUE - 11/01/2026) ---
+  // --- DATA RPI v2.1 (PRIX VANS BARBOT - 12/01/2026) ---
   const horsesData = [
-    { 
-      [
-  { "id": 1, "name": "WESTMINSTER NIGHT", "rpi": 94, "perf": 46, "intent": 23, "context": 25, "tactic": "Corde 4 idéale (46% succès). Entourage confiant pour la victoire." },
-  { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base Le Veinard. 90% de réussite sur ce tracé spécifique." },
-  { "id": 3, "name": "GOWAY", "rpi": 72, "perf": 35, "intent": 18, "context": 19, "tactic": "Forme saisonnière confirmée. 76% de réussite P.S.F. mais corde 14 délicate." },
-  { "id": 4, "name": "RUSSIPANT FAL", "rpi": 75, "perf": 38, "intent": 17, "context": 20, "tactic": "Repéré le 23 décembre. Malgré le top-weight, il reste compétitif." },
-  { "id": 5, "name": "BAYAMOON", "rpi": 79, "perf": 40, "intent": 19, "context": 20, "tactic": "Gagnant avec la manière. 75% P.S.F. malgré la pénalité de 4kg." },
-  { "id": 6, "name": "GENTLEMAN BEAUTY", "rpi": 68, "perf": 32, "intent": 16, "context": 20, "tactic": "Excellent sur la piste (85%). Corde 3 favorable pour les places." },
-  { "id": 7, "name": "SALALAH", "rpi": 81, "perf": 40, "intent": 21, "context": 20, "tactic": "Spécialiste P.S.F. (100% 3/3). Entraîneur optimiste pour ce meeting." },
-  { "id": 8, "name": "FOU FURIEUX", "rpi": 65, "perf": 30, "intent": 15, "context": 20, "tactic": "Répète toutes ses courses cet automne. À surveiller pour une surprise." },
-  { "id": 9, "name": "DUBALAA", "rpi": 91, "perf": 45, "intent": 23, "context": 23, "tactic": "Dernière minute chuchotée. 100% P.S.F. et 74% forme jockey/entraîneur." },
-  { "id": 10, "name": "ZACAPO", "rpi": 74, "perf": 36, "intent": 18, "context": 20, "tactic": "Couple Boutin performant (93%). 100% P.S.F. mais corde 16 complexe." },
-  { "id": 11, "name": "CASARES", "rpi": 92, "perf": 44, "intent": 24, "context": 24, "tactic": "Presque parfait en Quinté (80%). Corde 2 idéale pour finir fort." },
-  { "id": 12, "name": "SOUVENIR D'ECAJEUL", "rpi": 88, "perf": 43, "intent": 22, "context": 23, "tactic": "Extra sur P.S.F. (100%). S'entend à la perfection avec Mendizabal." },
-  { "id": 13, "name": "MON SCHATZI", "rpi": 60, "perf": 28, "intent": 14, "context": 18, "tactic": "Favori battu à racheter. Oeillères portées pour créer le déclic." },
-  { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau Veinard. Désormais à son poids. Finit fort ses courses." },
-  { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
-  { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
-]
-    }
-  ]
+    { "id": 1, "name": "WESTMINSTER NIGHT", "rpi": 94, "perf": 46, "intent": 23, "context": 25, "tactic": "Corde 4 idéale (46% succès). Entourage confiant pour la victoire." },
+    { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base Le Veinard. 90% de réussite sur ce tracé spécifique." },
+    { "id": 3, "name": "GOWAY", "rpi": 72, "perf": 35, "intent": 18, "context": 19, "tactic": "Forme saisonnière confirmée. 76% de réussite P.S.F. mais corde 14 délicate." },
+    { "id": 4, "name": "RUSSIPANT FAL", "rpi": 75, "perf": 38, "intent": 17, "context": 20, "tactic": "Repéré le 23 décembre. Malgré le top-weight, il reste compétitif." },
+    { "id": 5, "name": "BAYAMOON", "rpi": 79, "perf": 40, "intent": 19, "context": 20, "tactic": "Gagnant avec la manière. 75% P.S.F. malgré la pénalité de 4kg." },
+    { "id": 6, "name": "GENTLEMAN BEAUTY", "rpi": 68, "perf": 32, "intent": 16, "context": 20, "tactic": "Excellent sur la piste (85%). Corde 3 favorable pour les places." },
+    { "id": 7, "name": "SALALAH", "rpi": 81, "perf": 40, "intent": 21, "context": 20, "tactic": "Spécialiste P.S.F. (100% 3/3). Entraîneur optimiste pour ce meeting." },
+    { "id": 8, "name": "FOU FURIEUX", "rpi": 65, "perf": 30, "intent": 15, "context": 20, "tactic": "Répète toutes ses courses cet automne. À surveiller pour une surprise." },
+    { "id": 9, "name": "DUBALAA", "rpi": 91, "perf": 45, "intent": 23, "context": 23, "tactic": "Dernière minute chuchotée. 100% P.S.F. et 74% forme jockey/entraîneur." },
+    { "id": 10, "name": "ZACAPO", "rpi": 74, "perf": 36, "intent": 18, "context": 20, "tactic": "Couple Boutin performant (93%). 100% P.S.F. mais corde 16 complexe." },
+    { "id": 11, "name": "CASARES", "rpi": 92, "perf": 44, "intent": 24, "context": 24, "tactic": "Presque parfait en Quinté (80%). Corde 2 idéale pour finir fort." },
+    { "id": 12, "name": "SOUVENIR D'ECAJEUL", "rpi": 88, "perf": 43, "intent": 22, "context": 23, "tactic": "Extra sur P.S.F. (100%). S'entend à la perfection avec Mendizabal." },
+    { "id": 13, "name": "MON SCHATZI", "rpi": 60, "perf": 28, "intent": 14, "context": 18, "tactic": "Favori battu à racheter. Oeillères portées pour créer le déclic." },
+    { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau Veinard. Désormais à son poids. Finit fort ses courses." },
+    { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
+    { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
+  ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 9) || horsesData[0]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
 
   useEffect(() => {
     initGA('G-EY4386K4P1');
@@ -82,7 +78,7 @@ const App = () => {
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "FpPLG06Jxec",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-10-28/R1/C3"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2026-01-12/R1/C2"
   };
 
   const stats = [
@@ -154,7 +150,7 @@ const App = () => {
             <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-500">RPI</span>
             </h2>
-            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C4 - 15h15 (11/01/2026)</p>
+            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Cagnes - R1C2 - 13h55 (12/01/2026)</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl mb-8">
