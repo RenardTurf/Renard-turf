@@ -44,27 +44,76 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // --- DATA RPI v1.1 (MÉDIA & STATISTIQUES) ---
+  // --- DATA RPI v2.1 (PRIX DE BELGIQUE - 11/01/2026) ---
   const horsesData = [
-  { 
-    [
-  { "id": 1, "name": "HALO AM", "rpi": 25, "verdict": "Rentrée après 6 mois, lot trop relevé." },
-  { "id": 2, "name": "IROISE DE LA NOÉ", "rpi": 90, "verdict": "Spécialiste du tracé, tenante du titre." },
-  { "id": 3, "name": "KANTO AVIS", "rpi": 77, "verdict": "Tuyau D4, entraîneur optimiste." },
-  { "id": 4, "name": "WORKING CLASS HERO", "rpi": 82, "verdict": "Duo Mottier performant, rachat attendu." },
-  { "id": 5, "name": "JANGO VICI", "rpi": 72, "verdict": "Bien sur le parcours (6/10), finisseur correct." },
-  { "id": 6, "name": "KING OPERA", "rpi": 74, "verdict": "Découverte possible même ferré, redoutable finisseur." },
-  { "id": 7, "name": "IMMORTAL DOC", "rpi": 94, "verdict": "100% Goop, note confidentielle de 17/20." },
-  { "id": 8, "name": "J'AIME LE FOOT", "rpi": 58, "verdict": "Surprenant 4e du Bretagne, à ne pas éliminer." },
-  { "id": 9, "name": "FRANK GIO", "rpi": 96, "verdict": "Base absolue, 91% D4, chrono record." },
-  { "id": 10, "name": "KRACK TIME ATOUT", "rpi": 79, "verdict": "Performant pieds nus, lauréat de Critérium." },
-  { "id": 11, "name": "IZOARD VÉDAQUAIS", "rpi": 92, "verdict": "Invaincu sur le parcours, vainqueur 2024." },
-  { "id": 12, "name": "KOCTEL DU DAIN", "rpi": 86, "verdict": "Couple Thomain 81%, spécialiste GP." },
-  { "id": 13, "name": "HOOKER BERRY", "rpi": 61, "verdict": "Meilleur chrono parcours, mais déclin progressif." }
-]
-;
+    { 
+      id: 1, name: "HALO AM", rpi: 25,
+      perf: 10, intent: 5, context: 10,
+      tactic: "Audit critique : Rentrée après 6 mois. N'a jamais affronté un tel lot. Mission quasi impossible."
+    },
+    { 
+      id: 2, name: "IROISE DE LA NOÉ", rpi: 90,
+      perf: 45, intent: 25, context: 20,
+      tactic: "Priorité absolue : Lauréate édition 2025. A 'crevé' les jumelles récemment. Spécialiste du tracé."
+    },
+    { 
+      id: 3, name: "KANTO AVIS", rpi: 77,
+      perf: 38, intent: 22, context: 17,
+      tactic: "Tuyau D4 : Sur la montante. Entraîneur optimiste. Oubliez sa dernière sortie."
+    },
+    { 
+      id: 4, name: "WORKING CLASS HERO", rpi: 82,
+      perf: 40, intent: 22, context: 20,
+      tactic: "Rachat attendu : Duo Mottier performant (75%). Potentiel reconnu face à l'élite."
+    },
+    { 
+      id: 5, name: "JANGO VICI", rpi: 72,
+      perf: 35, intent: 17, context: 20,
+      tactic: "Bien sur le parcours (6/10). Finisseur correct, a laissé des regrets dernièrement."
+    },
+    { 
+      id: 6, name: "KING OPERA", rpi: 74,
+      perf: 37, intent: 17, context: 20,
+      tactic: "La découverte : Même ferré, il peut se placer à belle cote. Redoutable finisseur."
+    },
+    { 
+      id: 7, name: "IMMORTAL DOC", rpi: 94,
+      perf: 47, intent: 25, context: 22,
+      tactic: "Base Solide : 100% avec Goop (6/6). Note confidentielle de 17/20. Tout est OK."
+    },
+    { 
+      id: 8, name: "J'AIME LE FOOT", rpi: 58,
+      perf: 30, intent: 13, context: 15,
+      tactic: "Méfiance : Surprenant 4e du Bretagne. À ne pas éliminer totalement de vos combinaisons."
+    },
+    { 
+      id: 9, name: "FRANK GIO", rpi: 96,
+      perf: 49, intent: 25, context: 22,
+      tactic: "Dernière Minute : 91% pieds nus. Fin de course spectaculaire attendue sur la Grande Piste."
+    },
+    { 
+      id: 10, name: "KRACK TIME ATOUT", rpi: 79,
+      perf: 39, intent: 20, context: 20,
+      tactic: "Vigilance : Performant pieds nus (9/13). Honorable 4e du Ténor de Baune."
+    },
+    { 
+      id: 11, name: "IZOARD VÉDAQUAIS", rpi: 92,
+      perf: 47, intent: 23, context: 22,
+      tactic: "Confirmation : Invaincu sur le parcours (7/7). Vainqueur de l'édition 2024."
+    },
+    { 
+      id: 12, name: "KOCTEL DU DAIN", rpi: 86,
+      perf: 43, intent: 21, context: 22,
+      tactic: "Base Places : Couple Thomain 81%. Moins de marge désormais mais reste un prétendant sérieux."
+    },
+    { 
+      id: 13, name: "HOOKER BERRY", rpi: 61,
+      perf: 35, intent: 11, context: 15,
+      tactic: "Meilleur chrono sur le parcours mais déclin progressif. Pour une surprise seulement."
+    }
+  ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData[0]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 9) || horsesData[0]);
 
   useEffect(() => {
     initGA('G-EY4386K4P1');
@@ -84,7 +133,7 @@ const App = () => {
   const stats = [
     { label: "Vues", value: "500 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
     { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Reussite Quinté 2026", value: "88%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Réussite Quinté 2026", value: "88%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -97,7 +146,7 @@ const App = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
                <Zap className="text-white fill-current w-6 h-6" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic text-white tracking-tight leading-none font-bold">RENARD<span className="text-orange-500 font-bold">TURF</span></span>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-white leading-none font-bold">RENARD<span className="text-orange-500">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
             <a href="#youtube" className="hover:text-orange-500 transition-colors">Vidéos</a>
@@ -107,7 +156,7 @@ const App = () => {
         </div>
       </nav>
 
-      {/* HERO SECTION - MEDIA TERMINOLOGY */}
+      {/* HERO SECTION */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -116,7 +165,7 @@ const App = () => {
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Média Hippique : Analyse & Data</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 leading-none tracking-tighter uppercase italic text-white">
-            L'Information <span className="text-orange-500 font-bold">Data</span><br />au service du Turf.
+            L'Information <span className="text-orange-500">Data</span><br />au service du Turf.
           </h1>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
             Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
@@ -150,7 +199,7 @@ const App = () => {
             <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-500">RPI</span>
             </h2>
-            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C4 - 15h15</p>
+            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C4 - 15h15 (11/01/2026)</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl mb-8">
@@ -159,6 +208,7 @@ const App = () => {
                 <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-500 mb-4 block italic">1. Sélectionner un partant</label>
                 <div className="relative">
                   <select 
+                    value={selectedHorse.id}
                     onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
                     className="w-full bg-slate-950 border-2 border-slate-800 text-white font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-500 outline-none transition-all"
                   >
@@ -207,7 +257,7 @@ const App = () => {
 
             <div className="mt-10 p-6 bg-orange-600/5 border border-orange-500/20 rounded-2xl text-left">
                <p className="text-slate-300 text-sm italic font-medium leading-relaxed">
-                 <span className="text-orange-500 font-black uppercase not-italic mr-2">Verdict Editorial :</span>
+                 <span className="text-orange-500 font-black uppercase not-italic mr-2">Verdict Éditorial :</span>
                  "{selectedHorse.tactic}"
                </p>
             </div>
@@ -244,47 +294,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION : COURSE RÉFÉRENCE */}
-      <section id="reference" className="py-20 px-6 bg-slate-900/10 border-y border-slate-900 flex flex-col items-center">
-        <div className="container mx-auto max-w-4xl">
-           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                 <History className="w-32 h-32 text-orange-500" />
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 text-center md:text-left relative z-10">
-                 <div className="flex items-center gap-5">
-                    <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center border border-slate-800 shadow-lg">
-                       <PlayCircle className="text-orange-500 w-8 h-8" />
-                    </div>
-                    <div>
-                       <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter leading-none">Course Référence</h3>
-                       <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 italic">Support d'étude pour le Quinté du jour</p>
-                    </div>
-                 </div>
-                 <div className="bg-orange-600/10 border border-orange-500/20 px-4 py-2 rounded-lg">
-                    <span className="text-[10px] font-black uppercase text-orange-500 tracking-widest">REPLAY</span>
-                 </div>
-              </div>
-
-              <div className="bg-slate-950 rounded-3xl p-10 border border-slate-800 flex flex-col items-center text-center relative z-10 group">
-                 <div className="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-orange-600/20 group-hover:scale-110 transition-transform duration-500">
-                    <Eye className="text-white w-10 h-10" />
-                 </div>
-                 <h4 className="text-xl font-black text-white mb-8 uppercase italic">Analyse visuelle</h4>
-                 <a 
-                   href={LINKS.COURSE_REF_URL} 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="bg-white text-slate-900 px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:bg-slate-100 transition-all shadow-xl"
-                 >
-                    Consulter le direct <ExternalLink className="w-4 h-4" />
-                 </a>
-              </div>
-           </div>
-        </div>
-      </section>
-
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-slate-950 flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
@@ -294,7 +303,7 @@ const App = () => {
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold">L'analyse de la rédaction</span>
              </div>
              <h2 className="text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter mb-4 leading-tight">La Sélection Quinté 🎫</h2>
-             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain.</p>
+             <p className="text-slate-400 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix de Belgique.</p>
           </div>
 
           <div className="bg-white rounded-[2rem] p-1 shadow-2xl shadow-orange-600/10 overflow-hidden max-w-3xl mx-auto w-full">
@@ -302,7 +311,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
                  <div>
                     <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic italic">Vincennes - R1C4 - 15h15</p>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C4 - 15h15 (11/01/2026)</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
@@ -339,11 +348,11 @@ const App = () => {
         </div>
       </section>
 
-      {/* FOOTER - MEDIA STYLE */}
+      {/* FOOTER */}
       <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8">RENARD<span className="text-orange-500 font-black">TURF</span></span>
         <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full italic">
-          <p className="text-slate-600 text-[10px] leading-loose font-bold uppercase tracking-widest text-center leading-relaxed font-bold italic">
+          <p className="text-slate-600 text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
             La participation aux jeux d'argent comporte des risques. Média d'information indépendant. Réservé aux majeurs.
           </p>
         </div>
