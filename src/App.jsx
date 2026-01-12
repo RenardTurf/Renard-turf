@@ -48,23 +48,23 @@ const App = () => {
 
   // --- DATA RPI v2.1 (PRIX VANS BARBOT - 12/01/2026) ---
   const horsesData = [
-    { "id": 1, "name": "WESTMINSTER NIGHT", "rpi": 94, "perf": 46, "intent": 23, "context": 25, "tactic": "Corde 4 idéale (46% succès). Entourage confiant pour la victoire." },
-    { "id": 2, "name": "OLYMPIC MESSAGE", "rpi": 96, "perf": 48, "intent": 24, "context": 24, "tactic": "Base. 90% de réussite sur ce tracé spécifique. Grande forme." },
-    { "id": 3, "name": "GOWAY", "rpi": 72, "perf": 35, "intent": 18, "context": 19, "tactic": "Forme saisonnière confirmée. 76% de réussite P.S.F. mais corde 14 délicate." },
-    { "id": 4, "name": "RUSSIPANT FAL", "rpi": 75, "perf": 38, "intent": 17, "context": 20, "tactic": "Repéré le 23 décembre. Malgré le top-weight, il reste compétitif." },
-    { "id": 5, "name": "BAYAMOON", "rpi": 79, "perf": 40, "intent": 19, "context": 20, "tactic": "Gagnant avec la manière. 75% P.S.F. malgré la pénalité de 4kg." },
-    { "id": 6, "name": "GENTLEMAN BEAUTY", "rpi": 68, "perf": 32, "intent": 16, "context": 20, "tactic": "Excellent sur la piste (85%). Corde 3 favorable pour les places." },
-    { "id": 7, "name": "SALALAH", "rpi": 81, "perf": 40, "intent": 21, "context": 20, "tactic": "Spécialiste P.S.F. (100% 3/3). Entraîneur optimiste pour ce meeting." },
-    { "id": 8, "name": "FOU FURIEUX", "rpi": 65, "perf": 30, "intent": 15, "context": 20, "tactic": "Répète toutes ses courses cet automne. À surveiller pour une surprise." },
-    { "id": 9, "name": "DUBALAA", "rpi": 91, "perf": 45, "intent": 23, "context": 23, "tactic": "Dernière minute chuchotée. 100% P.S.F. et 74% forme jockey/entraîneur." },
-    { "id": 10, "name": "ZACAPO", "rpi": 74, "perf": 36, "intent": 18, "context": 20, "tactic": "Couple Boutin performant (93%). 100% P.S.F. mais corde 16 complexe." },
-    { "id": 11, "name": "CASARES", "rpi": 92, "perf": 44, "intent": 24, "context": 24, "tactic": "Presque parfait en Quinté (80%). Corde 2 idéale pour finir fort." },
-    { "id": 12, "name": "SOUVENIR D'ECAJEUL", "rpi": 88, "perf": 43, "intent": 22, "context": 23, "tactic": "Extra sur P.S.F. (100%). S'entend à la perfection avec Mendizabal." },
-    { "id": 13, "name": "MON SCHATZI", "rpi": 60, "perf": 28, "intent": 14, "context": 18, "tactic": "Favori battu à racheter. Oeillères portées pour créer le déclic." },
-    { "id": 14, "name": "NOBLEMAN", "rpi": 84, "perf": 41, "intent": 22, "context": 21, "tactic": "Tuyau. Désormais à son poids. Finit fort ses courses." },
-    { "id": 15, "name": "ABIAT", "rpi": 77, "perf": 37, "intent": 19, "context": 21, "tactic": "Repérée dans les jumelles. 100% avec son jockey. Corde 1." },
-    { "id": 16, "name": "LETTY'S MARVEL", "rpi": 62, "perf": 29, "intent": 15, "context": 18, "tactic": "Vétéran de la piste (40 courses). Outsider pour une 5ème place." }
-  ];
+  { "id": 1, "name": "RUGER", "rpi": 55.4, "perf": 25, "intent": 15, "context": 15.4, "tactic": "Rentrée ferré, lot trop relevé pour espérer mieux qu'une 5ème place." },
+  { "id": 2, "name": "COMPETIVO", "rpi": 75.8, "perf": 35.8, "intent": 20, "context": 20, "tactic": "D4 lui donne un supplément d'âme. 100% de réussite driver." },
+  { "id": 3, "name": "KAXIG IN", "rpi": 87.2, "perf": 44, "intent": 22.5, "context": 20.7, "tactic": "Duo Goop (100%). Top Valeur détecté au banc d'essai." },
+  { "id": 4, "name": "CONDOR BAR", "rpi": 42.1, "perf": 15.1, "intent": 12, "context": 15, "tactic": "Note confidentielle basse (4/20). Impasse conseillée." },
+  { "id": 5, "name": "MIDNIGHT SPECIAL", "rpi": 0, "perf": 0, "intent": 0, "context": 0, "tactic": "NON-PARTANT (NP)." },
+  { "id": 6, "name": "I LOVE JOSSELYN", "rpi": 45.3, "perf": 18.3, "intent": 12, "context": 15, "tactic": "Audit de forme négatif. Tâche complexe." },
+  { "id": 7, "name": "ENOCK", "rpi": 70.9, "perf": 32.9, "intent": 18, "context": 20, "tactic": "3 places sur le parcours. Solide pour les combinaisons larges." },
+  { "id": 8, "name": "EXPRESS D'ARC", "rpi": 94.8, "perf": 49, "intent": 24.8, "context": 21, "tactic": "Record du parcours (1'12\"5) + Note Confidentielle 16/20." },
+  { "id": 9, "name": "ICEBREAKER PELLINI", "rpi": 89.5, "perf": 45, "intent": 23.5, "context": 21, "tactic": "Corde à gauche validée (6 succès). Note stable de 15/20." },
+  { "id": 10, "name": "VALLATONIAN", "rpi": 96.4, "perf": 48.2, "intent": 24, "context": 24.2, "tactic": "LA RÉFÉRENCE. 83% réussite tandem + Top Forme au banc d'essai." },
+  { "id": 11, "name": "DIE HARD", "rpi": 85.6, "perf": 43, "intent": 22, "context": 20.6, "tactic": "L'outsider séduisant. En plein regain de forme." },
+  { "id": 12, "name": "GLOBAL CONCEPT", "rpi": 82.3, "perf": 40.5, "intent": 21.5, "context": 20.3, "tactic": "Tandem Mottier 100%. Méfiance malgré la rentrée." },
+  { "id": 13, "name": "OSCAR VAN HALBEEK", "rpi": 79.8, "perf": 42, "intent": 19.5, "context": 18.3, "tactic": "100% de places sur le tracé. Chrono solide de 1'12\"9." },
+  { "id": 14, "name": "EVERY TIME WINNER", "rpi": 92.1, "perf": 46.5, "intent": 23, "context": 22.6, "tactic": "REPÉRÉ. 50% réussite déferrage et excellente aptitude GP." },
+  { "id": 15, "name": "KENTUCKY IDÉAL", "rpi": 58.7, "perf": 28.7, "intent": 15, "context": 15, "tactic": "Audit de contexte moyen. Jouera les petites places." },
+  { "id": 16, "name": "JOURNEY OF DREAM", "rpi": 35.2, "perf": 12.2, "intent": 10, "context": 13, "tactic": "Note confidentielle critique (4/20). Très peu de chances." }
+];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
 
