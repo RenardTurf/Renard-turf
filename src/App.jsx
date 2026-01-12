@@ -18,7 +18,8 @@ import {
   BarChart3,
   ArrowRight,
   Info,
-  Activity
+  Activity,
+  X
 } from 'lucide-react';
 
 // --- INITIALISATION GOOGLE ANALYTICS ---
@@ -43,6 +44,7 @@ const initGA = (id) => {
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLegalModal, setActiveLegalModal] = useState(null); // 'mentions' ou 'gaming'
 
   // --- DATA RPI v2.1 (PRIX VANS BARBOT - 12/01/2026) ---
   const horsesData = [
@@ -299,17 +301,72 @@ const App = () => {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 leading-none flex flex-col items-center">
+      {/* FOOTER - CONFORMITÉ ANJ & GAMBLING AFFILIATION */}
+      <footer className="bg-slate-950 border-t border-slate-900 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-white uppercase italic block mb-8">RENARD<span className="text-orange-500 font-black">TURF</span></span>
+        
+        {/* BANDEAU DE PRÉVENTION OBLIGATOIRE ANJ */}
+        <div className="bg-yellow-500 text-slate-950 p-4 rounded-xl max-w-4xl mx-auto mb-8 w-full font-black uppercase text-[10px] md:text-xs tracking-widest flex flex-col md:flex-row items-center justify-center gap-4">
+           <span>🔞 INTERDIT AUX MOINS DE 18 ANS</span>
+           <span className="hidden md:block">|</span>
+           <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13 (APPEL NON SURTAXÉ)</span>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+           <button onClick={() => setActiveLegalModal('mentions')} className="hover:text-white transition-colors">Mentions Légales</button>
+           <button onClick={() => setActiveLegalModal('gaming')} className="hover:text-white transition-colors">Jeu Responsable</button>
+           <a href="https://www.joueurs-info-service.fr/" target="_blank" className="hover:text-white transition-colors">Aide aux Joueurs</a>
+        </div>
+
         <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 max-w-4xl mx-auto mb-10 w-full italic">
-          <p className="text-slate-600 text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
-            La participation aux jeux d'argent comporte des risques. Média d'information indépendant. Réservé aux majeurs.
+          <p className="text-slate-600 text-[9px] md:text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
+            RenardTurf est un média d'information hippique indépendant. Nous ne sommes pas un opérateur de jeux. 
+            Le contenu est purement informatif. L'utilisation de nos données ne garantit en aucun cas un gain financier. 
+            En tant qu'affilié, nous pouvons percevoir une commission de la part de nos partenaires.
           </p>
         </div>
-        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center font-bold italic">
+        
+        <p className="text-slate-800 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
           © 2026 RENARD TURF - RÉDACTION & ANALYSE DATA
         </p>
+
+        {/* MODAL DE CONFORMITÉ */}
+        {activeLegalModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-xl bg-slate-950/80">
+            <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative">
+              <button 
+                onClick={() => setActiveLegalModal(null)}
+                className="absolute top-6 right-6 text-slate-500 hover:text-white font-black uppercase text-xs tracking-widest"
+              >
+                Fermer [X]
+              </button>
+
+              {activeLegalModal === 'mentions' ? (
+                <div className="text-left space-y-6">
+                  <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Mentions Légales</h3>
+                  <div className="text-slate-400 text-xs font-medium space-y-4 leading-relaxed">
+                    <p><strong>Éditeur :</strong> RenardTurf - Média indépendant spécialisé dans l'analyse de données hippiques.</p>
+                    <p><strong>Hébergement :</strong> [Ton Hébergeur - ex: Vercel Inc, San Francisco, USA].</p>
+                    <p><strong>Affiliation :</strong> Ce site participe à des programmes d'affiliation. Conformément aux directives de Gambling Affiliation, nous informons nos utilisateurs que l'accès à certaines sélections gratuites peut être conditionné par l'utilisation de nos liens partenaires.</p>
+                    <p><strong>Propriété :</strong> L'outil "Renard Pro Index" et les algorithmes associés sont la propriété exclusive de RenardTurf.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-left space-y-6">
+                  <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Charte Jeu Responsable</h3>
+                  <div className="text-slate-400 text-xs font-medium space-y-4 leading-relaxed">
+                    <p className="bg-orange-600/10 p-4 border-l-4 border-orange-500 text-orange-500 font-bold">
+                      Le jeu doit rester un plaisir. Ne misez jamais d'argent que vous ne pouvez pas vous permettre de perdre.
+                    </p>
+                    <p><strong>Prévention :</strong> Nous encourageons une pratique de jeu saine et raisonnée. Nos analyses RPI sont des aides à la décision et non des promesses de gains.</p>
+                    <p><strong>Interdiction aux mineurs :</strong> L'accès aux sites de paris hippiques est strictement interdit aux mineurs de moins de 18 ans.</p>
+                    <p><strong>Besoin d'aide ?</strong> Si vous pensez avoir un problème avec le jeu, contactez Joueurs Info Service au <strong>09 74 75 13 13</strong> ou visitez <strong>www.joueurs-info-service.fr</strong>.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </footer>
     </div>
   );
