@@ -90,14 +90,16 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-500/30">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
       {/* NAVIGATION MEDIA */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src="/IMG_0036.ico" alt="Logo" className="w-10 h-10 object-contain" />
-            <span className="text-xl font-black tracking-tighter uppercase italic text-slate-900 leading-none font-bold">RENARD<span className="text-orange-600">TURF</span></span>
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20">
+               <Zap className="text-white fill-current w-6 h-6" />
+            </div>
+            <span className="text-xl font-black tracking-tighter uppercase italic text-slate-900 leading-none">RENARD<span className="text-orange-600">TURF</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500">
             <a href="#youtube" className="hover:text-orange-600 transition-colors">Vidéos</a>
@@ -109,33 +111,33 @@ const App = () => {
 
       {/* HERO SECTION */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent -z-10" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 px-4 py-1.5 rounded-full mb-8">
+          <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
-            <span className="text-[10px] font-bold text-orange-700 uppercase tracking-[0.2em]">Média Hippique : Analyse & Data</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Média Hippique : Analyse & Data</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black mb-8 leading-none tracking-tighter uppercase italic text-slate-900">
+          <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 leading-none tracking-tighter uppercase italic">
             L'Information <span className="text-orange-600">Data</span><br />au service du Turf.
           </h1>
-          <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
             Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center px-6 md:px-0 w-full max-w-2xl">
-            <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/30 group uppercase">
+            <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
               CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#youtube" className="w-full sm:w-1/2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase">
+            <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase text-slate-900">
               DOSSIERS VIDÉOS
             </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-24 w-full px-4 md:px-0">
             {stats.map((stat, i) => (
-              <div key={i} className="bg-slate-50 border border-slate-200 p-8 rounded-3xl border-b-4 border-b-orange-500/20 shadow-sm">
+              <div key={i} className="bg-white border border-slate-100 p-8 rounded-3xl shadow-sm border-b-2 border-b-orange-600/20">
                 <div className="flex justify-center mb-5">{stat.icon}</div>
                 <div className="text-4xl font-black text-slate-900 mb-2">{stat.value}</div>
-                <div className="text-slate-500 text-[10px] uppercase font-bold tracking-[0.2em]">{stat.label}</div>
+                <div className="text-slate-400 text-[10px] uppercase font-bold tracking-[0.2em]">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -143,17 +145,17 @@ const App = () => {
       </section>
 
       {/* --- SECTION OUTIL INTERACTIF RPI --- */}
-      <section id="rpi-tool" className="py-24 px-6 bg-white flex flex-col items-center border-y border-slate-100">
+      <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
             <BarChart3 className="w-10 h-10 text-orange-600 mb-4" />
             <h2 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-600">RPI</span>
             </h2>
-            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C1 - 13h55 (13/01/2026)</p>
+            <p className="text-slate-400 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C1 - 13h55 (13/01/2026)</p>
           </div>
 
-          <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-sm mb-8">
+          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-8">
             <div className="flex flex-col md:flex-row gap-8 items-center text-left">
               <div className="w-full md:w-1/2">
                 <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-4 block italic">1. Sélectionner un partant</label>
@@ -161,7 +163,7 @@ const App = () => {
                   <select 
                     value={selectedHorse.id}
                     onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
-                    className="w-full bg-white border-2 border-slate-200 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 outline-none transition-all"
+                    className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 focus:bg-white outline-none transition-all"
                   >
                     {horsesData.map(h => (
                       <option key={h.id} value={h.id}>{h.id} - {h.name}</option>
@@ -170,9 +172,9 @@ const App = () => {
                   <ArrowRight className="absolute right-5 top-1/2 -translate-y-1/2 text-orange-600 w-6 h-6" />
                 </div>
               </div>
-              <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white rounded-3xl p-8 border border-slate-200 shadow-inner">
-                <span className="text-[10px] font-black uppercase text-slate-500 mb-2 italic">Renard Pro Index</span>
-                <div className="text-7xl font-black text-slate-900 italic leading-none">{selectedHorse.rpi}<span className="text-orange-600 text-2xl">/100</span></div>
+              <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-slate-900 rounded-3xl p-8 border border-white/5 shadow-2xl">
+                <span className="text-[10px] font-black uppercase text-slate-400 mb-2 italic">Renard Pro Index</span>
+                <div className="text-7xl font-black text-white italic leading-none">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
               </div>
             </div>
 
@@ -180,27 +182,27 @@ const App = () => {
               <div className="space-y-3">
                 <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
                   <span>Performance</span>
-                  <span className="text-slate-900 font-bold">{selectedHorse.perf}/50</span>
+                  <span className="text-slate-900">{selectedHorse.perf}/50</span>
                 </div>
-                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-slate-900 transition-all duration-700" style={{ width: `${(selectedHorse.perf/50)*100}%` }}></div>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
                   <span>Intention</span>
-                  <span className="text-orange-600 font-bold">{selectedHorse.intent}/25</span>
+                  <span className="text-orange-600">{selectedHorse.intent}/25</span>
                 </div>
-                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-orange-600 transition-all duration-700" style={{ width: `${(selectedHorse.intent/25)*100}%` }}></div>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
                   <span>Contexte</span>
-                  <span className="text-slate-900 font-bold">{selectedHorse.context}/25</span>
+                  <span className="text-slate-600">{selectedHorse.context}/25</span>
                 </div>
-                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-slate-400 transition-all duration-700" style={{ width: `${(selectedHorse.context/25)*100}%` }}></div>
                 </div>
               </div>
@@ -227,7 +229,7 @@ const App = () => {
             <p className="text-slate-500 font-medium italic">Retrouvez nos analyses quotidiennes sur YouTube.</p>
           </div>
           
-          <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-50">
+          <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-2xl bg-slate-50">
              <iframe 
                 className="absolute inset-0 w-full h-full"
                 src={`https://www.youtube.com/embed/${LINKS.LAST_VIDEO_ID}`}
@@ -238,7 +240,7 @@ const App = () => {
           </div>
           
           <div className="mt-10">
-             <a href={LINKS.YOUTUBE_CHANNEL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-slate-900 font-black uppercase tracking-widest text-xs bg-slate-100 hover:bg-slate-200 border border-slate-200 px-8 py-4 rounded-full transition-all">
+             <a href={LINKS.YOUTUBE_CHANNEL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-slate-900 font-black uppercase tracking-widest text-xs bg-white hover:bg-slate-50 border border-slate-200 px-8 py-4 rounded-full transition-all shadow-sm">
                 Rejoindre la communauté <StarIcon className="w-4 h-4 text-orange-600 fill-current" />
              </a>
           </div>
@@ -246,10 +248,10 @@ const App = () => {
       </section>
 
       {/* SECTION TICKET DU JOUR */}
-      <section id="ticket" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-200">
+      <section id="ticket" className="py-24 px-6 bg-slate-50 flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12 flex flex-col items-center">
-             <div className="inline-flex items-center gap-3 bg-orange-600 text-white px-6 py-2 rounded-full mb-6 shadow-md">
+             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-600/20 mb-6">
                 <Ticket className="w-5 h-5" />
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold">L'analyse de la rédaction</span>
              </div>
@@ -257,20 +259,20 @@ const App = () => {
              <p className="text-slate-500 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix Vans Barbot.</p>
           </div>
 
-          <div className="bg-white rounded-[2rem] p-1 shadow-xl overflow-hidden max-w-3xl mx-auto w-full border border-slate-200">
-            <div className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
+          <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
+            <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-100 pb-8 mb-8 relative z-10 gap-4">
                  <div>
-                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C1 - 13h55 (13/01/2026)</p>
+                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none">Note <span className="text-orange-600 font-bold">Renard</span></h3>
+                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1 italic">Vincennes - R1C1 - 13h55 (13/01/2026)</p>
                  </div>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Analyse Quinté</div>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  <div className="flex flex-col items-start">
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
-                       <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Points de Data Clés
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 italic">
+                       <StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
                        {[10, 8].map(num => (
@@ -282,12 +284,12 @@ const App = () => {
                  </div>
 
                  <div className="flex flex-col items-start">
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 font-bold leading-none italic">
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 italic">
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
                        {[10, 8, 14, 9, 3, 11, 12, 13, 2].map((num, i) => (
-                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600 shadow-sm' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
+                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white border-slate-200 text-slate-900'}`}>
                              {num}
                           </div>
                        ))}
@@ -300,40 +302,37 @@ const App = () => {
       </section>
 
       {/* FOOTER - CONFORMITÉ ANJ & GAMBLING AFFILIATION */}
-      <footer className="bg-white border-t border-slate-200 py-20 text-center px-6 flex flex-col items-center">
-        <div className="flex items-center gap-3 mb-8">
-            <img src="/IMG_0036.ico" alt="Logo" className="w-10 h-10 object-contain" />
-            <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block">RENARD<span className="text-orange-600 font-black">TURF</span></span>
-        </div>
+      <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
+        <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
         
         {/* BANDEAU DE PRÉVENTION OBLIGATOIRE ANJ */}
-        <div className="bg-yellow-400 text-slate-950 p-4 rounded-xl max-w-4xl mx-auto mb-8 w-full font-black uppercase text-[10px] md:text-xs tracking-widest flex flex-col md:flex-row items-center justify-center gap-4 shadow-sm">
+        <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto mb-8 w-full font-black uppercase text-[10px] md:text-xs tracking-widest flex flex-col md:flex-row items-center justify-center gap-4 shadow-sm">
            <span>🔞 INTERDIT AUX MOINS DE 18 ANS</span>
-           <span className="hidden md:block">|</span>
+           <span className="hidden md:block text-yellow-600">|</span>
            <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13 (APPEL NON SURTAXÉ)</span>
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-           <button onClick={() => setActiveLegalModal('mentions')} className="hover:text-orange-600 transition-colors">Mentions Légales</button>
-           <button onClick={() => setActiveLegalModal('gaming')} className="hover:text-orange-600 transition-colors">Jeu Responsable</button>
-           <a href="https://www.joueurs-info-service.fr/" target="_blank" className="hover:text-orange-600 transition-colors">Aide aux Joueurs</a>
+           <button onClick={() => setActiveLegalModal('mentions')} className="hover:text-slate-900 transition-colors">Mentions Légales</button>
+           <button onClick={() => setActiveLegalModal('gaming')} className="hover:text-slate-900 transition-colors">Jeu Responsable</button>
+           <a href="https://www.joueurs-info-service.fr/" target="_blank" className="hover:text-slate-900 transition-colors">Aide aux Joueurs</a>
         </div>
 
-        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 max-w-4xl mx-auto mb-10 w-full italic">
-          <p className="text-slate-500 text-[9px] md:text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
+        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 max-w-4xl mx-auto mb-10 w-full italic">
+          <p className="text-slate-400 text-[9px] md:text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
             RenardTurf est un média d'information hippique indépendant. Nous ne sommes pas un opérateur de jeux. 
             Le contenu est purement informatif. L'utilisation de nos données ne garantit en aucun cas un gain financier. 
           </p>
         </div>
         
-        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
+        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
           © 2026 RENARD TURF - RÉDACTION & ANALYSE DATA
         </p>
 
         {/* MODAL DE CONFORMITÉ */}
         {activeLegalModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-xl bg-slate-900/40">
-            <div className="bg-white border border-slate-200 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-md bg-slate-900/40">
+            <div className="bg-white border border-slate-100 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative">
               <button 
                 onClick={() => setActiveLegalModal(null)}
                 className="absolute top-6 right-6 text-slate-400 hover:text-slate-900 font-black uppercase text-xs tracking-widest"
@@ -345,22 +344,22 @@ const App = () => {
                 <div className="text-left space-y-6">
                   <h3 className="text-2xl font-black text-slate-900 uppercase italic tracking-tighter">Mentions Légales</h3>
                   <div className="text-slate-500 text-xs font-medium space-y-4 leading-relaxed">
-                    <p><strong>Éditeur :</strong> RenardTurf - Média indépendant spécialisé dans l'analyse de données hippiques.</p>
-                    <p><strong>Hébergement :</strong> [Vercel Inc, San Francisco, USA].</p>
-                    <p><strong>Affiliation :</strong> Ce site participe à des programmes d'affiliation. Conformément aux directives de Gambling Affiliation, nous informons nos utilisateurs que l'accès à certaines sélections gratuites peut être conditionné par l'utilisation de nos liens partenaires.</p>
-                    <p><strong>Propriété :</strong> L'outil "Renard Pro Index" et les algorithmes associés sont la propriété exclusive de RenardTurf.</p>
+                    <p><strong className="text-slate-900">Éditeur :</strong> RenardTurf - Média indépendant spécialisé dans l'analyse de données hippiques.</p>
+                    <p><strong className="text-slate-900">Hébergement :</strong> [Vercel Inc, San Francisco, USA].</p>
+                    <p><strong className="text-slate-900">Affiliation :</strong> Ce site participe à des programmes d'affiliation. Conformément aux directives de Gambling Affiliation, nous informons nos utilisateurs que l'accès à certaines sélections gratuites peut être conditionné par l'utilisation de nos liens partenaires.</p>
+                    <p><strong className="text-slate-900">Propriété :</strong> L'outil "Renard Pro Index" et les algorithmes associés sont la propriété exclusive de RenardTurf.</p>
                   </div>
                 </div>
               ) : (
                 <div className="text-left space-y-6">
                   <h3 className="text-2xl font-black text-slate-900 uppercase italic tracking-tighter">Charte Jeu Responsable</h3>
                   <div className="text-slate-500 text-xs font-medium space-y-4 leading-relaxed">
-                    <p className="bg-orange-50 p-4 border-l-4 border-orange-500 text-orange-700 font-bold">
+                    <p className="bg-orange-50 p-4 border-l-4 border-orange-600 text-orange-600 font-bold">
                       Le jeu doit rester un plaisir. Ne misez jamais d'argent que vous ne pouvez pas vous permettre de perdre.
                     </p>
-                    <p><strong>Prévention :</strong> Nous encourageons une pratique de jeu saine et raisonnée. Nos analyses RPI sont des aides à la décision et non des promesses de gains.</p>
-                    <p><strong>Interdiction aux mineurs :</strong> L'accès aux sites de paris hippiques est strictement interdit aux mineurs de moins de 18 ans.</p>
-                    <p><strong>Besoin d'aide ?</strong> Si vous pensez avoir un problème avec le jeu, contactez Joueurs Info Service au <strong>09 74 75 13 13</strong> ou visitez <strong>www.joueurs-info-service.fr</strong>.</p>
+                    <p><strong className="text-slate-900">Prévention :</strong> Nous encourageons une pratique de jeu saine et raisonnée. Nos analyses RPI sont des aides à la décision et non des promesses de gains.</p>
+                    <p><strong className="text-slate-900">Interdiction aux mineurs :</strong> L'accès aux sites de paris hippiques est strictement interdit aux mineurs de moins de 18 ans.</p>
+                    <p><strong className="text-slate-900">Besoin d'aide ?</strong> Si vous pensez avoir un problème avec le jeu, contactez Joueurs Info Service au <strong className="text-slate-900">09 74 75 13 13</strong> ou visitez <strong className="text-slate-900">www.joueurs-info-service.fr</strong>.</p>
                   </div>
                 </div>
               )}
