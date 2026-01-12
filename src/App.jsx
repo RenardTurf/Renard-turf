@@ -80,13 +80,13 @@ const App = () => {
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
     LAST_VIDEO_ID: "dgq5yAJJ6sg",
-    COURSE_REF_URL: "https://www.equidia.fr/courses/2026-01-12/R1/C2"
+    COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-03/R1/C1"
   };
 
   const stats = [
     { label: "Vues", value: "510 000+", icon: <TrendingUp className="w-5 h-5 text-orange-500" /> },
     { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-500" /> },
-    { label: "Réussite Quinté 2026", value: "88%", icon: <Target className="w-5 h-5 text-orange-500" /> },
+    { label: "Réussite Quinté 2026", value: "85%", icon: <Target className="w-5 h-5 text-orange-500" /> },
   ];
 
   return (
@@ -152,7 +152,7 @@ const App = () => {
             <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-500">RPI</span>
             </h2>
-            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Cagnes - R1C2 - 13h55 (12/01/2026)</p>
+            <p className="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C1 - 13h55 (13/01/2026)</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-2xl mb-8">
@@ -264,7 +264,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-200 pb-8 mb-8 relative z-10 gap-4">
                  <div>
                     <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Cagnes - R1C2 - 13h55 (12/01/2026)</p>
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 tracking-wider italic">Vincennes - R1C1 - 13h55 (13/01/2026)</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
@@ -275,7 +275,7 @@ const App = () => {
                        <StarIcon className="w-3 h-3 fill-orange-500 text-orange-500" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
-                       {[2, 1].map(num => (
+                       {[10, 8].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-orange-600/30 italic">
                              {num}
                           </div>
@@ -288,7 +288,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[2, 1, 11, 9, 12, 14, 7, 5, 15].map((num, i) => (
+                       {[10, 8, 14, 9, 3, 11, 12, 13, 2].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 transition-all italic ${i < 2 ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white border-slate-200 text-slate-700'}`}>
                              {num}
                           </div>
