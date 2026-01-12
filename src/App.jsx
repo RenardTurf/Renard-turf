@@ -322,7 +322,6 @@ const App = () => {
           <p className="text-slate-600 text-[9px] md:text-[10px] leading-relaxed font-bold uppercase tracking-widest text-center">
             RenardTurf est un média d'information hippique indépendant. Nous ne sommes pas un opérateur de jeux. 
             Le contenu est purement informatif. L'utilisation de nos données ne garantit en aucun cas un gain financier. 
-            En tant qu'affilié, nous pouvons percevoir une commission de la part de nos partenaires.
           </p>
         </div>
         
@@ -346,7 +345,7 @@ const App = () => {
                   <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Mentions Légales</h3>
                   <div className="text-slate-400 text-xs font-medium space-y-4 leading-relaxed">
                     <p><strong>Éditeur :</strong> RenardTurf - Média indépendant spécialisé dans l'analyse de données hippiques.</p>
-                    <p><strong>Hébergement :</strong> [Ton Hébergeur - ex: Vercel Inc, San Francisco, USA].</p>
+                    <p><strong>Hébergement :</strong> [Vercel Inc, San Francisco, USA].</p>
                     <p><strong>Affiliation :</strong> Ce site participe à des programmes d'affiliation. Conformément aux directives de Gambling Affiliation, nous informons nos utilisateurs que l'accès à certaines sélections gratuites peut être conditionné par l'utilisation de nos liens partenaires.</p>
                     <p><strong>Propriété :</strong> L'outil "Renard Pro Index" et les algorithmes associés sont la propriété exclusive de RenardTurf.</p>
                   </div>
