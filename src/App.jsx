@@ -79,7 +79,7 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "dgq5yAJJ6sg",
+    LAST_VIDEO_ID: "6Se7xPCZQOk",
     COURSE_REF_URL: "https://www.equidia.fr/courses/2025-12-03/R1/C1"
   };
 
