@@ -95,7 +95,7 @@ const App = () => {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
             {/* LOGO RENARD */}
-            <img src="/logo-renard.png" alt="Logo Renard" className="w-10 h-10 object-contain" />
+            <img src="/IMG_5453.jpeg" alt="Logo Renard" className="w-10 h-10 object-contain" />
             <span className="text-xl font-black tracking-tighter uppercase italic text-slate-900 leading-none">
               RENARD<span className="text-orange-600">TURF</span>
             </span>
@@ -306,7 +306,7 @@ const App = () => {
       {/* FOOTER */}
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <div className="flex items-center gap-3 mb-8">
-            <img src="/logo-renard.png" alt="Logo Renard" className="w-10 h-10 object-contain" />
+            <img src="/IMG_5453.jpeg" alt="Logo Renard" className="w-10 h-10 object-contain" />
             <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic">
               RENARD<span className="text-orange-600 font-black">TURF</span>
             </span>
