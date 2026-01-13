@@ -20,15 +20,14 @@ import {
   Info,
   Activity,
   X,
-  Menu,
-  Trophy,
+  Menu, // Hamburger
+  Trophy, // Classements
   FileText,
   UserCheck
 } from 'lucide-react';
 
 // --- CONFIGURATION GOOGLE SHEETS ---
 const SHEET_URLS = {
-  PARTANTS: "URL_DE_VOTRE_ONGLET_PARTANTS_CSV", 
   JOCKEYS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH61koCV9FgrkJfYVNQMlseDY2K4R54ClxM-tkM2vwb0Dvbwyb1KYiimPdZODPaFbXW40VrVUJjFqW/pub?output=csv",
   TRAINERS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-gp9qlf4bEk3vMQuOp4WNickKworuWoP0P-Vgr5PtTE5hn-vkJhrC5GD3INH5T0WUbnlLfGtLMtiu/pub?output=csv"
 };
@@ -56,7 +55,7 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showRankingsInMenu, setShowRankingsInMenu] = useState(false);
+  const [showRankings, setShowRankings] = useState(false);
   const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
@@ -66,11 +65,22 @@ const App = () => {
   { "id": 1, "name": "RUGER", "rpi": 55.4, "perf": 25, "intent": 15, "context": 15.4, "tactic": "Rentrée ferré, lot trop relevé pour espérer mieux qu'une 5ème place." },
   { "id": 2, "name": "COMPETIVO", "rpi": 75.8, "perf": 35.8, "intent": 20, "context": 20, "tactic": "D4 lui donne un supplément d'âme. 100% de réussite driver." },
   { "id": 3, "name": "KAXIG IN", "rpi": 87.2, "perf": 44, "intent": 22.5, "context": 20.7, "tactic": "Duo Goop (100%). Top Valeur détecté au banc d'essai." },
+  { "id": 4, "name": "CONDOR BAR", "rpi": 42.1, "perf": 15.1, "intent": 12, "context": 15, "tactic": "Note confidentielle basse (4/20). Impasse conseillée." },
+  { "id": 5, "name": "MIDNIGHT SPECIAL", "rpi": 0, "perf": 0, "intent": 0, "context": 0, "tactic": "NON-PARTANT (NP)." },
+  { "id": 6, "name": "I LOVE JOSSELYN", "rpi": 45.3, "perf": 18.3, "intent": 12, "context": 15, "tactic": "Audit de forme négatif. Tâche complexe." },
+  { "id": 7, "name": "ENOCK", "rpi": 70.9, "perf": 32.9, "intent": 18, "context": 20, "tactic": "3 places sur le parcours. Solide pour les combinaisons larges." },
   { "id": 8, "name": "EXPRESS D'ARC", "rpi": 94.8, "perf": 49, "intent": 24.8, "context": 21, "tactic": "Record du parcours (1'12\"5) + Note Confidentielle 16/20." },
-  { "id": 10, "name": "VALLATONIAN", "rpi": 96.4, "perf": 48.2, "intent": 24, "context": 24.2, "tactic": "LA RÉFÉRENCE. 83% réussite tandem + Top Forme au banc d'essai." }
-  ];
+  { "id": 9, "name": "ICEBREAKER PELLINI", "rpi": 89.5, "perf": 45, "intent": 23.5, "context": 21, "tactic": "Corde à gauche validée (6 succès). Note stable de 15/20." },
+  { "id": 10, "name": "VALLATONIAN", "rpi": 96.4, "perf": 48.2, "intent": 24, "context": 24.2, "tactic": "LA RÉFÉRENCE. 83% réussite tandem + Top Forme au banc d'essai." },
+  { "id": 11, "name": "DIE HARD", "rpi": 85.6, "perf": 43, "intent": 22, "context": 20.6, "tactic": "L'outsider séduisant. En plein regain de forme." },
+  { "id": 12, "name": "GLOBAL CONCEPT", "rpi": 82.3, "perf": 40.5, "intent": 21.5, "context": 20.3, "tactic": "Tandem Mottier 100%. Méfiance malgré la rentrée." },
+  { "id": 13, "name": "OSCAR VAN HALBEEK", "rpi": 79.8, "perf": 42, "intent": 19.5, "context": 18.3, "tactic": "100% de places sur le tracé. Chrono solide de 1'12\"9." },
+  { "id": 14, "name": "EVERY TIME WINNER", "rpi": 92.1, "perf": 46.5, "intent": 23, "context": 22.6, "tactic": "REPÉRÉ. 50% réussite déferrage et excellente aptitude GP." },
+  { "id": 15, "name": "KENTUCKY IDÉAL", "rpi": 58.7, "perf": 28.7, "intent": 15, "context": 15, "tactic": "Audit de contexte moyen. Jouera les petites places." },
+  { "id": 16, "name": "JOURNEY OF DREAM", "rpi": 35.2, "perf": 12.2, "intent": 10, "context": 13, "tactic": "Note confidentielle critique (4/20). Très peu de chances." }
+];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 10) || horsesData[0]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -94,7 +104,7 @@ const App = () => {
           fetch(SHEET_URLS.TRAINERS).then(res => res.text())
         ]);
         setRankings({ jockeys: parseCSV(resJ), trainers: parseCSV(resT) });
-      } catch (e) { console.error("Erreur Sheets"); }
+      } catch (e) { console.error("Erreur de liaison Data"); }
     };
     fetchRankings();
 
@@ -123,52 +133,50 @@ const App = () => {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20 text-white">
+            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20 text-white font-bold">
                <Zap className="fill-current w-6 h-6" />
             </div>
             <span className="text-xl font-black tracking-tighter uppercase italic leading-none">RENARD<span className="text-orange-600">TURF</span></span>
           </div>
           
-          <button onClick={() => { setIsMenuOpen(!isMenuOpen); setShowRankingsInMenu(false); }} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all shadow-sm">
+          <button onClick={() => { setIsMenuOpen(!isMenuOpen); setShowRankings(false); }} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all shadow-sm">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* MENU DÉROULANT (HAMBURGER) */}
+        {/* MENU HAMBURGER OVERLAY */}
         {isMenuOpen && (
-          <div className="fixed inset-0 top-[70px] bg-white z-40 overflow-y-auto animate-in slide-in-from-top duration-300 px-6 py-10">
+          <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl">
-              {!showRankingsInMenu ? (
-                /* VUE PRINCIPALE DU MENU */
+              {!showRankings ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <a href={LINKS.PLAYLIST_PRONO} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all group border border-slate-100">
-                    <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Ticket /></div>
+                  <a href={LINKS.PLAYLIST_PRONO} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
+                    <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-orange-600/20"><Ticket /></div>
                     <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Pronos <ExternalLink size={14}/></span>
                     <span className="text-slate-400 text-[10px] font-bold uppercase mt-1">Playlist Quinté+ Quotidien</span>
                   </a>
 
-                  <a href={LINKS.PLAYLIST_BILAN} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all group border border-slate-100">
+                  <a href={LINKS.PLAYLIST_BILAN} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
                     <div className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-4"><FileText /></div>
                     <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Bilans <ExternalLink size={14}/></span>
-                    <span className="text-orange-600 text-[9px] font-black uppercase mt-1 leading-tight">
+                    <span className="text-orange-600 text-[10px] font-black uppercase mt-1 leading-tight">
                       Depuis début janvier, les bilans sont dans l'introduction de mes pronos.
                     </span>
                   </a>
 
-                  <button onClick={() => setShowRankingsInMenu(true)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all group border border-slate-100 text-left">
+                  <button onClick={() => setShowRankings(true)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                     <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
                     <span className="font-black uppercase italic text-sm text-slate-900">Classements Data</span>
-                    <span className="text-slate-400 text-[10px] font-bold uppercase mt-1 tracking-widest">Jockeys & Entraîneurs</span>
+                    <span className="text-slate-400 text-[10px] font-bold uppercase mt-1 tracking-widest italic">Jockeys & Entraîneurs</span>
                   </button>
                 </div>
               ) : (
-                /* VUE DES CLASSEMENTS DANS LE MENU */
-                <div className="animate-in fade-in zoom-in duration-300">
-                  <button onClick={() => setShowRankingsInMenu(false)} className="mb-8 flex items-center gap-2 text-orange-600 font-black uppercase text-xs italic">
+                <div className="animate-in fade-in duration-300">
+                  <button onClick={() => setShowRankings(false)} className="mb-8 flex items-center gap-2 text-orange-600 font-black uppercase text-xs italic bg-orange-50 px-4 py-2 rounded-xl">
                     <ArrowRight className="rotate-180 w-4 h-4" /> Retour au menu
                   </button>
                   
-                  <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 mb-8 w-fit">
+                  <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 mb-8 w-fit shadow-inner">
                     {['Attelé', 'Plat', 'Obstacle'].map(d => (
                       <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400'}`}>
                         {d}
@@ -177,7 +185,7 @@ const App = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-slate-50 rounded-[2rem] p-6 border border-slate-100">
+                    <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
                       <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2"><UserCheck size={16} className="text-orange-600" /> Top Jockeys</h3>
                       <div className="space-y-3">
                         {rankings.jockeys.filter(j => j.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
@@ -188,13 +196,13 @@ const App = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="bg-slate-50 rounded-[2rem] p-6 border border-slate-100">
+                    <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
                       <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2"><Trophy size={16} className="text-orange-600" /> Top Entraîneurs</h3>
                       <div className="space-y-3">
                         {rankings.trainers.filter(t => t.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
                           <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
                             <span className="font-bold text-xs">{i+1}. {item.name}</span>
-                            <span className="font-black text-orange-600 px-2 py-1 rounded text-[10px]">{item.wins} Vict.</span>
+                            <span className="font-black text-orange-600 px-2.5 py-1 rounded text-[10px]">{item.wins} Vict.</span>
                           </div>
                         ))}
                       </div>
@@ -219,7 +227,7 @@ const App = () => {
             L'Information <span className="text-orange-600">Data</span><br />au service du Turf.
           </h1>
           <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-            Décryptage statistique et expertise pour une approche rationnelle du PMU sur le long terme.
+            Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center px-6 md:px-0 w-full max-w-2xl">
             <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
@@ -242,7 +250,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- RPI TOOL --- */}
+      {/* RPI TOOL SECTION */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
@@ -250,26 +258,67 @@ const App = () => {
             <h2 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-600">RPI</span>
             </h2>
+            <p className="text-slate-400 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C1 - 13h55 (13/01/2026)</p>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-8">
             <div className="flex flex-col md:flex-row gap-8 items-center text-left">
               <div className="w-full md:w-1/2">
-                <select 
-                  value={selectedHorse.id}
-                  onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
-                  className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer outline-none focus:border-orange-600"
-                >
-                  {horsesData.map(h => <option key={h.id} value={h.id}>{h.id} - {h.name}</option>)}
-                </select>
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-4 block italic">1. Sélectionner un partant</label>
+                <div className="relative">
+                  <select 
+                    value={selectedHorse.id}
+                    onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
+                    className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 focus:bg-white outline-none transition-all"
+                  >
+                    {horsesData.map(h => (
+                      <option key={h.id} value={h.id}>{h.id} - {h.name}</option>
+                    ))}
+                  </select>
+                  <ArrowRight className="absolute right-5 top-1/2 -translate-y-1/2 text-orange-600 w-6 h-6" />
+                </div>
               </div>
-              <div className="w-full md:w-1/2 bg-slate-900 rounded-3xl p-8 text-center text-white shadow-2xl">
-                <span className="text-[10px] font-black uppercase text-slate-400 block mb-2 tracking-widest italic">Renard Pro Index</span>
-                <div className="text-7xl font-black italic">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
+              <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-slate-900 rounded-3xl p-8 border border-white/5 shadow-2xl">
+                <span className="text-[10px] font-black uppercase text-slate-400 mb-2 italic">Renard Pro Index</span>
+                <div className="text-7xl font-black text-white italic leading-none">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
               </div>
             </div>
-            <div className="mt-10 p-6 bg-orange-50 rounded-2xl italic text-slate-700">
-               <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict :</span> "{selectedHorse.tactic}"
+
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Performance</span>
+                  <span className="text-slate-900">{selectedHorse.perf}/50</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-slate-900 transition-all duration-700" style={{ width: `${(selectedHorse.perf/50)*100}%` }}></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Intention</span>
+                  <span className="text-orange-600">{selectedHorse.intent}/25</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-orange-600 transition-all duration-700" style={{ width: `${(selectedHorse.intent/25)*100}%` }}></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Contexte</span>
+                  <span className="text-slate-600">{selectedHorse.context}/25</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-slate-400 transition-all duration-700" style={{ width: `${(selectedHorse.context/25)*100}%` }}></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 p-6 bg-orange-50 border border-orange-100 rounded-2xl text-left">
+               <p className="text-slate-700 text-sm italic font-medium leading-relaxed">
+                 <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict Éditorial :</span>
+                 "{selectedHorse.tactic}"
+               </p>
             </div>
           </div>
         </div>
@@ -292,31 +341,49 @@ const App = () => {
 
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-slate-50 flex flex-col items-center">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="mb-12 inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20">
-             <Ticket className="w-5 h-5" />
-             <span className="text-xs font-black uppercase tracking-widest italic leading-none">Analyse Quinté</span>
+        <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
+          <div className="mb-12 flex flex-col items-center">
+             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-6">
+                <Ticket className="w-5 h-5" />
+                <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold text-orange-600">L'analyse de la rédaction</span>
+             </div>
+             <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight">La Sélection Quinté 🎫</h2>
+             <p className="text-slate-500 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix Vans Barbot.</p>
           </div>
 
           <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
-              <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
-                 <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic">Vincennes R1C1</div>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-100 pb-8 mb-8 relative z-10 gap-4">
+                 <div>
+                    <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
+                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1 italic">Vincennes - R1C1 - 13h55 (13/01/2026)</p>
+                 </div>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                 <div className="flex flex-col items-start gap-4">
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+                 <div className="flex flex-col items-start">
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 italic">
+                       <StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Points de Data Clés
+                    </h4>
                     <div className="flex gap-3">
-                       {[10, 8].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[10, 8].map(num => (
+                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic shadow-lg shadow-orange-600/20">
+                             {num}
+                          </div>
+                       ))}
                     </div>
                  </div>
-                 <div className="flex flex-col items-start gap-4">
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
-                    <div className="flex flex-wrap gap-2">
+
+                 <div className="flex flex-col items-start">
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2 italic">
+                       <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
+                    </h4>
+                    <div className="flex flex-wrap gap-2.5">
                        {[10, 8, 14, 9, 3, 11, 12, 13, 2].map((num, i) => (
-                          <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white border-slate-200'}`}>{num}</div>
+                          <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 italic transition-all ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>
+                             {num}
+                          </div>
                        ))}
                     </div>
                  </div>
@@ -327,20 +394,24 @@ const App = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-100 py-20 text-center px-6">
-        <span className="text-2xl font-black italic uppercase text-slate-900">RENARD<span className="text-orange-600">TURF</span></span>
-        <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto my-10 font-black uppercase text-[10px] tracking-widest flex flex-col md:flex-row items-center justify-center gap-4">
+      <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
+        <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
+        
+        <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto mb-8 w-full font-black uppercase text-[10px] md:text-xs tracking-widest flex flex-col md:flex-row items-center justify-center gap-4 shadow-sm">
            <span>🔞 INTERDIT AUX MOINS DE 18 ANS</span>
-           <span className="hidden md:block">|</span>
-           <span>09 74 75 13 13 (APPEL NON SURTAXÉ)</span>
+           <span className="hidden md:block text-yellow-600">|</span>
+           <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13</span>
         </div>
-        <div className="flex justify-center gap-6 mb-10 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-           <button onClick={() => setActiveLegalModal('mentions')}>Mentions</button>
+
+        <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+           <button onClick={() => setActiveLegalModal('mentions')}>Mentions Légales</button>
            <button onClick={() => setActiveLegalModal('gaming')}>Jeu Responsable</button>
         </div>
-        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.4em] italic">© 2026 RENARD TURF - DATA & ANALYSE</p>
 
-        {/* MODAL LEGAL */}
+        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
+          © 2026 RENARD TURF - RÉDACTION & ANALYSE DATA
+        </p>
+
         {activeLegalModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-md bg-slate-900/40">
             <div className="bg-white w-full max-w-2xl rounded-[2.5rem] p-10 relative text-left shadow-2xl">
