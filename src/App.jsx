@@ -62,22 +62,22 @@ const App = () => {
 
   // --- DATA RPI v2.1 ---
   const horsesData = [
-  { "id": 1, "name": "RUGER", "rpi": 55.4, "perf": 25, "intent": 15, "context": 15.4, "tactic": "Rentrée ferré, lot trop relevé pour espérer mieux qu'une 5ème place." },
-  { "id": 2, "name": "COMPETIVO", "rpi": 75.8, "perf": 35.8, "intent": 20, "context": 20, "tactic": "D4 lui donne un supplément d'âme. 100% de réussite driver." },
-  { "id": 3, "name": "KAXIG IN", "rpi": 87.2, "perf": 44, "intent": 22.5, "context": 20.7, "tactic": "Duo Goop (100%). Top Valeur détecté au banc d'essai." },
-  { "id": 4, "name": "CONDOR BAR", "rpi": 42.1, "perf": 15.1, "intent": 12, "context": 15, "tactic": "Note confidentielle basse (4/20). Impasse conseillée." },
-  { "id": 5, "name": "MIDNIGHT SPECIAL", "rpi": 0, "perf": 0, "intent": 0, "context": 0, "tactic": "NON-PARTANT (NP)." },
-  { "id": 6, "name": "I LOVE JOSSELYN", "rpi": 45.3, "perf": 18.3, "intent": 12, "context": 15, "tactic": "Audit de forme négatif. Tâche complexe." },
-  { "id": 7, "name": "ENOCK", "rpi": 70.9, "perf": 32.9, "intent": 18, "context": 20, "tactic": "3 places sur le parcours. Solide pour les combinaisons larges." },
-  { "id": 8, "name": "EXPRESS D'ARC", "rpi": 94.8, "perf": 49, "intent": 24.8, "context": 21, "tactic": "Record du parcours (1'12\"5) + Note Confidentielle 16/20." },
-  { "id": 9, "name": "ICEBREAKER PELLINI", "rpi": 89.5, "perf": 45, "intent": 23.5, "context": 21, "tactic": "Corde à gauche validée (6 succès). Note stable de 15/20." },
-  { "id": 10, "name": "VALLATONIAN", "rpi": 96.4, "perf": 48.2, "intent": 24, "context": 24.2, "tactic": "LA RÉFÉRENCE. 83% réussite tandem + Top Forme au banc d'essai." },
-  { "id": 11, "name": "DIE HARD", "rpi": 85.6, "perf": 43, "intent": 22, "context": 20.6, "tactic": "L'outsider séduisant. En plein regain de forme." },
-  { "id": 12, "name": "GLOBAL CONCEPT", "rpi": 82.3, "perf": 40.5, "intent": 21.5, "context": 20.3, "tactic": "Tandem Mottier 100%. Méfiance malgré la rentrée." },
-  { "id": 13, "name": "OSCAR VAN HALBEEK", "rpi": 79.8, "perf": 42, "intent": 19.5, "context": 18.3, "tactic": "100% de places sur le tracé. Chrono solide de 1'12\"9." },
-  { "id": 14, "name": "EVERY TIME WINNER", "rpi": 92.1, "perf": 46.5, "intent": 23, "context": 22.6, "tactic": "REPÉRÉ. 50% réussite déferrage et excellente aptitude GP." },
-  { "id": 15, "name": "KENTUCKY IDÉAL", "rpi": 58.7, "perf": 28.7, "intent": 15, "context": 15, "tactic": "Audit de contexte moyen. Jouera les petites places." },
-  { "id": 16, "name": "JOURNEY OF DREAM", "rpi": 35.2, "perf": 12.2, "intent": 10, "context": 13, "tactic": "Note confidentielle critique (4/20). Très peu de chances." }
+  { "id": 1, "name": "KAHUNA", "rpi": 91.5, "perf": 46.0, "intent": 22.5, "context": 23.0, "tactic": "EXTRA SUR LE PARCOURS (3/3). Corde 6 idéale. Dernière minute chuchotée." },
+  { "id": 2, "name": "WATCH HIM", "rpi": 78.4, "perf": 40.0, "intent": 19.5, "context": 18.9, "tactic": "Favori spéculatif. 77% de réussite PSF mais doit rassurer sur la fraîcheur." },
+  { "id": 3, "name": "AMERICAN GLORY", "rpi": 70.2, "perf": 32.0, "intent": 18.0, "context": 20.2, "tactic": "Corde 4 avantageuse. 100% de réussite en valeur handicap du jour." },
+  { "id": 4, "name": "MAX VERST", "rpi": 74.6, "perf": 35.0, "intent": 19.0, "context": 20.6, "tactic": "Tandem Boutin 100%. Forme saisonnière confirmée. Corde 9 correcte." },
+  { "id": 5, "name": "ALPAGE", "rpi": 84.6, "perf": 42.0, "intent": 22.0, "context": 20.6, "tactic": "SPÉCIALISTE CAGNES (7/7). Score pondéré par la corde 15 handicapante." },
+  { "id": 6, "name": "GILDED DRAGON", "rpi": 68.3, "perf": 38.0, "intent": 15.0, "context": 15.3, "tactic": "Top forme saisonnière (4,20). Oeillères portées. Stalle 16 délicate." },
+  { "id": 7, "name": "CENTRAL PARK WEST", "rpi": 95.2, "perf": 48.0, "intent": 23.5, "context": 23.7, "tactic": "BASE SOLIDE. Invincibilité en jeu. Malgré corde 14, reste incontournable." },
+  { "id": 8, "name": "EUSKADI", "rpi": 86.1, "perf": 43.5, "intent": 21.0, "context": 21.6, "tactic": "100% RÉUSSITE PSF (4/4). Jamais déçu sur la surface azuréenne." },
+  { "id": 9, "name": "ALOYSIUS", "rpi": 96.8, "perf": 47.5, "intent": 24.5, "context": 24.8, "tactic": "LE FAVORI RPI. Corde 5 (62% succès). Repéré dans les jumelles." },
+  { "id": 10, "name": "XILOFONO", "rpi": 52.4, "perf": 22.0, "intent": 15.0, "context": 15.4, "tactic": "Semi-rentrée. Risque d'avoir besoin de cette course. Corde 10." },
+  { "id": 11, "name": "HARRY WAY", "rpi": 48.7, "perf": 18.0, "intent": 14.0, "context": 16.7, "tactic": "Dernières sorties transparentes. Indice de forme le plus bas (9,00)." },
+  { "id": 12, "name": "I'M A BELIEVER", "rpi": 81.9, "perf": 43.0, "intent": 18.5, "context": 20.4, "tactic": "LA DÉCOUVERTE. Note de forme 4,30. Outsider préféré sous 54,5kg." },
+  { "id": 13, "name": "MELBORA", "rpi": 93.7, "perf": 45.8, "intent": 24.0, "context": 23.9, "tactic": "TUYAU RÉDACTION. 100% sur le tracé (3/3). Entraîneur très optimiste." },
+  { "id": 14, "name": "GRECIAN BONANZA", "rpi": 88.4, "perf": 44.2, "intent": 21.0, "context": 23.2, "tactic": "Corde 2 idéale. Presque parfait sur 2000m PSF. Candidat podium." },
+  { "id": 15, "name": "GRAND BALCON", "rpi": 82.3, "perf": 41.0, "intent": 20.5, "context": 20.8, "tactic": "Corde 1 avantageuse. Mieux placé au poids. Notre outsider préféré." },
+  { "id": 16, "name": "DRESSMAN", "rpi": 62.9, "perf": 30.0, "intent": 15.0, "context": 17.9, "tactic": "À surveiller. Références sur PSF à l'étranger mais doit s'adapter ici." }
 ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
@@ -121,7 +121,7 @@ const App = () => {
   };
 
   const stats = [
-    { label: "Vues", value: "510 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
+    { label: "Vues", value: "530 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
     { label: "Abonnés", value: "1500+", icon: <Users className="w-5 h-5 text-orange-600" /> },
     { label: "Réussite Quinté 2026", value: "85%", icon: <Target className="w-5 h-5 text-orange-600" /> },
   ];
@@ -258,7 +258,7 @@ const App = () => {
             <h2 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none text-center">
               L'Analyseur de Probabilité <span className="text-orange-600">RPI</span>
             </h2>
-            <p className="text-slate-400 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Vincennes - R1C1 - 13h55 (13/01/2026)</p>
+            <p className="text-slate-400 mt-4 font-bold uppercase text-[10px] tracking-[0.3em]">Mise à jour : Cagnes - R1C2 - 13h55 (14/01/2026)</p>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-8">
@@ -348,7 +348,7 @@ const App = () => {
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold text-orange-600">L'analyse de la rédaction</span>
              </div>
              <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight">La Sélection Quinté 🎫</h2>
-             <p className="text-slate-500 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix Vans Barbot.</p>
+             <p className="text-slate-500 max-w-xl mx-auto italic font-medium leading-relaxed text-center">Synthèse des données RPI et des observations de terrain pour le Prix De Cannes.</p>
           </div>
 
           <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
@@ -356,7 +356,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-slate-100 pb-8 mb-8 relative z-10 gap-4">
                  <div>
                     <h3 className="font-black text-2xl uppercase italic tracking-tighter leading-none italic">Note <span className="text-orange-600 font-bold">Renard</span></h3>
-                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1 italic">Vincennes - R1C1 - 13h55 (13/01/2026)</p>
+                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1 italic">Cagnes - R1C2 - 13h55 (14/01/2026)</p>
                  </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest italic">Analyse Quinté</div>
               </div>
@@ -367,7 +367,7 @@ const App = () => {
                        <StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Points de Data Clés
                     </h4>
                     <div className="flex gap-3">
-                       {[10, 8].map(num => (
+                       {[9, 7].map(num => (
                           <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic shadow-lg shadow-orange-600/20">
                              {num}
                           </div>
@@ -380,7 +380,7 @@ const App = () => {
                        <ShieldCheck className="w-3 h-3 text-green-600" /> Sélection de la Rédaction
                     </h4>
                     <div className="flex flex-wrap gap-2.5">
-                       {[10, 8, 14, 9, 3, 11, 12, 13, 2].map((num, i) => (
+                       {[9, 7, 13, 1, 14, 8, 5, 12,].map((num, i) => (
                           <div key={num} className={`w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm border-2 italic transition-all ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>
                              {num}
                           </div>
