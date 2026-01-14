@@ -80,6 +80,10 @@ const App = () => {
 ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
+  
+  // ÉTATS POUR LE COMPARATEUR
+  const [compHorse1, setCompHorse1] = useState(horsesData[0]);
+  const [compHorse2, setCompHorse2] = useState(horsesData[1]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -201,7 +205,6 @@ const App = () => {
               </a>
             </div>
 
-            {/* BOUTON TICKET DU JOUR AJOUTÉ */}
             <div className="w-full">
               <a href="#ticket" className="w-full bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 LE TICKET DU JOUR <Ticket className="w-5 h-5" />
@@ -231,18 +234,22 @@ const App = () => {
             </h2>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-8">
+          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-12">
             <div className="flex flex-col md:flex-row gap-8 items-center text-left">
               <div className="w-full md:w-1/2">
-                <select 
-                  value={selectedHorse.id}
-                  onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
-                  className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 outline-none transition-all"
-                >
-                  {horsesData.map(h => (
-                    <option key={h.id} value={h.id}>{h.id} - {h.name}</option>
-                  ))}
-                </select>
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-4 block italic">1. Sélectionner un partant</label>
+                <div className="relative">
+                  <select 
+                    value={selectedHorse.id}
+                    onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
+                    className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 focus:bg-white outline-none transition-all"
+                  >
+                    {horsesData.map(h => (
+                      <option key={h.id} value={h.id}>{h.id} - {h.name}</option>
+                    ))}
+                  </select>
+                  <ArrowRight className="absolute right-5 top-1/2 -translate-y-1/2 text-orange-600 w-6 h-6" />
+                </div>
               </div>
               <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-slate-900 rounded-3xl p-8 border border-white/5 shadow-2xl">
                 <span className="text-[10px] font-black uppercase text-slate-400 mb-2 italic">Renard Pro Index</span>
@@ -254,6 +261,70 @@ const App = () => {
                  <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict :</span>
                  "{selectedHorse.tactic}"
                </p>
+            </div>
+          </div>
+
+          {/* OUTIL COMPARATEUR INTRODUIT ICI */}
+          <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
+            <div className="flex flex-col items-center mb-10 text-center">
+              <div className="inline-flex items-center gap-2 bg-orange-600/20 text-orange-500 px-4 py-1.5 rounded-full mb-4">
+                <Zap size={14} className="fill-current" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Outil de Duel Data</span>
+              </div>
+              <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Comparateur de Performance</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+              {/* SÉPARATEUR VS */}
+              <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-orange-600 rounded-full items-center justify-center text-white font-black italic z-10 shadow-lg shadow-orange-600/40 border-4 border-slate-900">
+                VS
+              </div>
+
+              {/* CHEVAL 1 */}
+              <div className="space-y-6">
+                <select 
+                  value={compHorse1.id}
+                  onChange={(e) => setCompHorse1(horsesData.find(h => h.id === parseInt(e.target.value)))}
+                  className="w-full bg-white/5 border border-white/10 text-white font-black uppercase italic p-4 rounded-xl outline-none focus:border-orange-600 transition-all"
+                >
+                  {horsesData.map(h => <option key={h.id} value={h.id} className="text-slate-900">{h.id} - {h.name}</option>)}
+                </select>
+                
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                  <div className="text-4xl font-black text-orange-500 italic mb-6">{compHorse1.rpi}<span className="text-xs text-white/40 uppercase ml-1">pts</span></div>
+                  <div className="space-y-4">
+                    {[['Perf', compHorse1.perf, 50], ['Intent', compHorse1.intent, 25], ['Context', compHorse1.context, 25]].map(([label, val, max]) => (
+                      <div key={label} className="space-y-1.5">
+                        <div className="flex justify-between text-[9px] font-bold uppercase text-white/40"><span>{label}</span><span>{val}/{max}</span></div>
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-orange-600" style={{ width: `${(val/max)*100}%` }} /></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CHEVAL 2 */}
+              <div className="space-y-6">
+                <select 
+                  value={compHorse2.id}
+                  onChange={(e) => setCompHorse2(horsesData.find(h => h.id === parseInt(e.target.value)))}
+                  className="w-full bg-white/5 border border-white/10 text-white font-black uppercase italic p-4 rounded-xl outline-none focus:border-orange-600 transition-all"
+                >
+                  {horsesData.map(h => <option key={h.id} value={h.id} className="text-slate-900">{h.id} - {h.name}</option>)}
+                </select>
+                
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                  <div className="text-4xl font-black text-orange-500 italic mb-6">{compHorse2.rpi}<span className="text-xs text-white/40 uppercase ml-1">pts</span></div>
+                  <div className="space-y-4">
+                    {[['Perf', compHorse2.perf, 50], ['Intent', compHorse2.intent, 25], ['Context', compHorse2.context, 25]].map(([label, val, max]) => (
+                      <div key={label} className="space-y-1.5">
+                        <div className="flex justify-between text-[9px] font-bold uppercase text-white/40"><span>{label}</span><span>{val}/{max}</span></div>
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-orange-600" style={{ width: `${(val/max)*100}%` }} /></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -333,7 +404,7 @@ const App = () => {
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Cagnes R1C2</div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
