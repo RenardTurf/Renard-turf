@@ -20,8 +20,8 @@ import {
   Info,
   Activity,
   X,
-  Menu,
-  Trophy,
+  Menu, // Hamburger
+  Trophy, // Classements
   FileText,
   UserCheck
 } from 'lucide-react';
@@ -58,15 +58,26 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.1 ---
   const horsesData = [
   { "id": 1, "name": "KAHUNA", "rpi": 91.5, "perf": 46.0, "intent": 22.5, "context": 23.0, "tactic": "EXTRA SUR LE PARCOURS (3/3). Corde 6 idéale. Dernière minute chuchotée." },
-  { "id": 2, "name": "WATCH HIM", "rpi": 78.4, "perf": 40.0, "intent": 19.5, "context": 18.9, "tactic": "Favori spéculatif. 77% de réussite PSF." },
+  { "id": 2, "name": "WATCH HIM", "rpi": 78.4, "perf": 40.0, "intent": 19.5, "context": 18.9, "tactic": "Favori spéculatif. 77% de réussite PSF mais doit rassurer sur la fraîcheur." },
+  { "id": 3, "name": "AMERICAN GLORY", "rpi": 70.2, "perf": 32.0, "intent": 18.0, "context": 20.2, "tactic": "Corde 4 avantageuse. 100% de réussite en valeur handicap du jour." },
+  { "id": 4, "name": "MAX VERST", "rpi": 74.6, "perf": 35.0, "intent": 19.0, "context": 20.6, "tactic": "Tandem Boutin 100%. Forme saisonnière confirmée. Corde 9 correcte." },
+  { "id": 5, "name": "ALPAGE", "rpi": 84.6, "perf": 42.0, "intent": 22.0, "context": 20.6, "tactic": "SPÉCIALISTE CAGNES (7/7). Score pondéré par la corde 15 handicapante." },
+  { "id": 6, "name": "GILDED DRAGON", "rpi": 68.3, "perf": 38.0, "intent": 15.0, "context": 15.3, "tactic": "Top forme saisonnière (4,20). Oeillères portées. Stalle 16 délicate." },
+  { "id": 7, "name": "CENTRAL PARK WEST", "rpi": 95.2, "perf": 48.0, "intent": 23.5, "context": 23.7, "tactic": "BASE SOLIDE. Invincibilité en jeu. Malgré corde 14, reste incontournable." },
+  { "id": 8, "name": "EUSKADI", "rpi": 86.1, "perf": 43.5, "intent": 21.0, "context": 21.6, "tactic": "100% RÉUSSITE PSF (4/4). Jamais déçu sur la surface azuréenne." },
   { "id": 9, "name": "ALOYSIUS", "rpi": 96.8, "perf": 47.5, "intent": 24.5, "context": 24.8, "tactic": "LE FAVORI RPI. Corde 5 (62% succès). Repéré dans les jumelles." },
-  { "id": 13, "name": "MELBORA", "rpi": 93.7, "perf": 45.8, "intent": 24.0, "context": 23.9, "tactic": "TUYAU RÉDACTION. 100% sur le tracé (3/3)." }
+  { "id": 10, "name": "XILOFONO", "rpi": 52.4, "perf": 22.0, "intent": 15.0, "context": 15.4, "tactic": "Semi-rentrée. Risque d'avoir besoin de cette course. Corde 10." },
+  { "id": 11, "name": "HARRY WAY", "rpi": 48.7, "perf": 18.0, "intent": 14.0, "context": 16.7, "tactic": "Dernières sorties transparentes. Indice de forme le plus bas (9,00)." },
+  { "id": 12, "name": "I'M A BELIEVER", "rpi": 81.9, "perf": 43.0, "intent": 18.5, "context": 20.4, "tactic": "LA DÉCOUVERTE. Note de forme 4,30. Outsider préféré sous 54,5kg." },
+  { "id": 13, "name": "MELBORA", "rpi": 93.7, "perf": 45.8, "intent": 24.0, "context": 23.9, "tactic": "TUYAU RÉDACTION. 100% sur le tracé (3/3). Entraîneur très optimiste." },
+  { "id": 14, "name": "GRECIAN BONANZA", "rpi": 88.4, "perf": 44.2, "intent": 21.0, "context": 23.2, "tactic": "Corde 2 idéale. Presque parfait sur 2000m PSF. Candidat podium." },
+  { "id": 15, "name": "GRAND BALCON", "rpi": 82.3, "perf": 41.0, "intent": 20.5, "context": 20.8, "tactic": "Corde 1 avantageuse. Mieux placé au poids. Notre outsider préféré." },
+  { "id": 16, "name": "DRESSMAN", "rpi": 62.9, "perf": 30.0, "intent": 15.0, "context": 17.9, "tactic": "À surveiller. Références sur PSF à l'étranger mais doit s'adapter ici." }
 ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData[0]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -115,40 +126,39 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
-      {/* NAVIGATION */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3' : 'bg-transparent py-5'}`}>
+      {/* NAVIGATION MEDIA */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20 text-white font-bold text-white">
+            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-600/20 text-white font-bold">
                <Zap className="fill-current w-6 h-6" />
             </div>
             <span className="text-xl font-black tracking-tighter uppercase italic leading-none">RENARD<span className="text-orange-600">TURF</span></span>
           </div>
           
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all shadow-sm">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* MENU HAMBURGER (Redirection vers ancres fluides) */}
+        {/* MENU HAMBURGER OVERLAY */}
         {isMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6">
-              <a href={LINKS.PLAYLIST_PRONO} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100">
-                <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Ticket /></div>
-                <span className="font-black uppercase italic text-sm text-slate-900">Les Pronos <ExternalLink size={14} className="inline ml-1"/></span>
+              <a href={LINKS.PLAYLIST_PRONO} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
+                <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-orange-600/20"><Ticket /></div>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Pronos <ExternalLink size={14}/></span>
               </a>
 
-              <a href={LINKS.PLAYLIST_BILAN} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100">
+              <a href={LINKS.PLAYLIST_BILAN} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
                 <div className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-4"><FileText /></div>
-                <span className="font-black uppercase italic text-sm text-slate-900 leading-tight">Les Bilans</span>
-                <span className="text-orange-600 text-[9px] font-black uppercase mt-1 leading-tight italic">Bilans en intro des pronos depuis janvier.</span>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Bilans</span>
+                <span className="text-orange-600 text-[10px] font-black uppercase mt-1">Depuis début janvier, les bilans sont dans l'intro des pronos.</span>
               </a>
 
-              <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100">
+              <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
-                <span className="font-black uppercase italic text-sm text-slate-900">Classements</span>
-                <span className="text-slate-400 text-[10px] font-bold uppercase mt-1 italic">Jockeys & Entraîneurs</span>
+                <span className="font-black uppercase italic text-sm text-slate-900">Classements Data</span>
               </a>
             </div>
           </div>
@@ -158,37 +168,36 @@ const App = () => {
       {/* HERO SECTION */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Média Hippique : Analyse & Data</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter uppercase italic text-slate-900 leading-[0.9]">
+          <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 leading-none tracking-tighter uppercase italic">
             L'Information <span className="text-orange-600">Data</span><br />au service du Turf.
           </h1>
           
-          <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl mx-auto px-6">
+          <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                INDICE RPI <ChevronRight size={24}/>
+                CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg text-slate-900 uppercase flex items-center justify-center">
+              <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase text-slate-900 flex items-center justify-center">
                 DOSSIERS VIDÉOS
               </a>
             </div>
-
-            {/* NOUVEAUX BOUTONS CLASSEMENTS FLUIDES */}
+            {/* NOUVEAUX BOUTONS REDIRECTION FLUIDE */}
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                JOCKEYS <Trophy size={20} />
+                JOCKEYS <Trophy className="w-5 h-5" />
               </a>
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                ENTRAÎNEURS <UserCheck size={20} />
+                ENTRAÎNEURS <UserCheck className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-24 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-24 w-full px-4 md:px-0">
             {stats.map((stat, i) => (
               <div key={i} className="bg-white border border-slate-100 p-8 rounded-3xl shadow-sm border-b-2 border-b-orange-600/20">
                 <div className="flex justify-center mb-5">{stat.icon}</div>
@@ -200,70 +209,80 @@ const App = () => {
         </div>
       </section>
 
-      {/* RPI TOOL */}
-      <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100 scroll-mt-24">
-        <div className="container mx-auto max-w-4xl text-center">
-          <BarChart3 className="w-10 h-10 text-orange-600 mx-auto mb-4" />
-          <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-12 text-slate-900">Analyseur <span className="text-orange-600">RPI</span></h2>
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
+      {/* RPI TOOL SECTION */}
+      <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col items-center mb-16 text-center">
+            <BarChart3 className="w-10 h-10 text-orange-600 mb-4" />
+            <h2 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter leading-none text-center">
+              L'Analyseur de Probabilité <span className="text-orange-600">RPI</span>
+            </h2>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-xl mb-8">
             <div className="flex flex-col md:flex-row gap-8 items-center text-left">
               <div className="w-full md:w-1/2">
                 <select 
-                   value={selectedHorse.id}
-                   onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
-                   className="w-full bg-slate-50 border-2 border-slate-100 p-5 rounded-2xl font-black uppercase italic outline-none focus:border-orange-600 appearance-none"
+                  value={selectedHorse.id}
+                  onChange={(e) => setSelectedHorse(horsesData.find(h => h.id === parseInt(e.target.value)))}
+                  className="w-full bg-slate-50 border-2 border-slate-100 text-slate-900 font-black uppercase italic p-5 rounded-2xl appearance-none cursor-pointer focus:border-orange-600 outline-none transition-all"
                 >
-                  {horsesData.map(h => <option key={h.id} value={h.id}>{h.id} - {h.name}</option>)}
+                  {horsesData.map(h => (
+                    <option key={h.id} value={h.id}>{h.id} - {h.name}</option>
+                  ))}
                 </select>
               </div>
-              <div className="w-full md:w-1/2 bg-slate-900 rounded-3xl p-8 text-center text-white shadow-2xl">
-                <span className="text-[10px] font-black uppercase text-slate-400 block mb-2 italic tracking-widest">Renard Pro Index</span>
-                <div className="text-7xl font-black italic">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
+              <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-slate-900 rounded-3xl p-8 border border-white/5 shadow-2xl">
+                <span className="text-[10px] font-black uppercase text-slate-400 mb-2 italic">Renard Pro Index</span>
+                <div className="text-7xl font-black text-white italic leading-none">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
               </div>
             </div>
-            <div className="mt-8 p-6 bg-orange-50 rounded-2xl italic text-left border border-orange-100">
-               <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict :</span> "{selectedHorse.tactic}"
+            <div className="mt-10 p-6 bg-orange-50 border border-orange-100 rounded-2xl text-left italic">
+               <p className="text-slate-700 text-sm font-medium leading-relaxed">
+                 <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict :</span>
+                 "{selectedHorse.tactic}"
+               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION CLASSEMENTS (Visible sur la page pour scroll fluide) */}
-      <section id="rankings" className="py-24 px-6 bg-white border-b border-slate-100 scroll-mt-24">
-        <div className="container mx-auto max-w-6xl text-center flex flex-col items-center">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 w-full">
+      {/* SECTION CLASSEMENTS (RÉINTÉGRÉE POUR DÉFILEMENT FLUIDE) */}
+      <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="text-left">
-              <Trophy className="w-12 h-12 text-orange-600 mb-4" />
-              <h2 className="text-5xl font-black uppercase italic tracking-tighter text-slate-900">Les Tops <span className="text-orange-600">Performers</span></h2>
+              <Trophy className="w-10 h-10 text-orange-600 mb-4" />
+              <h2 className="text-4xl font-black uppercase italic tracking-tighter text-slate-900">Les Tops <span className="text-orange-600">Performers</span></h2>
             </div>
             <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
               {['Attelé', 'Plat', 'Obstacle'].map(d => (
-                <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-8 py-3 rounded-xl text-xs font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400 hover:text-slate-600'}`}>
+                <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400'}`}>
                   {d}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-            <div className="bg-slate-50 border-2 border-slate-100 rounded-[3rem] p-10 shadow-sm text-left">
-              <h3 className="font-black italic uppercase flex items-center gap-3 mb-8 text-slate-900"><UserCheck className="text-orange-600" /> Jockeys</h3>
-              <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
+              <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><UserCheck size={16} className="text-orange-600" /> Top Jockeys</h3>
+              <div className="space-y-3">
                 {rankings.jockeys.filter(j => j.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
-                  <div key={i} className="flex justify-between items-center p-5 bg-white rounded-2xl border border-slate-100">
-                    <span className="font-bold text-sm">{i+1}. {item.name}</span>
-                    <span className="font-black text-white bg-slate-900 px-3 py-1 rounded-lg text-xs">{item.wins} Vict.</span>
+                  <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                    <span className="font-bold text-xs">{i+1}. {item.name}</span>
+                    <span className="font-black text-white bg-slate-900 px-2.5 py-1 rounded text-[10px]">{item.wins} Vict.</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-slate-50 border-2 border-slate-100 rounded-[3rem] p-10 shadow-sm text-left">
-              <h3 className="font-black italic uppercase flex items-center gap-3 mb-8 text-slate-900"><Trophy className="text-orange-600" /> Entraîneurs</h3>
-              <div className="space-y-4">
+            <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
+              <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><Trophy size={16} className="text-orange-600" /> Top Entraîneurs</h3>
+              <div className="space-y-3">
                 {rankings.trainers.filter(t => t.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
-                  <div key={i} className="flex justify-between items-center p-5 bg-white rounded-2xl border border-slate-100">
-                    <span className="font-bold text-sm">{i+1}. {item.name}</span>
-                    <span className="font-black text-orange-600 text-sm italic">{item.wins} Vict.</span>
+                  <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                    <span className="font-bold text-xs">{i+1}. {item.name}</span>
+                    <span className="font-black text-orange-600 px-2.5 py-1 rounded text-[10px]">{item.wins} Vict.</span>
                   </div>
                 ))}
               </div>
@@ -273,11 +292,15 @@ const App = () => {
       </section>
 
       {/* SECTION YOUTUBE */}
-      <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-b border-slate-100 scroll-mt-24">
+      <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
-          <Youtube className="w-12 h-12 text-orange-600 mb-6" />
-          <h2 className="text-4xl font-black uppercase italic tracking-tighter mb-12 text-slate-900">Dernière <span className="text-orange-600">Analyse</span></h2>
-          <div className="relative aspect-video w-full rounded-[3rem] overflow-hidden shadow-2xl bg-black border border-slate-200">
+          <div className="mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4 text-orange-600">
+               <Youtube className="w-8 h-8 fill-current" />
+               <h2 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-slate-900">Archives Vidéos</h2>
+            </div>
+          </div>
+          <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-2xl bg-black">
              <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${LINKS.LAST_VIDEO_ID}`} title="YouTube" frameBorder="0" allowFullScreen></iframe>
           </div>
         </div>
@@ -286,22 +309,48 @@ const App = () => {
       {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center">
-           <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-12 uppercase italic font-bold text-xs tracking-widest">
-             <Ticket size={20} /> Sélection Quinté
-           </div>
-           {/* Bloc Ticket existant... */}
+          <div className="mb-12 flex flex-col items-center">
+             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-6 font-black uppercase text-xs italic tracking-widest leading-none">Analyse Quinté</div>
+             <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight text-center">La Sélection Quinté 🎫</h2>
+          </div>
+
+          <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
+            <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
+              <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
+                 <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Cagnes R1C2</div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                 <div className="flex flex-col items-start gap-4 text-left">
+                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
+                    <div className="flex gap-3">
+                       {[9, 7].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                    </div>
+                 </div>
+                 <div className="flex flex-col items-start gap-4 text-left">
+                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
+                    <div className="flex flex-wrap gap-2">
+                       {[9, 7, 13, 1, 14, 8, 5, 12].map((num, i) => (
+                          <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6">
-        <span className="text-2xl font-black italic uppercase text-slate-900 leading-none">RENARD<span className="text-orange-600">TURF</span></span>
+        <span className="text-2xl font-black italic uppercase text-slate-900">RENARD<span className="text-orange-600">TURF</span></span>
         <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto my-10 font-black uppercase text-[10px] tracking-widest flex flex-col md:flex-row items-center justify-center gap-4">
            <span>🔞 INTERDIT AUX MOINS DE 18 ANS</span>
            <span className="hidden md:block">|</span>
-           <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13</span>
+           <span>09 74 75 13 13</span>
         </div>
-        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.4em] italic">© 2026 RENARD TURF - DATA & ANALYSE</p>
+        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.4em] italic leading-none">© 2026 RENARD TURF - DATA & ANALYSE</p>
       </footer>
     </div>
   );
