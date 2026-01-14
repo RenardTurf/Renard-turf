@@ -229,13 +229,33 @@ const App = () => {
           <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
             Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center px-6 md:px-0 w-full max-w-2xl">
-            <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-              CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase text-slate-900">
-              DOSSIERS VIDÉOS
-            </a>
+          
+          <div className="flex flex-col gap-5 justify-center items-center px-6 md:px-0 w-full max-w-2xl">
+            {/* LIGNE 1 : INDICE & VIDEOS */}
+            <div className="flex flex-col sm:flex-row gap-5 w-full">
+              <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
+                CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase text-slate-900 flex items-center justify-center">
+                DOSSIERS VIDÉOS
+              </a>
+            </div>
+
+            {/* LIGNE 2 : CLASSEMENTS (RENVOIE VERS HAMBURGER) */}
+            <div className="flex flex-col sm:flex-row gap-5 w-full">
+              <button 
+                onClick={() => { setIsMenuOpen(true); setShowRankings(true); }}
+                className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase"
+              >
+                CLASSEMENT JOCKEYS <Trophy className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => { setIsMenuOpen(true); setShowRankings(true); }}
+                className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase"
+              >
+                CLASSEMENT ENTRAÎNEURS <UserCheck className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-24 w-full px-4 md:px-0">
@@ -343,7 +363,7 @@ const App = () => {
       <section id="ticket" className="py-24 px-6 bg-slate-50 flex flex-col items-center">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12 flex flex-col items-center">
-             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-6">
+             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-600/20 mb-6">
                 <Ticket className="w-5 h-5" />
                 <span className="text-xs font-black uppercase tracking-widest italic leading-none font-bold text-orange-600">L'analyse de la rédaction</span>
              </div>
@@ -368,7 +388,7 @@ const App = () => {
                     </h4>
                     <div className="flex gap-3">
                        {[9, 7].map(num => (
-                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic shadow-lg shadow-orange-600/20">
+                          <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic shadow-lg shadow-orange-600/30">
                              {num}
                           </div>
                        ))}
