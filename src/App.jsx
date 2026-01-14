@@ -61,22 +61,22 @@ const App = () => {
 
   // --- DATA RPI v2.1 ---
   const horsesData = [
-  { "id": 1, "name": "KAHUNA", "rpi": 91.5, "perf": 46.0, "intent": 22.5, "context": 23.0, "tactic": "EXTRA SUR LE PARCOURS (3/3). Corde 6 idéale. Dernière minute chuchotée." },
-  { "id": 2, "name": "WATCH HIM", "rpi": 78.4, "perf": 40.0, "intent": 19.5, "context": 18.9, "tactic": "Favori spéculatif. 77% de réussite PSF mais doit rassurer sur la fraîcheur." },
-  { "id": 3, "name": "AMERICAN GLORY", "rpi": 70.2, "perf": 32.0, "intent": 18.0, "context": 20.2, "tactic": "Corde 4 avantageuse. 100% de réussite en valeur handicap du jour." },
-  { "id": 4, "name": "MAX VERST", "rpi": 74.6, "perf": 35.0, "intent": 19.0, "context": 20.6, "tactic": "Tandem Boutin 100%. Forme saisonnière confirmée. Corde 9 correcte." },
-  { "id": 5, "name": "ALPAGE", "rpi": 84.6, "perf": 42.0, "intent": 22.0, "context": 20.6, "tactic": "SPÉCIALISTE CAGNES (7/7). Score pondéré par la corde 15 handicapante." },
-  { "id": 6, "name": "GILDED DRAGON", "rpi": 68.3, "perf": 38.0, "intent": 15.0, "context": 15.3, "tactic": "Top forme saisonnière (4,20). Oeillères portées. Stalle 16 délicate." },
-  { "id": 7, "name": "CENTRAL PARK WEST", "rpi": 95.2, "perf": 48.0, "intent": 23.5, "context": 23.7, "tactic": "BASE SOLIDE. Invincibilité en jeu. Malgré corde 14, reste incontournable." },
-  { "id": 8, "name": "EUSKADI", "rpi": 86.1, "perf": 43.5, "intent": 21.0, "context": 21.6, "tactic": "100% RÉUSSITE PSF (4/4). Jamais déçu sur la surface azuréenne." },
-  { "id": 9, "name": "ALOYSIUS", "rpi": 96.8, "perf": 47.5, "intent": 24.5, "context": 24.8, "tactic": "LE FAVORI RPI. Corde 5 (62% succès). Repéré dans les jumelles." },
-  { "id": 10, "name": "XILOFONO", "rpi": 52.4, "perf": 22.0, "intent": 15.0, "context": 15.4, "tactic": "Semi-rentrée. Risque d'avoir besoin de cette course. Corde 10." },
-  { "id": 11, "name": "HARRY WAY", "rpi": 48.7, "perf": 18.0, "intent": 14.0, "context": 16.7, "tactic": "Dernières sorties transparentes. Indice de forme le plus bas (9,00)." },
-  { "id": 12, "name": "I'M A BELIEVER", "rpi": 81.9, "perf": 43.0, "intent": 18.5, "context": 20.4, "tactic": "LA DÉCOUVERTE. Note de forme 4,30. Outsider préféré sous 54,5kg." },
-  { "id": 13, "name": "MELBORA", "rpi": 93.7, "perf": 45.8, "intent": 24.0, "context": 23.9, "tactic": "TUYAU RÉDACTION. 100% sur le tracé (3/3). Entraîneur très optimiste." },
-  { "id": 14, "name": "GRECIAN BONANZA", "rpi": 88.4, "perf": 44.2, "intent": 21.0, "context": 23.2, "tactic": "Corde 2 idéale. Presque parfait sur 2000m PSF. Candidat podium." },
-  { "id": 15, "name": "GRAND BALCON", "rpi": 82.3, "perf": 41.0, "intent": 20.5, "context": 20.8, "tactic": "Corde 1 avantageuse. Mieux placé au poids. Notre outsider préféré." },
-  { "id": 16, "name": "DRESSMAN", "rpi": 62.9, "perf": 30.0, "intent": 15.0, "context": 17.9, "tactic": "À surveiller. Références sur PSF à l'étranger mais doit s'adapter ici." }
+  { "id": 1, "name": "CHITCHAT", "rpi": 92.2, "perf": 46.5, "intent": 26.5, "context": 19.2, "tactic": "Le Spécialiste (60%). Chrono 1'11''1. Stalle 1 (36%) idéale pour prendre la tête." },
+  { "id": 2, "name": "HISTORIC DAY", "rpi": 52.4, "perf": 22.0, "intent": 15.0, "context": 15.4, "tactic": "Stalle 2 correcte mais manque de références chronos sur le parcours." },
+  { "id": 3, "name": "HYDROMEL", "rpi": 88.6, "perf": 44.5, "intent": 28.0, "context": 16.1, "tactic": "100% avec Raffin (3/3). 75% réussite parcours. Vise le podium." },
+  { "id": 4, "name": "HOLD UP RANAIS", "rpi": 84.4, "perf": 42.2, "intent": 23.2, "context": 19.0, "tactic": "Record 1'10''9. Duo G. Martin (75%). Candidat sérieux aux places." },
+  { "id": 5, "name": "GUCCI DE BARB", "rpi": 66.8, "perf": 32.0, "intent": 20.5, "context": 14.3, "tactic": "73% réussite avec Daugeard mais doit monter en condition." },
+  { "id": 6, "name": "TURE L.A.", "rpi": 90.4, "perf": 45.0, "intent": 25.5, "context": 19.9, "tactic": "Top Stalle 6 (41%). Note Barbara 15/20. Base de jeu incontournable." },
+  { "id": 7, "name": "GUMP DU PONCELET", "rpi": 87.5, "perf": 43.0, "intent": 27.0, "context": 17.5, "tactic": "Repéré écurie. 100% déferré (11/11). Capable de gagner si parcours clair." },
+  { "id": 8, "name": "FORREST GUMP SET", "rpi": 86.9, "perf": 43.5, "intent": 24.0, "context": 19.4, "tactic": "Spécialiste (3/4). Stalle 8 (38%). Note 15/20. Très performant sur ce profil." },
+  { "id": 9, "name": "GLAMOUR YOMA", "rpi": 64.2, "perf": 30.0, "intent": 18.0, "context": 16.2, "tactic": "Cote élevée attendue. Doit rassurer sur sa vitesse finale." },
+  { "id": 10, "name": "GRAZIELA D'EL", "rpi": 80.1, "perf": 41.0, "intent": 22.5, "context": 16.6, "tactic": "La Découverte. Chrono 1'11''4. Score 10/16 sur le parcours. Outsider amusant." },
+  { "id": 11, "name": "FALCO DU HAMEL", "rpi": 62.5, "perf": 29.0, "intent": 17.0, "context": 16.5, "tactic": "Chrono 1'11''4 mais position en seconde ligne handicapante." },
+  { "id": 12, "name": "NICE PRESENT", "rpi": 85.3, "perf": 42.5, "intent": 24.0, "context": 18.8, "tactic": "Record parcours 1'10''9. 7/8 dans les Quintés. Malgré la 2e ligne, priorité." },
+  { "id": 13, "name": "CHESTNUT", "rpi": 88.1, "perf": 44.0, "intent": 26.5, "context": 17.6, "tactic": "Duo Abrivard/Redén (100%). Chrono 1'11''2. Grande piste (6/7)." },
+  { "id": 14, "name": "FERGIE HIGHLAND", "rpi": 72.8, "perf": 35.0, "intent": 21.0, "context": 16.8, "tactic": "Chrono 1'11''. 50% de réussite sur le parcours. Pour une 5e place." },
+  { "id": 15, "name": "CERTAINLY", "rpi": 76.5, "perf": 38.0, "intent": 21.5, "context": 17.0, "tactic": "L'outsider séduisant de Damien Bazerque. Note confidentielle 13/20." },
+  { "id": 16, "name": "GOELAND DE JANZE", "rpi": 74.2, "perf": 36.5, "intent": 22.0, "context": 15.7, "tactic": "Note 13/20. 100% avec Nivard (1 place). Vise une petite place." }
 ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
@@ -401,20 +401,20 @@ const App = () => {
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
               <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
                  <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Cagnes R1C2</div>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Vincennes R1C1</div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[9, 7].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[1, 6].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[9, 7, 13, 1, 14, 8, 5, 12].map((num, i) => (
+                       {[1, 6, 3, 13, 7, 8, 12, 4].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
