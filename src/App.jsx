@@ -66,7 +66,7 @@ const App = () => {
   { "id": 3, "name": "HYDROMEL", "rpi": 88.6, "perf": 44.5, "intent": 28.0, "context": 16.1, "tactic": "100% avec Raffin (3/3). 75% réussite parcours. Vise le podium." },
   { "id": 4, "name": "HOLD UP RANAIS", "rpi": 84.4, "perf": 42.2, "intent": 23.2, "context": 19.0, "tactic": "Record 1'10''9. Duo G. Martin (75%). Candidat sérieux aux places." },
   { "id": 5, "name": "GUCCI DE BARB", "rpi": 66.8, "perf": 32.0, "intent": 20.5, "context": 14.3, "tactic": "73% réussite avec Daugeard mais doit monter en condition." },
-  { "id": 6, "name": "TURE L.A.", "rpi": 90.4, "perf": 45.0, "intent": 25.5, "context": 19.9, "tactic": "Top Stalle 6 (41%). Note Barbara 15/20. Base de jeu incontournable." },
+  { "id": 6, "name": "TURE L.A.", "rpi": 90.4, "perf": 45.0, "intent": 25.5, "context": 19.9, "tactic": "Position idéale derrière l'autostart (41 % de réussite pour la stalle 6). Avec Mottier et Forme Exceptionnelle. Base." },
   { "id": 7, "name": "GUMP DU PONCELET", "rpi": 87.5, "perf": 43.0, "intent": 27.0, "context": 17.5, "tactic": "Repéré écurie. 100% déferré (11/11). Capable de gagner si parcours clair." },
   { "id": 8, "name": "FORREST GUMP SET", "rpi": 86.9, "perf": 43.5, "intent": 24.0, "context": 19.4, "tactic": "Spécialiste (3/4). Stalle 8 (38%). Note 15/20. Très performant sur ce profil." },
   { "id": 9, "name": "GLAMOUR YOMA", "rpi": 64.2, "perf": 30.0, "intent": 18.0, "context": 16.2, "tactic": "Cote élevée attendue. Doit rassurer sur sa vitesse finale." },
@@ -75,7 +75,7 @@ const App = () => {
   { "id": 12, "name": "NICE PRESENT", "rpi": 85.3, "perf": 42.5, "intent": 24.0, "context": 18.8, "tactic": "Record parcours 1'10''9. 7/8 dans les Quintés. Malgré la 2e ligne, priorité." },
   { "id": 13, "name": "CHESTNUT", "rpi": 88.1, "perf": 44.0, "intent": 26.5, "context": 17.6, "tactic": "Duo Abrivard/Redén (100%). Chrono 1'11''2. Grande piste (6/7)." },
   { "id": 14, "name": "FERGIE HIGHLAND", "rpi": 72.8, "perf": 35.0, "intent": 21.0, "context": 16.8, "tactic": "Chrono 1'11''. 50% de réussite sur le parcours. Pour une 5e place." },
-  { "id": 15, "name": "CERTAINLY", "rpi": 76.5, "perf": 38.0, "intent": 21.5, "context": 17.0, "tactic": "L'outsider séduisant de Damien Bazerque. Note confidentielle 13/20." },
+  { "id": 15, "name": "CERTAINLY", "rpi": 76.5, "perf": 38.0, "intent": 21.5, "context": 17.0, "tactic": "Suèdois,C'est un excellent complément de ticket pour les places, capable de brouiller les cartes si le rythme est soutenu." },
   { "id": 16, "name": "GOELAND DE JANZE", "rpi": 74.2, "perf": 36.5, "intent": 22.0, "context": 15.7, "tactic": "Note 13/20. 100% avec Nivard (1 place). Vise une petite place." }
 ];
 
