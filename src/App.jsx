@@ -32,7 +32,6 @@ const SHEET_URLS = {
   TRAINERS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-gp9qlf4bEk3vMQuOp4WNickKworuWoP0P-Vgr5PtTE5hn-vkJhrC5GD3INH5T0WUbnlLfGtLMtiu/pub?output=csv"
 };
 
-// --- INITIALISATION GOOGLE ANALYTICS ---
 const initGA = (id) => {
   if (typeof window !== 'undefined' && !document.getElementById('google-analytics')) {
     const script1 = document.createElement('script');
@@ -81,7 +80,6 @@ const App = () => {
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
   
-  // ÉTATS POUR LE COMPARATEUR
   const [compHorse1, setCompHorse1] = useState(horsesData[0]);
   const [compHorse2, setCompHorse2] = useState(horsesData[1]);
 
@@ -132,7 +130,6 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
-      {/* NAVIGATION MEDIA */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -147,7 +144,6 @@ const App = () => {
           </button>
         </div>
 
-        {/* MENU HAMBURGER OVERLAY */}
         {isMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -171,7 +167,6 @@ const App = () => {
         )}
       </nav>
 
-      {/* HERO SECTION */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -224,7 +219,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* RPI TOOL SECTION */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
@@ -256,6 +250,37 @@ const App = () => {
                 <div className="text-7xl font-black text-white italic leading-none">{selectedHorse.rpi}<span className="text-orange-500 text-2xl">/100</span></div>
               </div>
             </div>
+
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Performance</span>
+                  <span className="text-slate-900">{selectedHorse.perf}/50</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-slate-900 transition-all duration-700" style={{ width: `${(selectedHorse.perf/50)*100}%` }}></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Intention</span>
+                  <span className="text-orange-600">{selectedHorse.intent}/30</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-orange-600 transition-all duration-700" style={{ width: `${(selectedHorse.intent/30)*100}%` }}></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[9px] font-black uppercase text-slate-500 tracking-widest">
+                  <span>Contexte</span>
+                  <span className="text-slate-600">{selectedHorse.context}/20</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-slate-400 transition-all duration-700" style={{ width: `${(selectedHorse.context/20)*100}%` }}></div>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-10 p-6 bg-orange-50 border border-orange-100 rounded-2xl text-left italic">
                <p className="text-slate-700 text-sm font-medium leading-relaxed">
                  <span className="text-orange-600 font-black uppercase not-italic mr-2">Verdict :</span>
@@ -264,7 +289,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* OUTIL COMPARATEUR INTRODUIT ICI */}
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
             <div className="flex flex-col items-center mb-10 text-center">
               <div className="inline-flex items-center gap-2 bg-orange-600/20 text-orange-500 px-4 py-1.5 rounded-full mb-4">
@@ -275,12 +299,10 @@ const App = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
-              {/* SÉPARATEUR VS */}
               <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-orange-600 rounded-full items-center justify-center text-white font-black italic z-10 shadow-lg shadow-orange-600/40 border-4 border-slate-900">
                 VS
               </div>
 
-              {/* CHEVAL 1 */}
               <div className="space-y-6">
                 <select 
                   value={compHorse1.id}
@@ -293,7 +315,7 @@ const App = () => {
                 <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
                   <div className="text-4xl font-black text-orange-500 italic mb-6">{compHorse1.rpi}<span className="text-xs text-white/40 uppercase ml-1">pts</span></div>
                   <div className="space-y-4">
-                    {[['Perf', compHorse1.perf, 50], ['Intent', compHorse1.intent, 25], ['Context', compHorse1.context, 25]].map(([label, val, max]) => (
+                    {[['Perf', compHorse1.perf, 50], ['Intent', compHorse1.intent, 30], ['Context', compHorse1.context, 20]].map(([label, val, max]) => (
                       <div key={label} className="space-y-1.5">
                         <div className="flex justify-between text-[9px] font-bold uppercase text-white/40"><span>{label}</span><span>{val}/{max}</span></div>
                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-orange-600" style={{ width: `${(val/max)*100}%` }} /></div>
@@ -303,7 +325,6 @@ const App = () => {
                 </div>
               </div>
 
-              {/* CHEVAL 2 */}
               <div className="space-y-6">
                 <select 
                   value={compHorse2.id}
@@ -316,7 +337,7 @@ const App = () => {
                 <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
                   <div className="text-4xl font-black text-orange-500 italic mb-6">{compHorse2.rpi}<span className="text-xs text-white/40 uppercase ml-1">pts</span></div>
                   <div className="space-y-4">
-                    {[['Perf', compHorse2.perf, 50], ['Intent', compHorse2.intent, 25], ['Context', compHorse2.context, 25]].map(([label, val, max]) => (
+                    {[['Perf', compHorse2.perf, 50], ['Intent', compHorse2.intent, 30], ['Context', compHorse2.context, 20]].map(([label, val, max]) => (
                       <div key={label} className="space-y-1.5">
                         <div className="flex justify-between text-[9px] font-bold uppercase text-white/40"><span>{label}</span><span>{val}/{max}</span></div>
                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-orange-600" style={{ width: `${(val/max)*100}%` }} /></div>
@@ -330,7 +351,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION CLASSEMENTS */}
       <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -374,7 +394,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION YOUTUBE */}
       <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12">
@@ -389,7 +408,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION TICKET DU JOUR */}
       <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-12 flex flex-col items-center">
@@ -425,7 +443,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
         
