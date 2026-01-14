@@ -32,6 +32,7 @@ const SHEET_URLS = {
   TRAINERS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-gp9qlf4bEk3vMQuOp4WNickKworuWoP0P-Vgr5PtTE5hn-vkJhrC5GD3INH5T0WUbnlLfGtLMtiu/pub?output=csv"
 };
 
+// --- INITIALISATION GOOGLE ANALYTICS ---
 const initGA = (id) => {
   if (typeof window !== 'undefined' && !document.getElementById('google-analytics')) {
     const script1 = document.createElement('script');
@@ -58,6 +59,7 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
+  // --- DATA RPI v2.1 ---
   const horsesData = [
   { "id": 1, "name": "KAHUNA", "rpi": 91.5, "perf": 46.0, "intent": 22.5, "context": 23.0, "tactic": "EXTRA SUR LE PARCOURS (3/3). Corde 6 idéale. Dernière minute chuchotée." },
   { "id": 2, "name": "WATCH HIM", "rpi": 78.4, "perf": 40.0, "intent": 19.5, "context": 18.9, "tactic": "Favori spéculatif. 77% de réussite PSF mais doit rassurer sur la fraîcheur." },
@@ -176,23 +178,33 @@ const App = () => {
           <h1 className="text-5xl md:text-8xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 leading-none tracking-tighter uppercase italic">
             L'Information <span className="text-orange-600">Data</span><br />au service du Turf.
           </h1>
+          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+            Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
+          </p>
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#youtube" className="w-full sm:w-1/2 bg-slate-50 hover:bg-slate-100 border border-slate-200 px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase text-slate-900 flex items-center justify-center">
-                DOSSIERS VIDÉOS
+              <a href="#youtube" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all text-center uppercase shadow-xl shadow-orange-600/20 flex items-center justify-center">
+                DERNIÈRE VIDÉO
               </a>
             </div>
-            {/* NOUVEAUX BOUTONS REDIRECTION FLUIDE */}
+            
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 JOCKEYS <Trophy className="w-5 h-5" />
               </a>
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 ENTRAÎNEURS <UserCheck className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* BOUTON TICKET DU JOUR AJOUTÉ */}
+            <div className="w-full">
+              <a href="#ticket" className="w-full bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
+                LE TICKET DU JOUR <Ticket className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -247,7 +259,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* SECTION CLASSEMENTS (RÉINTÉGRÉE POUR DÉFILEMENT FLUIDE) */}
+      {/* SECTION CLASSEMENTS */}
       <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -307,7 +319,7 @@ const App = () => {
       </section>
 
       {/* SECTION TICKET DU JOUR */}
-      <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center">
+      <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-12 flex flex-col items-center">
              <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-6 font-black uppercase text-xs italic tracking-widest leading-none">Analyse Quinté</div>
@@ -343,14 +355,33 @@ const App = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-100 py-20 text-center px-6">
-        <span className="text-2xl font-black italic uppercase text-slate-900">RENARD<span className="text-orange-600">TURF</span></span>
-        <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto my-10 font-black uppercase text-[10px] tracking-widest flex flex-col md:flex-row items-center justify-center gap-4">
+      <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
+        <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
+        
+        <div className="bg-yellow-400 text-slate-900 p-4 rounded-xl max-w-4xl mx-auto mb-8 w-full font-black uppercase text-[10px] md:text-xs tracking-widest flex flex-col md:flex-row items-center justify-center gap-4 shadow-sm">
            <span>🔞 INTERDIT AUX MOINS DE 18 ANS</span>
-           <span className="hidden md:block">|</span>
-           <span>09 74 75 13 13</span>
+           <span className="hidden md:block text-yellow-600">|</span>
+           <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13</span>
         </div>
-        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.4em] italic leading-none">© 2026 RENARD TURF - DATA & ANALYSE</p>
+
+        <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+           <button onClick={() => setActiveLegalModal('mentions')}>Mentions Légales</button>
+           <button onClick={() => setActiveLegalModal('gaming')}>Jeu Responsable</button>
+        </div>
+
+        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
+          © 2026 RENARD TURF - RÉDACTION & ANALYSE DATA
+        </p>
+
+        {activeLegalModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-md bg-slate-900/40">
+            <div className="bg-white w-full max-w-2xl rounded-[2.5rem] p-10 relative text-left shadow-2xl">
+              <button onClick={() => setActiveLegalModal(null)} className="absolute top-6 right-6 font-black uppercase text-xs">Fermer [X]</button>
+              <h3 className="text-2xl font-black uppercase italic mb-6">{activeLegalModal === 'mentions' ? 'Mentions Légales' : 'Charte Jeu Responsable'}</h3>
+              <p className="text-slate-500 text-xs leading-relaxed italic">RenardTurf est un média indépendant d'analyse hippique. Nous ne sommes pas un opérateur de jeux. Jouez avec modération.</p>
+            </div>
+          </div>
+        )}
       </footer>
     </div>
   );
