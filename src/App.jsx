@@ -60,22 +60,22 @@ const App = () => {
 
   // --- DATA RPI v2.1 ---
   const horsesData = [
-  { "id": 1, "name": "CHITCHAT", "rpi": 92.2, "perf": 46.5, "intent": 26.5, "context": 19.2, "tactic": "Le Spécialiste (60%). Chrono 1'11''1. Stalle 1 (36%) idéale pour prendre la tête." },
-  { "id": 2, "name": "HISTORIC DAY", "rpi": 52.4, "perf": 22.0, "intent": 15.0, "context": 15.4, "tactic": "Stalle 2 correcte mais manque de références chronos sur le parcours." },
-  { "id": 3, "name": "HYDROMEL", "rpi": 88.6, "perf": 44.5, "intent": 28.0, "context": 16.1, "tactic": "100% avec Raffin (3/3). 75% réussite parcours. Vise le podium." },
-  { "id": 4, "name": "HOLD UP RANAIS", "rpi": 84.4, "perf": 42.2, "intent": 23.2, "context": 19.0, "tactic": "Record 1'10''9. Duo G. Martin (75%). Candidat sérieux aux places." },
-  { "id": 5, "name": "GUCCI DE BARB", "rpi": 66.8, "perf": 32.0, "intent": 20.5, "context": 14.3, "tactic": "73% réussite avec Daugeard mais doit monter en condition." },
-  { "id": 6, "name": "TURE L.A.", "rpi": 90.4, "perf": 45.0, "intent": 25.5, "context": 19.9, "tactic": "Position idéale derrière l'autostart (41 % de réussite pour la stalle 6). Avec Mottier et Forme Exceptionnelle. Base." },
-  { "id": 7, "name": "GUMP DU PONCELET", "rpi": 87.5, "perf": 43.0, "intent": 27.0, "context": 17.5, "tactic": "Repéré écurie. 100% déferré (11/11). Capable de gagner si parcours clair." },
-  { "id": 8, "name": "FORREST GUMP SET", "rpi": 86.9, "perf": 43.5, "intent": 24.0, "context": 19.4, "tactic": "Spécialiste (3/4). Stalle 8 (38%). Note 15/20. Très performant sur ce profil." },
-  { "id": 9, "name": "GLAMOUR YOMA", "rpi": 64.2, "perf": 30.0, "intent": 18.0, "context": 16.2, "tactic": "Cote élevée attendue. Doit rassurer sur sa vitesse finale." },
-  { "id": 10, "name": "GRAZIELA D'EL", "rpi": 80.1, "perf": 41.0, "intent": 22.5, "context": 16.6, "tactic": "La Découverte. Chrono 1'11''4. Score 10/16 sur le parcours. Outsider amusant." },
-  { "id": 11, "name": "FALCO DU HAMEL", "rpi": 62.5, "perf": 29.0, "intent": 17.0, "context": 16.5, "tactic": "Chrono 1'11''4 mais position en seconde ligne handicapante." },
-  { "id": 12, "name": "NICE PRESENT", "rpi": 85.3, "perf": 42.5, "intent": 24.0, "context": 18.8, "tactic": "Record parcours 1'10''9. 7/8 dans les Quintés. Malgré la 2e ligne, priorité." },
-  { "id": 13, "name": "CHESTNUT", "rpi": 88.1, "perf": 44.0, "intent": 26.5, "context": 17.6, "tactic": "Duo Abrivard/Redén (100%). Chrono 1'11''2. Grande piste (6/7)." },
-  { "id": 14, "name": "FERGIE HIGHLAND", "rpi": 72.8, "perf": 35.0, "intent": 21.0, "context": 16.8, "tactic": "Chrono 1'11''. 50% de réussite sur le parcours. Pour une 5e place." },
-  { "id": 15, "name": "CERTAINLY", "rpi": 76.5, "perf": 38.0, "intent": 21.5, "context": 17.0, "tactic": "Suèdois,C'est un excellent complément de ticket pour les places, capable de brouiller les cartes si le rythme est soutenu." },
-  { "id": 16, "name": "GOELAND DE JANZE", "rpi": 74.2, "perf": 36.5, "intent": 22.0, "context": 15.7, "tactic": "Note 13/20. 100% avec Nivard (1 place). Vise une petite place." }
+  { "id": 1, "name": "HASAPIKO", "rpi": 85.5, "perf": 44.0, "intent": 27.5, "context": 14.0, "tactic": "Duo S. Wattel / T. Bachelot d'élite (38%). Note maximale de 16/20, doit simplement gérer ses 60kg et sa corde 12." },
+  { "id": 2, "name": "DON'T SHUT ME DOWN", "rpi": 79.1, "perf": 41.0, "intent": 24.1, "context": 14.0, "tactic": "Entraînement P.& J. Brandt leader (48%). Associée à C. Demuro, 2e meilleur jockey actuel affichant 36% de réussite." },
+  { "id": 3, "name": "BARBATE", "rpi": 89.4, "perf": 45.0, "intent": 26.4, "context": 18.0, "tactic": "Spécialiste de Y. Barberot avec 100% de réussite ici. Corde 3 et monte de A. Madamet pour confirmer son sans-faute sur le parcours." },
+  { "id": 4, "name": "COSMIC FRONT", "rpi": 86.7, "perf": 44.2, "intent": 25.5, "context": 17.0, "tactic": "Extra sur ce tracé (2/2) pour N. Clément. S. Pasquier affiche 67% de réussite avec elle, garantissant une motivation maximale." },
+  { "id": 5, "name": "ZILRAK", "rpi": 84.8, "perf": 42.0, "intent": 24.8, "context": 18.0, "tactic": "78% PSF pour l'écurie Butel & Beaunez. A. Crastus est très performant avec ce cheval (75% de réussite) et dispose de la corde 2." },
+  { "id": 6, "name": "NASDAQ", "rpi": 88.1, "perf": 46.1, "intent": 24.0, "context": 18.0, "tactic": "Invaincu à Deauville pour Mme Y. Vollmer. Duo avec L. Boisseau performant à 67%, idéalement placé avec la corde 4." },
+  { "id": 7, "name": "ZELZARI", "rpi": 79.8, "perf": 43.5, "intent": 21.3, "context": 15.0, "tactic": "Aptitude totale surface/parcours (100%) pour D. Mele. M. Vélon devra compenser la pénalité de poids pour viser le podium." },
+  { "id": 8, "name": "IDEAL KING", "rpi": 74.2, "perf": 38.5, "intent": 22.0, "context": 13.7, "tactic": "Entraîné par V. Luka et associé à D. Santiago, top jockey du moment (39%). Valeur en baisse, guette une place malgré la corde 15." },
+  { "id": 9, "name": "HAVIASSOR", "rpi": 76.5, "perf": 37.0, "intent": 24.0, "context": 15.5, "tactic": "Duo P. de Chevigny / M. Grandin affichant 100% de réussite. Candidat possible pour pimenter les rapports en fin de combinaison." },
+  { "id": 10, "name": "INCREMENTAL", "rpi": 81.2, "perf": 42.5, "intent": 24.7, "context": 14.0, "tactic": "Invaincu sur le tracé pour N. Caullery. Le couple avec T. Trullier est au sommet de la confiance avec 100% de réussite." },
+  { "id": 11, "name": "KALEO PALACE", "rpi": 78.8, "perf": 40.0, "intent": 24.8, "context": 14.0, "tactic": "A. Couétil affiche 35% de réussite récente. Associé à P. Remoué, ce concurrent revient sur un parcours qu'il affectionne." },
+  { "id": 12, "name": "DER SHTERN", "rpi": 55.4, "perf": 32.0, "intent": 12.0, "context": 11.4, "tactic": "Entraîné par G. Fourrier et monté par L. Poggionovo. Note de confiance la plus basse (8/20), manque de références à ce niveau." },
+  { "id": 13, "name": "ALMACADO GREE", "rpi": 76.1, "perf": 39.5, "intent": 22.1, "context": 14.5, "tactic": "C. Fey fait appel à E. Hardouin. Réalise de bonnes performances PSF (5/7) mais sa valeur est désormais élevée." },
+  { "id": 14, "name": "STARAC", "rpi": 75.3, "perf": 36.5, "intent": 23.5, "context": 15.3, "tactic": "F. Chappet (34% réussite) tente les œillères avec A. Lemaitre. Facteur X de la course pour une surprise en seconde ligne." },
+  { "id": 15, "name": "KER STORMY", "rpi": 72.9, "perf": 35.0, "intent": 23.4, "context": 14.5, "tactic": "N. Leenders l'équipe d'œillères et l'associe à A. Hamelin. Valeur ajustée à la baisse pour tenter d'accrocher une petite place." },
+  { "id": 16, "name": "TIC TAC", "rpi": 73.8, "perf": 38.0, "intent": 21.3, "context": 14.5, "tactic": "Entraînement H.-A. Pantall avec M. Marquette. 75% de réussite PSF mais semble barré par les favoris de la première ligne." }
 ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
@@ -419,20 +419,20 @@ const App = () => {
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
               <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
                  <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Vincennes R1C1</div>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Deauville R1C8</div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[1, 6].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[3, 6].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[1, 6, 3, 13, 7, 8, 12, 4].map((num, i) => (
+                       {[3, 6, 4, 1, 5, 10, 7, 2].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
