@@ -28,7 +28,7 @@ import {
 
 // --- CONFIGURATION GOOGLE SHEETS ---
 const SHEET_URLS = {
-  JOCKEYS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH61koCV9FgrkJfYVNQMlseDY2K4R54ClxM-tkM2vwb0Dvbwyb1KYiimPdZODPaFbXW40VrVUJjFqW/pub?output=csv",
+  JOCKEYS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH61koCV9FgrkJfYVNQMlseDY2K4R54ClxM-tkM2vwb0Dvbwyb1KYimPdZODPaFbXW40VrVUJjFqW/pub?output=csv",
   TRAINERS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-gp9qlf4bEk3vMQuOp4WNickKworuWoP0P-Vgr5PtTE5hn-vkJhrC5GD3INH5T0WUbnlLfGtLMtiu/pub?output=csv"
 };
 
@@ -314,6 +314,13 @@ const App = () => {
                       </div>
                     ))}
                   </div>
+                  {/* AJOUT DE L'ANALYSE DANS LE COMPARATEUR */}
+                  <div className="mt-6 pt-4 border-t border-white/10 italic">
+                    <p className="text-white/60 text-[11px] leading-relaxed">
+                      <span className="text-orange-500 font-black uppercase not-italic mr-2">Verdict :</span>
+                      "{compHorse1.tactic}"
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -335,6 +342,13 @@ const App = () => {
                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-orange-600" style={{ width: `${(val/max)*100}%` }} /></div>
                       </div>
                     ))}
+                  </div>
+                  {/* AJOUT DE L'ANALYSE DANS LE COMPARATEUR */}
+                  <div className="mt-6 pt-4 border-t border-white/10 italic">
+                    <p className="text-white/60 text-[11px] leading-relaxed">
+                      <span className="text-orange-500 font-black uppercase not-italic mr-2">Verdict :</span>
+                      "{compHorse2.tactic}"
+                    </p>
                   </div>
                 </div>
               </div>
