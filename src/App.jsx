@@ -66,19 +66,11 @@ const App = () => {
   { "id": 4, "name": "COSMIC FRONT", "rpi": 86.7, "perf": 44.2, "intent": 25.5, "context": 17.0, "tactic": "Extra sur ce tracé (2/2) pour N. Clément. S. Pasquier affiche 67% de réussite avec elle, garantissant une motivation maximale." },
   { "id": 5, "name": "ZILRAK", "rpi": 84.8, "perf": 42.0, "intent": 24.8, "context": 18.0, "tactic": "78% PSF pour l'écurie Butel & Beaunez. A. Crastus est très performant avec ce cheval (75% de réussite) et dispose de la corde 2." },
   { "id": 6, "name": "NASDAQ", "rpi": 88.1, "perf": 46.1, "intent": 24.0, "context": 18.0, "tactic": "Invaincu à Deauville pour Mme Y. Vollmer. Duo avec L. Boisseau performant à 67%, idéalement placé avec la corde 4." },
-  { "id": 7, "name": "ZELZARI", "rpi": 79.8, "perf": 43.5, "intent": 21.3, "context": 15.0, "tactic": "Aptitude totale surface/parcours (100%) pour D. Mele. M. Vélon devra compenser la pénalité de poids pour viser le podium." },
-  { "id": 8, "name": "IDEAL KING", "rpi": 74.2, "perf": 38.5, "intent": 22.0, "context": 13.7, "tactic": "Entraîné par V. Luka et associé à D. Santiago, top jockey du moment (39%). Valeur en baisse, guette une place malgré la corde 15." },
-  { "id": 9, "name": "HAVIASSOR", "rpi": 76.5, "perf": 37.0, "intent": 24.0, "context": 15.5, "tactic": "Duo P. de Chevigny / M. Grandin affichant 100% de réussite. Candidat possible pour pimenter les rapports en fin de combinaison." },
   { "id": 10, "name": "INCREMENTAL", "rpi": 81.2, "perf": 42.5, "intent": 24.7, "context": 14.0, "tactic": "Invaincu sur le tracé pour N. Caullery. Le couple avec T. Trullier est au sommet de la confiance avec 100% de réussite." },
-  { "id": 11, "name": "KALEO PALACE", "rpi": 78.8, "perf": 40.0, "intent": 24.8, "context": 14.0, "tactic": "A. Couétil affiche 35% de réussite récente. Associé à P. Remoué, ce concurrent revient sur un parcours qu'il affectionne." },
-  { "id": 12, "name": "DER SHTERN", "rpi": 55.4, "perf": 32.0, "intent": 12.0, "context": 11.4, "tactic": "Entraîné par G. Fourrier et monté par L. Poggionovo. Note de confiance la plus basse (8/20), manque de références à ce niveau." },
-  { "id": 13, "name": "ALMACADO GREE", "rpi": 76.1, "perf": 39.5, "intent": 22.1, "context": 14.5, "tactic": "C. Fey fait appel à E. Hardouin. Réalise de bonnes performances PSF (5/7) mais sa valeur est désormais élevée." },
-  { "id": 14, "name": "STARAC", "rpi": 75.3, "perf": 36.5, "intent": 23.5, "context": 15.3, "tactic": "F. Chappet (34% réussite) tente les œillères avec A. Lemaitre. Facteur X de la course pour une surprise en seconde ligne." },
-  { "id": 15, "name": "KER STORMY", "rpi": 72.9, "perf": 35.0, "intent": 23.4, "context": 14.5, "tactic": "N. Leenders l'équipe d'œillères et l'associe à A. Hamelin. Valeur ajustée à la baisse pour tenter d'accrocher une petite place." },
-  { "id": 16, "name": "TIC TAC", "rpi": 73.8, "perf": 38.0, "intent": 21.3, "context": 14.5, "tactic": "Entraînement H.-A. Pantall avec M. Marquette. 75% de réussite PSF mais semble barré par les favoris de la première ligne." }
+  { "id": 11, "name": "KALEO PALACE", "rpi": 78.8, "perf": 40.0, "intent": 24.8, "context": 14.0, "tactic": "A. Couétil affiche 35% de réussite récente. Associé à P. Remoué, ce concurrent revient sur un parcours qu'il affectionne." }
 ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
   
   const [compHorse1, setCompHorse1] = useState(horsesData[0]);
   const [compHorse2, setCompHorse2] = useState(horsesData[1]);
@@ -415,16 +407,39 @@ const App = () => {
              <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight text-center">La Sélection Quinté 🎫</h2>
           </div>
 
+          {/* FICHE TECHNIQUE DE LA COURSE */}
+          <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Deauville R1C8</span>
+              <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                <History size={12} className="text-orange-600" /> Départ 20h15 • 16 Janvier 2026
+              </span>
+            </div>
+            <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
+              Prix du Pays d'Ouche
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "Discipline", val: "Plat" },
+                { label: "Distance", val: "2 500m" },
+                { label: "Surface", val: "PSF" },
+                { label: "Corde", val: "À Droite" },
+                { label: "Partants", val: "16 [4-11 ans]" },
+                { label: "Allocation", val: "50 900€" }
+              ].map((info, idx) => (
+                <div key={idx} className="flex flex-col">
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
+                  <span className="text-xs font-bold text-slate-900 uppercase">{info.val}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
               <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
-                 <div className="flex flex-col gap-1">
-                    <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-relaxed">
-                      C8 Prix Du Pays D'Ouche • Plat • 50 900€ • 2 500m • 16 partants • [4-11] ans • Piste en sable fibre • Corde à droite
-                    </p>
-                 </div>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Deauville R1C8</div>
+                 <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
+                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Quinté+</div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
