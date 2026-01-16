@@ -418,7 +418,12 @@ const App = () => {
           <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
               <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
-                 <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
+                 <div className="flex flex-col gap-1">
+                    <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-relaxed">
+                      C8 Prix Du Pays D'Ouche • Plat • 50 900€ • 2 500m • 16 partants • [4-11] ans • Piste en sable fibre • Corde à droite
+                    </p>
+                 </div>
                  <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Deauville R1C8</div>
               </div>
 
