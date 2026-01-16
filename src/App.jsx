@@ -20,8 +20,8 @@ import {
   Info,
   Activity,
   X,
-  Menu, // Hamburger
-  Trophy, // Classements
+  Menu,
+  Trophy,
   FileText,
   UserCheck
 } from 'lucide-react';
@@ -58,101 +58,28 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.2 (16 PARTANTS) ---
+  // --- DATA RPI v2.2 (14 PARTANTS - PRIX DE GRANVILLE) ---
+  // Correction : Mapping des noms de champs pour rester compatible avec le reste du code
   const horsesData = [
- {
-  "course": "Prix de Granville",
-  "date": "17/01/2026",
-  "rpi_data": [
-    {
-      "n": 1,
-      "cheval": "JOLYDOLE",
-      "rpi": 75.0,
-      "analyse": "Duo avec A. Abrivard invaincu en une tentative. Ses statistiques sur le parcours sont moyennes avec 33% de réussite."
-    },
-    {
-      "n": 2,
-      "cheval": "IVRIG VIKING",
-      "rpi": 68.0,
-      "analyse": "Plus faible réussite statistique sur le parcours avec seulement 22%. Il reste une chance secondaire dans ce lot."
-    },
-    {
-      "n": 3,
-      "cheval": "ICÔNE D'ÉRABLE",
-      "rpi": 78.4,
-      "analyse": "Un profil à racheter après des ennuis de trafic. Excellente réussite de 80% sur ce tracé précis."
-    },
-    {
-      "n": 4,
-      "cheval": "INHERIT",
-      "rpi": 86.5,
-      "analyse": "Association parfaite avec son driver (100% de réussite). Un solide prétendant aux premières places vu ses statistiques."
-    },
-    {
-      "n": 5,
-      "cheval": "JASMINE DE VAU",
-      "rpi": 89.8,
-      "analyse": "Invaincue sur ce tracé en six tentatives. Deuxième meilleur chrono du lot, elle est incontournable."
-    },
-    {
-      "n": 6,
-      "cheval": "IRON DU GERS",
-      "rpi": 84.7,
-      "analyse": "Particulièrement efficace lorsqu'il est présenté pieds nus. Solide expérience des épreuves de ce niveau."
-    },
-    {
-      "n": 7,
-      "cheval": "ICARE DU BERYL",
-      "rpi": 76.5,
-      "analyse": "A déjà bien fait avec son pilote actuel. Devrait confirmer ses bonnes dispositions actuelles pour une place."
-    },
-    {
-      "n": 8,
-      "cheval": "JALENDRA DE MALAC",
-      "rpi": 92.5,
-      "analyse": "La jument de la course associée au driver leader. Ses statistiques avec Raffin sont exceptionnelles."
-    },
-    {
-      "n": 9,
-      "cheval": "HOVE PONT VAUTIER",
-      "rpi": 65.0,
-      "analyse": "Statistiques sur le parcours en retrait. Doit montrer un tout autre visage pour espérer s'immiscer dans la combinaison."
-    },
-    {
-      "n": 10,
-      "cheval": "HIGH PROPULSION",
-      "rpi": 77.2,
-      "analyse": "L'aptitude à la grande piste de Vincennes est avérée. Possède une expérience significative sur ce tracé."
-    },
-    {
-      "n": 11,
-      "cheval": "JESON BOY",
-      "rpi": 81.1,
-      "analyse": "Duo pilote/cheval très performant avec plus de 90% de réussite. Une chance régulière pour les places."
-    },
-    {
-      "n": 12,
-      "cheval": "IRON MESLOIS",
-      "rpi": 71.5,
-      "analyse": "Détient un chrono de 1'12'9 sur le parcours. Son taux de réussite reste cependant juste en dessous de 50%."
-    },
-    {
-      "n": 13,
-      "cheval": "JASON GINYU",
-      "rpi": 88.2,
-      "analyse": "Détenteur du record chronométrique absolu de l'épreuve sur ce tracé. Grande aptitude confirmée par les chiffres."
-    },
-    {
-      "n": 14,
-      "cheval": "GUERRIER CASTELETS",
-      "rpi": 82.9,
-      "analyse": "Bénéficie d'une monte d'élite et d'une entente parfaite avec son driver. Très compétitif pour le Top 5."
-    }
+    { "id": 1, "name": "JOLYDOLE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "tactic": "Duo avec A. Abrivard invaincu en une tentative. Ses statistiques sur le parcours sont moyennes avec 33% de réussite." },
+    { "id": 2, "name": "IVRIG VIKING", "rpi": 68.0, "perf": 35.0, "intent": 20.0, "context": 13.0, "tactic": "Plus faible réussite statistique sur le parcours avec seulement 22%. Il reste une chance secondaire dans ce lot." },
+    { "id": 3, "name": "ICÔNE D'ÉRABLE", "rpi": 78.4, "perf": 40.0, "intent": 23.4, "context": 15.0, "tactic": "Un profil à racheter après des ennuis de trafic. Excellente réussite de 80% sur ce tracé précis." },
+    { "id": 4, "name": "INHERIT", "rpi": 86.5, "perf": 44.0, "intent": 26.5, "context": 16.0, "tactic": "Association parfaite avec son driver (100% de réussite). Un solide prétendant aux premières places vu ses statistiques." },
+    { "id": 5, "name": "JASMINE DE VAU", "rpi": 89.8, "perf": 46.0, "intent": 25.8, "context": 18.0, "tactic": "Invaincue sur ce tracé en six tentatives. Deuxième meilleur chrono du lot, elle est incontournable." },
+    { "id": 6, "name": "IRON DU GERS", "rpi": 84.7, "perf": 42.0, "intent": 25.7, "context": 17.0, "tactic": "Particulièrement efficace lorsqu'il est présenté pieds nus. Solide expérience des épreuves de ce niveau." },
+    { "id": 7, "name": "ICARE DU BERYL", "rpi": 76.5, "perf": 39.0, "intent": 22.5, "context": 15.0, "tactic": "A déjà bien fait avec son pilote actuel. Devrait confirmer ses bonnes dispositions actuelles pour une place." },
+    { "id": 8, "name": "JALENDRA DE MALAC", "rpi": 92.5, "perf": 48.0, "intent": 26.5, "context": 18.0, "tactic": "La jument de la course associée au driver leader. Ses statistiques avec Raffin sont exceptionnelles." },
+    { "id": 9, "name": "HOVE PONT VAUTIER", "rpi": 65.0, "perf": 32.0, "intent": 20.0, "context": 13.0, "tactic": "Statistiques sur le parcours en retrait. Doit montrer un tout autre visage pour espérer s'immiscer dans la combinaison." },
+    { "id": 10, "name": "HIGH PROPULSION", "rpi": 77.2, "perf": 40.0, "intent": 21.2, "context": 16.0, "tactic": "L'aptitude à la grande piste de Vincennes est avérée. Possède une expérience significative sur ce tracé." },
+    { "id": 11, "name": "JESON BOY", "rpi": 81.1, "perf": 41.0, "intent": 25.1, "context": 15.0, "tactic": "Duo pilote/cheval très performant avec plus de 90% de réussite. Une chance régulière pour les places." },
+    { "id": 12, "name": "IRON MESLOIS", "rpi": 71.5, "perf": 37.0, "intent": 20.5, "context": 14.0, "tactic": "Détient un chrono de 1'12'9 sur le parcours. Son taux de réussite reste cependant juste en dessous de 50%." },
+    { "id": 13, "name": "JASON GINYU", "rpi": 88.2, "perf": 45.0, "intent": 26.2, "context": 17.0, "tactic": "Détenteur du record chronométrique absolu de l'épreuve sur ce tracé. Grande aptitude confirmée par les chiffres." },
+    { "id": 14, "name": "GUERRIER CASTELETS", "rpi": 82.9, "perf": 42.0, "intent": 24.9, "context": 16.0, "tactic": "Bénéficie d'une monte d'élite et d'une entente parfaite avec son driver. Très compétitif pour le Top 5." }
   ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[0]);
-  const [compHorse2, setCompHorse2] = useState(horsesData[1]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 8) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData[4]); // Jasmine de Vau
+  const [compHorse2, setCompHorse2] = useState(horsesData[7]); // Jalendra de Malac
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -238,6 +165,7 @@ const App = () => {
         )}
       </nav>
 
+      {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -290,6 +218,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* RPI Tool */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
@@ -360,6 +289,7 @@ const App = () => {
             </div>
           </div>
 
+          {/* Comparateur */}
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
             <div className="flex flex-col items-center mb-10 text-center">
               <div className="inline-flex items-center gap-2 bg-orange-600/20 text-orange-500 px-4 py-1.5 rounded-full mb-4">
@@ -374,7 +304,7 @@ const App = () => {
                 VS
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 text-left">
                 <select 
                   value={compHorse1.id}
                   onChange={(e) => setCompHorse1(horsesData.find(h => h.id === parseInt(e.target.value)))}
@@ -402,7 +332,7 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 text-left">
                 <select 
                   value={compHorse2.id}
                   onChange={(e) => setCompHorse2(horsesData.find(h => h.id === parseInt(e.target.value)))}
@@ -434,6 +364,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* Rankings Section */}
       <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -453,7 +384,7 @@ const App = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
               <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><UserCheck size={16} className="text-orange-600" /> Top Jockeys</h3>
-              <div className="space-y-3">
+              <div className="space-y-3 text-left">
                 {rankings.jockeys.filter(j => j.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
                   <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
                     <span className="font-bold text-xs">{i+1}. {item.name}</span>
@@ -464,7 +395,7 @@ const App = () => {
             </div>
             <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
               <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><Trophy size={16} className="text-orange-600" /> Top Entraîneurs</h3>
-              <div className="space-y-3">
+              <div className="space-y-3 text-left">
                 {rankings.trainers.filter(t => t.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
                   <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
                     <span className="font-bold text-xs">{i+1}. {item.name}</span>
@@ -477,6 +408,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* YouTube Section */}
       <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12">
@@ -491,6 +423,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* Ticket Quinté Section */}
       <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-12 flex flex-col items-center">
@@ -500,22 +433,22 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Deauville R1C8</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Vincennes R1C4</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 20h15 • 16 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 15h15 • 17 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix du Pays d'Ouche
+              Prix de Granville
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Plat" },
-                { label: "Distance", val: "2 500m" },
-                { label: "Surface", val: "PSF" },
-                { label: "Corde", val: "À Droite" },
-                { label: "Partants", val: "16 [4-11 ans]" },
-                { label: "Allocation", val: "50 900€" }
+                { label: "Discipline", val: "Attelé" },
+                { label: "Distance", val: "2 700m" },
+                { label: "Surface", val: "Grande Piste" },
+                { label: "Corde", val: "À Gauche" },
+                { label: "Partants", val: "14 [7-11 ans]" },
+                { label: "Allocation", val: "75 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -536,14 +469,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[3, 6].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[8, 5].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {/* MODIFICATION ICI : SEULEMENT LES 8 PREMIERS POUR LE TICKET */}
-                       {[3, 6, 4, 1, 5, 10, 7, 2].map((num, i) => (
+                       {[8, 5, 13, 4, 6, 14, 11, 3].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
@@ -554,6 +486,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
         
