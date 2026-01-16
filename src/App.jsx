@@ -60,22 +60,94 @@ const App = () => {
 
   // --- DATA RPI v2.2 (16 PARTANTS) ---
   const horsesData = [
-    { "id": 1, "name": "HASAPIKO", "rpi": 85.5, "perf": 44.0, "intent": 27.5, "context": 14.0, "tactic": "Duo S. Wattel / T. Bachelot d'élite (38%). Note maximale de 16/20, doit gérer ses 60kg et la corde 12." },
-    { "id": 2, "name": "DON'T SHUT ME DOWN", "rpi": 79.1, "perf": 41.0, "intent": 24.1, "context": 14.0, "tactic": "Entraînement P.& J. Brandt leader (48%). Associée à C. Demuro, expert de Deauville (36% réussite)." },
-    { "id": 3, "name": "BARBATE", "rpi": 89.4, "perf": 45.0, "intent": 26.4, "context": 18.0, "tactic": "Spécialiste de Y. Barberot (100% réussite ici). Corde 3 et monte de A. Madamet pour confirmer le sans-faute." },
-    { "id": 4, "name": "COSMIC FRONT", "rpi": 86.7, "perf": 44.2, "intent": 25.5, "context": 17.0, "tactic": "Extra sur ce tracé (2/2) pour N. Clément. S. Pasquier affiche 67% de réussite avec elle." },
-    { "id": 5, "name": "ZILRAK", "rpi": 84.8, "perf": 42.0, "intent": 24.8, "context": 18.0, "tactic": "78% PSF pour l'écurie Butel & Beaunez. A. Crastus est très performant (75% réussite) avec la corde 2." },
-    { "id": 6, "name": "NASDAQ", "rpi": 88.1, "perf": 46.1, "intent": 24.0, "context": 18.0, "tactic": "Invaincu à Deauville pour Mme Y. Vollmer. Duo avec L. Boisseau performant à 67%, corde 4 idéale." },
-    { "id": 7, "name": "ZELZARI", "rpi": 79.8, "perf": 43.5, "intent": 21.3, "context": 15.0, "tactic": "Aptitude totale surface/parcours (100%) pour D. Mele. M. Vélon doit compenser la pénalité de poids." },
-    { "id": 8, "name": "IDEAL KING", "rpi": 74.2, "perf": 38.5, "intent": 22.0, "context": 13.7, "tactic": "Entraîné par V. Luka et associé à D. Santiago (39% réussite). Valeur en baisse, guette une place." },
-    { "id": 9, "name": "HAVIASSOR", "rpi": 76.5, "perf": 37.0, "intent": 24.0, "context": 15.5, "tactic": "Duo P. de Chevigny / M. Grandin affichant 100% de réussite. Candidat possible pour les rapports." },
-    { "id": 10, "name": "INCREMENTAL", "rpi": 81.2, "perf": 42.5, "intent": 24.7, "context": 14.0, "tactic": "Invaincu sur le tracé pour N. Caullery. Le couple avec T. Trullier est au sommet (100% réussite)." },
-    { "id": 11, "name": "KALEO PALACE", "rpi": 78.8, "perf": 40.0, "intent": 24.8, "context": 14.0, "tactic": "A. Couétil (35% réussite). Associé à P. Remoué, ce concurrent revient sur un parcours qu'il affectionne." },
-    { "id": 12, "name": "DER SHTERN", "rpi": 55.4, "perf": 32.0, "intent": 12.0, "context": 11.4, "tactic": "Entraînement G. Fourrier. Note de confiance basse (8/20), manque de références à ce niveau." },
-    { "id": 13, "name": "ALMACADO GREE", "rpi": 76.1, "perf": 39.5, "intent": 22.1, "context": 14.5, "tactic": "C. Fey fait appel à E. Hardouin. Bonnes performances PSF (5/7) mais valeur désormais élevée." },
-    { "id": 14, "name": "STARAC", "rpi": 75.3, "perf": 36.5, "intent": 23.5, "context": 15.3, "tactic": "F. Chappet (34% réussite) tente les œillères. Facteur X de la course pour une surprise." },
-    { "id": 15, "name": "KER STORMY", "rpi": 72.9, "perf": 35.0, "intent": 23.4, "context": 14.5, "tactic": "N. Leenders et A. Hamelin. Valeur ajustée à la baisse pour tenter d'accrocher une petite place." },
-    { "id": 16, "name": "TIC TAC", "rpi": 73.8, "perf": 38.0, "intent": 21.3, "context": 14.5, "tactic": "Entraînement Pantall. 75% de réussite PSF mais semble barré par les favoris de tête." }
+ {
+  "course": "Prix de Granville",
+  "date": "17/01/2026",
+  "rpi_data": [
+    {
+      "n": 1,
+      "cheval": "JOLYDOLE",
+      "rpi": 75.0,
+      "analyse": "Duo avec A. Abrivard invaincu en une tentative. Ses statistiques sur le parcours sont moyennes avec 33% de réussite."
+    },
+    {
+      "n": 2,
+      "cheval": "IVRIG VIKING",
+      "rpi": 68.0,
+      "analyse": "Plus faible réussite statistique sur le parcours avec seulement 22%. Il reste une chance secondaire dans ce lot."
+    },
+    {
+      "n": 3,
+      "cheval": "ICÔNE D'ÉRABLE",
+      "rpi": 78.4,
+      "analyse": "Un profil à racheter après des ennuis de trafic. Excellente réussite de 80% sur ce tracé précis."
+    },
+    {
+      "n": 4,
+      "cheval": "INHERIT",
+      "rpi": 86.5,
+      "analyse": "Association parfaite avec son driver (100% de réussite). Un solide prétendant aux premières places vu ses statistiques."
+    },
+    {
+      "n": 5,
+      "cheval": "JASMINE DE VAU",
+      "rpi": 89.8,
+      "analyse": "Invaincue sur ce tracé en six tentatives. Deuxième meilleur chrono du lot, elle est incontournable."
+    },
+    {
+      "n": 6,
+      "cheval": "IRON DU GERS",
+      "rpi": 84.7,
+      "analyse": "Particulièrement efficace lorsqu'il est présenté pieds nus. Solide expérience des épreuves de ce niveau."
+    },
+    {
+      "n": 7,
+      "cheval": "ICARE DU BERYL",
+      "rpi": 76.5,
+      "analyse": "A déjà bien fait avec son pilote actuel. Devrait confirmer ses bonnes dispositions actuelles pour une place."
+    },
+    {
+      "n": 8,
+      "cheval": "JALENDRA DE MALAC",
+      "rpi": 92.5,
+      "analyse": "La jument de la course associée au driver leader. Ses statistiques avec Raffin sont exceptionnelles."
+    },
+    {
+      "n": 9,
+      "cheval": "HOVE PONT VAUTIER",
+      "rpi": 65.0,
+      "analyse": "Statistiques sur le parcours en retrait. Doit montrer un tout autre visage pour espérer s'immiscer dans la combinaison."
+    },
+    {
+      "n": 10,
+      "cheval": "HIGH PROPULSION",
+      "rpi": 77.2,
+      "analyse": "L'aptitude à la grande piste de Vincennes est avérée. Possède une expérience significative sur ce tracé."
+    },
+    {
+      "n": 11,
+      "cheval": "JESON BOY",
+      "rpi": 81.1,
+      "analyse": "Duo pilote/cheval très performant avec plus de 90% de réussite. Une chance régulière pour les places."
+    },
+    {
+      "n": 12,
+      "cheval": "IRON MESLOIS",
+      "rpi": 71.5,
+      "analyse": "Détient un chrono de 1'12'9 sur le parcours. Son taux de réussite reste cependant juste en dessous de 50%."
+    },
+    {
+      "n": 13,
+      "cheval": "JASON GINYU",
+      "rpi": 88.2,
+      "analyse": "Détenteur du record chronométrique absolu de l'épreuve sur ce tracé. Grande aptitude confirmée par les chiffres."
+    },
+    {
+      "n": 14,
+      "cheval": "GUERRIER CASTELETS",
+      "rpi": 82.9,
+      "analyse": "Bénéficie d'une monte d'élite et d'une entente parfaite avec son driver. Très compétitif pour le Top 5."
+    }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
