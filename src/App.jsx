@@ -470,7 +470,8 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[3, 6, 4, 1, 5, 10, 7, 2, 9, 11, 8, 13, 16, 14, 15, 12].map((num, i) => (
+                       {/* MODIFICATION ICI : SEULEMENT LES 8 PREMIERS POUR LE TICKET */}
+                       {[3, 6, 4, 1, 5, 10, 7, 2].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
