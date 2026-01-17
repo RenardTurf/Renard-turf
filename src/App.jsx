@@ -58,23 +58,22 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.2 (14 PARTANTS - PRIX DE GRANVILLE) ---
-  // Correction : Mapping des noms de champs pour rester compatible avec le reste du code
+  // --- DATA RPI v2.2 (14 PARTANTS - PRIX DE CORNULIER) ---
   const horsesData = [
-    { "id": 1, "name": "JOLYDOLE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "tactic": "Duo avec A. Abrivard invaincu en une tentative. Ses statistiques sur le parcours sont moyennes avec 33% de réussite." },
-    { "id": 2, "name": "IVRIG VIKING", "rpi": 68.0, "perf": 35.0, "intent": 20.0, "context": 13.0, "tactic": "Plus faible réussite statistique sur le parcours avec seulement 22%. Il reste une chance secondaire dans ce lot." },
-    { "id": 3, "name": "ICÔNE D'ÉRABLE", "rpi": 78.4, "perf": 40.0, "intent": 23.4, "context": 15.0, "tactic": "Un profil à racheter après des ennuis de trafic. Excellente réussite de 80% sur ce tracé précis." },
-    { "id": 4, "name": "INHERIT", "rpi": 86.5, "perf": 44.0, "intent": 26.5, "context": 16.0, "tactic": "Association parfaite avec son driver (100% de réussite). Un solide prétendant aux premières places vu ses statistiques." },
-    { "id": 5, "name": "JASMINE DE VAU", "rpi": 89.8, "perf": 46.0, "intent": 25.8, "context": 18.0, "tactic": "Invaincue sur ce tracé en six tentatives. Deuxième meilleur chrono du lot, elle est incontournable." },
-    { "id": 6, "name": "IRON DU GERS", "rpi": 84.7, "perf": 42.0, "intent": 25.7, "context": 17.0, "tactic": "Particulièrement efficace lorsqu'il est présenté pieds nus. Solide expérience des épreuves de ce niveau." },
-    { "id": 7, "name": "ICARE DU BERYL", "rpi": 76.5, "perf": 39.0, "intent": 22.5, "context": 15.0, "tactic": "A déjà bien fait avec son pilote actuel. Devrait confirmer ses bonnes dispositions actuelles pour une place." },
-    { "id": 8, "name": "JALENDRA DE MALAC", "rpi": 92.5, "perf": 48.0, "intent": 26.5, "context": 18.0, "tactic": "La jument de la course associée au driver leader. Ses statistiques avec Raffin sont exceptionnelles." },
-    { "id": 9, "name": "HOVE PONT VAUTIER", "rpi": 65.0, "perf": 32.0, "intent": 20.0, "context": 13.0, "tactic": "Statistiques sur le parcours en retrait. Doit montrer un tout autre visage pour espérer s'immiscer dans la combinaison." },
-    { "id": 10, "name": "HIGH PROPULSION", "rpi": 77.2, "perf": 40.0, "intent": 21.2, "context": 16.0, "tactic": "L'aptitude à la grande piste de Vincennes est avérée. Possède une expérience significative sur ce tracé." },
-    { "id": 11, "name": "JESON BOY", "rpi": 81.1, "perf": 41.0, "intent": 25.1, "context": 15.0, "tactic": "Duo pilote/cheval très performant avec plus de 90% de réussite. Une chance régulière pour les places." },
-    { "id": 12, "name": "IRON MESLOIS", "rpi": 71.5, "perf": 37.0, "intent": 20.5, "context": 14.0, "tactic": "Détient un chrono de 1'12'9 sur le parcours. Son taux de réussite reste cependant juste en dessous de 50%." },
-    { "id": 13, "name": "JASON GINYU", "rpi": 88.2, "perf": 45.0, "intent": 26.2, "context": 17.0, "tactic": "Détenteur du record chronométrique absolu de l'épreuve sur ce tracé. Grande aptitude confirmée par les chiffres." },
-    { "id": 14, "name": "GUERRIER CASTELETS", "rpi": 82.9, "perf": 42.0, "intent": 24.9, "context": 16.0, "tactic": "Bénéficie d'une monte d'élite et d'une entente parfaite avec son driver. Très compétitif pour le Top 5." }
+    { "id": 1, "name": "JOLYDOLE", "rpi": 76.2, "perf": 39.5, "intent": 22.0, "context": 14.7, "tactic": "S'entend parfaitement avec son pilote (100% de réussite). Capable de surprendre pour une place en fin de combinaison." },
+    { "id": 2, "name": "IVRIG VIKING", "rpi": 65.4, "perf": 32.0, "intent": 18.4, "context": 15.0, "tactic": "Statistiques en retrait sur le parcours (22%). Aura fort à faire face à une telle opposition." },
+    { "id": 3, "name": "ICÔNE D'ÉRABLE", "rpi": 78.4, "perf": 40.5, "intent": 21.4, "context": 16.5, "tactic": "A racheter impérativement après sa récente malchance. Affiche une belle réussite de 80% sur ce tracé spécifique." },
+    { "id": 4, "name": "INHERIT", "rpi": 88.3, "perf": 44.0, "intent": 27.5, "context": 16.8, "tactic": "Association de confiance (100%) et chrono solide. Un prétendant sérieux au podium au vu de sa forme." },
+    { "id": 5, "name": "JASMINE DE VAU", "rpi": 91.2, "perf": 46.5, "intent": 26.7, "context": 18.0, "tactic": "La spécialiste du tracé avec 6 victoires en 6 tentatives. Son chrono de 1'12\"1 en fait un choix prioritaire." },
+    { "id": 6, "name": "IRON DU GERS", "rpi": 84.1, "perf": 42.0, "intent": 24.1, "context": 18.0, "tactic": "Extra quand il est pieds nus (14 sur 17). Son expérience des gros handicaps est un atout majeur." },
+    { "id": 7, "name": "ICARE DU BERYL", "rpi": 76.5, "perf": 38.0, "intent": 22.5, "context": 16.0, "tactic": "Invaincu sur le parcours en une tentative. Régulier, il guettera la moindre défaillance des favoris." },
+    { "id": 8, "name": "JALENDRA DE MALAC", "rpi": 92.4, "perf": 48.0, "intent": 26.4, "context": 18.0, "tactic": "Duo leader avec Raffin (89% réussite) et gagnante de la course de référence. C'est la base de l'épreuve." },
+    { "id": 9, "name": "HOVE PONT VAUTIER", "rpi": 68.2, "perf": 34.0, "intent": 19.2, "context": 15.0, "tactic": "Performance modeste sur le parcours (36%). Doit rassurer sur son degré de forme actuelle." },
+    { "id": 10, "name": "HIGH PROPULSION", "rpi": 80.5, "perf": 41.5, "intent": 23.0, "context": 16.0, "tactic": "Adore la grande piste (19 sur 24). Sa grande expérience à Vincennes peut l'amener dans le Quinté." },
+    { "id": 11, "name": "JESON BOY", "rpi": 86.7, "perf": 43.5, "intent": 27.2, "context": 16.0, "tactic": "Couple pilote/cheval redoutable avec 91% de réussite. Pratiquement infaillible dans ce genre de configuration." },
+    { "id": 12, "name": "IRON MESLOIS", "rpi": 73.8, "perf": 37.0, "intent": 21.3, "context": 15.5, "tactic": "Détient un chrono de 1'12\"9. Son taux de réussite au parcours (48%) reste correct pour une place." },
+    { "id": 13, "name": "JASON GINYU", "rpi": 89.5, "perf": 46.0, "intent": 25.5, "context": 18.0, "tactic": "Recordman chronométrique du lot (1'11\"8). Son aptitude au tracé est son meilleur argument." },
+    { "id": 14, "name": "GUERRIER CASTELETS", "rpi": 82.8, "perf": 42.0, "intent": 24.8, "context": 16.0, "tactic": "100% de réussite avec Théo Duvaldestin. Un engagement visé qui mérite un large crédit." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 8) || horsesData[0]);
@@ -165,7 +164,6 @@ const App = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -218,7 +216,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* RPI Tool */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
@@ -289,7 +286,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* Comparateur */}
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
             <div className="flex flex-col items-center mb-10 text-center">
               <div className="inline-flex items-center gap-2 bg-orange-600/20 text-orange-500 px-4 py-1.5 rounded-full mb-4">
@@ -364,7 +360,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* Rankings Section */}
       <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -408,7 +403,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* YouTube Section */}
       <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
           <div className="mb-12">
@@ -423,7 +417,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* Ticket Quinté Section */}
       <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-12 flex flex-col items-center">
@@ -435,20 +428,20 @@ const App = () => {
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Vincennes R1C4</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 15h15 • 17 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 15h15 • 18 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix de Granville
+              Prix de Cornulier
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Attelé" },
+                { label: "Discipline", val: "Monté" },
                 { label: "Distance", val: "2 700m" },
                 { label: "Surface", val: "Grande Piste" },
                 { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "14 [7-11 ans]" },
-                { label: "Allocation", val: "75 000€" }
+                { label: "Partants", val: "14 [4-11 ans]" },
+                { label: "Allocation", val: "700 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -475,7 +468,7 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[8, 5, 13, 4, 6, 14, 11, 3].map((num, i) => (
+                       {[8, 5, 13, 4, 11, 6, 14, 10].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
@@ -486,7 +479,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
         
