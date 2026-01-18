@@ -58,23 +58,29 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.2 (LUNDI 19/01 - PRIX CHARLES GASTAUD) ---
+  // --- DATA RPI v2.2 (LUNDI 19 JANVIER - PRIX CHARLES GASTAUD) ---
   const horsesData = [
-    { "id": 4, "name": "OTOMAI", "rpi": 93.5, "perf": 48.0, "intent": 27.5, "context": 18.0, "tactic": "Duo avec Eyquem invaincu (100%). Dépend d'un entraînement leader (51%) et d'une préparation optimale. C'est la base logique." },
-    { "id": 6, "name": "NOFIX", "rpi": 91.2, "perf": 47.0, "intent": 26.2, "context": 18.0, "tactic": "Spécialiste des Quinté (5/6). Très régulier à ce niveau et performant avec son entraîneur actuel. Incontournable." },
-    { "id": 2, "name": "PASSINGSHOT", "rpi": 89.8, "perf": 45.5, "intent": 27.3, "context": 17.0, "tactic": "Extra sur 1500m (5/6) et associé à Orani (71%). Entourage très optimiste pour cet objectif visé." },
-    { "id": 7, "name": "GITANO", "rpi": 88.4, "perf": 46.0, "intent": 26.4, "context": 16.0, "tactic": "Affichant 6 sur 7 depuis ses débuts. Jockey d'élite retenu de longue date pour ce parcours spécifique." },
-    { "id": 10, "name": "VICTORY FOLIE", "rpi": 86.7, "perf": 43.5, "intent": 25.2, "context": 18.0, "tactic": "100% de réussite sur cet hippodrome. A fini avec des ressources dernièrement, rachat attendu ici." },
-    { "id": 16, "name": "BABY HARTWOOD", "rpi": 84.5, "perf": 42.0, "intent": 25.5, "context": 17.0, "tactic": "Note remarquée le 10 janvier. S'adapte à toutes les configurations et sera montée par Demuro. Bel outsider." },
-    { "id": 11, "name": "STUPÉFIANTE", "rpi": 82.1, "perf": 41.5, "intent": 25.6, "context": 15.0, "tactic": "En forme ascendante avec 5 podiums consécutifs. S'entend parfaitement avec son pilote actuel (100%)." },
-    { "id": 5, "name": "FÉLIX AUX ORMES", "rpi": 80.9, "perf": 40.5, "intent": 24.4, "context": 16.0, "tactic": "Très à l'aise sur cette piste (67% de réussite). Forme saisonnière confirmée, peut viser une place." },
-    { "id": 14, "name": "NOCE DE RUBIS", "rpi": 78.3, "perf": 39.0, "intent": 23.5, "context": 15.8, "tactic": "Réalise de belles performances sur 1500m (80%). Bien située au poids pour ses débuts à ce niveau." },
-    { "id": 15, "name": "HE TOUCHED ME", "rpi": 74.5, "perf": 37.0, "intent": 22.5, "context": 15.0, "tactic": "En forme saisonnière mais monte de catégorie. Devra hausser son niveau de jeu face à une telle opposition." }
+    { "id": 1, "name": "AMIDARGENT", "rpi": 74.5, "perf": 38.0, "intent": 21.0, "context": 15.5, "tactic": "Vainqueur de Quinté en octobre mais pénalisé de 3.5kg. N'affronte que les 4 ans, guettera un regret." },
+    { "id": 2, "name": "PASSINGSHOT", "rpi": 90.4, "perf": 45.5, "intent": 27.5, "context": 17.4, "tactic": "Spécialiste de la distance (83%) et associé à Orani (71%). Objectif de longue date." },
+    { "id": 3, "name": "COLONEL MITCH", "rpi": 76.2, "perf": 37.0, "intent": 24.2, "context": 15.0, "tactic": "Dernière sortie à effacer sur la PSF. Malgré 4.5kg de pénalité, son entourage reste confiant." },
+    { "id": 4, "name": "OTOMAI", "rpi": 94.2, "perf": 49.0, "intent": 27.2, "context": 18.0, "tactic": "Duo pilote/cheval invaincu (100%) et dépend d'un entraînement leader (51%). C'est la base." },
+    { "id": 5, "name": "FÉLIX AUX ORMES", "rpi": 80.5, "perf": 40.5, "intent": 24.0, "context": 16.0, "tactic": "Adore Cagnes (67%) et réservé pour cet objectif. Forme saisonnière en fait un trouble-fête." },
+    { "id": 6, "name": "NOFIX", "rpi": 92.5, "perf": 47.0, "intent": 27.5, "context": 18.0, "tactic": "Presque parfait dans les Quintés (5 places sur 6). Reste sur une sortie prometteuse à domicile." },
+    { "id": 7, "name": "GITANO", "rpi": 88.7, "perf": 46.0, "intent": 26.7, "context": 16.0, "tactic": "Modèle de régularité avec 6 podiums en 7 sorties. Pilote d'élite retenu de longue date." },
+    { "id": 8, "name": "AVENTINO", "rpi": 69.8, "perf": 34.0, "intent": 20.8, "context": 15.0, "tactic": "Acquis à réclamer en novembre et battu récemment. A déjà réussi dans cette catégorie mais semble barré." },
+    { "id": 9, "name": "FILLE D'ARGENTINE", "rpi": 63.4, "perf": 31.0, "intent": 19.8, "context": 12.6, "tactic": "Ses dernières sorties au niveau inférieur sont insuffisantes. Tâche difficile avec la corde 15." },
+    { "id": 10, "name": "VICTORY FOLIE", "rpi": 84.8, "perf": 42.5, "intent": 24.3, "context": 18.0, "tactic": "Invaincue à Cagnes (2/2). À racheter après sa ligne droite malheureuse avec d'énormes ressources." },
+    { "id": 11, "name": "STUPÉFIANTE", "rpi": 86.3, "perf": 43.5, "intent": 27.8, "context": 15.0, "tactic": "En ascension avec 5 podiums de rang. Première fois avec les australiennes et duo à 100%." },
+    { "id": 12, "name": "AQUITAIN", "rpi": 72.1, "perf": 36.5, "intent": 20.6, "context": 15.0, "tactic": "Le moins expérimenté du lot. Mal embarqué avec la corde 16 dans les stalles de départ." },
+    { "id": 13, "name": "LOVER SONG", "rpi": 78.6, "perf": 39.5, "intent": 25.1, "context": 14.0, "tactic": "Facile 2e dernièrement. Distance limite mais capable de finir très fort pour un accessit." },
+    { "id": 14, "name": "NOCE DE RUBIS", "rpi": 79.9, "perf": 40.0, "intent": 23.5, "context": 16.4, "tactic": "Superbe réussite sur 1500m (80%). Affronte un lot supérieur mais reste en condition ascendante." },
+    { "id": 15, "name": "HE TOUCHED ME", "rpi": 71.4, "perf": 35.0, "intent": 22.4, "context": 14.0, "tactic": "Double vainqueur cet hiver mais lourdement pénalisé de 2.5kg. Doit encore faire ses preuves à ce poids." },
+    { "id": 16, "name": "BABY HARTWOOD", "rpi": 82.1, "perf": 41.0, "intent": 25.1, "context": 16.0, "tactic": "Avait 'crevé' l'écran le 10 janvier à Chantilly. Finit fort et sera montée par Cristian Demuro." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 4) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[0]); // Otomai
-  const [compHorse2, setCompHorse2] = useState(horsesData[1]); // Nofix
+  const [compHorse1, setCompHorse1] = useState(horsesData[3]); // Otomai
+  const [compHorse2, setCompHorse2] = useState(horsesData[5]); // Nofix
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -109,7 +115,7 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "4AZtGvTYS9I", // ID de la dernière vidéo mise à jour
+    LAST_VIDEO_ID: "4AZtGvTYS9I",
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t"
   };
@@ -147,6 +153,7 @@ const App = () => {
               <a href={LINKS.PLAYLIST_BILAN} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
                 <div className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-4"><FileText /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Bilans</span>
+                <span className="text-orange-600 text-[10px] font-black uppercase mt-1">Depuis début janvier, les bilans sont dans l'intro des pronos.</span>
               </a>
               <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
@@ -181,6 +188,7 @@ const App = () => {
                 DERNIÈRE VIDÉO
               </a>
             </div>
+            
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 JOCKEYS <Trophy className="w-5 h-5" />
@@ -189,6 +197,7 @@ const App = () => {
                 ENTRAÎNEURS <UserCheck className="w-5 h-5" />
               </a>
             </div>
+
             <div className="w-full">
               <a href="#ticket" className="w-full bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 LE TICKET DU JOUR <Ticket className="w-5 h-5" />
@@ -288,7 +297,6 @@ const App = () => {
               </div>
               <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Comparateur de Performance</h3>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
               <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-orange-600 rounded-full items-center justify-center text-white font-black italic z-10 shadow-lg shadow-orange-600/40 border-4 border-slate-900">
                 VS
@@ -350,6 +358,65 @@ const App = () => {
         </div>
       </section>
 
+      {/* Rankings Section */}
+      <section id="rankings" className="py-24 px-6 bg-white flex flex-col items-center border-b border-slate-100 scroll-mt-20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="text-left">
+              <Trophy className="w-10 h-10 text-orange-600 mb-4" />
+              <h2 className="text-4xl font-black uppercase italic tracking-tighter text-slate-900">Les Tops <span className="text-orange-600">Performers</span></h2>
+            </div>
+            <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+              {['Attelé', 'Plat', 'Obstacle', 'Monté'].map(d => (
+                <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400'}`}>
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
+              <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><UserCheck size={16} className="text-orange-600" /> Top Jockeys</h3>
+              <div className="space-y-3 text-left">
+                {rankings.jockeys.filter(j => j.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
+                  <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                    <span className="font-bold text-xs">{i+1}. {item.name}</span>
+                    <span className="font-black text-white bg-slate-900 px-2.5 py-1 rounded text-[10px]">{item.wins} Vict.</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100">
+              <h3 className="font-black italic uppercase text-xs mb-6 flex items-center gap-2 text-left"><Trophy size={16} className="text-orange-600" /> Top Entraîneurs</h3>
+              <div className="space-y-3 text-left">
+                {rankings.trainers.filter(t => t.discipline?.toLowerCase() === filterDiscipline.toLowerCase()).map((item, i) => (
+                  <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                    <span className="font-bold text-xs">{i+1}. {item.name}</span>
+                    <span className="font-black text-orange-600 px-2.5 py-1 rounded text-[10px]">{item.wins} Vict.</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* YouTube Section */}
+      <section id="youtube" className="py-24 px-6 bg-slate-50 flex flex-col items-center scroll-mt-20">
+        <div className="container mx-auto max-w-4xl text-center flex flex-col items-center">
+          <div className="mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4 text-orange-600">
+               <Youtube className="w-8 h-8 fill-current" />
+               <h2 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-slate-900">Archives Vidéos</h2>
+            </div>
+          </div>
+          <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-2xl bg-black">
+             <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${LINKS.LAST_VIDEO_ID}`} title="YouTube" frameBorder="0" allowFullScreen></iframe>
+          </div>
+        </div>
+      </section>
+
       {/* Course Info & Ticket Section */}
       <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
         <div className="container mx-auto max-w-4xl text-center">
@@ -358,7 +425,6 @@ const App = () => {
              <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight text-center">La Sélection Quinté 🎫</h2>
           </div>
 
-          {/* FICHE TECHNIQUE LUNDI 19/01 */}
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Cagnes-sur-Mer R1C1</span>
@@ -366,9 +432,7 @@ const App = () => {
                 <History size={12} className="text-orange-600" /> Départ 13h50 • 19 Janvier 2026
               </span>
             </div>
-            <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix Charles Gastaud
-            </h3>
+            <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">Prix Charles Gastaud</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { label: "Discipline", val: "Plat" },
@@ -386,7 +450,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* TICKET DU JOUR */}
           <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
             <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
               <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
@@ -403,7 +466,7 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[4, 6, 2, 7, 10, 16, 11, 5].map((num, i) => (
+                       {[4, 6, 2, 7, 11, 10, 16, 5].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
@@ -421,9 +484,22 @@ const App = () => {
            <span className="hidden md:block text-yellow-600">|</span>
            <span>JOUEZ AVEC MODÉRATION : 09 74 75 13 13</span>
         </div>
+        <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+           <button onClick={() => setActiveLegalModal('mentions')}>Mentions Légales</button>
+           <button onClick={() => setActiveLegalModal('gaming')}>Jeu Responsable</button>
+        </div>
         <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em] text-center italic">
           © 2026 RENARD TURF - RÉDACTION & ANALYSE DATA
         </p>
+        {activeLegalModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-md bg-slate-900/40">
+            <div className="bg-white w-full max-w-2xl rounded-[2.5rem] p-10 relative text-left shadow-2xl">
+              <button onClick={() => setActiveLegalModal(null)} className="absolute top-6 right-6 font-black uppercase text-xs">Fermer [X]</button>
+              <h3 className="text-2xl font-black uppercase italic mb-6">{activeLegalModal === 'mentions' ? 'Mentions Légales' : 'Charte Jeu Responsable'}</h3>
+              <p className="text-slate-500 text-xs leading-relaxed italic">RenardTurf est un média indépendant d'analyse hippique. Nous ne sommes pas un opérateur de jeux. Jouez avec modération.</p>
+            </div>
+          </div>
+        )}
       </footer>
     </div>
   );
