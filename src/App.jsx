@@ -51,38 +51,56 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET ---
+// --- COMPOSANT PUBLICITÉ GENYBET (VERSION IFRAME SÉCURISÉE) ---
 const GenyBanner = () => {
+  const bannerRef = React.useRef(null);
+
   useEffect(() => {
-    const divId = 'geny-banner-container';
-    // Ton script exact fourni par Gambling Affiliation
-    const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=kzPFs7kfHBRDvdnvZbAlKmKP-Oznmb-L3AKqmMKRaGA_GA7331V2&aff_var_1=";
-    
-    const container = document.getElementById(divId);
-    
-    // Nettoyage préventif
-    if (container) {
-      container.innerHTML = ''; // On vide le conteneur avant d'ajouter
+    if (bannerRef.current) {
+      // On accède au "document" interne de l'iframe
+      const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
       
-      const script = document.createElement('script');
-      script.src = scriptUrl;
-      script.type = "text/javascript";
-      script.charset = "utf-8";
-      script.async = true; // Important pour ne pas bloquer le site
-      
-      container.appendChild(script);
+      // Ton lien fourni par Gambling Affiliation
+      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=kzPFs7kfHBRDvdnvZbAlKmKP-Oznmb-L3AKqmMKRaGA_GA7331V2&aff_var_1=";
+
+      // On écrit le script à l'intérieur de l'iframe pour forcer l'affichage
+      doc.open();
+      doc.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <style>
+              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100%; overflow: hidden; }
+              img { max-width: 100%; height: auto; }
+            </style>
+          </head>
+          <body>
+            <script type="text/javascript" src="${scriptUrl}"></script>
+          </body>
+        </html>
+      `);
+      doc.close();
     }
   }, []);
 
   return (
     <div className="w-full flex justify-center py-8 bg-slate-50">
-      {/* J'ai ajouté min-h-[90px] pour forcer l'espace même si l'image charge mal */}
-      <div id="geny-banner-container" className="rounded-xl overflow-hidden shadow-sm min-h-[90px] min-w-[300px] flex items-center justify-center bg-white border border-slate-200">
-        {/* La pub arrive ici */}
+      <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
+        {/* L'iframe sert de "bac à sable" pour autoriser le script */}
+        <iframe
+          ref={bannerRef}
+          title="Offre Genybet"
+          width="320"  // Largeur standard mobile
+          height="100" // Hauteur estimée (tu pourras ajuster si c'est coupé)
+          frameBorder="0"
+          scrolling="no"
+          style={{ display: 'block' }}
+        />
       </div>
     </div>
   );
 };
+
 
 
 const App = () => {
