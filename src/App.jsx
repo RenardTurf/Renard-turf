@@ -51,23 +51,22 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET (FORMAT AJUSTÉ) ---
+// --- COMPOSANT PUBLICITÉ GENYBET (Optimisé iFrame) ---
 const GenyBanner = () => {
   const bannerRef = React.useRef(null);
 
   useEffect(() => {
     if (bannerRef.current) {
       const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
-      
+      // Lien CPM (Affichage Bannière)
       const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
 
       doc.open();
       doc.write(`
         <!DOCTYPE html>
-        <html style="height: 100%;">
+        <html style="height: 100%; margin: 0; padding: 0;">
           <head>
             <style>
-              /* On force le centrage vertical et horizontal parfait */
               body { 
                 margin: 0; 
                 padding: 0; 
@@ -78,7 +77,6 @@ const GenyBanner = () => {
                 background-color: transparent; 
                 overflow: hidden;
               }
-              /* L'image s'adapte à la largeur sans dépasser */
               img { max-width: 100%; height: auto; display: block; }
             </style>
           </head>
@@ -97,8 +95,8 @@ const GenyBanner = () => {
         <iframe
           ref={bannerRef}
           title="Offre Genybet"
-          width="320"   // Largeur standard mobile
-          height="100"  // <-- J'ai réduit à 100px pour éviter le grand vide blanc
+          width="320"
+          height="100" // Ajusté pour le format bandeau standard
           frameBorder="0"
           scrolling="no"
           style={{ display: 'block' }}
@@ -107,6 +105,7 @@ const GenyBanner = () => {
     </div>
   );
 };
+
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -118,20 +117,20 @@ const App = () => {
   const horsesData = [
     { "id": 1, "name": "GODFATHER", "rpi": 79.5, "perf": 39.0, "intent": 24.5, "context": 16.0, "tactic": "Le moins riche mais dépend d'un entraînement en forme (49%). Associé à A. Abrivard et D4 (67% réussite), c'est un trouble-fête." },
     { "id": 2, "name": "DAYAK", "rpi": 74.2, "perf": 37.0, "intent": 21.0, "context": 16.2, "tactic": "Affiche 58% de réussite sur le parcours. Confié à F. Nivard, il est capable de prendre une allocation si le rythme lui convient." },
-    { "id": 3, "name": "VALLATONIAN", "rpi": 94.0, "perf": 48.0, "intent": 28.0, "context": 18.0, "tactic": "La stat qui tue : 100% de réussite avec M. Abrivard (7/7). Adepte du parcours (75%), c'est la base logique et incontournable." },
+    { "id": 3, "name": "VALLATONIAN", "rpi": 94.8, "perf": 49.5, "intent": 28.5, "context": 16.8, "tactic": "La stat qui tue : 100% de réussite avec M. Abrivard (7/7). Adepte du parcours (75%), c'est la base logique et incontournable." },
     { "id": 4, "name": "DIVA DEL RONCO", "rpi": 65.5, "perf": 32.0, "intent": 19.5, "context": 14.0, "tactic": "Expérimentée mais ses statistiques sur le parcours sont faibles (26%). Elle semble un ton en dessous face aux mâles." },
     { "id": 5, "name": "DYLAN DOG FONT", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Noté pour sa fin de course tranchante récemment. Avec B. Rochard au sulky, il peut finir fort. Bel outsider." },
-    { "id": 6, "name": "JANKO HAUFOR", "rpi": 90.8, "perf": 46.0, "intent": 27.0, "context": 17.8, "tactic": "Le métronome de l'écurie Bigeon. 75% de réussite sur ce tracé de tenue qu'il adore. Il ne déçoit pratiquement jamais ici." },
+    { "id": 6, "name": "JANKO HAUFOR", "rpi": 92.1, "perf": 47.0, "intent": 27.5, "context": 17.6, "tactic": "Le spécialiste du tracé : 75% de réussite sur 12 courses. Régulier et solide, c'est une priorité absolue." },
     { "id": 7, "name": "IDYLLE DU PERSIL", "rpi": 68.0, "perf": 35.0, "intent": 19.0, "context": 14.0, "tactic": "Intermittente. Bien qu'elle ait déjà réussi sur le parcours (52%), l'opposition est relevée aujourd'hui. Pour une 5ème place." },
     { "id": 8, "name": "IMHOTEP FROMENTRO", "rpi": 71.5, "perf": 36.5, "intent": 21.0, "context": 14.0, "tactic": "Régulier (44% sur le parcours) et associé à G. Gelormini. Il aura besoin d'un parcours caché pour espérer figurer." },
     { "id": 9, "name": "HUMANITY PELLINI", "rpi": 76.8, "perf": 38.0, "intent": 23.0, "context": 15.8, "tactic": "Peu d'expérience en France mais 50% de réussite sur le tracé. Confié à M. Mottier, c'est un pari amusant." },
     { "id": 10, "name": "JAPAROV LIRE", "rpi": 78.2, "perf": 39.0, "intent": 23.5, "context": 15.7, "tactic": "Duo prometteur avec D. Bekaert (100% sur 1 course). Aime le parcours (66%). Il a sa chance pour un accessit." },
-    { "id": 11, "name": "JIZOU D'ETANG", "rpi": 92.5, "perf": 47.0, "intent": 27.5, "context": 18.0, "tactic": "Grosse note dernièrement. S'entend à merveille avec D. Thomain (80%). Pieds nus, il a tout pour lutter pour la victoire." },
-    { "id": 12, "name": "JOLIE STAR", "rpi": 83.5, "perf": 41.5, "intent": 26.0, "context": 16.0, "tactic": "Reprise en main par E. Raffin (top driver). Elle a joué de malchance et doit être rachetée sur sa qualité intrinsèque." },
-    { "id": 13, "name": "JIBI DU FRUITIER", "rpi": 70.4, "perf": 35.5, "intent": 20.0, "context": 14.9, "tactic": "Honnête serviteur (52% sur le parcours) mais semble barré pour le podium. Avec A. Barrier, il visera une petite allocation." },
-    { "id": 14, "name": "IOUPY TOLLEVILLE", "rpi": 67.0, "perf": 34.0, "intent": 19.0, "context": 14.0, "tactic": "Ses statistiques récentes ne plaident pas en sa faveur dans ce lot touffu. Tâche compliquée malgré sa connaissance de la piste." },
-    { "id": 15, "name": "MATEO DI QUATTRO", "rpi": 86.2, "perf": 44.0, "intent": 26.5, "context": 15.7, "tactic": "Entraînement redoutable (49% de réussite). Jamais déçu sur ce parcours (3 sur 3). C'est la découverte du jour." },
-    { "id": 16, "name": "JOURNÉE RÊVÉE", "rpi": 88.4, "perf": 45.0, "intent": 26.4, "context": 17.0, "tactic": "Engagement en or au plafond des gains. 75% de réussite avec son pilote. Elle redescend de catégorie et doit finir fort." }
+    { "id": 11, "name": "JIZOU D'ETANG", "rpi": 90.5, "perf": 46.5, "intent": 26.5, "context": 17.5, "tactic": "80% de réussite avec D. Thomain. Reste sur une bonne perf. D4, il vise le podium." },
+    { "id": 12, "name": "JOLIE STAR", "rpi": 84.0, "perf": 41.5, "intent": 26.0, "context": 16.5, "tactic": "La 'Découverte'. Confiée à E. Raffin (43% forme). Si elle est décidée, elle peut mettre tout le monde d'accord." },
+    { "id": 13, "name": "JIBI DU FRUITIER", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "52% sur le parcours. 100% avec A. Barrier (1 course). Pour une 4/5ème place en cas de défaillance." },
+    { "id": 14, "name": "IOUPY TOLLEVILLE", "rpi": 66.0, "perf": 33.0, "intent": 19.0, "context": 14.0, "tactic": "40% sur le parcours. Ses dernières musiques sont moins engageantes. Tâche compliquée." },
+    { "id": 15, "name": "MATEO DI QUATTRO", "rpi": 86.7, "perf": 44.5, "intent": 26.5, "context": 15.7, "tactic": "Entraînement J. Untersteiner (49% forme). 60% sur le parcours. Dur à l'effort, c'est un bel outsider." },
+    { "id": 16, "name": "JOURNÉE RÊVÉE", "rpi": 88.2, "perf": 45.0, "intent": 26.4, "context": 16.8, "tactic": "Engagement en or au plafond des gains. 66% sur le parcours. Elle redescend de catégorie et doit finir fort." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
@@ -343,6 +342,30 @@ const App = () => {
                  "{selectedHorse.tactic}"
                </p>
             </div>
+
+            {/* --- NOUVEAU BOUTON CALL TO ACTION GENYBET --- */}
+            <div className="mt-6">
+              <a 
+                href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_rpi" 
+                target="_blank" 
+                rel="nofollow noreferrer"
+                className="w-full block bg-slate-900 hover:bg-blue-700 text-white p-4 rounded-2xl transition-all group shadow-lg shadow-blue-900/20 border-2 border-transparent hover:border-yellow-400"
+              >
+                <div className="flex flex-col items-center justify-center text-center">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 mb-1 flex items-center gap-1">
+                    <StarIcon size={10} className="fill-yellow-400" /> OFFRE PARTENAIRE
+                  </span>
+                  <span className="font-black italic text-lg uppercase leading-tight">
+                    JOUER <span className="text-yellow-400">{selectedHorse.name}</span> AVEC 250€ OFFERTS 🎁
+                  </span>
+                  <span className="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-white transition-colors">
+                    Cliquez ici pour profiter du bonus Genybet
+                  </span>
+                </div>
+              </a>
+            </div>
+            {/* --------------------------------------------- */}
+
           </div>
 
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
