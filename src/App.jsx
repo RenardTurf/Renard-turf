@@ -51,6 +51,33 @@ const initGA = (id) => {
   }
 };
 
+// --- COMPOSANT PUBLICITÉ GENYBET (NOUVEAU) ---
+const GenyBanner = () => {
+  useEffect(() => {
+    const divId = 'geny-banner-container';
+    const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=kzPFs7kfHBRDvdnvZbAlKmKP-Oznmb-L3AKqmMKRaGA_GA7331V2&aff_var_1=";
+    
+    // On vérifie si le script est déjà dans le container pour éviter les doublons
+    const container = document.getElementById(divId);
+    if (container && container.childElementCount === 0) {
+      const script = document.createElement('script');
+      script.src = scriptUrl;
+      script.type = "text/javascript";
+      script.charset = "utf-8";
+      script.async = true;
+      container.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div className="w-full flex justify-center py-8 bg-slate-50">
+      <div id="geny-banner-container" className="rounded-xl overflow-hidden shadow-sm">
+        {/* La publicité s'affichera ici */}
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -166,6 +193,7 @@ const App = () => {
         )}
       </nav>
 
+      {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -481,6 +509,9 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* AJOUT DE LA BANNIÈRE PUBLICITAIRE GENYBET JUSTE APRÈS LE TICKET ET AVANT LE FOOTER */}
+      <GenyBanner />
 
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
