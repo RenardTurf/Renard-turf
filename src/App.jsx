@@ -109,33 +109,34 @@ const GenyBanner = () => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
+  // Modifié pour 'Plat' car la course de Deauville est du Plat
+  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.2 (JEUDI 22 JANVIER - PRIX ANDRÉ MEUNIER) ---
+  // --- DATA RPI v2.3 (VENDREDI 23 JANVIER - PRIX DE CHERBOURG) ---
   const horsesData = [
-    { "id": 1, "name": "GODFATHER", "rpi": 79.5, "perf": 39.0, "intent": 24.5, "context": 16.0, "tactic": "Le moins riche mais dépend d'un entraînement en forme (49%). Associé à A. Abrivard et D4 (67% réussite), c'est un trouble-fête." },
-    { "id": 2, "name": "DAYAK", "rpi": 74.2, "perf": 37.0, "intent": 21.0, "context": 16.2, "tactic": "Affiche 58% de réussite sur le parcours. Confié à F. Nivard, il est capable de prendre une allocation si le rythme lui convient." },
-    { "id": 3, "name": "VALLATONIAN", "rpi": 94.8, "perf": 49.5, "intent": 28.5, "context": 16.8, "tactic": "La stat qui tue : 100% de réussite avec M. Abrivard (7/7). Adepte du parcours (75%), c'est la base logique et incontournable." },
-    { "id": 4, "name": "DIVA DEL RONCO", "rpi": 65.5, "perf": 32.0, "intent": 19.5, "context": 14.0, "tactic": "Expérimentée mais ses statistiques sur le parcours sont faibles (26%). Elle semble un ton en dessous face aux mâles." },
-    { "id": 5, "name": "DYLAN DOG FONT", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Noté pour sa fin de course tranchante récemment. Avec B. Rochard au sulky, il peut finir fort. Bel outsider." },
-    { "id": 6, "name": "JANKO HAUFOR", "rpi": 92.1, "perf": 47.0, "intent": 27.5, "context": 17.6, "tactic": "Le spécialiste du tracé : 75% de réussite sur 12 courses. Régulier et solide, c'est une priorité absolue." },
-    { "id": 7, "name": "IDYLLE DU PERSIL", "rpi": 68.0, "perf": 35.0, "intent": 19.0, "context": 14.0, "tactic": "Intermittente. Bien qu'elle ait déjà réussi sur le parcours (52%), l'opposition est relevée aujourd'hui. Pour une 5ème place." },
-    { "id": 8, "name": "IMHOTEP FROMENTRO", "rpi": 71.5, "perf": 36.5, "intent": 21.0, "context": 14.0, "tactic": "Régulier (44% sur le parcours) et associé à G. Gelormini. Il aura besoin d'un parcours caché pour espérer figurer." },
-    { "id": 9, "name": "HUMANITY PELLINI", "rpi": 76.8, "perf": 38.0, "intent": 23.0, "context": 15.8, "tactic": "Peu d'expérience en France mais 50% de réussite sur le tracé. Confié à M. Mottier, c'est un pari amusant." },
-    { "id": 10, "name": "JAPAROV LIRE", "rpi": 78.2, "perf": 39.0, "intent": 23.5, "context": 15.7, "tactic": "Duo prometteur avec D. Bekaert (100% sur 1 course). Aime le parcours (66%). Il a sa chance pour un accessit." },
-    { "id": 11, "name": "JIZOU D'ETANG", "rpi": 90.5, "perf": 46.5, "intent": 26.5, "context": 17.5, "tactic": "80% de réussite avec D. Thomain. Reste sur une bonne perf. D4, il vise le podium." },
-    { "id": 12, "name": "JOLIE STAR", "rpi": 84.0, "perf": 41.5, "intent": 26.0, "context": 16.5, "tactic": "La 'Découverte'. Confiée à E. Raffin (43% forme). Si elle est décidée, elle peut mettre tout le monde d'accord." },
-    { "id": 13, "name": "JIBI DU FRUITIER", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "52% sur le parcours. 100% avec A. Barrier (1 course). Pour une 4/5ème place en cas de défaillance." },
-    { "id": 14, "name": "IOUPY TOLLEVILLE", "rpi": 66.0, "perf": 33.0, "intent": 19.0, "context": 14.0, "tactic": "40% sur le parcours. Ses dernières musiques sont moins engageantes. Tâche compliquée." },
-    { "id": 15, "name": "MATEO DI QUATTRO", "rpi": 86.7, "perf": 44.5, "intent": 26.5, "context": 15.7, "tactic": "Entraînement J. Untersteiner (49% forme). 60% sur le parcours. Dur à l'effort, c'est un bel outsider." },
-    { "id": 16, "name": "JOURNÉE RÊVÉE", "rpi": 88.2, "perf": 45.0, "intent": 26.4, "context": 16.8, "tactic": "Engagement en or au plafond des gains. 66% sur le parcours. Elle redescend de catégorie et doit finir fort." }
+    { "id": 1, "name": "CELESTIAL", "rpi": 95.5, "perf": 49.0, "intent": 29.0, "context": 17.5, "tactic": "2ème de la course référence. 100% sur le parcours, 80% PSF. Associé à Soumillon (Top Jockey) avec la Corde 1. Tous les feux sont au vert." },
+    { "id": 2, "name": "LOVE IS GOLD", "rpi": 86.5, "perf": 45.0, "intent": 26.5, "context": 15.0, "tactic": "Le spécialiste (14 courses ici). Très régulier mais hérite de la pire corde (16). Devra compter sur un parcours fluide pour finir." },
+    { "id": 3, "name": "DARI RIVER", "rpi": 80.0, "perf": 42.0, "intent": 24.0, "context": 14.0, "tactic": "75% de réussite sur ce tracé. A joué de malchance dernièrement (enfermée). Avec un bon parcours, elle peut refaire surface." },
+    { "id": 4, "name": "CICCIO BOY", "rpi": 72.0, "perf": 38.0, "intent": 21.0, "context": 13.0, "tactic": "Expérimenté à ce niveau mais semble moins tranchant (33% parcours). Corde 13 difficile. Pour une 5ème place éventuellement." },
+    { "id": 5, "name": "DIVIDE AND RULE", "rpi": 68.0, "perf": 35.0, "intent": 20.0, "context": 13.0, "tactic": "N'a pas confirmé ses bonnes sorties passées récemment. Rentrée moyenne. Semble barrée par les spécialistes de la PSF de Deauville." },
+    { "id": 6, "name": "ZELORO", "rpi": 84.0, "perf": 43.0, "intent": 26.0, "context": 15.0, "tactic": "Entraînement Brandt en forme (47%). Couple 100% réussite avec Demuro. Monte de catégorie mais ses limites sont inconnues." },
+    { "id": 7, "name": "HAPPY SAXON", "rpi": 65.0, "perf": 32.0, "intent": 19.0, "context": 14.0, "tactic": "Rentrée et première fois handicap en France. Difficile à situer face à des chevaux rodés à ce niveau de compétition." },
+    { "id": 8, "name": "SOUS LA NEIGE", "rpi": 82.5, "perf": 41.0, "intent": 25.5, "context": 16.0, "tactic": "4ème de la course clé. Solide sur PSF (64%). Une valeur sûre pour les places dans la combinaison." },
+    { "id": 9, "name": "STAR OF THE NIGHT", "rpi": 89.0, "perf": 46.0, "intent": 27.0, "context": 16.0, "tactic": "Porte des oeillères pour la 1ère fois. 75% réussite PSF. Corde 4 idéale. Attention, elle peut gagner à belle cote." },
+    { "id": 10, "name": "AQUILA VOLANTE", "rpi": 60.0, "perf": 30.0, "intent": 18.0, "context": 12.0, "tactic": "Stats faibles sur PSF (40%). Corde 14. Tâche compliquée dans ce lot très relevé." },
+    { "id": 11, "name": "GOGUEN SPAISE", "rpi": 76.0, "perf": 39.0, "intent": 23.0, "context": 14.0, "tactic": "Régulier (66% PSF). Une possibilité pour les places, mais marge réduite pour la victoire." },
+    { "id": 12, "name": "TELCHERBOLINE", "rpi": 78.5, "perf": 40.0, "intent": 24.5, "context": 14.0, "tactic": "Chuchotée et bonnes perfs en quinté. 66% PSF. Corde 15 handicapante mais finit vite." },
+    { "id": 13, "name": "HAZA", "rpi": 74.0, "perf": 38.0, "intent": 22.0, "context": 14.0, "tactic": "Porte des oeillères australiennes. 100% réussite sur le parcours (1 course). Outsider amusant en cas de défaillances." },
+    { "id": 14, "name": "SOEUR", "rpi": 93.0, "perf": 48.0, "intent": 28.0, "context": 17.0, "tactic": "Sans faute sur le parcours (4 sur 4 à l'arrivée). 3ème de la course réf. Poids favorable. C'est une base solide." },
+    { "id": 15, "name": "FEARLESS CHEETAH", "rpi": 91.5, "perf": 47.5, "intent": 27.5, "context": 16.5, "tactic": "La découverte Data. 100% avec son jockey. 69% de réussite PSF. En gros progrès, elle vise le podium." },
+    { "id": 16, "name": "YOUNG AND PROUD", "rpi": 62.0, "perf": 31.0, "intent": 19.0, "context": 12.0, "tactic": "Seulement 25% de réussite sur PSF. Corde 2 favorable mais semble un ton en dessous des meilleurs." }
   ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[2]); // Vallatonian
-  const [compHorse2, setCompHorse2] = useState(horsesData[10]); // Jizou d'Etang
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 1) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData[0]); // Celestial
+  const [compHorse2, setCompHorse2] = useState(horsesData[13]); // Soeur
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -170,7 +171,7 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "r2DdSjVHckc",
+    LAST_VIDEO_ID: "r2DdSjVHckc", // Pense à mettre l'ID de ta nouvelle vidéo ici !
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t"
   };
@@ -450,6 +451,7 @@ const App = () => {
               <h2 className="text-4xl font-black uppercase italic tracking-tighter text-slate-900">Les Tops <span className="text-orange-600">Performers</span></h2>
             </div>
             <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+              {/* Note: Comme c'est du Plat, on adapte les filtres si nécessaire, sinon on garde la structure */}
               {['Attelé', 'Plat', 'Obstacle', 'Monté'].map(d => (
                 <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400'}`}>
                   {d}
@@ -508,21 +510,21 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Vincennes R1C1</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Deauville R1C8</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 13h50 • 22 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 20h15 • 23 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix André Meunier
+              Prix de Cherbourg
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Attelé" },
-                { label: "Distance", val: "2 850m" },
-                { label: "Surface", val: "Grande Piste" },
-                { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "16 [7-8 ans]" },
+                { label: "Discipline", val: "Plat" },
+                { label: "Distance", val: "1 900m" },
+                { label: "Surface", val: "PSF" },
+                { label: "Corde", val: "À Droite" },
+                { label: "Partants", val: "16 [4 ans+]" },
                 { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
@@ -544,13 +546,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[3, 6].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[1, 14].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[3, 6, 11, 16, 15, 12, 5, 1].map((num, i) => (
+                       {[1, 14, 15, 9, 2, 6, 8, 3].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
