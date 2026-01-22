@@ -51,7 +51,7 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET (VERSION IFRAME MISE À JOUR) ---
+// --- COMPOSANT PUBLICITÉ GENYBET (FORMAT AJUSTÉ) ---
 const GenyBanner = () => {
   const bannerRef = React.useRef(null);
 
@@ -59,17 +59,27 @@ const GenyBanner = () => {
     if (bannerRef.current) {
       const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
       
-      // NOUVEAU LIEN PUBLICITAIRE
       const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
 
       doc.open();
       doc.write(`
         <!DOCTYPE html>
-        <html>
+        <html style="height: 100%;">
           <head>
             <style>
-              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100%; overflow: hidden; background-color: transparent; }
-              img { max-width: 100%; height: auto; }
+              /* On force le centrage vertical et horizontal parfait */
+              body { 
+                margin: 0; 
+                padding: 0; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100%; 
+                background-color: transparent; 
+                overflow: hidden;
+              }
+              /* L'image s'adapte à la largeur sans dépasser */
+              img { max-width: 100%; height: auto; display: block; }
             </style>
           </head>
           <body>
@@ -82,13 +92,13 @@ const GenyBanner = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center py-8 bg-slate-50">
+    <div className="w-full flex justify-center py-6 bg-slate-50">
       <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
         <iframe
           ref={bannerRef}
           title="Offre Genybet"
-          width="320"  // Largeur standard mobile
-          height="250" // Hauteur augmentée à 250px pour accepter les formats "Pavé" (Carré)
+          width="320"   // Largeur standard mobile
+          height="100"  // <-- J'ai réduit à 100px pour éviter le grand vide blanc
           frameBorder="0"
           scrolling="no"
           style={{ display: 'block' }}
@@ -97,7 +107,6 @@ const GenyBanner = () => {
     </div>
   );
 };
-
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
