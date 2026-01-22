@@ -51,32 +51,39 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET (NOUVEAU) ---
+// --- COMPOSANT PUBLICITÉ GENYBET ---
 const GenyBanner = () => {
   useEffect(() => {
     const divId = 'geny-banner-container';
+    // Ton script exact fourni par Gambling Affiliation
     const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=kzPFs7kfHBRDvdnvZbAlKmKP-Oznmb-L3AKqmMKRaGA_GA7331V2&aff_var_1=";
     
-    // On vérifie si le script est déjà dans le container pour éviter les doublons
     const container = document.getElementById(divId);
-    if (container && container.childElementCount === 0) {
+    
+    // Nettoyage préventif
+    if (container) {
+      container.innerHTML = ''; // On vide le conteneur avant d'ajouter
+      
       const script = document.createElement('script');
       script.src = scriptUrl;
       script.type = "text/javascript";
       script.charset = "utf-8";
-      script.async = true;
+      script.async = true; // Important pour ne pas bloquer le site
+      
       container.appendChild(script);
     }
   }, []);
 
   return (
     <div className="w-full flex justify-center py-8 bg-slate-50">
-      <div id="geny-banner-container" className="rounded-xl overflow-hidden shadow-sm">
-        {/* La publicité s'affichera ici */}
+      {/* J'ai ajouté min-h-[90px] pour forcer l'espace même si l'image charge mal */}
+      <div id="geny-banner-container" className="rounded-xl overflow-hidden shadow-sm min-h-[90px] min-w-[300px] flex items-center justify-center bg-white border border-slate-200">
+        {/* La pub arrive ici */}
       </div>
     </div>
   );
 };
+
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
