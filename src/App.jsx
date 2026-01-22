@@ -51,26 +51,24 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET (VERSION IFRAME SÉCURISÉE) ---
+// --- COMPOSANT PUBLICITÉ GENYBET (VERSION IFRAME MISE À JOUR) ---
 const GenyBanner = () => {
   const bannerRef = React.useRef(null);
 
   useEffect(() => {
     if (bannerRef.current) {
-      // On accède au "document" interne de l'iframe
       const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
       
-      // Ton lien fourni par Gambling Affiliation
-      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=kzPFs7kfHBRDvdnvZbAlKmKP-Oznmb-L3AKqmMKRaGA_GA7331V2&aff_var_1=";
+      // NOUVEAU LIEN PUBLICITAIRE
+      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
 
-      // On écrit le script à l'intérieur de l'iframe pour forcer l'affichage
       doc.open();
       doc.write(`
         <!DOCTYPE html>
         <html>
           <head>
             <style>
-              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100%; overflow: hidden; }
+              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100%; overflow: hidden; background-color: transparent; }
               img { max-width: 100%; height: auto; }
             </style>
           </head>
@@ -86,12 +84,11 @@ const GenyBanner = () => {
   return (
     <div className="w-full flex justify-center py-8 bg-slate-50">
       <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
-        {/* L'iframe sert de "bac à sable" pour autoriser le script */}
         <iframe
           ref={bannerRef}
           title="Offre Genybet"
           width="320"  // Largeur standard mobile
-          height="100" // Hauteur estimée (tu pourras ajuster si c'est coupé)
+          height="250" // Hauteur augmentée à 250px pour accepter les formats "Pavé" (Carré)
           frameBorder="0"
           scrolling="no"
           style={{ display: 'block' }}
@@ -100,8 +97,6 @@ const GenyBanner = () => {
     </div>
   );
 };
-
-
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -218,7 +213,6 @@ const App = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
@@ -535,7 +529,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* AJOUT DE LA BANNIÈRE PUBLICITAIRE GENYBET JUSTE APRÈS LE TICKET ET AVANT LE FOOTER */}
+      {/* BANNIÈRE GENYBET INSÉRÉE ICI */}
       <GenyBanner />
 
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
