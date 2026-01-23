@@ -96,7 +96,7 @@ const GenyBanner = () => {
           ref={bannerRef}
           title="Offre Genybet"
           width="320"
-          height="100" 
+          height="100" // Ajusté pour le format bandeau standard
           frameBorder="0"
           scrolling="no"
           style={{ display: 'block' }}
@@ -109,6 +109,7 @@ const GenyBanner = () => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Modifié pour 'Plat' car la course de Deauville est du Plat
   const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
