@@ -96,7 +96,7 @@ const GenyBanner = () => {
           ref={bannerRef}
           title="Offre Genybet"
           width="320"
-          height="100" // Ajusté pour le format bandeau standard
+          height="100" 
           frameBorder="0"
           scrolling="no"
           style={{ display: 'block' }}
@@ -109,7 +109,6 @@ const GenyBanner = () => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // Modifié pour 'Plat' car la course de Deauville est du Plat
   const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
@@ -171,7 +170,7 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "5v283anvWPU", // Pense à mettre l'ID de ta nouvelle vidéo ici !
+    LAST_VIDEO_ID: "r2DdSjVHckc", 
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t"
   };
@@ -344,23 +343,44 @@ const App = () => {
                </p>
             </div>
 
-            {/* --- NOUVEAU BOUTON CALL TO ACTION GENYBET --- */}
-            <div className="mt-6">
+            {/* --- NOUVEAUX BOUTONS CALL TO ACTION (GENYBET + PMU) --- */}
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* BOUTON GENYBET */}
               <a 
-                href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_rpi" 
+                href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_rpi_geny" 
                 target="_blank" 
                 rel="nofollow noreferrer"
                 className="w-full block bg-slate-900 hover:bg-blue-700 text-white p-4 rounded-2xl transition-all group shadow-lg shadow-blue-900/20 border-2 border-transparent hover:border-yellow-400"
               >
                 <div className="flex flex-col items-center justify-center text-center">
                   <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 mb-1 flex items-center gap-1">
-                    <StarIcon size={10} className="fill-yellow-400" /> OFFRE PARTENAIRE
+                    <StarIcon size={10} className="fill-yellow-400" /> BONUS GENYBET
                   </span>
-                  <span className="font-black italic text-lg uppercase leading-tight">
-                    JOUER <span className="text-yellow-400">{selectedHorse.name}</span> AVEC 250€ OFFERTS 🎁
+                  <span className="font-black italic text-base uppercase leading-tight">
+                    JOUER <span className="text-yellow-400">{selectedHorse.name}</span>
                   </span>
-                  <span className="text-[10px] font-medium text-slate-400 mt-1 group-hover:text-white transition-colors">
-                    Cliquez ici pour profiter du bonus Genybet
+                  <span className="text-[10px] font-medium text-slate-300 mt-1">
+                    250€ OFFERTS À L'INSCRIPTION 🎁
+                  </span>
+                </div>
+              </a>
+
+              {/* BOUTON PMU */}
+              <a 
+                href="https://lk.gt/amyY9" 
+                target="_blank" 
+                rel="nofollow noreferrer"
+                className="w-full block bg-green-800 hover:bg-green-700 text-white p-4 rounded-2xl transition-all group shadow-lg shadow-green-900/20 border-2 border-transparent hover:border-white"
+              >
+                <div className="flex flex-col items-center justify-center text-center">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white/80 mb-1 flex items-center gap-1">
+                    <CheckCircle2 size={10} className="text-white" /> BONUS PMU
+                  </span>
+                  <span className="font-black italic text-base uppercase leading-tight">
+                    JOUER <span className="text-white underline decoration-2 underline-offset-2">{selectedHorse.name}</span>
+                  </span>
+                  <span className="text-[10px] font-medium text-green-100 mt-1">
+                    JUSQU'À 100€ OFFERTS 🐎
                   </span>
                 </div>
               </a>
@@ -451,7 +471,6 @@ const App = () => {
               <h2 className="text-4xl font-black uppercase italic tracking-tighter text-slate-900">Les Tops <span className="text-orange-600">Performers</span></h2>
             </div>
             <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
-              {/* Note: Comme c'est du Plat, on adapte les filtres si nécessaire, sinon on garde la structure */}
               {['Attelé', 'Plat', 'Obstacle', 'Monté'].map(d => (
                 <button key={d} onClick={() => setFilterDiscipline(d)} className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filterDiscipline === d ? 'bg-white shadow-md text-orange-600' : 'text-slate-400'}`}>
                   {d}
