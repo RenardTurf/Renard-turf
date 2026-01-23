@@ -342,6 +342,47 @@ const App = () => {
                  "{selectedHorse.tactic}"
                </p>
             </div>
+
+            {/* --- BOUTONS D'ACTION (RPI TOOL - DYNAMIC) --- */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* GENYBET RPI */}
+              <a 
+                href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_rpi_geny" 
+                target="_blank" 
+                rel="nofollow noreferrer"
+                className="group relative flex flex-col items-center justify-center p-4 bg-slate-900 rounded-2xl border-2 border-transparent hover:border-yellow-400 transition-all shadow-lg"
+              >
+                <div className="absolute top-0 right-0 bg-yellow-400 text-slate-900 text-[10px] font-black px-2 py-1 rounded-bl-xl rounded-tr-xl">
+                  250€ OFFERTS
+                </div>
+                <span className="text-[10px] font-black uppercase text-slate-400 mb-1 tracking-widest group-hover:text-yellow-400 transition-colors">
+                  GENYBET
+                </span>
+                <span className="font-black italic text-white uppercase text-center leading-tight">
+                  JOUER <span className="text-yellow-400">{selectedHorse.name}</span>
+                </span>
+              </a>
+
+              {/* PMU RPI */}
+              <a 
+                href="https://lk.gt/amyY9" 
+                target="_blank" 
+                rel="nofollow noreferrer"
+                className="group relative flex flex-col items-center justify-center p-4 bg-green-800 rounded-2xl border-2 border-transparent hover:border-white transition-all shadow-lg"
+              >
+                <div className="absolute top-0 right-0 bg-white text-green-900 text-[10px] font-black px-2 py-1 rounded-bl-xl rounded-tr-xl">
+                  100€ OFFERTS
+                </div>
+                <span className="text-[10px] font-black uppercase text-green-200 mb-1 tracking-widest group-hover:text-white transition-colors">
+                  PMU.FR
+                </span>
+                <span className="font-black italic text-white uppercase text-center leading-tight">
+                  JOUER <span className="underline decoration-2 underline-offset-2">{selectedHorse.name}</span>
+                </span>
+              </a>
+            </div>
+            {/* --------------------------------------------- */}
+
           </div>
 
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/5">
@@ -533,10 +574,10 @@ const App = () => {
                  </div>
               </div>
 
-              {/* --- BOUTONS AFFILIATION SOUS LA SÉLECTION --- */}
+              {/* --- BOUTONS AFFILIATION SOUS LA SÉLECTION (TICKET) --- */}
               <div className="mt-8 pt-8 border-t border-slate-100 w-full">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* GENYBET */}
+                    {/* GENYBET TICKET */}
                     <a href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_ticket_geny" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white rounded-xl shadow-md hover:bg-slate-800 transition-all group border-b-4 border-yellow-500">
                        <div className="flex flex-col text-left">
                           <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-widest">Partenaire</span>
@@ -545,7 +586,7 @@ const App = () => {
                        <span className="font-bold text-sm bg-yellow-500 text-slate-900 px-3 py-1 rounded-lg">250€ Offerts</span>
                     </a>
 
-                    {/* PMU */}
+                    {/* PMU TICKET */}
                     <a href="https://lk.gt/amyY9" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-green-700 text-white rounded-xl shadow-md hover:bg-green-800 transition-all group border-b-4 border-green-900">
                        <div className="flex flex-col text-left">
                           <span className="text-[10px] font-bold text-green-200 uppercase tracking-widest">Partenaire</span>
