@@ -51,61 +51,6 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET (Optimisé iFrame) ---
-const GenyBanner = () => {
-  const bannerRef = React.useRef(null);
-
-  useEffect(() => {
-    if (bannerRef.current) {
-      const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
-      // Lien CPM (Affichage Bannière)
-      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
-
-      doc.open();
-      doc.write(`
-        <!DOCTYPE html>
-        <html style="height: 100%; margin: 0; padding: 0;">
-          <head>
-            <style>
-              body { 
-                margin: 0; 
-                padding: 0; 
-                display: flex; 
-                justify-content: center; 
-                align-items: center; 
-                height: 100%; 
-                background-color: transparent; 
-                overflow: hidden;
-              }
-              img { max-width: 100%; height: auto; display: block; }
-            </style>
-          </head>
-          <body>
-            <script type="text/javascript" src="${scriptUrl}"></script>
-          </body>
-        </html>
-      `);
-      doc.close();
-    }
-  }, []);
-
-  return (
-    <div className="w-full flex justify-center py-6 bg-slate-50">
-      <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
-        <iframe
-          ref={bannerRef}
-          title="Offre Genybet"
-          width="320"
-          height="100" 
-          frameBorder="0"
-          scrolling="no"
-          style={{ display: 'block' }}
-        />
-      </div>
-    </div>
-  );
-};
-
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -602,9 +547,6 @@ const App = () => {
           </div>
         </div>
       </section>
-
-      {/* BANNIÈRE GENYBET INSÉRÉE ICI */}
-      <GenyBanner />
 
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
