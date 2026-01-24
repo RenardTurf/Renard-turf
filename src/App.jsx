@@ -118,7 +118,7 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "Tz8ztOsZoVw", 
+    LAST_VIDEO_ID: "np1w7t4kTGs", 
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t",
     EBOOK_SHOP: "https://lerenardturf.sellfy.store"
