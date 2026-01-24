@@ -24,7 +24,7 @@ import {
   Trophy,
   FileText,
   UserCheck,
-  BookOpen
+  BookOpen // Icone pour l'ebook
 } from 'lucide-react';
 
 // --- CONFIGURATION GOOGLE SHEETS ---
@@ -52,61 +52,6 @@ const initGA = (id) => {
   }
 };
 
-// --- COMPOSANT PUBLICITÉ GENYBET ---
-const GenyBanner = () => {
-  const bannerRef = React.useRef(null);
-
-  useEffect(() => {
-    if (bannerRef.current) {
-      const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
-      // Lien CPM (Affichage Bannière)
-      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
-
-      doc.open();
-      doc.write(`
-        <!DOCTYPE html>
-        <html style="height: 100%; margin: 0; padding: 0;">
-          <head>
-            <style>
-              body { 
-                margin: 0; 
-                padding: 0; 
-                display: flex; 
-                justify-content: center; 
-                align-items: center; 
-                height: 100%; 
-                background-color: transparent; 
-                overflow: hidden;
-              }
-              img { max-width: 100%; height: auto; display: block; }
-            </style>
-          </head>
-          <body>
-            <script type="text/javascript" src="${scriptUrl}"></script>
-          </body>
-        </html>
-      `);
-      doc.close();
-    }
-  }, []);
-
-  return (
-    <div className="w-full flex justify-center py-6 bg-slate-50">
-      <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
-        <iframe
-          ref={bannerRef}
-          title="Offre Genybet"
-          width="320"
-          height="100" 
-          frameBorder="0"
-          scrolling="no"
-          style={{ display: 'block' }}
-        />
-      </div>
-    </div>
-  );
-};
-
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -114,28 +59,31 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v2.4 (SAMEDI 24 JANVIER - PRIX DU LUXEMBOURG) ---
+  // --- DATA RPI v3.0 (DIMANCHE 25 JANVIER - PRIX D'AMÉRIQUE) ---
   const horsesData = [
-    { "id": 1, "name": "EAST ASIA", "rpi": 84.0, "perf": 42.0, "intent": 25.0, "context": 17.0, "tactic": "Recordman du parcours (1'09''7). 60% de réussite sur le tracé. Attention au piège du numéro 1 à la corde mais sa classe est là." },
-    { "id": 2, "name": "CASH BANK BIGI", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "30% de réussite sur le parcours. Intermittente. Elle visera une petite place en longeant le rail avec F. Nivard." },
-    { "id": 3, "name": "HANNIBAL TUILERIE", "rpi": 78.5, "perf": 39.0, "intent": 23.5, "context": 16.0, "tactic": "Très performant avec M. Abrivard (85% de réussite). Doit rassurer sur sa forme récente mais l'engagement est bon." },
-    { "id": 4, "name": "EXECUTIV EK", "rpi": 88.0, "perf": 44.0, "intent": 27.0, "context": 17.0, "tactic": "En forme et s'entend très bien avec A. Gocciadoro (79% de réussite). 3ème du Ténor de Baune. Avec le 4, c'est une base." },
-    { "id": 5, "name": "JANGO VICI", "rpi": 80.5, "perf": 40.0, "intent": 24.5, "context": 16.0, "tactic": "Le numéro 5 a 44% de réussite à l'autostart (le top). Il est régulier dans cette catégorie. Pour une place en fin de combinaison." },
-    { "id": 6, "name": "HORCHESTRO", "rpi": 95.2, "perf": 49.0, "intent": 29.0, "context": 17.2, "tactic": "Le cheval à battre. 100% sur le tracé (3 sur 3), 80% de réussite avec Eric Raffin. Il vise la gagne. Incontournable." },
-    { "id": 7, "name": "HULYSSE DIGEO", "rpi": 75.0, "perf": 37.5, "intent": 22.0, "context": 15.5, "tactic": "57% de réussite sur le parcours. Il a des titres mais semble un ton en dessous des meilleurs pour la victoire aujourd'hui." },
-    { "id": 8, "name": "GENDRÉEN", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "tactic": "Malchanceux récemment (enfermé). 34% de réussite avec le numéro 8. Tâche compliquée face aux cadets aux dents longues." },
-    { "id": 9, "name": "JINGLE DU PONT", "rpi": 82.5, "perf": 41.5, "intent": 25.0, "context": 16.0, "tactic": "Chrono canon (1'09''8). Performant pieds nus. Le numéro 9 est le seul bémol, mais il a la qualité pour revenir." },
-    { "id": 10, "name": "ISOFOU DU CHÊNE", "rpi": 92.8, "perf": 48.0, "intent": 27.8, "context": 17.0, "tactic": "Invaincu sur ce tracé (2 sur 2). 'Repéré dans les jumelles'. Il devra sortir du piège de la seconde ligne mais a la pointure." },
-    { "id": 11, "name": "HAMILTON DU HAM", "rpi": 79.0, "perf": 39.5, "intent": 24.0, "context": 15.5, "tactic": "100% de réussite avec C. Martens (1 course). Revient bien. Un outsider séduisant pour pimenter les rapports." },
-    { "id": 12, "name": "WORKING CLASS HERO", "rpi": 90.5, "perf": 46.0, "intent": 27.5, "context": 17.0, "tactic": "Le spécialiste : 4 sur 4 sur ce parcours (100% réussite). 77% avec Mottier. Malgré le numéro 12, sa pointe de vitesse fera mal." },
-    { "id": 13, "name": "KIKA JOSSELYN", "rpi": 86.5, "perf": 43.5, "intent": 26.0, "context": 17.0, "tactic": "La 'Découverte'. 100% de réussite sur le parcours. Elle monte de catégorie mais adore la vitesse. Méfiance absolue." },
-    { "id": 14, "name": "KANTO AVIS", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Dernière course à oublier (atteinte). 50% sur le parcours. Avec B. Rochard (44% de réussite avec Sassier), il peut se racheter." },
-    { "id": 15, "name": "CHANCE EK", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0, "tactic": "Pas si mal en retrait dernièrement mais le numéro 15 est rédhibitoire à ce niveau. Pour les amateurs de sensations fortes." }
+    { "id": 1, "name": "HARMONY DU RABUTIN", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0, "tactic": "90% de réussite sur le parcours mais monte nettement de catégorie. Elle visera une petite allocation en rasant les murs." },
+    { "id": 2, "name": "IROISE DE LA NOÉ", "rpi": 97.0, "perf": 49.0, "intent": 29.0, "context": 19.0, "tactic": "Lauréate du Prix de Belgique. Meilleur chrono (1'11''). Eric Raffin au sulky. Tous les feux sont au vert pour le podium." },
+    { "id": 3, "name": "KING OPERA", "rpi": 82.0, "perf": 41.0, "intent": 25.0, "context": 16.0, "tactic": "Pieds nus pour l'occasion. 'La Découverte' de la presse. Il peut franchir un palier et surprendre à belle cote." },
+    { "id": 4, "name": "J'AIME LE FOOT", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "tactic": "Courageux mais ses dernières musiques sont en demi-teinte (10a 15a). Il semble barré par les favoris pour les premières places." },
+    { "id": 5, "name": "IMMORTAL DOC", "rpi": 91.5, "perf": 46.0, "intent": 27.5, "context": 18.0, "tactic": "Couple 100% réussite avec B. Goop. Dur à l'effort et régulier (3e du Belgique). C'est une base solide pour le Quinté+." },
+    { "id": 6, "name": "EPIC KRONOS", "rpi": 98.5, "perf": 49.5, "intent": 30.0, "context": 19.0, "tactic": "Le champion. Impressionnant vainqueur du Ténor de Baune. Il a la classe, la tenue et la vitesse. Le cheval à battre." },
+    { "id": 7, "name": "KEEP GOING", "rpi": 80.0, "perf": 40.0, "intent": 24.0, "context": 16.0, "tactic": "2e du Bourbonnais. Il a les moyens de faire l'arrivée mais devra bénéficier d'un parcours sur mesure dans ce lot royal." },
+    { "id": 8, "name": "BULLET THE BLUESKY", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Bonnes perfs en Suède mais 4e seulement pour son essai ici. L'opposition est plus forte cette fois. Impasse tentante." },
+    { "id": 9, "name": "LOVINO BELLO", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Dépend d'un entraînement redoutable. 81% de réussite sur le parcours. Il préfère la vitesse mais reste dangereux." },
+    { "id": 10, "name": "FRANK GIO", "rpi": 93.0, "perf": 47.0, "intent": 28.0, "context": 18.0, "tactic": "Le spécialiste du tracé (88% réussite). Couple M. Abrivard à 91%. Un modèle de régularité. Incontournable dans le Top 5." },
+    { "id": 11, "name": "JOSH POWER", "rpi": 89.0, "perf": 45.0, "intent": 26.0, "context": 18.0, "tactic": "Vainqueur de Groupe I. Préparé avec soin pour cet objectif ('Tuyau'). Frais et D4, c'est un candidat sérieux au titre." },
+    { "id": 12, "name": "JUST LOVE YOU", "rpi": 84.0, "perf": 42.0, "intent": 25.0, "context": 17.0, "tactic": "A eu besoin de courir après opération. Sur la montante. Sa classe ne fait aucun doute. Méfiance pour les places." },
+    { "id": 13, "name": "HOKKAIDO JIEL", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0, "tactic": "Régulier mais semble avoir moins de marge face aux jeunes loups. Avec F. Nivard, il peut accrocher la 5ème place." },
+    { "id": 14, "name": "INMAROSA", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic": "La note du Belgique. Finit toujours très vite ses parcours. Si elle ne se fait pas piéger, elle sera dans le Quinté." },
+    { "id": 15, "name": "KOCTEL DU DAIN", "rpi": 82.5, "perf": 41.0, "intent": 24.5, "context": 17.0, "tactic": "79% sur le parcours. Décevant récemment mais c'est un 'Allaire'. Ne pas le condamner trop vite sur sa classe intrintrèque." },
+    { "id": 16, "name": "HOOKER BERRY", "rpi": 79.0, "perf": 39.5, "intent": 23.5, "context": 16.0, "tactic": "Vainqueur 2023 mais forme sujette à caution (Note 10/20 presse). En fin de combinaison sur son expérience et sa pointe." },
+    { "id": 17, "name": "FRANCESCO ZET", "rpi": 86.0, "perf": 43.0, "intent": 26.0, "context": 17.0, "tactic": "Le crack suédois aux 23 victoires. Aucune référence à Vincennes mais un moteur énorme. C'est l'X de la course. Tout ou rien." },
+    { "id": 18, "name": "GO ON BOY", "rpi": 95.5, "perf": 48.5, "intent": 29.0, "context": 18.0, "tactic": "Toujours placé au top niveau. Une fin de course dévastatrice. 19/20 de forme. Il tourne autour du pot. Base absolue." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 6) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Horchestro
-  const [compHorse2, setCompHorse2] = useState(horsesData[9]); // Isofou du Chêne
+  const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Epic Kronos
+  const [compHorse2, setCompHorse2] = useState(horsesData[17]); // Go On Boy
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -252,7 +200,7 @@ const App = () => {
               </a>
             </div>
 
-            {/* --- RETOUR DES BOUTONS DRIVERS / ENTRAÎNEURS --- */}
+            {/* --- BOUTONS DRIVERS / ENTRAÎNEURS RESTAURÉS --- */}
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 {filterDiscipline === 'Plat' ? 'JOCKEYS' : 'DRIVERS'} <Trophy className="w-5 h-5" />
@@ -548,20 +496,20 @@ const App = () => {
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Vincennes R1C4</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 15h15 • 24 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 15h15 • 25 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix du Luxembourg
+              Prix d'Amérique
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { label: "Discipline", val: "Attelé" },
-                { label: "Distance", val: "2 100m" },
+                { label: "Distance", val: "2 700m" },
                 { label: "Surface", val: "G.P" },
-                { label: "Départ", val: "Autostart" },
-                { label: "Partants", val: "15 [5-11 ans]" },
-                { label: "Allocation", val: "100 000€" }
+                { label: "Corde", val: "À Gauche" },
+                { label: "Partants", val: "18 [4-11 ans]" },
+                { label: "Allocation", val: "1 000 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -582,13 +530,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[6, 12].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[6, 2].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[6, 12, 10, 4, 13, 1, 3, 9].map((num, i) => (
+                       {[6, 2, 18, 10, 5, 11, 14, 17].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
@@ -598,7 +546,6 @@ const App = () => {
               {/* --- BOUTONS AFFILIATION SOUS LA SÉLECTION (TICKET) --- */}
               <div className="mt-8 pt-8 border-t border-slate-100 w-full">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* GENYBET TICKET */}
                     <a href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_ticket_geny" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white rounded-xl shadow-md hover:bg-slate-800 transition-all group border-b-4 border-yellow-500">
                        <div className="flex flex-col text-left">
                           <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-widest">Partenaire</span>
@@ -607,7 +554,6 @@ const App = () => {
                        <span className="font-bold text-sm bg-yellow-500 text-slate-900 px-3 py-1 rounded-lg">250€ Offerts</span>
                     </a>
 
-                    {/* PMU TICKET */}
                     <a href="https://lk.gt/amyY9" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-green-700 text-white rounded-xl shadow-md hover:bg-green-800 transition-all group border-b-4 border-green-900">
                        <div className="flex flex-col text-left">
                           <span className="text-[10px] font-bold text-green-200 uppercase tracking-widest">Partenaire</span>
@@ -623,9 +569,6 @@ const App = () => {
           </div>
         </div>
       </section>
-
-      {/* BANNIÈRE GENYBET INSÉRÉE ICI */}
-      <GenyBanner />
 
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
