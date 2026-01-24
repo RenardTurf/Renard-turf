@@ -24,7 +24,7 @@ import {
   Trophy,
   FileText,
   UserCheck,
-  BookOpen // Ajouté pour l'icone Ebook
+  BookOpen
 } from 'lucide-react';
 
 // --- CONFIGURATION GOOGLE SHEETS ---
@@ -52,6 +52,61 @@ const initGA = (id) => {
   }
 };
 
+// --- COMPOSANT PUBLICITÉ GENYBET ---
+const GenyBanner = () => {
+  const bannerRef = React.useRef(null);
+
+  useEffect(() => {
+    if (bannerRef.current) {
+      const doc = bannerRef.current.contentDocument || bannerRef.current.contentWindow.document;
+      // Lien CPM (Affichage Bannière)
+      const scriptUrl = "https://www.gambling-affiliation.com/cpm/v=BVHuXvkG8l3Q86MfZ7jwEPYkmcNESfhK8g28Mplsgbo_GA7331V2&aff_var_1=";
+
+      doc.open();
+      doc.write(`
+        <!DOCTYPE html>
+        <html style="height: 100%; margin: 0; padding: 0;">
+          <head>
+            <style>
+              body { 
+                margin: 0; 
+                padding: 0; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100%; 
+                background-color: transparent; 
+                overflow: hidden;
+              }
+              img { max-width: 100%; height: auto; display: block; }
+            </style>
+          </head>
+          <body>
+            <script type="text/javascript" src="${scriptUrl}"></script>
+          </body>
+        </html>
+      `);
+      doc.close();
+    }
+  }, []);
+
+  return (
+    <div className="w-full flex justify-center py-6 bg-slate-50">
+      <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
+        <iframe
+          ref={bannerRef}
+          title="Offre Genybet"
+          width="320"
+          height="100" 
+          frameBorder="0"
+          scrolling="no"
+          style={{ display: 'block' }}
+        />
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,26 +116,26 @@ const App = () => {
 
   // --- DATA RPI v2.4 (SAMEDI 24 JANVIER - PRIX DU LUXEMBOURG) ---
   const horsesData = [
-    { "id": 1, "name": "EAST ASIA", "rpi": 85.0, "perf": 42.5, "intent": 25.5, "context": 17.0, "tactic": "Record absolu du parcours (1'09''7). 60% de réussite ici. Si elle sort du piège de la corde 1, elle peut tout casser." },
-    { "id": 2, "name": "CASH BANK BIGI", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0, "tactic": "30% de réussite sur le parcours. Intermittente. Elle visera une petite place en longeant le rail avec F. Nivard." },
-    { "id": 3, "name": "HANNIBAL TUILERIE", "rpi": 83.0, "perf": 41.5, "intent": 25.0, "context": 16.5, "tactic": "Le couple avec M. Abrivard est en béton (85%). Doit rassurer sur sa forme mais l'engagement est bon. Méfiance." },
-    { "id": 4, "name": "EXECUTIV EK", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0, "tactic": "En grande forme. S'entend à merveille avec A. Gocciadoro (79% réussite). 3ème du Ténor de Baune. C'est une base." },
-    { "id": 5, "name": "JANGO VICI", "rpi": 80.0, "perf": 40.0, "intent": 24.0, "context": 16.0, "tactic": "Le numéro 5 a la meilleure réussite à l'autostart (44%). Régulier, il peut venir compléter le Quinté à belle cote." },
-    { "id": 6, "name": "HORCHESTRO", "rpi": 96.5, "perf": 49.5, "intent": 29.5, "context": 17.5, "tactic": "La note maximale. 3 sur 3 sur le parcours. 80% avec E. Raffin. Il vise le 'Graal'. Incontournable pour la victoire." },
-    { "id": 7, "name": "HULYSSE DIGEO", "rpi": 76.0, "perf": 38.0, "intent": 22.5, "context": 15.5, "tactic": "Bonne réussite (57%) mais semble barré pour la gagne par les 6 ans. Pour une petite place en bout de combinaison." },
-    { "id": 8, "name": "GENDRÉEN", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "Souvent malheureux. Le numéro 8 en dehors est un handicap sérieux. Tâche compliquée face aux jeunes aux dents longues." },
-    { "id": 9, "name": "JINGLE DU PONT", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Chrono canon de 1'09''8. Pieds nus. Si N. Bazire le cache bien et efface le numéro 9, il finira très vite." },
-    { "id": 10, "name": "ISOFOU DU CHÊNE", "rpi": 91.5, "perf": 47.0, "intent": 27.5, "context": 17.0, "tactic": "Invaincu sur ce tracé (2 sur 2). Repéré par nos experts. Il a la pointure pour gagner malgré la 2ème ligne." },
-    { "id": 11, "name": "HAMILTON DU HAM", "rpi": 79.5, "perf": 39.5, "intent": 24.0, "context": 16.0, "tactic": "100% de réussite avec C. Martens. Revient au mieux. Un outsider séduisant pour pimenter les rapports." },
-    { "id": 12, "name": "WORKING CLASS HERO", "rpi": 93.0, "perf": 48.0, "intent": 28.0, "context": 17.0, "tactic": "Le vrai spécialiste : 4 courses ici, 4 arrivées (100%). Entraînement Westholm confiant. Priorité absolue." },
-    { "id": 13, "name": "KIKA JOSSELYN", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic": "La 'Découverte'. 100% de réussite sur le parcours. Monte de catégorie mais adore la vitesse. Attention à elle." },
-    { "id": 14, "name": "KANTO AVIS", "rpi": 77.0, "perf": 38.5, "intent": 23.5, "context": 15.0, "tactic": "A effacer sa dernière course. 50% sur le parcours. Avec B. Rochard, il peut se racheter pour une place." },
-    { "id": 15, "name": "CHANCE EK", "rpi": 69.0, "perf": 34.5, "intent": 20.0, "context": 14.5, "tactic": "Le numéro 15 est très difficile à ce niveau de compétition. Pour les amateurs de très gros outsiders." }
+    { "id": 1, "name": "EAST ASIA", "rpi": 84.0, "perf": 42.0, "intent": 25.0, "context": 17.0, "tactic": "Recordman du parcours (1'09''7). 60% de réussite sur le tracé. Attention au piège du numéro 1 à la corde mais sa classe est là." },
+    { "id": 2, "name": "CASH BANK BIGI", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "30% de réussite sur le parcours. Intermittente. Elle visera une petite place en longeant le rail avec F. Nivard." },
+    { "id": 3, "name": "HANNIBAL TUILERIE", "rpi": 78.5, "perf": 39.0, "intent": 23.5, "context": 16.0, "tactic": "Très performant avec M. Abrivard (85% de réussite). Doit rassurer sur sa forme récente mais l'engagement est bon." },
+    { "id": 4, "name": "EXECUTIV EK", "rpi": 88.0, "perf": 44.0, "intent": 27.0, "context": 17.0, "tactic": "En forme et s'entend très bien avec A. Gocciadoro (79% de réussite). 3ème du Ténor de Baune. Avec le 4, c'est une base." },
+    { "id": 5, "name": "JANGO VICI", "rpi": 80.5, "perf": 40.0, "intent": 24.5, "context": 16.0, "tactic": "Le numéro 5 a 44% de réussite à l'autostart (le top). Il est régulier dans cette catégorie. Pour une place en fin de combinaison." },
+    { "id": 6, "name": "HORCHESTRO", "rpi": 95.2, "perf": 49.0, "intent": 29.0, "context": 17.2, "tactic": "Le cheval à battre. 100% sur le tracé (3 sur 3), 80% de réussite avec Eric Raffin. Il vise la gagne. Incontournable." },
+    { "id": 7, "name": "HULYSSE DIGEO", "rpi": 75.0, "perf": 37.5, "intent": 22.0, "context": 15.5, "tactic": "57% de réussite sur le parcours. Il a des titres mais semble un ton en dessous des meilleurs pour la victoire aujourd'hui." },
+    { "id": 8, "name": "GENDRÉEN", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "tactic": "Malchanceux récemment (enfermé). 34% de réussite avec le numéro 8. Tâche compliquée face aux cadets aux dents longues." },
+    { "id": 9, "name": "JINGLE DU PONT", "rpi": 82.5, "perf": 41.5, "intent": 25.0, "context": 16.0, "tactic": "Chrono canon (1'09''8). Performant pieds nus. Le numéro 9 est le seul bémol, mais il a la qualité pour revenir." },
+    { "id": 10, "name": "ISOFOU DU CHÊNE", "rpi": 92.8, "perf": 48.0, "intent": 27.8, "context": 17.0, "tactic": "Invaincu sur ce tracé (2 sur 2). 'Repéré dans les jumelles'. Il devra sortir du piège de la seconde ligne mais a la pointure." },
+    { "id": 11, "name": "HAMILTON DU HAM", "rpi": 79.0, "perf": 39.5, "intent": 24.0, "context": 15.5, "tactic": "100% de réussite avec C. Martens (1 course). Revient bien. Un outsider séduisant pour pimenter les rapports." },
+    { "id": 12, "name": "WORKING CLASS HERO", "rpi": 90.5, "perf": 46.0, "intent": 27.5, "context": 17.0, "tactic": "Le spécialiste : 4 sur 4 sur ce parcours (100% réussite). 77% avec Mottier. Malgré le numéro 12, sa pointe de vitesse fera mal." },
+    { "id": 13, "name": "KIKA JOSSELYN", "rpi": 86.5, "perf": 43.5, "intent": 26.0, "context": 17.0, "tactic": "La 'Découverte'. 100% de réussite sur le parcours. Elle monte de catégorie mais adore la vitesse. Méfiance absolue." },
+    { "id": 14, "name": "KANTO AVIS", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Dernière course à oublier (atteinte). 50% sur le parcours. Avec B. Rochard (44% de réussite avec Sassier), il peut se racheter." },
+    { "id": 15, "name": "CHANCE EK", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0, "tactic": "Pas si mal en retrait dernièrement mais le numéro 15 est rédhibitoire à ce niveau. Pour les amateurs de sensations fortes." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 6) || horsesData[0]);
   const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Horchestro
-  const [compHorse2, setCompHorse2] = useState(horsesData[11]); // Working Class Hero
+  const [compHorse2, setCompHorse2] = useState(horsesData[9]); // Isofou du Chêne
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -118,7 +173,7 @@ const App = () => {
     LAST_VIDEO_ID: "Tz8ztOsZoVw", 
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t",
-    EBOOK_SHOP: "https://lerenardturf.sellfy.store" // Lien Ebook ajouté
+    EBOOK_SHOP: "https://lerenardturf.sellfy.store"
   };
 
   const stats = [
@@ -148,7 +203,6 @@ const App = () => {
           <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
               
-              {/* LIEN EBOOK AJOUTÉ DANS LE MENU */}
               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-orange-600 text-white hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/30 group">
                 <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><BookOpen /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD (Ebook) <ExternalLink size={14}/></span>
@@ -183,7 +237,6 @@ const App = () => {
           </p>
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
-            {/* BOUTON EBOOK MIS EN AVANT */}
             <div className="w-full">
                <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full bg-slate-900 hover:bg-slate-800 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
                 <BookOpen className="w-6 h-6 text-orange-500" /> TÉLÉCHARGER LE GUIDE DU RENARD
@@ -198,6 +251,17 @@ const App = () => {
                 DERNIÈRE VIDÉO
               </a>
             </div>
+
+            {/* --- RETOUR DES BOUTONS DRIVERS / ENTRAÎNEURS --- */}
+            <div className="flex flex-col sm:flex-row gap-5 w-full">
+              <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
+                {filterDiscipline === 'Plat' ? 'JOCKEYS' : 'DRIVERS'} <Trophy className="w-5 h-5" />
+              </a>
+              <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
+                ENTRAÎNEURS <UserCheck className="w-5 h-5" />
+              </a>
+            </div>
+            {/* ----------------------------------------------- */}
             
             <div className="w-full">
               <a href="#ticket" className="w-full bg-white border-2 border-slate-100 hover:border-orange-600 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-sm group uppercase">
@@ -217,6 +281,32 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* --- NOUVELLE SECTION EBOOK PROMO (JUSTE AU-DESSUS DU RPI) --- */}
+      <section id="ebook-promo" className="py-20 px-6 bg-slate-900 text-white flex flex-col items-center relative overflow-hidden border-b border-slate-800">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-600/20 via-transparent to-transparent" />
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/30 text-orange-500 px-4 py-1.5 rounded-full mb-6 shadow-sm backdrop-blur-sm">
+            <Star className="w-4 h-4 fill-current" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Formation Exclusive</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase italic tracking-tighter leading-none">
+            LES SECRETS DES <span className="text-orange-500">TURFISTES AVERTIS</span>
+          </h2>
+          <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+            23 pages pour analyser le Quinté comme un pro. Comprenez enfin les mécanismes cachés des courses et arrêtez de jouer au hasard.
+          </p>
+          <a 
+            href={LINKS.EBOOK_SHOP} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-orange-600/30 hover:scale-105"
+          >
+            <BookOpen className="w-6 h-6" /> OBTENIR LE GUIDE MAINTENANT
+          </a>
+        </div>
+      </section>
+      {/* ----------------------------------------------------------- */}
 
       {/* RPI Analyzer Tool */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
@@ -533,6 +623,9 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* BANNIÈRE GENYBET INSÉRÉE ICI */}
+      <GenyBanner />
 
       <footer className="bg-white border-t border-slate-100 py-20 text-center px-6 flex flex-col items-center">
         <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic block mb-8">RENARD<span className="text-orange-600">TURF</span></span>
