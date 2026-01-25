@@ -24,7 +24,8 @@ import {
   Trophy,
   FileText,
   UserCheck,
-  BookOpen // Icone pour l'ebook
+  BookOpen,
+  Crown // Nouvelle icône pour l'abonnement VIP
 } from 'lucide-react';
 
 // --- CONFIGURATION GOOGLE SHEETS ---
@@ -55,35 +56,33 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
+  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v3.0 (DIMANCHE 25 JANVIER - PRIX D'AMÉRIQUE) ---
+  // --- DATA RPI v3.1 (LUNDI 26 JANVIER - PRIX DE MARSEILLE) ---
   const horsesData = [
-    { "id": 1, "name": "HARMONY DU RABUTIN", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0, "tactic": "90% de réussite sur le parcours mais monte nettement de catégorie. Elle visera une petite allocation en rasant les murs." },
-    { "id": 2, "name": "IROISE DE LA NOÉ", "rpi": 97.0, "perf": 49.0, "intent": 29.0, "context": 19.0, "tactic": "Lauréate du Prix de Belgique. Meilleur chrono (1'11''). Eric Raffin au sulky. Tous les feux sont au vert pour le podium." },
-    { "id": 3, "name": "KING OPERA", "rpi": 82.0, "perf": 41.0, "intent": 25.0, "context": 16.0, "tactic": "Pieds nus pour l'occasion. 'La Découverte' de la presse. Il peut franchir un palier et surprendre à belle cote." },
-    { "id": 4, "name": "J'AIME LE FOOT", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "tactic": "Courageux mais ses dernières musiques sont en demi-teinte (10a 15a). Il semble barré par les favoris pour les premières places." },
-    { "id": 5, "name": "IMMORTAL DOC", "rpi": 91.5, "perf": 46.0, "intent": 27.5, "context": 18.0, "tactic": "Couple 100% réussite avec B. Goop. Dur à l'effort et régulier (3e du Belgique). C'est une base solide pour le Quinté+." },
-    { "id": 6, "name": "EPIC KRONOS", "rpi": 98.5, "perf": 49.5, "intent": 30.0, "context": 19.0, "tactic": "Le champion. Impressionnant vainqueur du Ténor de Baune. Il a la classe, la tenue et la vitesse. Le cheval à battre." },
-    { "id": 7, "name": "KEEP GOING", "rpi": 80.0, "perf": 40.0, "intent": 24.0, "context": 16.0, "tactic": "2e du Bourbonnais. Il a les moyens de faire l'arrivée mais devra bénéficier d'un parcours sur mesure dans ce lot royal." },
-    { "id": 8, "name": "BULLET THE BLUESKY", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Bonnes perfs en Suède mais 4e seulement pour son essai ici. L'opposition est plus forte cette fois. Impasse tentante." },
-    { "id": 9, "name": "LOVINO BELLO", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Dépend d'un entraînement redoutable. 81% de réussite sur le parcours. Il préfère la vitesse mais reste dangereux." },
-    { "id": 10, "name": "FRANK GIO", "rpi": 93.0, "perf": 47.0, "intent": 28.0, "context": 18.0, "tactic": "Le spécialiste du tracé (88% réussite). Couple M. Abrivard à 91%. Un modèle de régularité. Incontournable dans le Top 5." },
-    { "id": 11, "name": "JOSH POWER", "rpi": 89.0, "perf": 45.0, "intent": 26.0, "context": 18.0, "tactic": "Vainqueur de Groupe I. Préparé avec soin pour cet objectif ('Tuyau'). Frais et D4, c'est un candidat sérieux au titre." },
-    { "id": 12, "name": "JUST LOVE YOU", "rpi": 84.0, "perf": 42.0, "intent": 25.0, "context": 17.0, "tactic": "A eu besoin de courir après opération. Sur la montante. Sa classe ne fait aucun doute. Méfiance pour les places." },
-    { "id": 13, "name": "HOKKAIDO JIEL", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0, "tactic": "Régulier mais semble avoir moins de marge face aux jeunes loups. Avec F. Nivard, il peut accrocher la 5ème place." },
-    { "id": 14, "name": "INMAROSA", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic": "La note du Belgique. Finit toujours très vite ses parcours. Si elle ne se fait pas piéger, elle sera dans le Quinté." },
-    { "id": 15, "name": "KOCTEL DU DAIN", "rpi": 82.5, "perf": 41.0, "intent": 24.5, "context": 17.0, "tactic": "79% sur le parcours. Décevant récemment mais c'est un 'Allaire'. Ne pas le condamner trop vite sur sa classe intrintrèque." },
-    { "id": 16, "name": "HOOKER BERRY", "rpi": 79.0, "perf": 39.5, "intent": 23.5, "context": 16.0, "tactic": "Vainqueur 2023 mais forme sujette à caution (Note 10/20 presse). En fin de combinaison sur son expérience et sa pointe." },
-    { "id": 17, "name": "FRANCESCO ZET", "rpi": 86.0, "perf": 43.0, "intent": 26.0, "context": 17.0, "tactic": "Le crack suédois aux 23 victoires. Aucune référence à Vincennes mais un moteur énorme. C'est l'X de la course. Tout ou rien." },
-    { "id": 18, "name": "GO ON BOY", "rpi": 95.5, "perf": 48.5, "intent": 29.0, "context": 18.0, "tactic": "Toujours placé au top niveau. Une fin de course dévastatrice. 19/20 de forme. Il tourne autour du pot. Base absolue." }
+    { "id": 1, "name": "BAYAMOON", "rpi": 92.0, "perf": 46.0, "intent": 28.0, "context": 18.0, "tactic": "Vient de l'emporter nettement avec une superbe accélération. Entraînement Reynier en forme (46%). C'est une base logique." },
+    { "id": 2, "name": "LORD OF WAR", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0, "tactic": "Entente parfaite avec Sylvain Ruis (5 sur 5). Malgré la corde 16, sa régularité en fait un candidat solide pour les places." },
+    { "id": 3, "name": "WESTMINSTER NIGHT", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Aime les parcours à main gauche (3 sur 5). Peut manquer d'un peu de marge pour la victoire mais pas pour un accessit." },
+    { "id": 4, "name": "CREW DRAGON", "rpi": 94.5, "perf": 47.5, "intent": 29.0, "context": 18.0, "tactic": "Invaincu sur 1500m (4 sur 4). S'entend à merveille avec H. Boutin. Vient de s'imposer. Incontournable." },
+    { "id": 5, "name": "GILDED DRAGON", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0, "tactic": "La 'Découverte'. Malheureux dernièrement (enfermé). Bon finisseur. Le retour sur le gazon va l'avantager. À racheter." },
+    { "id": 6, "name": "AMEDRAS", "rpi": 96.0, "perf": 48.0, "intent": 29.5, "context": 18.5, "tactic": "Le Roi du parcours : 6 courses, 6 arrivées. Associé à C. Demuro. C'est le cheval à battre." },
+    { "id": 7, "name": "RIASSOU", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0, "tactic": "Couple 100% avec H. Besnier mais monte de catégorie. La corde 15 complique sa tâche. Second choix." },
+    { "id": 8, "name": "HALF HALF", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic": "Grosse note à Deauville (fini fort). Adore le terrain bien souple. Idéalement placé au poids. Notre favori spéculatif." },
+    { "id": 9, "name": "JOH SPIRIT", "rpi": 79.0, "perf": 39.5, "intent": 24.5, "context": 15.0, "tactic": "Munie d'oeillères. Aime ce tracé (50% réussite). Corde 4 idéale pour son jeu. Un trouble-fête sérieux." },
+    { "id": 10, "name": "CASARES", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0, "tactic": "Performe bien dans les Quintés (4 sur 6). Avec S. Pasquier, il ne faut jamais l'éliminer totalement." },
+    { "id": 11, "name": "BREIZH MOON", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "Semble un ton en dessous des meilleurs à ce poids. Il devra bénéficier de circonstances très favorables." },
+    { "id": 12, "name": "RÊVE DE VALLARSA", "rpi": 75.0, "perf": 37.5, "intent": 22.5, "context": 15.0, "tactic": "Forme saisonnière validée. Cheval honnête qui fait toutes ses courses. Possible pour une cote." },
+    { "id": 13, "name": "WAZIERS", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Bonne corde (6). 100% de réussite avec R. Thomas. Elle peut accrocher un lot si le rythme est sélectif." },
+    { "id": 14, "name": "JUGANDO", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0, "tactic": "Ses dernières sorties ne plaident pas en sa faveur. Tâche compliquée face aux spécialistes." },
+    { "id": 15, "name": "MANGAKEN", "rpi": 70.0, "perf": 35.0, "intent": 21.0, "context": 14.0, "tactic": "Vient de gagner à Pau sur PSF. Le changement de surface et la pénalité rendent la tâche plus ardue." },
+    { "id": 16, "name": "CHIRIMIRI", "rpi": 85.5, "perf": 42.5, "intent": 25.5, "context": 17.5, "tactic": "Le petit poids (53kg). Valeur handicap favorable (75% réussite). Une fois sur la distance = 2e. Méfiance." }
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 6) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Epic Kronos
-  const [compHorse2, setCompHorse2] = useState(horsesData[17]); // Go On Boy
+  const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Amedras
+  const [compHorse2, setCompHorse2] = useState(horsesData[3]); // Crew Dragon
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -118,10 +117,11 @@ const App = () => {
 
   const LINKS = {
     YOUTUBE_CHANNEL: "https://www.youtube.com/channel/UC64vhh_FBnthLJKNqEdjZpA", 
-    LAST_VIDEO_ID: "np1w7t4kTGs", 
+    LAST_VIDEO_ID: "Tz8ztOsZoVw", 
     PLAYLIST_BILAN: "https://youtube.com/playlist?list=PLgejDmYclZBKZEyl_0H5j6hqXgjEf60SE",
     PLAYLIST_PRONO: "https://youtube.com/playlist?list=PLgejDmYclZBLuvLZIaZtvtBdGZrc62b8t",
-    EBOOK_SHOP: "https://lerenardturf.sellfy.store"
+    EBOOK_SHOP: "https://lerenardturf.sellfy.store",
+    SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/" // Nouveau lien Abonnement
   };
 
   const stats = [
@@ -156,6 +156,11 @@ const App = () => {
                 <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD (Ebook) <ExternalLink size={14}/></span>
               </a>
 
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-slate-800 transition-all border border-slate-800 group">
+                <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ABONNEMENT VIP <ExternalLink size={14}/></span>
+              </a>
+
               <a href={LINKS.PLAYLIST_PRONO} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-orange-600/20"><Ticket /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2 text-slate-900">Les Pronos Vidéo</span>
@@ -185,13 +190,18 @@ const App = () => {
           </p>
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
-            <div className="w-full">
-               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full bg-slate-900 hover:bg-slate-800 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
-                <BookOpen className="w-6 h-6 text-orange-500" /> TÉLÉCHARGER LE GUIDE DU RENARD
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+               {/* EBOOK BUTTON */}
+               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
+                <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
+              </a>
+              {/* SUBSCRIPTION BUTTON */}
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
+                <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
               </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-5 w-full">
+            <div className="flex flex-col sm:flex-row gap-5 w-full mt-2">
               <a href="#rpi-tool" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -200,7 +210,6 @@ const App = () => {
               </a>
             </div>
 
-            {/* --- BOUTONS DRIVERS / ENTRAÎNEURS RESTAURÉS --- */}
             <div className="flex flex-col sm:flex-row gap-5 w-full">
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 {filterDiscipline === 'Plat' ? 'JOCKEYS' : 'DRIVERS'} <Trophy className="w-5 h-5" />
@@ -209,7 +218,6 @@ const App = () => {
                 ENTRAÎNEURS <UserCheck className="w-5 h-5" />
               </a>
             </div>
-            {/* ----------------------------------------------- */}
             
             <div className="w-full">
               <a href="#ticket" className="w-full bg-white border-2 border-slate-100 hover:border-orange-600 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-sm group uppercase">
@@ -230,7 +238,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- NOUVELLE SECTION EBOOK PROMO (JUSTE AU-DESSUS DU RPI) --- */}
+      {/* --- SECTION EBOOK PROMO --- */}
       <section id="ebook-promo" className="py-20 px-6 bg-slate-900 text-white flex flex-col items-center relative overflow-hidden border-b border-slate-800">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-600/20 via-transparent to-transparent" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
@@ -252,6 +260,50 @@ const App = () => {
           >
             <BookOpen className="w-6 h-6" /> OBTENIR LE GUIDE MAINTENANT
           </a>
+        </div>
+      </section>
+
+      {/* --- SECTION ABONNEMENT VIP (NOUVEAU) --- */}
+      <section id="subscription-promo" className="py-20 px-6 bg-white text-slate-900 flex flex-col items-center relative border-b border-slate-100">
+        <div className="container mx-auto max-w-5xl">
+          <div className="bg-slate-900 rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400 rounded-full blur-[100px] opacity-20 -mr-16 -mt-16 pointer-events-none"></div>
+            
+            <div className="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
+              <div className="text-left md:w-3/5">
+                <div className="inline-flex items-center gap-2 bg-yellow-400 text-slate-900 px-4 py-1.5 rounded-full mb-6 shadow-lg shadow-yellow-400/20">
+                  <Crown className="w-4 h-4 fill-current" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">Offre Premium</span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none">
+                  DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
+                </h2>
+                <ul className="space-y-4 mb-8">
+                  {['Pronostics Quinté+ détaillés la veille', 'Analyses exclusives & Bruits d\'écuries', 'Accès illimité aux outils Data & RPI'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
+                      <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="md:w-2/5 flex flex-col items-center">
+                <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-8 w-full text-center">
+                  <span className="text-slate-400 uppercase text-xs font-bold tracking-widest mb-2 block">Sans engagement</span>
+                  <div className="text-5xl font-black text-white mb-6">19,90€<span className="text-lg text-slate-400 font-medium">/mois</span></div>
+                  <a 
+                    href={LINKS.SUBSCRIPTION} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="w-full block bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-yellow-400/20 hover:scale-105 uppercase"
+                  >
+                    JE M'ABONNE 🚀
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       {/* ----------------------------------------------------------- */}
@@ -326,7 +378,7 @@ const App = () => {
                </p>
             </div>
 
-            {/* --- BOUTONS D'ACTION (RPI TOOL) --- */}
+            {/* --- BOUTONS D'ACTION (RPI TOOL - DYNAMIC) --- */}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               <a 
                 href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_rpi_geny" 
@@ -350,7 +402,7 @@ const App = () => {
                 <span className="font-black italic text-white uppercase text-center leading-tight">JOUER <span className="underline decoration-2 underline-offset-2">{selectedHorse.name}</span></span>
               </a>
             </div>
-            {/* ----------------------------------- */}
+            {/* --------------------------------------------- */}
 
           </div>
 
@@ -494,22 +546,22 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Vincennes R1C4</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Cagnes-sur-Mer R1C2</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 15h15 • 25 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 13h55 • 26 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix d'Amérique
+              Prix de Marseille
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Attelé" },
-                { label: "Distance", val: "2 700m" },
-                { label: "Surface", val: "G.P" },
+                { label: "Discipline", val: "Plat" },
+                { label: "Distance", val: "1 500m" },
+                { label: "Surface", val: "Gazon" },
                 { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "18 [4-11 ans]" },
-                { label: "Allocation", val: "1 000 000€" }
+                { label: "Partants", val: "16 [5 ans+]" },
+                { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -530,13 +582,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[6, 2].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[6, 8].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[6, 2, 18, 10, 5, 11, 14, 17].map((num, i) => (
+                       {[6, 8, 1, 4, 5, 16, 2, 13].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
