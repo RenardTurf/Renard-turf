@@ -62,22 +62,22 @@ const App = () => {
 
   // --- DATA RPI v3.1 (LUNDI 26 JANVIER - PRIX DE MARSEILLE) ---
   const horsesData = [
-    { "id": 1, "name": "BAYAMOON", "rpi": 92.0, "perf": 46.0, "intent": 28.0, "context": 18.0, "tactic": "Vient de l'emporter nettement avec une superbe accélération. Entraînement Reynier en forme (46%). C'est une base logique." },
-    { "id": 2, "name": "LORD OF WAR", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0, "tactic": "Entente parfaite avec Sylvain Ruis (5 sur 5). Malgré la corde 16, sa régularité en fait un candidat solide pour les places." },
-    { "id": 3, "name": "WESTMINSTER NIGHT", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic": "Aime les parcours à main gauche (3 sur 5). Peut manquer d'un peu de marge pour la victoire mais pas pour un accessit." },
-    { "id": 4, "name": "CREW DRAGON", "rpi": 94.5, "perf": 47.5, "intent": 29.0, "context": 18.0, "tactic": "Invaincu sur 1500m (4 sur 4). S'entend à merveille avec H. Boutin. Vient de s'imposer. Incontournable." },
-    { "id": 5, "name": "GILDED DRAGON", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0, "tactic": "La 'Découverte'. Malheureux dernièrement (enfermé). Bon finisseur. Le retour sur le gazon va l'avantager. À racheter." },
-    { "id": 6, "name": "AMEDRAS", "rpi": 96.0, "perf": 48.0, "intent": 29.5, "context": 18.5, "tactic": "Le Roi du parcours : 6 courses, 6 arrivées. Associé à C. Demuro. C'est le cheval à battre." },
-    { "id": 7, "name": "RIASSOU", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0, "tactic": "Couple 100% avec H. Besnier mais monte de catégorie. La corde 15 complique sa tâche. Second choix." },
-    { "id": 8, "name": "HALF HALF", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic": "Grosse note à Deauville (fini fort). Adore le terrain bien souple. Idéalement placé au poids. Notre favori spéculatif." },
-    { "id": 9, "name": "JOH SPIRIT", "rpi": 79.0, "perf": 39.5, "intent": 24.5, "context": 15.0, "tactic": "Munie d'oeillères. Aime ce tracé (50% réussite). Corde 4 idéale pour son jeu. Un trouble-fête sérieux." },
-    { "id": 10, "name": "CASARES", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0, "tactic": "Performe bien dans les Quintés (4 sur 6). Avec S. Pasquier, il ne faut jamais l'éliminer totalement." },
-    { "id": 11, "name": "BREIZH MOON", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic": "Semble un ton en dessous des meilleurs à ce poids. Il devra bénéficier de circonstances très favorables." },
-    { "id": 12, "name": "RÊVE DE VALLARSA", "rpi": 75.0, "perf": 37.5, "intent": 22.5, "context": 15.0, "tactic": "Forme saisonnière validée. Cheval honnête qui fait toutes ses courses. Possible pour une cote." },
-    { "id": 13, "name": "WAZIERS", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic": "Bonne corde (6). 100% de réussite avec R. Thomas. Elle peut accrocher un lot si le rythme est sélectif." },
-    { "id": 14, "name": "JUGANDO", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0, "tactic": "Ses dernières sorties ne plaident pas en sa faveur. Tâche compliquée face aux spécialistes." },
-    { "id": 15, "name": "MANGAKEN", "rpi": 70.0, "perf": 35.0, "intent": 21.0, "context": 14.0, "tactic": "Vient de gagner à Pau sur PSF. Le changement de surface et la pénalité rendent la tâche plus ardue." },
-    { "id": 16, "name": "CHIRIMIRI", "rpi": 85.5, "perf": 42.5, "intent": 25.5, "context": 17.5, "tactic": "Le petit poids (53kg). Valeur handicap favorable (75% réussite). Une fois sur la distance = 2e. Méfiance." }
+    { "id": 1, "name": "BAYAMOON", "rpi": 92.0, "perf": 46.0, "intent": 28.0, "context": 18.0, "tactic": },
+    { "id": 2, "name": "LORD OF WAR", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0, "tactic": },
+    { "id": 3, "name": "WESTMINSTER NIGHT", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0, "tactic":},
+    { "id": 4, "name": "CREW DRAGON", "rpi": 94.5, "perf": 47.5, "intent": 29.0, "context": 18.0, "tactic":},
+    { "id": 5, "name": "GILDED DRAGON", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0, "tactic": },
+    { "id": 6, "name": "AMEDRAS", "rpi": 96.0, "perf": 48.0, "intent": 29.5, "context": 18.5, "tactic": },
+    { "id": 7, "name": "RIASSOU", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0, "tactic":},
+    { "id": 8, "name": "HALF HALF", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0, "tactic":},
+    { "id": 9, "name": "JOH SPIRIT", "rpi": 79.0, "perf": 39.5, "intent": 24.5, "context": 15.0, "tactic":},
+    { "id": 10, "name": "CASARES", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0, "tactic":},
+    { "id": 11, "name": "BREIZH MOON", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "tactic":},
+    { "id": 12, "name": "RÊVE DE VALLARSA", "rpi": 75.0, "perf": 37.5, "intent": 22.5, "context": 15.0, "tactic":},
+    { "id": 13, "name": "WAZIERS", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0, "tactic":},
+    { "id": 14, "name": "JUGANDO", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0, "tactic":},
+    { "id": 15, "name": "MANGAKEN", "rpi": 70.0, "perf": 35.0, "intent": 21.0, "context": 14.0, "tactic":},
+    { "id": 16, "name": "CHIRIMIRI", "rpi": 85.5, "perf": 42.5, "intent": 25.5, "context": 17.5, "tactic":}
   ];
 
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 6) || horsesData[0]);
