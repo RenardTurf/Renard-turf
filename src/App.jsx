@@ -115,7 +115,7 @@ const App = () => {
   }, []);
 
   const LINKS = {
-    EBOOK_SHOP: "https://lerenardturf.sellfy.store",
+    EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
     SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/"
   };
 
