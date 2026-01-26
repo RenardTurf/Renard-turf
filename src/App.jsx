@@ -266,7 +266,7 @@ const App = () => {
                   DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
                 </h2>
                 <ul className="space-y-4 mb-8">
-                  {['Selection Quinté+ détaillés la veille', 'Analyses exclusives & Chevaux D'autres Courses', 'Un Chapitre Et Une Astuce De Jeu Gratuite Du Guide Du Renard Gratuitement '].map((item, i) => (
+                  {['Selection Quinté+ détaillée la veille', 'Analyses exclusives & Chevaux D'autres Courses', 'Un Chapitre Et Une Astuce De Jeu Gratuite Du Guide Du Renard Gratuitement'].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
                       <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
                       {item}
