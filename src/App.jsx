@@ -59,7 +59,8 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v3.1 (LUNDI 26 JANVIER - PRIX DE MARSEILLE) ---
+  // --- DATA RPI v3.2 (LUNDI 26 JANVIER - PRIX DE MARSEILLE) ---
+  // Note: La propriété 'tactic' a été supprimée comme demandé.
   const horsesData = [
     { "id": 1, "name": "BAYAMOON", "rpi": 92.0, "perf": 46.0, "intent": 28.0, "context": 18.0 },
     { "id": 2, "name": "LORD OF WAR", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0 },
@@ -181,11 +182,9 @@ const App = () => {
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-               {/* EBOOK BUTTON */}
                <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
                 <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
               </a>
-              {/* SUBSCRIPTION BUTTON */}
               <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
                 <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
               </a>
