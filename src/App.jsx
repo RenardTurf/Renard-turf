@@ -60,6 +60,7 @@ const App = () => {
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
   // --- DATA RPI v3.2 (MARDI 27 JANVIER - PRIX DE CHÂTEAUROUX) ---
+  // Note: 'tactic' field removed as requested
   const horsesData = [
     { "id": 1, "name": "UN MEC PAASLOO", "rpi": 81.5, "perf": 40.5, "intent": 24.5, "context": 16.5 },
     { "id": 2, "name": "GOODWIN ZET", "rpi": 78.0, "perf": 39.0, "intent": 23.5, "context": 15.5 },
@@ -266,7 +267,7 @@ const App = () => {
                   DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
                 </h2>
                 <ul className="space-y-4 mb-8">
-                  {['Selection Quinté+ détaillée la veille', 'Analyses exclusives & Chevaux D'autres Courses', 'Un Chapitre Et Une Astuce De Jeu Gratuite Du Guide Du Renard Gratuitement'].map((item, i) => (
+                  {['Selection Quinté+ détaillée la veille', 'Analyses exclusives & Chevaux D\'autres Courses', 'Un Chapitre Et Une Astuce De Jeu Gratuite Du Guide Du Renard Gratuitement'].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
                       <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
                       {item}
