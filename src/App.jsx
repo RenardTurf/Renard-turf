@@ -30,7 +30,7 @@ import {
 // --- CONFIGURATION GOOGLE SHEETS ---
 const SHEET_URLS = {
   JOCKEYS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQH61koCV9FgrkJfYVNQMlseDY2K4R54ClxM-tkM2vwb0Dvbwyb1KYiimPdZODPaFbXW40VrVUJjFqW/pub?output=csv",
-  TRAINERS: "https://docs.google.com/spreadsheets/d/13HVPCuqQeJ-ZGXoyffYhqSI6445HoOWZEIll1yLsVxM/edit?usp=drivesdk"
+  TRAINERS: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-gp9qlf4bEk3vMQuOp4WNickKworuWoP0P-Vgr5PtTE5hn-vkJhrC5GD3INH5T0WUbnlLfGtLMtiu/pub?output=csv"
 };
 
 const initGA = (id) => {
