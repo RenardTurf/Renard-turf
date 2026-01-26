@@ -55,34 +55,33 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
+  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v3.2 (LUNDI 26 JANVIER - PRIX DE MARSEILLE) ---
-  // Note: La propriété 'tactic' a été supprimée comme demandé.
+  // --- DATA RPI v3.2 (MARDI 27 JANVIER - PRIX DE CHÂTEAUROUX) ---
   const horsesData = [
-    { "id": 1, "name": "BAYAMOON", "rpi": 92.0, "perf": 46.0, "intent": 28.0, "context": 18.0 },
-    { "id": 2, "name": "LORD OF WAR", "rpi": 89.0, "perf": 44.5, "intent": 27.5, "context": 17.0 },
-    { "id": 3, "name": "WESTMINSTER NIGHT", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0 },
-    { "id": 4, "name": "CREW DRAGON", "rpi": 94.5, "perf": 47.5, "intent": 29.0, "context": 18.0 },
-    { "id": 5, "name": "GILDED DRAGON", "rpi": 83.0, "perf": 41.5, "intent": 24.5, "context": 17.0 },
-    { "id": 6, "name": "AMEDRAS", "rpi": 96.0, "perf": 48.0, "intent": 29.5, "context": 18.5 },
-    { "id": 7, "name": "RIASSOU", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0 },
-    { "id": 8, "name": "HALF HALF", "rpi": 87.5, "perf": 44.0, "intent": 26.5, "context": 17.0 },
-    { "id": 9, "name": "JOH SPIRIT", "rpi": 79.0, "perf": 39.5, "intent": 24.5, "context": 15.0 },
-    { "id": 10, "name": "CASARES", "rpi": 78.0, "perf": 39.0, "intent": 24.0, "context": 15.0 },
-    { "id": 11, "name": "BREIZH MOON", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0 },
-    { "id": 12, "name": "RÊVE DE VALLARSA", "rpi": 75.0, "perf": 37.5, "intent": 22.5, "context": 15.0 },
-    { "id": 13, "name": "WAZIERS", "rpi": 81.0, "perf": 40.5, "intent": 24.5, "context": 16.0 },
-    { "id": 14, "name": "JUGANDO", "rpi": 68.0, "perf": 34.0, "intent": 20.0, "context": 14.0 },
-    { "id": 15, "name": "MANGAKEN", "rpi": 70.0, "perf": 35.0, "intent": 21.0, "context": 14.0 },
-    { "id": 16, "name": "CHIRIMIRI", "rpi": 85.5, "perf": 42.5, "intent": 25.5, "context": 17.5 }
+    { "id": 1, "name": "UN MEC PAASLOO", "rpi": 81.5, "perf": 40.5, "intent": 24.5, "context": 16.5 },
+    { "id": 2, "name": "GOODWIN ZET", "rpi": 78.0, "perf": 39.0, "intent": 23.5, "context": 15.5 },
+    { "id": 3, "name": "PURE ATLAS", "rpi": 86.0, "perf": 43.0, "intent": 26.0, "context": 17.0 },
+    { "id": 4, "name": "DARLINGTON FAME", "rpi": 75.0, "perf": 37.5, "intent": 22.5, "context": 15.0 },
+    { "id": 5, "name": "CANTAB AS", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0 },
+    { "id": 6, "name": "HASHTAG SIMONI", "rpi": 84.0, "perf": 42.0, "intent": 25.0, "context": 17.0 },
+    { "id": 7, "name": "INVISIBLE SUN", "rpi": 88.5, "perf": 44.5, "intent": 26.5, "context": 17.5 },
+    { "id": 8, "name": "JUSTICIA GLAM", "rpi": 76.0, "perf": 38.0, "intent": 23.0, "context": 15.0 },
+    { "id": 9, "name": "LOOK OF LOVE", "rpi": 79.0, "perf": 39.5, "intent": 24.0, "context": 15.5 },
+    { "id": 10, "name": "JOVIAL HAUFOR", "rpi": 90.0, "perf": 45.0, "intent": 27.5, "context": 17.5 },
+    { "id": 11, "name": "JADE RENARDIER", "rpi": 94.0, "perf": 47.0, "intent": 28.5, "context": 18.5 },
+    { "id": 12, "name": "CAMERON", "rpi": 80.5, "perf": 40.5, "intent": 24.0, "context": 16.0 },
+    { "id": 13, "name": "KAXIG IN", "rpi": 92.5, "perf": 46.5, "intent": 28.0, "context": 18.0 },
+    { "id": 14, "name": "SANDOKAN", "rpi": 96.5, "perf": 48.5, "intent": 29.0, "context": 19.0 },
+    { "id": 15, "name": "INSIDE MAN", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0 },
+    { "id": 16, "name": "IXEL DE L'AUMOY", "rpi": 70.0, "perf": 35.0, "intent": 21.0, "context": 14.0 }
   ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 6) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[5]); // Amedras
-  const [compHorse2, setCompHorse2] = useState(horsesData[3]); // Crew Dragon
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 14) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData[13]); // Sandokan
+  const [compHorse2, setCompHorse2] = useState(horsesData[10]); // Jade Renardier
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -182,9 +181,11 @@ const App = () => {
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
             <div className="flex flex-col sm:flex-row gap-4 w-full">
+               {/* EBOOK BUTTON */}
                <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
                 <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
               </a>
+              {/* SUBSCRIPTION BUTTON */}
               <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
                 <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
               </a>
@@ -265,7 +266,7 @@ const App = () => {
                   DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
                 </h2>
                 <ul className="space-y-4 mb-8">
-                  {['Pronostics Quinté+ détaillés la veille', 'Analyses exclusives', 'Un chapitre du guide gratuit & une astuce de jeu offerte'].map((item, i) => (
+                  {['Pronostics Quinté+ détaillés la veille', 'Analyses exclusives & Bruits d\'écuries', 'Accès illimité aux outils Data & RPI'].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
                       <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
                       {item}
@@ -500,19 +501,19 @@ const App = () => {
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Cagnes-sur-Mer R1C2</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 13h55 • 26 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 13h55 • 27 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix de Marseille
+              Prix de Châteauroux
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Plat" },
-                { label: "Distance", val: "1 500m" },
-                { label: "Surface", val: "Gazon" },
+                { label: "Discipline", val: "Attelé" },
+                { label: "Distance", val: "2 850m" },
+                { label: "Surface", val: "G.P" },
                 { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "16 [5 ans+]" },
+                { label: "Partants", val: "16 [7 ans+]" },
                 { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
@@ -534,13 +535,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[6, 8].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[14, 11].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[6, 8, 1, 4, 5, 16, 2, 13].map((num, i) => (
+                       {[14, 11, 13, 10, 7, 3, 6, 1].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
