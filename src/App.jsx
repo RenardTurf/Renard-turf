@@ -55,32 +55,33 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
+  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (JEUDI 29 JANVIER - PRIX DE LANGEAIS) ---
+  // --- DATA RPI v4.0 (VENDREDI 30 JANVIER - PRIX DU TRÉPORT) ---
   const horsesData = [
-    { "id": 1, "name": "HAIKIDO", "rpi": 78.0, "perf": 38.0, "intent": 22.0, "context": 18.0 },
-    { "id": 2, "name": "INSTANT D'HAUFOR", "rpi": 72.0, "perf": 35.0, "intent": 21.0, "context": 16.0 },
-    { "id": 3, "name": "INFERNO PIPER", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0 },
-    { "id": 4, "name": "HALMA D'AMER", "rpi": 75.0, "perf": 39.0, "intent": 20.0, "context": 16.0 },
-    { "id": 5, "name": "HOLD UP DREAM", "rpi": 81.0, "perf": 40.0, "intent": 24.0, "context": 17.0 },
-    { "id": 6, "name": "ICÔNE D'ERABLE", "rpi": 86.0, "perf": 44.0, "intent": 24.0, "context": 18.0 },
-    { "id": 7, "name": "INHERIT", "rpi": 94.0, "perf": 49.0, "intent": 27.0, "context": 18.0 },
-    { "id": 8, "name": "FEU DE RÉVOLTE", "rpi": 86.0, "perf": 42.0, "intent": 27.0, "context": 17.0 },
-    { "id": 9, "name": "INDIGO DE FONTAINE", "rpi": 90.0, "perf": 47.0, "intent": 26.0, "context": 17.0 },
-    { "id": 10, "name": "JONGLEUSE DE LUNE", "rpi": 100.0, "perf": 52.0, "intent": 31.0, "context": 17.0 },
-    { "id": 11, "name": "JAG STRYCK", "rpi": 74.0, "perf": 39.0, "intent": 20.0, "context": 15.0 },
-    { "id": 12, "name": "HURRICANE CARTER", "rpi": 100.0, "perf": 53.0, "intent": 30.0, "context": 17.0 },
-    { "id": 14, "name": "HORATIUS D'ELA", "rpi": 79.0, "perf": 43.0, "intent": 21.0, "context": 15.0 },
-    { "id": 15, "name": "HE AND ME", "rpi": 86.0, "perf": 46.0, "intent": 24.0, "context": 16.0 },
-    { "id": 16, "name": "JINGLE DU PONT", "rpi": 90.0, "perf": 45.0, "intent": 29.0, "context": 16.0 }
+    { "id": 1, "name": "CHIARANIYA", "rpi": 83.0, "perf": 48.0, "intent": 21.0, "context": 14.0 },
+    { "id": 2, "name": "OZAN", "rpi": 73.0, "perf": 40.0, "intent": 18.0, "context": 15.0 },
+    { "id": 3, "name": "TORTISAMBERT", "rpi": 95.0, "perf": 52.0, "intent": 26.0, "context": 17.0 },
+    { "id": 4, "name": "TALENTUOSO", "rpi": 91.0, "perf": 50.0, "intent": 25.0, "context": 16.0 },
+    { "id": 5, "name": "GRAND SCOOP", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0 },
+    { "id": 6, "name": "CIAO PA", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0 },
+    { "id": 7, "name": "KRASKHOV", "rpi": 77.0, "perf": 39.0, "intent": 23.0, "context": 15.0 },
+    { "id": 8, "name": "SCHUMAN", "rpi": 83.0, "perf": 42.0, "intent": 24.0, "context": 17.0 },
+    { "id": 9, "name": "FIRE REBEL", "rpi": 87.0, "perf": 47.0, "intent": 24.0, "context": 16.0 },
+    { "id": 10, "name": "MCLEAN HOUSE", "rpi": 76.0, "perf": 42.0, "intent": 19.0, "context": 15.0 },
+    { "id": 11, "name": "SOURCE CODE", "rpi": 71.0, "perf": 44.0, "intent": 15.0, "context": 12.0 },
+    { "id": 12, "name": "BACCHILIDE", "rpi": 70.0, "perf": 38.0, "intent": 18.0, "context": 14.0 },
+    { "id": 13, "name": "RÉGALIEN", "rpi": 93.0, "perf": 49.0, "intent": 26.0, "context": 18.0 },
+    { "id": 14, "name": "GODESSA", "rpi": 68.0, "perf": 32.0, "intent": 22.0, "context": 14.0 },
+    { "id": 15, "name": "SNOW GHOST", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0 },
+    { "id": 16, "name": "TOIJK", "rpi": 70.0, "perf": 35.0, "intent": 22.0, "context": 13.0 }
   ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 10) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[9]); // Jongleuse de Lune (index 9 because id 13 removed)
-  const [compHorse2, setCompHorse2] = useState(horsesData[11]); // Hurricane Carter
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData[2]); // Tortisambert index 2 (id 3)
+  const [compHorse2, setCompHorse2] = useState(horsesData[12]); // Régalien index 12 (id 13)
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -498,22 +499,22 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Paris-Vincennes R1C1</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Deauville R1C8</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 13h55 • 29 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 13h55 • 30 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix de Langeais
+              Prix du Tréport
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Attelé" },
-                { label: "Distance", val: "2 850m" },
-                { label: "Surface", val: "G.P" },
-                { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "16 [7 ans+]" },
-                { label: "Allocation", val: "90 000€" }
+                { label: "Discipline", val: "Plat (PSF)" },
+                { label: "Distance", val: "1 300m" },
+                { label: "Surface", val: "PSF Standard" },
+                { label: "Corde", val: "À Droite" },
+                { label: "Partants", val: "16 [4 ans+]" },
+                { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -534,13 +535,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[10, 12].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[3, 13].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[10, 12, 7, 9, 16, 8, 15, 6].map((num, i) => (
+                       {[3, 13, 4, 6, 9, 1, 8, 5].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
