@@ -120,9 +120,9 @@ const App = () => {
   };
 
   const stats = [
-    { label: "Vues", value: "550 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
-    { label: "Abonnés", value: "1600+", icon: <Users className="w-5 h-5 text-orange-600" /> },
-    { label: "Réussite Quinté 2026", value: "85%", icon: <Target className="w-5 h-5 text-orange-600" /> },
+    { label: "Vues", value: "600 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
+    { label: "Abonnés", value: "1700+", icon: <Users className="w-5 h-5 text-orange-600" /> },
+    { label: "Réussite Quinté 2026", value: "82%", icon: <Target className="w-5 h-5 text-orange-600" /> },
   ];
 
   return (
