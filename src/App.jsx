@@ -55,33 +55,36 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
+  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (VENDREDI 30 JANVIER - PRIX DU TRÉPORT) ---
+  // --- DATA RPI v4.0 (SAMEDI 31 JANVIER - PRIX ANDRÉ-LOUIS DREUX) ---
   const horsesData = [
-    { "id": 1, "name": "CHIARANIYA", "rpi": 83.0, "perf": 48.0, "intent": 21.0, "context": 14.0 },
-    { "id": 2, "name": "OZAN", "rpi": 73.0, "perf": 40.0, "intent": 18.0, "context": 15.0 },
-    { "id": 3, "name": "TORTISAMBERT", "rpi": 95.0, "perf": 52.0, "intent": 26.0, "context": 17.0 },
-    { "id": 4, "name": "TALENTUOSO", "rpi": 91.0, "perf": 50.0, "intent": 25.0, "context": 16.0 },
-    { "id": 5, "name": "GRAND SCOOP", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0 },
-    { "id": 6, "name": "CIAO PA", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0 },
-    { "id": 7, "name": "KRASKHOV", "rpi": 77.0, "perf": 39.0, "intent": 23.0, "context": 15.0 },
-    { "id": 8, "name": "SCHUMAN", "rpi": 83.0, "perf": 42.0, "intent": 24.0, "context": 17.0 },
-    { "id": 9, "name": "FIRE REBEL", "rpi": 87.0, "perf": 47.0, "intent": 24.0, "context": 16.0 },
-    { "id": 10, "name": "MCLEAN HOUSE", "rpi": 76.0, "perf": 42.0, "intent": 19.0, "context": 15.0 },
-    { "id": 11, "name": "SOURCE CODE", "rpi": 71.0, "perf": 44.0, "intent": 15.0, "context": 12.0 },
-    { "id": 12, "name": "BACCHILIDE", "rpi": 70.0, "perf": 38.0, "intent": 18.0, "context": 14.0 },
-    { "id": 13, "name": "RÉGALIEN", "rpi": 93.0, "perf": 49.0, "intent": 26.0, "context": 18.0 },
-    { "id": 14, "name": "GODESSA", "rpi": 68.0, "perf": 32.0, "intent": 22.0, "context": 14.0 },
-    { "id": 15, "name": "SNOW GHOST", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0 },
-    { "id": 16, "name": "TOIJK", "rpi": 70.0, "perf": 35.0, "intent": 22.0, "context": 13.0 }
+    { "id": 1, "name": "NICE STEEL", "rpi": 79.0, "perf": 40.0, "intent": 22.0, "context": 17.0 },
+    { "id": 2, "name": "ELTYME", "rpi": 77.0, "perf": 38.0, "intent": 24.0, "context": 15.0 },
+    { "id": 3, "name": "EXMES AS", "rpi": 86.0, "perf": 44.0, "intent": 26.0, "context": 16.0 },
+    { "id": 4, "name": "KACEY BELL", "rpi": 57.0, "perf": 30.0, "intent": 15.0, "context": 12.0 },
+    { "id": 5, "name": "KARVINA D'ELA", "rpi": 74.0, "perf": 42.0, "intent": 18.0, "context": 14.0 },
+    { "id": 6, "name": "PERFECT", "rpi": 76.0, "perf": 39.0, "intent": 22.0, "context": 15.0 },
+    { "id": 7, "name": "KHAMSA", "rpi": 85.0, "perf": 43.0, "intent": 24.0, "context": 18.0 },
+    { "id": 8, "name": "KAPELLA DAIRPET", "rpi": 90.0, "perf": 46.0, "intent": 28.0, "context": 16.0 },
+    { "id": 9, "name": "KENNEDY STREET", "rpi": 81.0, "perf": 41.0, "intent": 24.0, "context": 16.0 },
+    { "id": 10, "name": "KASBAH PERRINE", "rpi": 66.0, "perf": 35.0, "intent": 18.0, "context": 13.0 },
+    { "id": 11, "name": "KARLA DE BANVILLE", "rpi": 92.0, "perf": 48.0, "intent": 25.0, "context": 19.0 },
+    { "id": 12, "name": "KAROLÈNE D'ETANG", "rpi": 83.0, "perf": 46.0, "intent": 20.0, "context": 17.0 },
+    { "id": 13, "name": "KASSIOPEIA", "rpi": 93.0, "perf": 49.0, "intent": 26.0, "context": 18.0 },
+    { "id": 14, "name": "ELISE ANA", "rpi": 85.0, "perf": 42.0, "intent": 26.0, "context": 17.0 },
+    { "id": 15, "name": "KLASS HAUFOR", "rpi": 87.0, "perf": 45.0, "intent": 24.0, "context": 18.0 },
+    { "id": 16, "name": "KUNAMATATA", "rpi": 92.0, "perf": 47.0, "intent": 27.0, "context": 18.0 }
   ];
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 3) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData[2]); // Tortisambert index 2 (id 3)
-  const [compHorse2, setCompHorse2] = useState(horsesData[12]); // Régalien index 12 (id 13)
+  // Sélection par défaut sur la meilleure note (Kassiopeia #13)
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 13) || horsesData[0]);
+  
+  // Comparateur par défaut : Kunamatata (#16) vs Karla de Banville (#11)
+  const [compHorse1, setCompHorse1] = useState(horsesData[15]); // Index 15 = ID 16
+  const [compHorse2, setCompHorse2] = useState(horsesData[10]); // Index 10 = ID 11
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -120,9 +123,9 @@ const App = () => {
   };
 
   const stats = [
-    { label: "Vues", value: "600 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
-    { label: "Abonnés", value: "1700+", icon: <Users className="w-5 h-5 text-orange-600" /> },
-    { label: "Réussite Quinté 2026", value: "82%", icon: <Target className="w-5 h-5 text-orange-600" /> },
+    { label: "Vues", value: "550 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
+    { label: "Abonnés", value: "1600+", icon: <Users className="w-5 h-5 text-orange-600" /> },
+    { label: "Réussite Quinté 2026", value: "85%", icon: <Target className="w-5 h-5 text-orange-600" /> },
   ];
 
   return (
@@ -499,21 +502,21 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Deauville R1C8</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Paris-Vincennes R1C6</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 13h55 • 30 Janvier 2026
+                <History size={12} className="text-orange-600" /> Départ 15h15 • 31 Janvier 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix du Tréport
+              Prix André-Louis Dreux
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Plat (PSF)" },
-                { label: "Distance", val: "1 300m" },
-                { label: "Surface", val: "PSF Standard" },
-                { label: "Corde", val: "À Droite" },
-                { label: "Partants", val: "16 [4 ans+]" },
+                { label: "Discipline", val: "Attelé" },
+                { label: "Distance", val: "2 850m" },
+                { label: "Surface", val: "G.P" },
+                { label: "Corde", val: "À Gauche" },
+                { label: "Partants", val: "16 [6 ans]" },
                 { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
@@ -535,13 +538,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[3, 13].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[13, 16].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[3, 13, 4, 6, 9, 1, 8, 5].map((num, i) => (
+                       {[13, 11, 16, 8, 15, 3, 14, 7].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
