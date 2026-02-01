@@ -55,35 +55,46 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Monté');
+  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (DIMANCHE 01 FÉVRIER - PRIX DE L'ÎLE-DE-FRANCE) ---
+  // --- DATA RPI v4.0 (LUNDI 02 FÉVRIER - PRIX DU VAR) ---
   const horsesData = [
-    { "id": 1, "name": "ELEGANCE KRONOS", "rpi": 80.0, "perf": 40.0, "intent": 25.0, "context": 15.0 },
-    { "id": 2, "name": "ILLUSION JIPAD", "rpi": 65.0, "perf": 30.0, "intent": 22.0, "context": 13.0 },
-    { "id": 3, "name": "JEEGHA PRIDE", "rpi": 75.0, "perf": 36.0, "intent": 24.0, "context": 15.0 },
-    { "id": 4, "name": "JE M'ENVOLE", "rpi": 87.0, "perf": 46.0, "intent": 24.0, "context": 17.0 },
-    { "id": 5, "name": "GOLD VOICE", "rpi": 78.0, "perf": 38.0, "intent": 24.0, "context": 16.0 },
-    { "id": 6, "name": "KEENGAME", "rpi": 81.0, "perf": 42.0, "intent": 23.0, "context": 16.0 },
-    { "id": 7, "name": "KAPAULA DE L'EPINE", "rpi": 84.0, "perf": 44.0, "intent": 22.0, "context": 18.0 },
-    { "id": 8, "name": "HALFA", "rpi": 82.0, "perf": 43.0, "intent": 22.0, "context": 17.0 },
-    { "id": 9, "name": "JÉROBOAM D'ÉRABLE", "rpi": 94.0, "perf": 51.0, "intent": 25.0, "context": 18.0 },
-    { "id": 10, "name": "KYT KAT", "rpi": 70.0, "perf": 35.0, "intent": 22.0, "context": 13.0 },
-    { "id": 11, "name": "IT'S A DOLLARMAKER", "rpi": 91.0, "perf": 49.0, "intent": 24.0, "context": 18.0 },
-    { "id": 12, "name": "JEAN BALTHAZAR", "rpi": 90.0, "perf": 48.0, "intent": 24.0, "context": 18.0 },
-    { "id": 13, "name": "HIRONDELLE DU RIB", "rpi": 72.0, "perf": 34.0, "intent": 24.0, "context": 14.0 },
-    { "id": 14, "name": "INA DU RIB", "rpi": 96.0, "perf": 52.0, "intent": 26.0, "context": 18.0 },
-    { "id": 15, "name": "IDÉALE DU CHÊNE", "rpi": 89.0, "perf": 47.0, "intent": 25.0, "context": 17.0 }
+    { "id": 1, "name": "GRECIAN COMET", "rpi": 83.0, "perf": 44.0, "intent": 25.0, "context": 14.0 },
+    { "id": 2, "name": "MILLAR", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0 },
+    { "id": 3, "name": "FIUMICCINO", "rpi": 85.0, "perf": 45.0, "intent": 24.0, "context": 16.0 },
+    { "id": 4, "name": "ALOYSIUS", "rpi": 96.0, "perf": 49.0, "intent": 30.0, "context": 17.0 },
+    { "id": 5, "name": "PRINCESSE TREZY", "rpi": 77.0, "perf": 39.0, "intent": 24.0, "context": 14.0 },
+    { "id": 6, "name": "LANTANA", "rpi": 78.0, "perf": 40.0, "intent": 23.0, "context": 15.0 },
+    { "id": 7, "name": "NOUS Y SOMMES", "rpi": 92.0, "perf": 48.0, "intent": 26.0, "context": 18.0 },
+    { "id": 8, "name": "LADY VITESSE", "rpi": 81.0, "perf": 41.0, "intent": 24.0, "context": 16.0 },
+    { "id": 9, "name": "AQUITAIN", "rpi": 70.0, "perf": 36.0, "intent": 21.0, "context": 13.0 },
+    { "id": 10, "name": "TIMBER CIRCLE", "rpi": 59.0, "perf": 30.0, "intent": 18.0, "context": 11.0 },
+    { "id": 11, "name": "BLUE SEABIRD", "rpi": 71.0, "perf": 35.0, "intent": 24.0, "context": 12.0 },
+    { "id": 12, "name": "WEEMAGATEE", "rpi": 99.0, "perf": 52.0, "intent": 29.0, "context": 18.0 },
+    { "id": 13, "name": "BLARNEY", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0 },
+    { "id": 14, "name": "SIR CRATER", "rpi": 62.0, "perf": 32.0, "intent": 18.0, "context": 12.0 },
+    { "id": 15, "name": "KAWAALOT", "rpi": 76.0, "perf": 38.0, "intent": 22.0, "context": 16.0 },
+    { "id": 16, "name": "MEME TOI", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0 }
   ];
 
-  // Sélection par défaut sur la tenante du titre (Ina du Rib #14)
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 14) || horsesData[0]);
+  // Infos de la course mises à jour
+  const raceInfo = {
+    title: "Prix du Var",
+    date: "02 Février 2026",
+    location: "Cagnes-sur-Mer",
+    discipline: "Plat (Gazon)",
+    distance: "2 150m",
+    allocation: "53 000€"
+  };
+
+  // Sélection par défaut sur la base (Weemagatee #12)
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 12) || horsesData[0]);
   
-  // Comparateur par défaut : Ina du Rib (#14) vs Jéroboam (#9)
-  const [compHorse1, setCompHorse1] = useState(horsesData[13]); // Index 13 = ID 14
-  const [compHorse2, setCompHorse2] = useState(horsesData[8]);  // Index 8 = ID 9
+  // Comparateur par défaut : Weemagatee (#12) vs Aloysius (#4)
+  const [compHorse1, setCompHorse1] = useState(horsesData[11]); // Index 11 = ID 12
+  const [compHorse2, setCompHorse2] = useState(horsesData[3]);  // Index 3 = ID 4
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -501,22 +512,22 @@ const App = () => {
 
           <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Paris-Vincennes R1C4</span>
+              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Cagnes-sur-Mer R1C1</span>
               <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 15h15 • 1 Février 2026
+                <History size={12} className="text-orange-600" /> Départ 13h55 • 02 Février 2026
               </span>
             </div>
             <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix de l'Île-de-France (Cornulier Revanche)
+              Prix du Var
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Discipline", val: "Monté" },
-                { label: "Distance", val: "2 175m" },
-                { label: "Surface", val: "G.P" },
+                { label: "Discipline", val: "Plat (Gazon)" },
+                { label: "Distance", val: "2 150m" },
+                { label: "Surface", val: "Collant" },
                 { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "15 [Grp.I]" },
-                { label: "Allocation", val: "200 000€" }
+                { label: "Partants", val: "16 [4 ans]" },
+                { label: "Allocation", val: "53 000€" }
               ].map((info, idx) => (
                 <div key={idx} className="flex flex-col">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
@@ -537,13 +548,13 @@ const App = () => {
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
                     <div className="flex gap-3">
-                       {[14, 9].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
+                       {[12, 4].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
                     </div>
                  </div>
                  <div className="flex flex-col items-start gap-4 text-left">
                     <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
                     <div className="flex flex-wrap gap-2">
-                       {[14, 9, 11, 12, 15, 4, 7, 8].map((num, i) => (
+                       {[12, 4, 7, 13, 3, 1, 2, 8].map((num, i) => (
                           <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
                        ))}
                     </div>
