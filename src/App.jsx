@@ -55,46 +55,44 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
+  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (LUNDI 02 FÉVRIER - PRIX DU VAR) ---
+  // --- DATA RPI v4.0 (MARDI 03 FÉVRIER - PRIX DE RÂNES) ---
   const horsesData = [
-    { "id": 1, "name": "GRECIAN COMET", "rpi": 83.0, "perf": 44.0, "intent": 25.0, "context": 14.0 },
-    { "id": 2, "name": "MILLAR", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0 },
-    { "id": 3, "name": "FIUMICCINO", "rpi": 85.0, "perf": 45.0, "intent": 24.0, "context": 16.0 },
-    { "id": 4, "name": "ALOYSIUS", "rpi": 96.0, "perf": 49.0, "intent": 30.0, "context": 17.0 },
-    { "id": 5, "name": "PRINCESSE TREZY", "rpi": 77.0, "perf": 39.0, "intent": 24.0, "context": 14.0 },
-    { "id": 6, "name": "LANTANA", "rpi": 78.0, "perf": 40.0, "intent": 23.0, "context": 15.0 },
-    { "id": 7, "name": "NOUS Y SOMMES", "rpi": 92.0, "perf": 48.0, "intent": 26.0, "context": 18.0 },
-    { "id": 8, "name": "LADY VITESSE", "rpi": 81.0, "perf": 41.0, "intent": 24.0, "context": 16.0 },
-    { "id": 9, "name": "AQUITAIN", "rpi": 70.0, "perf": 36.0, "intent": 21.0, "context": 13.0 },
-    { "id": 10, "name": "TIMBER CIRCLE", "rpi": 59.0, "perf": 30.0, "intent": 18.0, "context": 11.0 },
-    { "id": 11, "name": "BLUE SEABIRD", "rpi": 71.0, "perf": 35.0, "intent": 24.0, "context": 12.0 },
-    { "id": 12, "name": "WEEMAGATEE", "rpi": 99.0, "perf": 52.0, "intent": 29.0, "context": 18.0 },
-    { "id": 13, "name": "BLARNEY", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0 },
-    { "id": 14, "name": "SIR CRATER", "rpi": 62.0, "perf": 32.0, "intent": 18.0, "context": 12.0 },
-    { "id": 15, "name": "KAWAALOT", "rpi": 76.0, "perf": 38.0, "intent": 22.0, "context": 16.0 },
-    { "id": 16, "name": "MEME TOI", "rpi": 74.0, "perf": 37.0, "intent": 22.0, "context": 15.0 }
+    { "id": 1, "name": "IRMYLA DE SOMMAIRE", "rpi": 76.0, "perf": 40.0, "intent": 20.0, "context": 16.0 },
+    { "id": 2, "name": "INITIALE HÉRAULT", "rpi": 87.0, "perf": 48.0, "intent": 22.0, "context": 17.0 },
+    { "id": 3, "name": "DIVA DEL RONCO", "rpi": 92.0, "perf": 51.0, "intent": 25.0, "context": 16.0 },
+    { "id": 4, "name": "IMAGE D'ATALANTE", "rpi": 89.0, "perf": 45.0, "intent": 26.0, "context": 18.0 },
+    { "id": 5, "name": "IN RACE LORRAINE", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0 },
+    { "id": 6, "name": "JUNKIE", "rpi": 82.0, "perf": 42.0, "intent": 23.0, "context": 17.0 },
+    { "id": 7, "name": "XERAVA C.D.", "rpi": 94.0, "perf": 50.0, "intent": 26.0, "context": 18.0 },
+    { "id": 8, "name": "JANE CASH", "rpi": 90.0, "perf": 49.0, "intent": 24.0, "context": 17.0 },
+    { "id": 9, "name": "IVANA DES RACQUES", "rpi": 84.0, "perf": 46.0, "intent": 24.0, "context": 14.0 },
+    { "id": 10, "name": "DENIA", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0 },
+    { "id": 11, "name": "DIVINA TRIO", "rpi": 79.0, "perf": 42.0, "intent": 22.0, "context": 15.0 },
+    { "id": 12, "name": "DILVA JET", "rpi": 81.0, "perf": 43.0, "intent": 22.0, "context": 16.0 },
+    { "id": 13, "name": "EDIMA", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0 },
+    { "id": 14, "name": "ISLA", "rpi": 86.0, "perf": 46.0, "intent": 22.0, "context": 18.0 }
   ];
 
   // Infos de la course mises à jour
   const raceInfo = {
-    title: "Prix du Var",
-    date: "02 Février 2026",
-    location: "Cagnes-sur-Mer",
-    discipline: "Plat (Gazon)",
-    distance: "2 150m",
+    title: "Prix de Rânes",
+    date: "03 Février 2026",
+    location: "Paris-Vincennes",
+    discipline: "Attelé (Autostart)",
+    distance: "2 100m GP",
     allocation: "53 000€"
   };
 
-  // Sélection par défaut sur la base (Weemagatee #12)
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 12) || horsesData[0]);
+  // Sélection par défaut sur la base (Xerava C.D. #7)
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
   
-  // Comparateur par défaut : Weemagatee (#12) vs Aloysius (#4)
-  const [compHorse1, setCompHorse1] = useState(horsesData[11]); // Index 11 = ID 12
-  const [compHorse2, setCompHorse2] = useState(horsesData[3]);  // Index 3 = ID 4
+  // Comparateur par défaut : Xerava C.D. (#7) vs Diva del Ronco (#3)
+  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 7) || horsesData[0]); 
+  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]); 
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -216,12 +214,6 @@ const App = () => {
               </a>
               <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
                 ENTRAÎNEURS <UserCheck className="w-5 h-5" />
-              </a>
-            </div>
-            
-            <div className="w-full">
-              <a href="#ticket" className="w-full bg-white border-2 border-slate-100 hover:border-orange-600 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-sm group uppercase">
-                LE TICKET DU JOUR <Ticket className="w-5 h-5 text-orange-600" />
               </a>
             </div>
           </div>
@@ -498,91 +490,6 @@ const App = () => {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="ticket" className="py-24 px-6 bg-white flex flex-col items-center scroll-mt-20">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="mb-12 flex flex-col items-center">
-             <div className="inline-flex items-center gap-3 bg-orange-600/10 text-orange-600 px-6 py-2 rounded-full border border-orange-500/20 mb-6 font-black uppercase text-xs italic tracking-widest leading-none">Analyse Quinté</div>
-             <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-tight text-center">La Sélection Quinté 🎫</h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto mb-10 text-left border-l-4 border-orange-600 pl-6 animate-in fade-in slide-in-from-left duration-700">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">Cagnes-sur-Mer R1C1</span>
-              <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <History size={12} className="text-orange-600" /> Départ 13h55 • 02 Février 2026
-              </span>
-            </div>
-            <h3 className="text-4xl font-black text-slate-900 uppercase italic tracking-tighter mb-6 leading-none">
-              Prix du Var
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { label: "Discipline", val: "Plat (Gazon)" },
-                { label: "Distance", val: "2 150m" },
-                { label: "Surface", val: "Collant" },
-                { label: "Corde", val: "À Gauche" },
-                { label: "Partants", val: "16 [4 ans]" },
-                { label: "Allocation", val: "53 000€" }
-              ].map((info, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{info.label}</span>
-                  <span className="text-xs font-bold text-slate-900 uppercase">{info.val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-slate-900 rounded-[2rem] p-1 shadow-2xl shadow-orange-600/5 overflow-hidden max-w-3xl mx-auto w-full">
-            <div className="bg-white border-4 border-dashed border-slate-100 rounded-[1.8rem] p-8 md:p-12 text-slate-900 relative text-left">
-              <div className="flex justify-between items-center border-b-2 border-slate-100 pb-8 mb-8">
-                 <h3 className="font-black text-2xl uppercase italic leading-none">Note <span className="text-orange-600 font-bold italic">Renard</span></h3>
-                 <div className="bg-slate-900 text-white px-5 py-2 rounded-lg text-[10px] font-black uppercase italic tracking-widest">Quinté+</div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
-                 <div className="flex flex-col items-start gap-4 text-left">
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><StarIcon className="w-3 h-3 fill-orange-600 text-orange-600" /> Bases Data</h4>
-                    <div className="flex gap-3">
-                       {[12, 4].map(num => <div key={num} className="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black italic">{num}</div>)}
-                    </div>
-                 </div>
-                 <div className="flex flex-col items-start gap-4 text-left">
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 italic flex items-center gap-2"><ShieldCheck className="w-3 h-3 text-green-600" /> Sélection</h4>
-                    <div className="flex flex-wrap gap-2">
-                       {[12, 4, 7, 13, 3, 1, 2, 8].map((num, i) => (
-                          <div key={num} className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm italic border-2 ${i < 2 ? 'bg-orange-600 border-orange-600 text-white shadow-md shadow-orange-600/10' : 'bg-white border-slate-200 text-slate-900'}`}>{num}</div>
-                       ))}
-                    </div>
-                 </div>
-              </div>
-
-              {/* --- BOUTONS AFFILIATION SOUS LA SÉLECTION (TICKET) --- */}
-              <div className="mt-8 pt-8 border-t border-slate-100 w-full">
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <a href="https://www.gambling-affiliation.com/cpc/v=i4y8QpvWIKLB9KI57u.kuZEQ02dHjRKXIgVJsBwWORM_GA7331V2&aff_var_1=bouton_ticket_geny" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white rounded-xl shadow-md hover:bg-slate-800 transition-all group border-b-4 border-yellow-500">
-                       <div className="flex flex-col text-left">
-                          <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-widest">Partenaire</span>
-                          <span className="font-black italic text-sm">GENYBET</span>
-                       </div>
-                       <span className="font-bold text-sm bg-yellow-500 text-slate-900 px-3 py-1 rounded-lg">250€ Offerts</span>
-                    </a>
-
-                    <a href="https://lk.gt/amyY9" target="_blank" rel="nofollow noreferrer" className="flex items-center justify-between px-4 py-3 bg-green-700 text-white rounded-xl shadow-md hover:bg-green-800 transition-all group border-b-4 border-green-900">
-                       <div className="flex flex-col text-left">
-                          <span className="text-[10px] font-bold text-green-200 uppercase tracking-widest">Partenaire</span>
-                          <span className="font-black italic text-sm">PMU.FR</span>
-                       </div>
-                       <span className="font-bold text-sm bg-white text-green-800 px-3 py-1 rounded-lg">100€ Offerts</span>
-                    </a>
-                 </div>
-              </div>
-              {/* --------------------------------------------- */}
-
             </div>
           </div>
         </div>
