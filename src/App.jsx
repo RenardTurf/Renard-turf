@@ -77,7 +77,6 @@ const App = () => {
     { "id": 14, "name": "ISLA", "rpi": 86.0, "perf": 46.0, "intent": 22.0, "context": 18.0 }
   ];
 
-  // Infos de la course mises à jour
   const raceInfo = {
     title: "Prix de Rânes",
     date: "03 Février 2026",
@@ -87,12 +86,9 @@ const App = () => {
     allocation: "53 000€"
   };
 
-  // Sélection par défaut sur la base (Xerava C.D. #7)
   const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
-  
-  // Comparateur par défaut : Xerava C.D. (#7) vs Diva del Ronco (#3)
-  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 7) || horsesData[0]); 
-  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]); 
+  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
+  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -127,7 +123,8 @@ const App = () => {
 
   const LINKS = {
     EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
-    SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/"
+    SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/",
+    FREE_ANALYSIS: "https://lerenardturf.sellfy.store/p/essai-analyse-quinte-2/"
   };
 
   const stats = [
@@ -139,6 +136,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
+      {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -147,7 +145,6 @@ const App = () => {
             </div>
             <span className="text-xl font-black tracking-tighter uppercase italic leading-none">RENARD<span className="text-orange-600">TURF</span></span>
           </div>
-          
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all shadow-sm">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
@@ -156,17 +153,18 @@ const App = () => {
         {isMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
-              
+              <a href={LINKS.FREE_ANALYSIS} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-orange-600 transition-all border border-slate-800 group">
+                <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><FileText /></div>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2">ESSAI GRATUIT (PDF) <ExternalLink size={14}/></span>
+              </a>
               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-orange-600 text-white hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/30 group">
                 <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><BookOpen /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD (Ebook) <ExternalLink size={14}/></span>
               </a>
-
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-slate-800 transition-all border border-slate-800 group">
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-slate-100 transition-all border border-slate-200 group">
                 <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
-                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ABONNEMENT VIP <ExternalLink size={14}/></span>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-600">ABONNEMENT VIP <ExternalLink size={14}/></span>
               </a>
-              
               <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
                 <span className="font-black uppercase italic text-sm text-slate-900">Classements Data</span>
@@ -176,8 +174,8 @@ const App = () => {
         )}
       </nav>
 
+      {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
@@ -191,13 +189,16 @@ const App = () => {
           </p>
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
+            {/* Bouton Essai Gratuit en vedette */}
+            <a href={LINKS.FREE_ANALYSIS} target="_blank" rel="noreferrer" className="w-full bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500 mb-2 animate-bounce-slow">
+               <FileText className="w-6 h-6 text-orange-500" /> TÉLÉCHARGER L'ANALYSE GRATUITE (PDF)
+            </a>
+
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-               {/* EBOOK BUTTON */}
-               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
+               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-white hover:bg-orange-50 text-slate-900 px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-md group uppercase border-2 border-slate-200 hover:border-orange-200">
                 <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
               </a>
-              {/* SUBSCRIPTION BUTTON */}
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
                 <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
               </a>
             </div>
@@ -230,28 +231,38 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SECTION EBOOK PROMO --- */}
+      {/* --- SECTION EBOOK PROMO (Mise à jour avec le PDF gratuit) --- */}
       <section id="ebook-promo" className="py-20 px-6 bg-slate-900 text-white flex flex-col items-center relative overflow-hidden border-b border-slate-800">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-600/20 via-transparent to-transparent" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/30 text-orange-500 px-4 py-1.5 rounded-full mb-6 shadow-sm backdrop-blur-sm">
-            <Star className="w-4 h-4 fill-current" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Formation Exclusive</span>
+            <FileText className="w-4 h-4 fill-current" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Offre Découverte</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase italic tracking-tighter leading-none">
-            LES SECRETS DES <span className="text-orange-500">TURFISTES AVERTIS</span>
+            DÉCOUVREZ LA MÉTHODE <span className="text-orange-500">GRATUITEMENT</span>
           </h2>
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
-            23 pages pour analyser le Quinté comme un pro. Comprenez enfin les mécanismes cachés des courses et arrêtez de jouer au hasard.
+            Téléchargez un exemple complet d'analyse Quinté+ au format PDF. Comprenez comment nous décortiquons une course avant de vous abonner.
           </p>
-          <a 
-            href={LINKS.EBOOK_SHOP} 
-            target="_blank" 
-            rel="noreferrer" 
-            className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-orange-600/30 hover:scale-105"
-          >
-            <BookOpen className="w-6 h-6" /> OBTENIR LE GUIDE MAINTENANT
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+             <a 
+               href={LINKS.FREE_ANALYSIS} 
+               target="_blank" 
+               rel="noreferrer" 
+               className="inline-flex items-center gap-3 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg hover:scale-105 border-2 border-white"
+             >
+               <FileText className="w-6 h-6 text-orange-600" /> TÉLÉCHARGER LE PDF
+             </a>
+             <a 
+               href={LINKS.EBOOK_SHOP} 
+               target="_blank" 
+               rel="noreferrer" 
+               className="inline-flex items-center gap-3 bg-transparent text-white hover:bg-white/10 px-8 py-4 rounded-xl font-black text-lg transition-all border-2 border-white/20 hover:border-white"
+             >
+               <BookOpen className="w-6 h-6" /> ACHETER LE GUIDE COMPLET
+             </a>
+          </div>
         </div>
       </section>
 
@@ -271,7 +282,7 @@ const App = () => {
                   DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
                 </h2>
                 <ul className="space-y-4 mb-8">
-                  {['Selection Quinté+ détaillée la veille', 'Analyses exclusives & Chevaux D\'autres Courses', 'Un Chapitre Et Une Astuce De Jeu Du Guide Du Renard Gratuitement'].map((item, i) => (
+                  {['Analyses exclusives & Chevaux D\'autres Courses', 'Accès aux meilleures infos de la presse pro', 'Un Chapitre et une Astuce du Guide offerts'].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
                       <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
                       {item}
