@@ -1,30 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  TrendingUp, 
-  Zap, 
-  ChevronRight, 
-  Target, 
-  Users, 
-  Star, 
-  Ticket, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ExternalLink, 
-  History, 
-  PlayCircle, 
-  Eye, 
-  Star as StarIcon, 
-  BarChart3, 
-  ArrowRight, 
-  Info, 
-  Activity, 
-  X, 
-  Menu, 
-  Trophy, 
-  FileText, 
-  UserCheck, 
-  BookOpen, 
-  Crown 
+  TrendingUp, Zap, ChevronRight, Target, Users, Star, ShieldCheck, 
+  CheckCircle2, ExternalLink, History, Star as StarIcon, BarChart3, 
+  ArrowRight, Activity, X, Menu, Trophy, UserCheck, BookOpen, Crown,
+  Gift, FileText
 } from 'lucide-react';
 
 // --- CONFIGURATION GOOGLE SHEETS ---
@@ -59,42 +38,38 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (JEUDI 05 FÉVRIER - PRIX DE DURTAL LES RAIRIES) ---
+  // --- DATA RPI v4.0 (SAMEDI 07 FÉVRIER - PRIX DE MUNICH) ---
   const horsesData = [
-    { "id": 1, "name": "CERTAINLY", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "La Découverte" },
-    { "id": 2, "name": "JALIMÈDE", "rpi": 76.5, "perf": 38.0, "intent": 24.0, "context": 14.5, "stars": 2, "nickname": "L'Apostrophe" },
-    { "id": 3, "name": "NEO TURBO", "rpi": 86.8, "perf": 45.0, "intent": 24.0, "context": 17.8, "stars": 3, "nickname": "Le Revenant" },
-    { "id": 4, "name": "DYLAN DOG FONT", "rpi": 90.2, "perf": 47.0, "intent": 25.0, "context": 18.2, "stars": 4, "nickname": "La Note Visuelle" },
-    { "id": 5, "name": "HÉLIOS DES CHAMPS", "rpi": 81.0, "perf": 42.0, "intent": 23.0, "context": 16.0, "stars": 3, "nickname": "Le Guerrier" },
-    { "id": 6, "name": "HIATUS", "rpi": 79.5, "perf": 41.0, "intent": 22.0, "context": 16.5, "stars": 2, "nickname": "L'Expérimenté" },
-    { "id": 7, "name": "JACOMO BELLO", "rpi": 93.8, "perf": 52.0, "intent": 24.0, "context": 17.8, "stars": 5, "nickname": "Le Chrono King" },
-    { "id": 8, "name": "JOKER GÉMA", "rpi": 88.6, "perf": 48.0, "intent": 26.0, "context": 14.6, "stars": 3, "nickname": "Le Roc" },
-    { "id": 9, "name": "GLOBAL CONCEPT", "rpi": 91.5, "perf": 49.0, "intent": 25.0, "context": 17.5, "stars": 4, "nickname": "Le Viking Volant" },
-    { "id": 10, "name": "DAYAK", "rpi": 77.2, "perf": 39.0, "intent": 23.0, "context": 15.2, "stars": 2, "nickname": "L'Inconstant" },
-    { "id": 11, "name": "KAXIG IN", "rpi": 87.5, "perf": 46.0, "intent": 24.0, "context": 17.5, "stars": 3, "nickname": "Le Guerrier du Nord" },
-    { "id": 12, "name": "PORTOFINO", "rpi": 78.4, "perf": 40.0, "intent": 23.0, "context": 15.4, "stars": 2, "nickname": "Le Visé" },
-    { "id": 13, "name": "DIE HARD", "rpi": 80.2, "perf": 42.0, "intent": 22.0, "context": 16.2, "stars": 3, "nickname": "Le Courageux" },
-    { "id": 14, "name": "GODFATHER", "rpi": 95.0, "perf": 50.0, "intent": 27.0, "context": 18.0, "stars": 5, "nickname": "Le Parrain Danois" },
-    { "id": 15, "name": "WALDGEIST (NP)", "rpi": 0.0, "perf": 0.0, "intent": 0.0, "context": 0.0, "stars": 0, "nickname": "NON-PARTANT" },
-    { "id": 16, "name": "GOODWIN ZET", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Solaire" }
+    { "id": 1, "name": "IBISCUS MAN", "rpi": 95.5, "perf": 52.0, "intent": 26.0, "context": 17.5, "stars": 5, "nickname": "Le Recordman" },
+    { "id": 2, "name": "WORKING CLASS HERO", "rpi": 98.0, "perf": 54.0, "intent": 27.0, "context": 17.0, "stars": 5, "nickname": "Le Sans-Faute" },
+    { "id": 3, "name": "KSAR", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
+    { "id": 4, "name": "HAPPY DANICA", "rpi": 87.0, "perf": 46.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Revanche" },
+    { "id": 5, "name": "JANGO VICI", "rpi": 90.0, "perf": 48.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Note Visuelle" },
+    { "id": 6, "name": "IDÉAL DU ROCHER", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Solide" },
+    { "id": 7, "name": "JINGLE DU PONT", "rpi": 88.5, "perf": 47.0, "intent": 24.5, "context": 17.0, "stars": 4, "nickname": "L'Autostart" },
+    { "id": 8, "name": "HYMNE DU GERS", "rpi": 92.0, "perf": 50.0, "intent": 26.0, "context": 16.0, "stars": 4, "nickname": "Le Plafond" },
+    { "id": 9, "name": "CASH BANK BIGI", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Italienne" },
+    { "id": 10, "name": "KARAMBAR", "rpi": 72.0, "perf": 36.0, "intent": 20.0, "context": 16.0, "stars": 1, "nickname": "Le Remplaçant" },
+    { "id": 11, "name": "INDY ROCK", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "Le Suédois" },
+    { "id": 12, "name": "MAIN STAGE", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "stars": 1, "nickname": "Le Finlandais" },
+    { "id": 13, "name": "GRINDELWALD", "rpi": 74.0, "perf": 37.0, "intent": 21.0, "context": 16.0, "stars": 2, "nickname": "L'X de la course" },
+    { "id": 14, "name": "INVICTUS MADIBA", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0, "stars": 3, "nickname": "Le Nivard" },
+    { "id": 15, "name": "LIGHTNING STRIDE", "rpi": 68.0, "perf": 34.0, "intent": 19.0, "context": 15.0, "stars": 1, "nickname": "Le Finisseur" },
+    { "id": 16, "name": "JAZZMAN", "rpi": 86.0, "perf": 45.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Piégé ?" }
   ];
 
-  // Infos de la course mises à jour
   const raceInfo = {
-    title: "Prix de Durtal les Rairies",
-    date: "05 Février 2026",
+    title: "Prix de Munich",
+    date: "07 Février 2026",
     location: "Paris-Vincennes",
     discipline: "Attelé (Autostart)",
     distance: "2 100m GP",
-    allocation: "53 000€"
+    allocation: "90 000€"
   };
 
-  // Sélection par défaut sur le favori (Godfather #14)
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 14) || horsesData[0]);
-  
-  // Comparateur par défaut : Godfather (#14) vs Jacomo Bello (#7)
-  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 14) || horsesData[0]); 
-  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 7) || horsesData[1]); 
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2));
+  const [compHorse1, setCompHorse1] = useState(horsesData[1]); // Working Class Hero
+  const [compHorse2, setCompHorse2] = useState(horsesData[0]); // Ibiscus Man
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
