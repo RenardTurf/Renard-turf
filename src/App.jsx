@@ -59,38 +59,38 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (SAMEDI 07 FÉVRIER - PRIX DE MUNICH) ---
+  // --- DATA RPI v4.0 (DIMANCHE 08 FÉVRIER - PRIX DE FRANCE) ---
   const horsesData = [
-    { "id": 1, "name": "IBISCUS MAN", "rpi": 95.5, "perf": 52.0, "intent": 26.0, "context": 17.5, "stars": 5, "nickname": "Le Recordman" },
-    { "id": 2, "name": "WORKING CLASS HERO", "rpi": 98.0, "perf": 54.0, "intent": 27.0, "context": 17.0, "stars": 5, "nickname": "Le Sans-Faute" },
-    { "id": 3, "name": "KSAR", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
-    { "id": 4, "name": "HAPPY DANICA", "rpi": 87.0, "perf": 46.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Revanche" },
-    { "id": 5, "name": "JANGO VICI", "rpi": 90.0, "perf": 48.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Note Visuelle" },
-    { "id": 6, "name": "IDÉAL DU ROCHER", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Solide" },
-    { "id": 7, "name": "JINGLE DU PONT", "rpi": 88.5, "perf": 47.0, "intent": 24.5, "context": 17.0, "stars": 4, "nickname": "L'Autostart" },
-    { "id": 8, "name": "HYMNE DU GERS", "rpi": 92.0, "perf": 50.0, "intent": 26.0, "context": 16.0, "stars": 4, "nickname": "Le Plafond" },
-    { "id": 9, "name": "CASH BANK BIGI", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Italienne" },
-    { "id": 10, "name": "KARAMBAR", "rpi": 72.0, "perf": 36.0, "intent": 20.0, "context": 16.0, "stars": 1, "nickname": "Le Remplaçant" },
-    { "id": 11, "name": "INDY ROCK", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "Le Suédois" },
-    { "id": 12, "name": "MAIN STAGE", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "stars": 1, "nickname": "Le Finlandais" },
-    { "id": 13, "name": "GRINDELWALD", "rpi": 74.0, "perf": 37.0, "intent": 21.0, "context": 16.0, "stars": 2, "nickname": "L'X de la course" },
-    { "id": 14, "name": "INVICTUS MADIBA", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0, "stars": 3, "nickname": "Le Nivard" },
-    { "id": 15, "name": "LIGHTNING STRIDE", "rpi": 68.0, "perf": 34.0, "intent": 19.0, "context": 15.0, "stars": 1, "nickname": "Le Finisseur" },
-    { "id": 16, "name": "JAZZMAN", "rpi": 86.0, "perf": 45.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Piégé ?" }
+    { "id": 1, "name": "FRANCESCO ZET", "rpi": 97.0, "perf": 53.0, "intent": 27.0, "context": 17.0, "stars": 5, "nickname": "La Revanche" },
+    { "id": 2, "name": "INMAROSA", "rpi": 86.0, "perf": 45.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Dame de Corde" },
+    { "id": 3, "name": "IGUSKI SAUTONNE", "rpi": 95.5, "perf": 52.0, "intent": 26.5, "context": 17.0, "stars": 5, "nickname": "Le Roi du Cornulier" },
+    { "id": 4, "name": "EPIC KRONOS", "rpi": 91.0, "perf": 49.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Chuchoté" },
+    { "id": 5, "name": "GO ON BOY", "rpi": 94.0, "perf": 51.0, "intent": 26.0, "context": 17.0, "stars": 4, "nickname": "Le Recordman" },
+    { "id": 6, "name": "HOKKAIDO JIEL", "rpi": 93.0, "perf": 52.0, "intent": 25.0, "context": 16.0, "stars": 4, "nickname": "Le Champion" },
+    { "id": 7, "name": "KEEP GOING", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
+    { "id": 8, "name": "EXECUTIV EK", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0, "stars": 3, "nickname": "L'Italien Rapide" },
+    { "id": 9, "name": "JOSH POWER", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Surprise" },
+    { "id": 10, "name": "IROISE DE LA NOÉ", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "La Courageuse" },
+    { "id": 11, "name": "IDOLE D'OURVILLE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Exemplaire" },
+    { "id": 12, "name": "RIKITA JP", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "stars": 1, "nickname": "La Belge" },
+    { "id": 13, "name": "ICEBREAKER", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "stars": 1, "nickname": "Le Danois" }
   ];
 
   const raceInfo = {
-    title: "Prix de Munich",
-    date: "07 Février 2026",
+    title: "Prix de France - Speed Race",
+    date: "08 Février 2026",
     location: "Paris-Vincennes",
     discipline: "Attelé (Autostart)",
     distance: "2 100m GP",
-    allocation: "90 000€"
+    allocation: "400 000€"
   };
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 2) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 2) || horsesData[0]); // Working Class Hero
-  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 1) || horsesData[1]); // Ibiscus Man
+  // Sélection par défaut sur la base (Francesco Zet #1)
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 1) || horsesData[0]);
+  
+  // Comparateur par défaut : Francesco Zet (#1) vs Iguski Sautonne (#3)
+  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 1) || horsesData[0]);
+  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -125,8 +125,7 @@ const App = () => {
 
   const LINKS = {
     EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
-    SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/",
-    FREE_ANALYSIS: "https://lerenardturf.sellfy.store/p/essai-analyse-quinte-2/"
+    SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/"
   };
 
   const stats = [
@@ -159,9 +158,9 @@ const App = () => {
                 <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><BookOpen /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD (Ebook) <ExternalLink size={14}/></span>
               </a>
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-slate-100 transition-all border border-slate-200 group">
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-slate-800 transition-all border border-slate-800 group">
                 <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
-                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-600">ABONNEMENT VIP <ExternalLink size={14}/></span>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ABONNEMENT VIP <ExternalLink size={14}/></span>
               </a>
               <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
@@ -174,6 +173,7 @@ const App = () => {
 
       {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
@@ -188,10 +188,10 @@ const App = () => {
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-white hover:bg-orange-50 text-slate-900 px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-md group uppercase border-2 border-slate-200 hover:border-orange-200">
+               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
                 <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
               </a>
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
                 <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
               </a>
             </div>
