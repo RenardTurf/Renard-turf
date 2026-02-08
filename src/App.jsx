@@ -55,42 +55,40 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
+  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (DIMANCHE 08 FÉVRIER - PRIX DE FRANCE) ---
+  // --- DATA RPI v4.0 (LUNDI 09 FÉVRIER - PRIX DE MARSEILLE) ---
   const horsesData = [
-    { "id": 1, "name": "FRANCESCO ZET", "rpi": 97.0, "perf": 53.0, "intent": 27.0, "context": 17.0, "stars": 5, "nickname": "La Revanche" },
-    { "id": 2, "name": "INMAROSA", "rpi": 86.0, "perf": 45.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Dame de Corde" },
-    { "id": 3, "name": "IGUSKI SAUTONNE", "rpi": 95.5, "perf": 52.0, "intent": 26.5, "context": 17.0, "stars": 5, "nickname": "Le Roi du Cornulier" },
-    { "id": 4, "name": "EPIC KRONOS", "rpi": 91.0, "perf": 49.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Chuchoté" },
-    { "id": 5, "name": "GO ON BOY", "rpi": 94.0, "perf": 51.0, "intent": 26.0, "context": 17.0, "stars": 4, "nickname": "Le Recordman" },
-    { "id": 6, "name": "HOKKAIDO JIEL", "rpi": 93.0, "perf": 52.0, "intent": 25.0, "context": 16.0, "stars": 4, "nickname": "Le Champion" },
-    { "id": 7, "name": "KEEP GOING", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
-    { "id": 8, "name": "EXECUTIV EK", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0, "stars": 3, "nickname": "L'Italien Rapide" },
-    { "id": 9, "name": "JOSH POWER", "rpi": 85.0, "perf": 44.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "La Surprise" },
-    { "id": 10, "name": "IROISE DE LA NOÉ", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "La Courageuse" },
-    { "id": 11, "name": "IDOLE D'OURVILLE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Exemplaire" },
-    { "id": 12, "name": "RIKITA JP", "rpi": 70.0, "perf": 35.0, "intent": 20.0, "context": 15.0, "stars": 1, "nickname": "La Belge" },
-    { "id": 13, "name": "ICEBREAKER", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "stars": 1, "nickname": "Le Danois" }
+    { "id": 1, "name": "APAX", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "Le Top-Weight" },
+    { "id": 2, "name": "COLONEL MITCH", "rpi": 91.0, "perf": 49.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Nageur" },
+    { "id": 3, "name": "LORD OF WAR", "rpi": 76.0, "perf": 38.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "Le Guerrier" },
+    { "id": 4, "name": "GILDED DRAGON", "rpi": 84.0, "perf": 44.0, "intent": 23.0, "context": 17.0, "stars": 3, "nickname": "L'Irlandais" },
+    { "id": 5, "name": "CREW DRAGON", "rpi": 93.0, "perf": 50.0, "intent": 26.0, "context": 17.0, "stars": 5, "nickname": "Le Spécialiste" },
+    { "id": 6, "name": "SHAHBANDAR", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
+    { "id": 7, "name": "OTOMAI", "rpi": 96.0, "perf": 53.0, "intent": 27.0, "context": 16.0, "stars": 5, "nickname": "La Découverte" },
+    { "id": 8, "name": "FÉLIX AUX ORMES", "rpi": 89.0, "perf": 47.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Finisseur" },
+    { "id": 9, "name": "ANANTEAL", "rpi": 85.0, "perf": 45.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "La Forme" },
+    { "id": 10, "name": "JOH SPIRIT", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Tenante" },
+    { "id": 11, "name": "BREIZH MOON", "rpi": 81.0, "perf": 42.0, "intent": 23.0, "context": 16.0, "stars": 3, "nickname": "Le Régulier" },
+    { "id": 12, "name": "IZASTEP", "rpi": 79.0, "perf": 40.0, "intent": 23.0, "context": 16.0, "stars": 2, "nickname": "Le Local" },
+    { "id": 13, "name": "MARLOWE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Expérimenté" },
+    { "id": 14, "name": "TALISMAN TOUCH", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "stars": 1, "nickname": "Le Vétéran" }
   ];
 
   const raceInfo = {
-    title: "Prix de France - Speed Race",
-    date: "08 Février 2026",
-    location: "Paris-Vincennes",
-    discipline: "Attelé (Autostart)",
-    distance: "2 100m GP",
-    allocation: "400 000€"
+    title: "Prix de Marseille",
+    date: "09 Février 2026",
+    location: "Cagnes-sur-Mer",
+    discipline: "Plat (Gazon)",
+    distance: "1 500m",
+    allocation: "53 000€"
   };
 
-  // Sélection par défaut sur la base (Francesco Zet #1)
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 1) || horsesData[0]);
-  
-  // Comparateur par défaut : Francesco Zet (#1) vs Iguski Sautonne (#3)
-  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 1) || horsesData[0]);
-  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 7) || horsesData[0]); // Otomai
+  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 5) || horsesData[1]); // Crew Dragon
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -146,6 +144,13 @@ const App = () => {
             </div>
             <span className="text-xl font-black tracking-tighter uppercase italic leading-none">RENARD<span className="text-orange-600">TURF</span></span>
           </div>
+          
+          <div className="hidden md:flex items-center gap-4">
+             <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="bg-yellow-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-black uppercase italic flex items-center gap-2 hover:bg-yellow-300 transition-all shadow-md">
+                <Crown size={14} className="fill-current" /> Devenir VIP
+             </a>
+          </div>
+
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-3 bg-slate-50 border border-slate-200 rounded-2xl hover:bg-orange-600 hover:text-white transition-all shadow-sm">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
@@ -154,13 +159,13 @@ const App = () => {
         {isMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[60] overflow-y-auto px-6 py-10 animate-in slide-in-from-top duration-300">
             <div className="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
+              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-slate-800 transition-all border border-slate-800 group">
+                <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ACCÈS VIP (19,90€) <ExternalLink size={14}/></span>
+              </a>
               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-orange-600 text-white hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/30 group">
                 <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><BookOpen /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD (Ebook) <ExternalLink size={14}/></span>
-              </a>
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-slate-900 text-white hover:bg-slate-800 transition-all border border-slate-800 group">
-                <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
-                <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ABONNEMENT VIP <ExternalLink size={14}/></span>
               </a>
               <a href="#rankings" onClick={() => setIsMenuOpen(false)} className="flex flex-col p-6 rounded-[2rem] bg-slate-50 hover:bg-orange-50 transition-all border border-slate-100 group text-left">
                 <div className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center mb-4"><Trophy /></div>
@@ -173,7 +178,6 @@ const App = () => {
 
       {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
@@ -183,31 +187,25 @@ const App = () => {
             L'Information <span className="text-orange-600">Data</span><br />au service du Turf.
           </h1>
           <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
-            Décryptage, statistiques avancées et expertise pour une approche rationnelle du PMU sur le long terme.
+            Ne jouez plus au hasard. Accédez aux statistiques avancées et à la méthode Renard 4.0 pour vos jeux quotidiens.
           </p>
           
           <div className="flex flex-col gap-5 justify-center items-center w-full max-w-2xl px-6 md:px-0">
+            {/* VEDETTE : ABONNEMENT VIP */}
+            <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-6 rounded-2xl font-black text-xl flex flex-col items-center justify-center gap-2 transition-all shadow-2xl shadow-yellow-400/30 border-2 border-white animate-pulse-slow group">
+               <div className="flex items-center gap-3">
+                 <Crown className="w-8 h-8 fill-current" />
+                 <span>REJOINDRE LE CLUB VIP</span>
+               </div>
+               <span className="text-[10px] text-slate-700 uppercase tracking-widest font-bold opacity-80 group-hover:opacity-100">Pronostics complets + Infos de dernière minute</span>
+            </a>
+
             <div className="flex flex-col sm:flex-row gap-4 w-full">
-               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
+               <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 group uppercase border-2 border-slate-900 hover:border-orange-500">
                 <BookOpen className="w-5 h-5 text-orange-500" /> GUIDE DU RENARD
               </a>
-              <a href={LINKS.SUBSCRIPTION} target="_blank" rel="noreferrer" className="w-full sm:w-1/2 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-6 py-5 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-xl shadow-yellow-400/20 group uppercase border-2 border-yellow-400 hover:border-white">
-                <Crown className="w-5 h-5 text-slate-900" /> ABONNEMENT VIP
-              </a>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-5 w-full mt-2">
-              <a href="#rpi-tool" className="w-full bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                CONSULTER L'INDICE <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-5 w-full">
-              <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                {filterDiscipline === 'Plat' ? 'JOCKEYS' : 'DRIVERS'} <Trophy className="w-5 h-5" />
-              </a>
-              <a href="#rankings" className="w-full sm:w-1/2 bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-600/20 group uppercase">
-                ENTRAÎNEURS <UserCheck className="w-5 h-5" />
+              <a href="#rpi-tool" className="w-full sm:w-1/2 bg-white hover:bg-orange-50 text-orange-600 px-6 py-4 rounded-2xl font-black text-sm md:text-base flex items-center justify-center gap-3 transition-all shadow-md group uppercase border-2 border-orange-100">
+                L'INDICE RPI DU JOUR <ChevronRight className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -224,76 +222,32 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SECTION EBOOK PROMO --- */}
-      <section id="ebook-promo" className="py-20 px-6 bg-slate-900 text-white flex flex-col items-center relative overflow-hidden border-b border-slate-800">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-600/20 via-transparent to-transparent" />
+      {/* --- SECTION PROMO VIP (Mise en avant avantages) --- */}
+      <section id="vip-promo" className="py-20 px-6 bg-slate-900 text-white flex flex-col items-center relative overflow-hidden border-b border-slate-800">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-yellow-400/10 via-transparent to-transparent" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/30 text-orange-500 px-4 py-1.5 rounded-full mb-6 shadow-sm backdrop-blur-sm">
-            <BookOpen className="w-4 h-4 fill-current" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Formation Exclusive</span>
+          <div className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 px-4 py-1.5 rounded-full mb-6 shadow-sm backdrop-blur-sm">
+            <Crown className="w-4 h-4 fill-current" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Offre Premium</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase italic tracking-tighter leading-none">
-            LES SECRETS DES <span className="text-orange-500">TURFISTES AVERTIS</span>
+            PASSEZ AU NIVEAU <span className="text-yellow-400">SUPÉRIEUR</span>
           </h2>
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
-            23 pages pour analyser le Quinté comme un pro. Comprenez enfin les mécanismes cachés des courses et arrêtez de jouer au hasard.
+            Ne manquez plus aucun "Bruit d'écurie" ni aucune "Note" de tracking. Recevez la sélection détaillée et les jeux rentables la veille de la course.
           </p>
           <a 
-            href={LINKS.EBOOK_SHOP} 
+            href={LINKS.SUBSCRIPTION} 
             target="_blank" 
             rel="noreferrer" 
-            className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-orange-600/30 hover:scale-105"
+            className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-yellow-400/20 hover:scale-105"
           >
-            <BookOpen className="w-6 h-6" /> OBTENIR LE GUIDE MAINTENANT
+            <Crown className="w-6 h-6 fill-current" /> JE M'ABONNE (19,90€/Mois)
           </a>
         </div>
       </section>
-
-      {/* --- SECTION ABONNEMENT VIP --- */}
-      <section id="subscription-promo" className="py-20 px-6 bg-white text-slate-900 flex flex-col items-center relative border-b border-slate-100">
-        <div className="container mx-auto max-w-5xl">
-          <div className="bg-slate-900 rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400 rounded-full blur-[100px] opacity-20 -mr-16 -mt-16 pointer-events-none"></div>
-            
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
-              <div className="text-left md:w-3/5">
-                <div className="inline-flex items-center gap-2 bg-yellow-400 text-slate-900 px-4 py-1.5 rounded-full mb-6 shadow-lg shadow-yellow-400/20">
-                  <Crown className="w-4 h-4 fill-current" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">Offre Premium</span>
-                </div>
-                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none">
-                  DEVENEZ <span className="text-yellow-400">MEMBRE VIP</span>
-                </h2>
-                <ul className="space-y-4 mb-8">
-                  {['Analyses exclusives & Chevaux D\'autres Courses', 'Accès aux meilleures infos de la presse pro', 'Un Chapitre et une Astuce du Guide offerts'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
-                      <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center"><CheckCircle2 className="w-4 h-4 text-green-500" /></div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="md:w-2/5 flex flex-col items-center">
-                <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-8 w-full text-center">
-                  <span className="text-slate-400 uppercase text-xs font-bold tracking-widest mb-2 block">Sans engagement</span>
-                  <div className="text-5xl font-black text-white mb-6">19,90€<span className="text-lg text-slate-400 font-medium">/mois</span></div>
-                  <a 
-                    href={LINKS.SUBSCRIPTION} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="w-full block bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-8 py-4 rounded-xl font-black text-lg transition-all shadow-lg shadow-yellow-400/20 hover:scale-105 uppercase"
-                  >
-                    JE M'ABONNE 🚀
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       
-      {/* RPI Analyzer Tool (SANS ANALYSE TEXTUELLE) */}
+      {/* RPI Analyzer Tool */}
       <section id="rpi-tool" className="py-24 px-6 bg-slate-50 flex flex-col items-center border-y border-slate-100">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center mb-16 text-center">
