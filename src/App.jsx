@@ -55,40 +55,39 @@ const initGA = (id) => {
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDiscipline, setFilterDiscipline] = useState('Plat');
+  const [filterDiscipline, setFilterDiscipline] = useState('Attelé');
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [rankings, setRankings] = useState({ jockeys: [], trainers: [] });
 
-  // --- DATA RPI v4.0 (LUNDI 09 FÉVRIER - PRIX DE MARSEILLE) ---
+  // --- DATA RPI v4.0 (MARDI 10 FÉVRIER - PRIX DE DIEPPE) ---
   const horsesData = [
-    { "id": 1, "name": "APAX", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "Le Top-Weight" },
-    { "id": 2, "name": "COLONEL MITCH", "rpi": 91.0, "perf": 49.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Nageur" },
-    { "id": 3, "name": "LORD OF WAR", "rpi": 76.0, "perf": 38.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "Le Guerrier" },
-    { "id": 4, "name": "GILDED DRAGON", "rpi": 84.0, "perf": 44.0, "intent": 23.0, "context": 17.0, "stars": 3, "nickname": "L'Irlandais" },
-    { "id": 5, "name": "CREW DRAGON", "rpi": 93.0, "perf": 50.0, "intent": 26.0, "context": 17.0, "stars": 5, "nickname": "Le Spécialiste" },
-    { "id": 6, "name": "SHAHBANDAR", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0, "stars": 2, "nickname": "L'Outsider" },
-    { "id": 7, "name": "OTOMAI", "rpi": 96.0, "perf": 53.0, "intent": 27.0, "context": 16.0, "stars": 5, "nickname": "La Découverte" },
-    { "id": 8, "name": "FÉLIX AUX ORMES", "rpi": 89.0, "perf": 47.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "Le Finisseur" },
-    { "id": 9, "name": "ANANTEAL", "rpi": 85.0, "perf": 45.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "La Forme" },
-    { "id": 10, "name": "JOH SPIRIT", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Tenante" },
-    { "id": 11, "name": "BREIZH MOON", "rpi": 81.0, "perf": 42.0, "intent": 23.0, "context": 16.0, "stars": 3, "nickname": "Le Régulier" },
-    { "id": 12, "name": "IZASTEP", "rpi": 79.0, "perf": 40.0, "intent": 23.0, "context": 16.0, "stars": 2, "nickname": "Le Local" },
-    { "id": 13, "name": "MARLOWE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "L'Expérimenté" },
-    { "id": 14, "name": "TALISMAN TOUCH", "rpi": 72.0, "perf": 36.0, "intent": 21.0, "context": 15.0, "stars": 1, "nickname": "Le Vétéran" }
+    { "id": 1, "name": "LOLITA", "rpi": 72.0, "perf": 35.0, "intent": 20.0, "context": 17.0, "stars": 1, "nickname": "L'Outsider" },
+    { "id": 2, "name": "LOVINA PERRINE", "rpi": 75.0, "perf": 38.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "La Surprise" },
+    { "id": 3, "name": "LESDY MAGODA", "rpi": 94.0, "perf": 51.0, "intent": 26.0, "context": 17.0, "stars": 5, "nickname": "La Vitesse Pure" },
+    { "id": 4, "name": "LAISSEZ FAIRE", "rpi": 82.0, "perf": 42.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "La Provinciale" },
+    { "id": 5, "name": "LA FORMIDABLE", "rpi": 96.0, "perf": 53.0, "intent": 27.0, "context": 16.0, "stars": 5, "nickname": "L'Invaincue" },
+    { "id": 6, "name": "LAÏKA DES MARES", "rpi": 78.0, "perf": 40.0, "intent": 22.0, "context": 16.0, "stars": 2, "nickname": "La Régulière" },
+    { "id": 7, "name": "LADY DE VANDEL", "rpi": 91.0, "perf": 49.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "L'Adepte du Tracé" },
+    { "id": 8, "name": "LADY DES ARRIS", "rpi": 88.0, "perf": 46.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Note Visuelle" },
+    { "id": 9, "name": "LA MITIDJA", "rpi": 86.0, "perf": 45.0, "intent": 24.0, "context": 17.0, "stars": 3, "nickname": "Le Rochard" },
+    { "id": 10, "name": "LADY DE SAFRAN", "rpi": 76.0, "perf": 39.0, "intent": 22.0, "context": 15.0, "stars": 2, "nickname": "La Nivard" },
+    { "id": 11, "name": "LA DAME DE COEUR", "rpi": 84.0, "perf": 44.0, "intent": 24.0, "context": 16.0, "stars": 3, "nickname": "La D4" },
+    { "id": 12, "name": "LEMONADE FIZZ", "rpi": 80.0, "perf": 41.0, "intent": 23.0, "context": 16.0, "stars": 2, "nickname": "La Sérieuse" },
+    { "id": 13, "name": "LUNA HAUFOR", "rpi": 90.0, "perf": 48.0, "intent": 25.0, "context": 17.0, "stars": 4, "nickname": "La Classe Bigeon" }
   ];
 
   const raceInfo = {
-    title: "Prix de Marseille",
-    date: "09 Février 2026",
-    location: "Cagnes-sur-Mer",
-    discipline: "Plat (Gazon)",
-    distance: "1 500m",
-    allocation: "53 000€"
+    title: "Prix de Dieppe",
+    date: "10 Février 2026",
+    location: "Paris-Vincennes",
+    discipline: "Attelé",
+    distance: "2 700m GP",
+    allocation: "46 000€"
   };
 
-  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
-  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 7) || horsesData[0]);
-  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 5) || horsesData[1]);
+  const [selectedHorse, setSelectedHorse] = useState(horsesData.find(h => h.id === 5) || horsesData[0]);
+  const [compHorse1, setCompHorse1] = useState(horsesData.find(h => h.id === 5) || horsesData[0]);
+  const [compHorse2, setCompHorse2] = useState(horsesData.find(h => h.id === 3) || horsesData[1]);
 
   const parseCSV = (csvText) => {
     const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -127,9 +126,9 @@ const App = () => {
   };
 
   const stats = [
-    { label: "Vues", value: "630 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
-    { label: "Abonnés", value: "1800+", icon: <Users className="w-5 h-5 text-orange-600" /> },
-    { label: "Réussite Quinté 2026", value: "75%", icon: <Target className="w-5 h-5 text-orange-600" /> },
+    { label: "Vues", value: "550 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
+    { label: "Abonnés", value: "1600+", icon: <Users className="w-5 h-5 text-orange-600" /> },
+    { label: "Réussite Quinté 2026", value: "85%", icon: <Target className="w-5 h-5 text-orange-600" /> },
   ];
 
   return (
@@ -171,6 +170,7 @@ const App = () => {
 
       {/* Hero Section */}
       <section className="relative pt-48 pb-12 overflow-hidden text-center flex flex-col items-center">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent -z-10" />
         <div className="container mx-auto px-6 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
             <Activity className="text-orange-600 w-4 h-4 animate-pulse" />
