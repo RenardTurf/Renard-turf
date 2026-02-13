@@ -14,7 +14,9 @@ import {
   ArrowRight,
   Gift,
   AlertTriangle,
-  Banknote
+  Banknote,
+  Scale,
+  BrainCircuit
 } from 'lucide-react';
 
 // --- CONFIGURATION ANALYTICS ---
@@ -47,17 +49,16 @@ const App = () => {
   const LINKS = {
     EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
     SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/",
-    FREE_BANKROLL: "https://lerenardturf.sellfy.store/p/astuce-offerte-bankroll/"
+    FREE_BANKROLL: "https://lerenardturf.sellfy.store/p/astuce-offerte-bankroll/",
+    ONE_SHOT_2EUR: "https://lerenardturf.sellfy.store/p/essai-quinte-2/" // NOUVEAU LIEN
   };
 
   useEffect(() => {
     initGA('G-EY4386K4P1');
     
-    // Gestion du scroll
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
 
-    // Déclenchement de la Pop-up après 5 secondes
     const timer = setTimeout(() => {
       setShowPopup(true);
     }, 5000);
@@ -68,7 +69,6 @@ const App = () => {
     };
   }, []);
 
-  // Données mises à jour
   const stats = [
     { label: "Vues YouTube", value: "650 000+", icon: <TrendingUp className="w-5 h-5 text-orange-600" /> },
     { label: "Abonnés", value: "1 900+", icon: <Users className="w-5 h-5 text-orange-600" /> },
@@ -148,7 +148,6 @@ const App = () => {
 
       {/* --- FLASH PROMO VENDREDI 13 --- */}
       <section className="pt-32 pb-10 bg-slate-900 overflow-hidden relative">
-        {/* Background Effects */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-900 to-slate-900 z-0"></div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -217,15 +216,11 @@ const App = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-            {/* CARTE GAUCHE : BILAN COMPTABLE */}
             <div className="bg-slate-50 rounded-[2.5rem] p-8 border border-slate-100 shadow-xl relative overflow-hidden">
                <div className="absolute top-0 right-0 bg-slate-200 text-slate-600 font-bold text-[10px] uppercase px-4 py-2 rounded-bl-xl">Bilan Certifié 2 ans</div>
-               
                <h3 className="text-2xl font-black uppercase italic mb-8 flex items-center gap-2">
                  <Banknote className="text-orange-600" /> Mon Bilan Financier
                </h3>
-
                <div className="space-y-6">
                  <div className="flex justify-between items-end border-b border-slate-200 pb-4">
                    <span className="text-slate-500 font-bold uppercase text-xs tracking-widest">Somme Jouée</span>
@@ -245,20 +240,16 @@ const App = () => {
                </p>
             </div>
 
-            {/* CARTE DROITE : COMPARAISON LIVRET A */}
             <div className="bg-slate-900 text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden flex flex-col justify-center">
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-600/20 via-transparent to-transparent" />
-              
               <h3 className="text-2xl font-black uppercase italic mb-8 relative z-10">
                 VS Livret A (1,7%)
               </h3>
-
               <div className="space-y-8 relative z-10">
                 <div>
                    <p className="text-slate-400 text-sm mb-2">Intérêts estimés sur Livret A (2 ans) :</p>
                    <div className="text-3xl font-bold text-slate-500 line-through decoration-red-500">45,00 €</div>
                 </div>
-
                 <div>
                    <p className="text-orange-200 text-sm mb-2 font-bold">Rendement CLUB RENARD :</p>
                    <div className="text-5xl md:text-6xl font-black text-yellow-400">+51,5 %</div>
@@ -266,20 +257,80 @@ const App = () => {
                      <TrendingUp size={16} /> 15 FOIS PLUS QUE LA BANQUE
                    </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <a 
-                  href={LINKS.SUBSCRIPTION} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="w-full bg-white text-slate-900 hover:bg-slate-100 font-black uppercase py-4 rounded-xl transition-all flex items-center justify-center gap-2 mt-4"
-                >
-                  COPIER MA STRATÉGIE <ArrowRight size={18} />
-                </a>
+      {/* --- SECTION MÉTHODE & PHILOSOPHIE (AJOUTÉE) --- */}
+      <section className="py-20 px-6 bg-slate-100">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row gap-10">
+            
+            {/* Colonne Philosophie */}
+            <div className="flex-1 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full mb-6">
+                <BrainCircuit size={16} />
+                <span className="text-[10px] font-black uppercase tracking-widest">Ma Philosophie</span>
+              </div>
+              <h3 className="text-2xl font-black italic uppercase text-slate-900 mb-6">"Encaisser 5€ tous les jours"</h3>
+              <blockquote className="text-slate-600 text-lg leading-relaxed italic border-l-4 border-orange-500 pl-4 mb-6">
+                "Dans le turf, beaucoup rêvent du ticket à 10 000€... Ce n'est pas ma vision. 
+                Je préfère encaisser 5€ tous les jours plutôt qu'espérer un gain qui ne tombera peut-être jamais. 
+                La régularité n'est pas un hasard, elle repose sur l'analyse."
+              </blockquote>
+            </div>
+
+            {/* Colonne Bankroll */}
+            <div className="flex-1 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-600 px-4 py-1.5 rounded-full mb-6">
+                <Scale size={16} />
+                <span className="text-[10px] font-black uppercase tracking-widest">Money Management</span>
+              </div>
+              <h3 className="text-2xl font-black italic uppercase text-slate-900 mb-6">La Règle d'Or des 1%</h3>
+              <p className="text-slate-600 mb-6 font-medium">
+                Votre "Bankroll", c'est votre capital de guerre. Si vous misez 20€ sur un "coup sûr" et que le cheval tombe, vous perdez 20% de votre entreprise.
+              </p>
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm font-bold text-slate-800">
+                    <CheckCircle2 size={16} className="text-orange-600"/> Mise Standard : 1% à 2%
+                  </li>
+                  <li className="flex items-center gap-2 text-sm font-bold text-slate-800">
+                    <CheckCircle2 size={16} className="text-orange-600"/> Mise Confiance : 5% MAX
+                  </li>
+                </ul>
               </div>
             </div>
 
           </div>
         </div>
+      </section>
+
+      {/* --- SECTION APPEL À L'ACTION (2€) --- */}
+      <section className="py-16 px-6 bg-orange-600 overflow-hidden relative">
+         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-orange-600 to-orange-700"></div>
+         
+         <div className="container mx-auto max-w-4xl text-center relative z-10 text-white">
+           <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-8 leading-tight">
+             Vous avez vu mes résultats.<br/>
+             Vous avez compris ma méthode.
+           </h2>
+           
+           <div className="flex flex-col items-center">
+             <ArrowRight className="w-10 h-10 text-white animate-bounce mb-4" />
+             <a 
+               href={LINKS.ONE_SHOT_2EUR}
+               target="_blank" 
+               rel="noreferrer"
+               className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black text-xl md:text-2xl uppercase tracking-wider transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 hover:bg-slate-50 flex items-center gap-3"
+             >
+               TÉLÉCHARGER L'ANALYSE DE DEMAIN (2€)
+             </a>
+             <p className="mt-4 text-white/80 text-sm font-medium italic">Satisfait ou... vous aurez appris quelque chose.</p>
+           </div>
+         </div>
       </section>
 
       {/* --- SECTION ABONNEMENT CLASSIQUE --- */}
