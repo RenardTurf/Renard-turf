@@ -146,46 +146,6 @@ const App = () => {
         )}
       </nav>
 
-      {/* --- FLASH PROMO VENDREDI 13 --- */}
-      <section className="pt-32 pb-10 bg-slate-900 overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-900 to-slate-900 z-0"></div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="bg-gradient-to-r from-blue-900 to-slate-800 rounded-[2.5rem] p-8 md:p-12 border border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.2)] text-center relative overflow-hidden group">
-            
-            <div className="absolute top-0 right-0 bg-red-600 text-white font-black uppercase text-xs px-6 py-2 rounded-bl-2xl">Offre Limitée - 24H</div>
-
-            <div className="inline-flex items-center gap-2 bg-yellow-400 text-slate-900 px-4 py-1.5 rounded-full mb-6 font-black uppercase text-xs tracking-widest animate-pulse">
-              <AlertTriangle size={14} /> SPÉCIAL VENDREDI 13
-            </div>
-
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-4 uppercase italic tracking-tighter leading-none">
-              LE PASS <span className="text-yellow-400">CHANCE</span>
-            </h2>
-            
-            <p className="text-slate-300 text-lg mb-8 max-w-xl mx-auto font-medium">
-              Ne laissez pas le hasard décider. Accédez à l'analyse complète, mes pronos confiance et la meilleure presse.
-            </p>
-
-            <div className="flex flex-col items-center justify-center gap-6">
-              <div className="text-6xl font-black text-white transform -rotate-2">
-                13€ <span className="text-lg text-slate-400 font-medium tracking-normal block -mt-2">AU LIEU DE 19,90€</span>
-              </div>
-              
-              <a 
-                href={LINKS.SUBSCRIPTION} 
-                target="_blank" 
-                rel="noreferrer"
-                className="bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-10 py-5 rounded-xl font-black text-xl uppercase tracking-wider transition-all shadow-[0_0_30px_rgba(250,204,21,0.4)] hover:scale-105 flex items-center gap-3"
-              >
-                PROFITER DE L'OFFRE <Zap size={24} fill="currentColor" />
-              </a>
-              <p className="text-slate-500 text-xs italic">Offre valable uniquement ce vendredi 13 février.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* --- STATS BAR --- */}
       <div className="bg-white border-y border-slate-200 py-8">
         <div className="container mx-auto px-6">
