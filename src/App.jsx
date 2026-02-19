@@ -51,8 +51,8 @@ const App = () => {
   const LINKS = {
     EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
     SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/",
-    FREE_QUINTE: "https://lerenardturf.sellfy.store/p/analyse-complete-du-jour/", // <-- METS TON LIEN DU QUINTÉ GRATUIT ICI
-    COUPS_SURS_2EUR: "https://lerenardturf.sellfy.store/p/essai-quinte-2/" // <-- METS TON LIEN DES COUPS SURS A 2€ ICI
+    FREE_QUINTE: "https://lerenardturf.sellfy.store/p/analyse-complete-du-jour/", 
+    COUPS_SURS_2EUR: "https://lerenardturf.sellfy.store/p/essai-quinte-2/"
   };
 
   useEffect(() => {
@@ -80,7 +80,6 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
-
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm' : 'bg-white py-4 border-b border-slate-100'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
@@ -304,44 +303,31 @@ const App = () => {
             REJOIGNEZ LE <span className="text-orange-600">CLUB VIP</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between hover:border-orange-200 transition-all">
-                <div>
-                  <h3 className="text-xl font-black uppercase italic mb-4 text-slate-400">Club Renard (Hebdo)</h3>
-                  <div className="text-3xl font-black text-slate-900 mb-6">5,00 € <span className="text-sm font-medium text-slate-400">/semaine</span></div>
-                  <ul className="space-y-3 mb-8">
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-600"><CheckCircle2 className="w-4 h-4 text-orange-600" /> Les Coups Sûrs Quotidiens</li>
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-600"><CheckCircle2 className="w-4 h-4 text-orange-600" /> Sans engagement</li>
-                  </ul>
-                </div>
-                <a href={LINKS.SUBSCRIPTION} className="w-full block bg-slate-100 hover:bg-slate-200 text-slate-900 py-3 rounded-xl font-black text-center uppercase text-sm transition-all">
-                  Essayer 1 semaine
-                </a>
-             </div>
-
-             <div className="bg-slate-900 p-8 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden transform md:scale-105 border-4 border-orange-500">
-                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-lg">Le Choix de l'Investisseur</div>
-                <div>
-                  <h3 className="text-xl font-black uppercase italic mb-4 text-yellow-400">Club VIP Mensuel</h3>
-                  <div className="text-3xl font-black text-white mb-6">19,90 € <span className="text-sm font-medium text-slate-400">/mois</span></div>
-                  <ul className="space-y-3 mb-8">
-                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
-                      <Mail className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
-                      <span><strong>Confort Total :</strong> Quinté + Coups Sûrs envoyés automatiquement par email la veille.</span>
+          <div className="w-full max-w-2xl mx-auto">
+             <div className="bg-slate-900 p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden transform md:scale-105 border-4 border-orange-500">
+                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-4 py-2 rounded-bl-lg tracking-widest">Le Choix de l'Investisseur</div>
+                <div className="text-left">
+                  <h3 className="text-2xl font-black uppercase italic mb-4 text-yellow-400">Club VIP Mensuel</h3>
+                  <div className="text-4xl font-black text-white mb-8">19,90 € <span className="text-sm font-medium text-slate-400">/mois</span></div>
+                  <ul className="space-y-4 mb-10">
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <Mail className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
+                      <span><strong>Confort Total :</strong> Quinté + Coups Sûrs envoyés automatiquement par email la veille au soir.</span>
                     </li>
-                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
-                      <BookOpen className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <BookOpen className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
                       <span><strong>Cadeau Inclus :</strong> Le Guide du Renard offert (Valeur 9,90€).</span>
                     </li>
-                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
-                      <Zap className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
-                      <span>L'accès à la vraie rentabilité chaque jour.</span>
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <Zap className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
+                      <span>L'accès quotidien à la vraie rentabilité.</span>
                     </li>
                   </ul>
                 </div>
-                <a href={LINKS.SUBSCRIPTION} className="w-full block bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-xl font-black text-center uppercase text-lg transition-all shadow-lg shadow-orange-600/30">
+                <a href={LINKS.SUBSCRIPTION} className="w-full block bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-xl font-black text-center uppercase text-xl transition-all shadow-lg shadow-orange-600/30">
                   S'abonner Maintenant
                 </a>
+                <p className="text-slate-500 text-sm italic mt-4">Abonnement sans engagement. Résiliable en un clic.</p>
              </div>
           </div>
         </div>
