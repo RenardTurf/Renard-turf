@@ -16,7 +16,9 @@ import {
   AlertTriangle,
   Banknote,
   Scale,
-  BrainCircuit
+  BrainCircuit,
+  Download,
+  Mail
 } from 'lucide-react';
 
 // --- CONFIGURATION ANALYTICS ---
@@ -45,12 +47,12 @@ const App = () => {
   const [activeLegalModal, setActiveLegalModal] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  // --- LIENS SELLFY ---
+  // --- LIENS SELLFY (À METTRE À JOUR) ---
   const LINKS = {
     EBOOK_SHOP: "https://lerenardturf.sellfy.store/p/les-secrets-des-turfistes-avertis/",
     SUBSCRIPTION: "https://lerenardturf.sellfy.store/p/abonnement-mensuel-1990/",
-    FREE_BANKROLL: "https://lerenardturf.sellfy.store/p/astuce-offerte-bankroll/",
-    ONE_SHOT_2EUR: "https://lerenardturf.sellfy.store/p/essai-quinte-2/" // NOUVEAU LIEN
+    FREE_QUINTE: "https://lerenardturf.sellfy.store/p/analyse-complete-du-jour/", // <-- METS TON LIEN DU QUINTÉ GRATUIT ICI
+    COUPS_SURS_2EUR: "https://lerenardturf.sellfy.store/p/essai-quinte-2/" // <-- METS TON LIEN DES COUPS SURS A 2€ ICI
   };
 
   useEffect(() => {
@@ -137,14 +139,42 @@ const App = () => {
                 <div className="w-12 h-12 bg-yellow-400 text-slate-900 rounded-2xl flex items-center justify-center mb-4"><Crown /></div>
                 <span className="font-black uppercase italic text-sm flex items-center gap-2 text-yellow-400">ACCÈS VIP <ExternalLink size={14}/></span>
               </a>
-              <a href={LINKS.EBOOK_SHOP} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-orange-600 text-white hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/30 group">
-                <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><BookOpen /></div>
-                <span className="font-black uppercase italic text-sm flex items-center gap-2">LE GUIDE DU RENARD <ExternalLink size={14}/></span>
+              <a href={LINKS.FREE_QUINTE} target="_blank" rel="noreferrer" className="flex flex-col p-6 rounded-[2rem] bg-orange-600 text-white hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/30 group">
+                <div className="w-12 h-12 bg-white text-orange-600 rounded-2xl flex items-center justify-center mb-4"><Download /></div>
+                <span className="font-black uppercase italic text-sm flex items-center gap-2">QUINTÉ GRATUIT <ExternalLink size={14}/></span>
               </a>
             </div>
           </div>
         )}
       </nav>
+
+      {/* --- HERO SECTION : QUINTÉ GRATUIT --- */}
+      <section className="pt-32 pb-16 bg-slate-900 overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-900/40 via-slate-900 to-slate-900 z-0"></div>
+        
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-1.5 rounded-full mb-6 font-black uppercase text-xs tracking-widest border border-orange-500/30">
+            <Download size={14} /> 100% GRATUIT AUJOURD'HUI
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none max-w-4xl mx-auto">
+            MON ANALYSE DU QUINTÉ <span className="text-orange-500">OFFERTE</span>
+          </h1>
+          
+          <p className="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">
+            Le Quinté est la course la plus dure. J'ai récupéré l'avis des entraîneurs et analysé la data. Je vous offre la fiche complète du jour.
+          </p>
+
+          <a 
+            href={LINKS.FREE_QUINTE} 
+            target="_blank" 
+            rel="noreferrer"
+            className="inline-flex bg-orange-600 hover:bg-orange-500 text-white px-10 py-5 rounded-xl font-black text-xl uppercase tracking-wider transition-all shadow-[0_0_30px_rgba(234,88,12,0.4)] hover:scale-105 items-center gap-3"
+          >
+            TÉLÉCHARGER LE PDF (0€) <ArrowRight size={24} />
+          </a>
+        </div>
+      </section>
 
       {/* --- STATS BAR --- */}
       <div className="bg-white border-y border-slate-200 py-8">
@@ -223,7 +253,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SECTION MÉTHODE & PHILOSOPHIE (AJOUTÉE) --- */}
+      {/* --- SECTION MÉTHODE & PHILOSOPHIE --- */}
       <section className="py-20 px-6 bg-slate-100">
         <div className="container mx-auto max-w-5xl">
           <div className="flex flex-col md:flex-row gap-10">
@@ -268,49 +298,56 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SECTION APPEL À L'ACTION (2€) --- */}
+      {/* --- SECTION APPEL À L'ACTION : COUPS SÛRS À 2€ --- */}
       <section className="py-16 px-6 bg-orange-600 overflow-hidden relative">
          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-orange-600 to-orange-700"></div>
          
          <div className="container mx-auto max-w-4xl text-center relative z-10 text-white">
-           <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-8 leading-tight">
-             Vous avez vu mes résultats.<br/>
-             Vous avez compris ma méthode.
+           <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full mb-6 font-black uppercase text-xs tracking-widest">
+             <Target size={14} /> Le vrai bénéfice est ailleurs
+           </div>
+           
+           <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6 leading-tight">
+             LE QUINTÉ EST UNE LOTERIE.<br/>
+             DÉBLOQUEZ MES COUPS SÛRS.
            </h2>
            
+           <p className="text-orange-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
+             J'ai épluché toutes les courses du jour pour vous. Je n'ai gardé que les courses de plat à 8 partants où vos chances de victoire montent à 37,5%.
+           </p>
+           
            <div className="flex flex-col items-center">
-             <ArrowRight className="w-10 h-10 text-white animate-bounce mb-4" />
              <a 
-               href={LINKS.ONE_SHOT_2EUR}
+               href={LINKS.COUPS_SURS_2EUR}
                target="_blank" 
                rel="noreferrer"
                className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black text-xl md:text-2xl uppercase tracking-wider transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 hover:bg-slate-50 flex items-center gap-3"
              >
-               TÉLÉCHARGER L'ANALYSE DE DEMAIN (2€)
+               MES COUPS SÛRS DU JOUR (2€) <Zap className="fill-current" size={24} />
              </a>
-             <p className="mt-4 text-white/80 text-sm font-medium italic">Satisfait ou... vous aurez appris quelque chose.</p>
+             <p className="mt-4 text-white/80 text-sm font-medium italic">Téléchargement immédiat. Réservé aux parieurs intelligents.</p>
            </div>
          </div>
       </section>
 
-      {/* --- SECTION ABONNEMENT CLASSIQUE --- */}
+      {/* --- SECTION ABONNEMENT VIP NOUVELLE FORMULE --- */}
       <section id="subscription-promo" className="py-20 px-6 bg-slate-50 text-slate-900 flex flex-col items-center border-t border-slate-200">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full mb-6">
             <Crown className="w-4 h-4 fill-current" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Club Privé</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Offre Premium</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black mb-10 uppercase italic tracking-tighter leading-none">
-            REJOIGNEZ <span className="text-orange-600">L'ÉLITE</span>
+            REJOIGNEZ LE <span className="text-orange-600">CLUB VIP</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between hover:border-orange-200 transition-all">
                 <div>
-                  <h3 className="text-xl font-black uppercase italic mb-4 text-slate-400">Pass Hebdo</h3>
+                  <h3 className="text-xl font-black uppercase italic mb-4 text-slate-400">Club Renard (Hebdo)</h3>
                   <div className="text-3xl font-black text-slate-900 mb-6">5,00 € <span className="text-sm font-medium text-slate-400">/semaine</span></div>
                   <ul className="space-y-3 mb-8">
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-600"><CheckCircle2 className="w-4 h-4 text-orange-600" /> Analyse Quinté Quotidienne</li>
+                    <li className="flex items-center gap-2 text-sm font-medium text-slate-600"><CheckCircle2 className="w-4 h-4 text-orange-600" /> Les Coups Sûrs Quotidiens</li>
                     <li className="flex items-center gap-2 text-sm font-medium text-slate-600"><CheckCircle2 className="w-4 h-4 text-orange-600" /> Sans engagement</li>
                   </ul>
                 </div>
@@ -320,14 +357,23 @@ const App = () => {
              </div>
 
              <div className="bg-slate-900 p-8 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden transform md:scale-105 border-4 border-orange-500">
-                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-lg">Meilleure Offre</div>
+                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-lg">Le Choix de l'Investisseur</div>
                 <div>
-                  <h3 className="text-xl font-black uppercase italic mb-4 text-yellow-400">Club Renard</h3>
+                  <h3 className="text-xl font-black uppercase italic mb-4 text-yellow-400">Club VIP Mensuel</h3>
                   <div className="text-3xl font-black text-white mb-6">19,90 € <span className="text-sm font-medium text-slate-400">/mois</span></div>
                   <ul className="space-y-3 mb-8">
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-300"><CheckCircle2 className="w-4 h-4 text-green-400" /> Tout le contenu Hebdo</li>
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-300"><CheckCircle2 className="w-4 h-4 text-green-400" /> Guide du Renard Offert</li>
-                    <li className="flex items-center gap-2 text-sm font-medium text-slate-300"><CheckCircle2 className="w-4 h-4 text-green-400" /> Accès aux Chevaux du Jour</li>
+                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
+                      <Mail className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
+                      <span><strong>Confort Total :</strong> Quinté + Coups Sûrs envoyés automatiquement par email la veille.</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
+                      <BookOpen className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
+                      <span><strong>Cadeau Inclus :</strong> Le Guide du Renard offert (Valeur 9,90€).</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm font-medium text-slate-300">
+                      <Zap className="w-5 h-5 text-green-400 shrink-0 mt-0.5" /> 
+                      <span>L'accès à la vraie rentabilité chaque jour.</span>
+                    </li>
                   </ul>
                 </div>
                 <a href={LINKS.SUBSCRIPTION} className="w-full block bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-xl font-black text-center uppercase text-lg transition-all shadow-lg shadow-orange-600/30">
