@@ -80,43 +80,6 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       
-      {/* --- POP-UP CAPTURE EMAIL --- */}
-      {showPopup && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl border-4 border-orange-500">
-            <button 
-              onClick={() => setShowPopup(false)} 
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full"
-            >
-              <X size={20} />
-            </button>
-            
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-6">
-                <Gift size={32} />
-              </div>
-              <h3 className="text-2xl font-black uppercase italic mb-2 text-slate-900">Cadeau de Bienvenue</h3>
-              <p className="text-slate-600 mb-6 font-medium">
-                Arrêtez de perdre votre argent bêtement. Téléchargez gratuitement ma méthode de <strong>Gestion de Bankroll</strong>.
-              </p>
-              <a 
-                href={LINKS.FREE_BANKROLL} 
-                target="_blank" 
-                rel="noreferrer"
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-black uppercase py-4 rounded-xl shadow-lg shadow-orange-600/30 transition-transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                TÉLÉCHARGER LE GUIDE <ArrowRight size={18} />
-              </a>
-              <button 
-                onClick={() => setShowPopup(false)}
-                className="mt-4 text-xs text-slate-400 underline decoration-slate-300"
-              >
-                Non merci, je préfère parier au hasard
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm' : 'bg-white py-4 border-b border-slate-100'}`}>
@@ -313,7 +276,7 @@ const App = () => {
            </h2>
            
            <p className="text-orange-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
-             J'ai épluché toutes les courses du jour pour vous. Je n'ai gardé que les courses de plat à 8 partants où vos chances de victoire montent à 37,5%.
+             J'ai épluché toutes les courses du jour pour vous. 
            </p>
            
            <div className="flex flex-col items-center">
@@ -325,7 +288,7 @@ const App = () => {
              >
                MES COUPS SÛRS DU JOUR (2€) <Zap className="fill-current" size={24} />
              </a>
-             <p className="mt-4 text-white/80 text-sm font-medium italic">Téléchargement immédiat. Réservé aux parieurs intelligents.</p>
+             <p className="mt-4 text-white/80 text-sm font-medium italic">Téléchargement immédiat.</p>
            </div>
          </div>
       </section>
