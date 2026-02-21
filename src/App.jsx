@@ -110,31 +110,73 @@ const App = () => {
         )}
       </nav>
 
-      {/* --- HERO SECTION : QUINTÉ GRATUIT --- */}
+      {/* --- HERO SECTION : COUPS SÛRS À 2€ (EN PREMIER) --- */}
       <section className="pt-32 pb-16 bg-slate-900 overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-900/40 via-slate-900 to-slate-900 z-0"></div>
         
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-1.5 rounded-full mb-6 font-black uppercase text-xs tracking-widest border border-orange-500/30">
-            <Download size={14} /> 100% GRATUIT AUJOURD'HUI
+            <Target size={14} /> Le vrai bénéfice est ici
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none max-w-4xl mx-auto">
-            MON ANALYSE DU QUINTÉ <span className="text-orange-500">OFFERTE</span>
+            LES <span className="text-orange-500">COUPS SÛRS</span> DU JOUR (HORS QUINTÉ)
           </h1>
           
           <p className="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">
-            Le Quinté est la course la plus dure. J'ai récupéré l'avis des entraîneurs et analysé la data. Je vous offre la fiche complète du jour.
+            Le Quinté est une loterie. J'ai épluché toutes les courses du jour pour ne garder que mes 2 plus grosses confiances.
           </p>
 
           <a 
-            href={LINKS.FREE_QUINTE} 
+            href={LINKS.COUPS_SURS_2EUR} 
             target="_blank" 
             rel="noreferrer"
             className="inline-flex bg-orange-600 hover:bg-orange-500 text-white px-10 py-5 rounded-xl font-black text-xl uppercase tracking-wider transition-all shadow-[0_0_30px_rgba(234,88,12,0.4)] hover:scale-105 items-center gap-3"
           >
-            TÉLÉCHARGER LE PDF (0€) <ArrowRight size={24} />
+            DÉBLOQUER MES COUPS SÛRS (2€) <Zap size={24} className="fill-current" />
           </a>
+          <p className="mt-4 text-slate-400 text-sm italic">Téléchargement immédiat.</p>
+        </div>
+      </section>
+
+      {/* --- SECTION ABONNEMENT VIP (EN DEUXIÈME) --- */}
+      <section id="subscription-promo" className="py-20 px-6 bg-slate-50 text-slate-900 flex flex-col items-center border-b border-slate-200">
+        <div className="container mx-auto max-w-4xl text-center">
+          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full mb-6">
+            <Crown className="w-4 h-4 fill-current" />
+            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Offre Premium</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black mb-10 uppercase italic tracking-tighter leading-none">
+            REJOIGNEZ LE <span className="text-orange-600">CLUB VIP</span>
+          </h2>
+
+          <div className="w-full max-w-2xl mx-auto">
+             <div className="bg-slate-900 p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden transform md:scale-105 border-4 border-orange-500">
+                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-4 py-2 rounded-bl-lg tracking-widest">Le Choix de l'Investisseur</div>
+                <div className="text-left">
+                  <h3 className="text-2xl font-black uppercase italic mb-4 text-yellow-400">Club VIP Mensuel</h3>
+                  <div className="text-4xl font-black text-white mb-8">19,90 € <span className="text-sm font-medium text-slate-400">/mois</span></div>
+                  <ul className="space-y-4 mb-10">
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <Mail className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
+                      <span><strong>Confort Total :</strong> Quinté + Coups Sûrs envoyés automatiquement par email la veille au soir.</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <BookOpen className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
+                      <span><strong>Cadeau Inclus :</strong> Le Guide du Renard offert (Valeur 9,90€).</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
+                      <Zap className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
+                      <span>L'accès quotidien à la vraie rentabilité.</span>
+                    </li>
+                  </ul>
+                </div>
+                <a href={LINKS.SUBSCRIPTION} className="w-full block bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-xl font-black text-center uppercase text-xl transition-all shadow-lg shadow-orange-600/30">
+                  S'abonner Maintenant
+                </a>
+                <p className="text-slate-500 text-sm italic mt-4">Abonnement sans engagement. Résiliable en un clic.</p>
+             </div>
+          </div>
         </div>
       </section>
 
@@ -260,77 +302,35 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SECTION APPEL À L'ACTION : COUPS SÛRS À 2€ --- */}
-      <section className="py-16 px-6 bg-orange-600 overflow-hidden relative">
+      {/* --- SECTION QUINTÉ GRATUIT (EN DERNIER) --- */}
+      <section className="py-16 px-6 bg-orange-600 overflow-hidden relative border-t-8 border-slate-900">
          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-orange-600 to-orange-700"></div>
          
          <div className="container mx-auto max-w-4xl text-center relative z-10 text-white">
            <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full mb-6 font-black uppercase text-xs tracking-widest">
-             <Target size={14} /> Le vrai bénéfice est ailleurs
+             <Download size={14} /> Le Cadeau du Renard
            </div>
            
            <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6 leading-tight">
-             LE QUINTÉ EST UNE LOTERIE.<br/>
-             DÉBLOQUEZ MES COUPS SÛRS.
+             TÉLÉCHARGEZ L'ANALYSE DU<br/>
+             QUINTÉ GRATUITEMENT.
            </h2>
            
            <p className="text-orange-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
-             J'ai épluché toutes les courses du jour pour vous. 
+             J'ai récupéré l'avis des entraîneurs et analysé la data. Je vous offre la fiche complète du jour. Zéro euro.
            </p>
            
            <div className="flex flex-col items-center">
              <a 
-               href={LINKS.COUPS_SURS_2EUR}
+               href={LINKS.FREE_QUINTE}
                target="_blank" 
                rel="noreferrer"
-               className="bg-white text-orange-600 px-10 py-5 rounded-2xl font-black text-xl md:text-2xl uppercase tracking-wider transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 hover:bg-slate-50 flex items-center gap-3"
+               className="bg-slate-900 text-white hover:bg-slate-800 px-10 py-5 rounded-2xl font-black text-xl md:text-2xl uppercase tracking-wider transition-all shadow-xl flex items-center gap-3"
              >
-               MES COUPS SÛRS DU JOUR (2€) <Zap className="fill-current" size={24} />
+               RÉCUPÉRER MON PDF (0€) <ArrowRight className="w-6 h-6" />
              </a>
-             <p className="mt-4 text-white/80 text-sm font-medium italic">Téléchargement immédiat.</p>
            </div>
          </div>
-      </section>
-
-      {/* --- SECTION ABONNEMENT VIP NOUVELLE FORMULE --- */}
-      <section id="subscription-promo" className="py-20 px-6 bg-slate-50 text-slate-900 flex flex-col items-center border-t border-slate-200">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full mb-6">
-            <Crown className="w-4 h-4 fill-current" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Offre Premium</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-10 uppercase italic tracking-tighter leading-none">
-            REJOIGNEZ LE <span className="text-orange-600">CLUB VIP</span>
-          </h2>
-
-          <div className="w-full max-w-2xl mx-auto">
-             <div className="bg-slate-900 p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden transform md:scale-105 border-4 border-orange-500">
-                <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold uppercase px-4 py-2 rounded-bl-lg tracking-widest">Le Choix de l'Investisseur</div>
-                <div className="text-left">
-                  <h3 className="text-2xl font-black uppercase italic mb-4 text-yellow-400">Club VIP Mensuel</h3>
-                  <div className="text-4xl font-black text-white mb-8">19,90 € <span className="text-sm font-medium text-slate-400">/mois</span></div>
-                  <ul className="space-y-4 mb-10">
-                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
-                      <Mail className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
-                      <span><strong>Confort Total :</strong> Quinté + Coups Sûrs envoyés automatiquement par email la veille au soir.</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
-                      <BookOpen className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
-                      <span><strong>Cadeau Inclus :</strong> Le Guide du Renard offert (Valeur 9,90€).</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-base font-medium text-slate-300">
-                      <Zap className="w-6 h-6 text-green-400 shrink-0 mt-0.5" /> 
-                      <span>L'accès quotidien à la vraie rentabilité.</span>
-                    </li>
-                  </ul>
-                </div>
-                <a href={LINKS.SUBSCRIPTION} className="w-full block bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-xl font-black text-center uppercase text-xl transition-all shadow-lg shadow-orange-600/30">
-                  S'abonner Maintenant
-                </a>
-                <p className="text-slate-500 text-sm italic mt-4">Abonnement sans engagement. Résiliable en un clic.</p>
-             </div>
-          </div>
-        </div>
       </section>
 
       {/* Footer */}
