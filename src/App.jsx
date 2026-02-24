@@ -100,7 +100,7 @@ const ShutdownPage = () => {
           </p>
 
           <div style={styles.importantNote}>
-            ℹ️ <strong>Note aux abonnés :</strong> Le service est désormais clos. Tous les prélèvements automatiques ont été définitivement stoppés.
+            ℹ️ <strong>Note aux abonnés :</strong> Le service est désormais clos.
           </div>
         </div>
       </div>
